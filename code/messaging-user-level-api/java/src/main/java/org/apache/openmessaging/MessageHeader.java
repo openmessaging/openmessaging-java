@@ -31,4 +31,5 @@ public class MessageHeader {
     public static final String Priority = "Priority";
     public static final String Reliability = "Reliability";
     public static final String SearchKey = "SearchKey";
+    public static final String ScheduleExpression = "ScheduleExpression";
 }
