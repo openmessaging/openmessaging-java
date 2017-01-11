@@ -29,6 +29,9 @@ import java.util.Properties;
 import org.apache.openmessaging.KeyValue;
 import org.apache.openmessaging.ServiceEndPoint;
 
+/**
+ * WARN: The current interface prohibits direct access by the end user
+ */
 public class MessagingAccessPointAdapter {
     private static final String PROTOCOL_NAME = "protocol";
     private static final String SPI_NAME = "spi";

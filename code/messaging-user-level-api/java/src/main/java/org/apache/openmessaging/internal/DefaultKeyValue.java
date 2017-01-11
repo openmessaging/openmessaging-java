@@ -20,6 +20,9 @@ package org.apache.openmessaging.internal;
 import java.util.Set;
 import org.apache.openmessaging.KeyValue;
 
+/**
+ * WARN: The current interface prohibits direct access by the end user
+ */
 public class DefaultKeyValue implements KeyValue {
     @Override public KeyValue put(String key, int value) {
         return null;
