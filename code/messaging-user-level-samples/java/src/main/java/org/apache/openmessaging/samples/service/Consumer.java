@@ -14,33 +14,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.openmessaging.samples.service;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import org.apache.openmessaging.KeyValue;
 import org.apache.openmessaging.MessagingAccessPoint;
 import org.apache.openmessaging.MessagingAccessPointManager;
 import org.apache.openmessaging.ServiceEndPoint;
-import org.apache.openmessaging.samples.service.impl.HelloServiceImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.openmessaging.samples.service.api.CallRequest;
+import org.apache.openmessaging.samples.service.api.CallResponse;
+import org.apache.openmessaging.samples.service.api.HelloService;
 
-public class SimpleProvider {
-    private static final Logger LOG = LoggerFactory.getLogger(SimpleProvider.class);
-
-    public static void main(String[] args) {
+public class Consumer {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         try {
             KeyValue properties = MessagingAccessPointManager.buildKeyValue();
             properties.put("protocol.name", "mvp");
-            properties.put("service.prefer.tag", "hello");
-            final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("relay:default:100.81.2.5:8443", properties);
-            final ServiceEndPoint serviceEndPoint = messagingAccessPoint.createServiceEndPoint();
+            final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("openmessaging:rocketmq:100.81.2.5:8443", properties);
 
-            serviceEndPoint.publish(new HelloServiceImpl());
+            final ServiceEndPoint serviceEndPoint = messagingAccessPoint.createServiceEndPoint();
 
             messagingAccessPoint.start();
 
             serviceEndPoint.start();
+
+            HelloService helloServiceGen = serviceEndPoint.bind(HelloService.class);
 
             Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
                 public void run() {
@@ -48,9 +49,25 @@ public class SimpleProvider {
                     serviceEndPoint.shutdown();
                 }
             }));
+
+            for (int i = 0; i < 1000; i++) {
+                CallRequest req = new CallRequest();
+                req.setValue("hello ");
+                try {
+                    final CallResponse response = helloServiceGen.sayHello(req);
+                    System.out.println(response);
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                TimeUnit.MILLISECONDS.sleep(10);
+            }
+
         }
-        catch (Throwable e) {
-            LOG.error(e.toString());
+        catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 }
