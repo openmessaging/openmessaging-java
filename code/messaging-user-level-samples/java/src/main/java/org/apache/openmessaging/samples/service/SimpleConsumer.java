@@ -23,6 +23,8 @@ import org.apache.openmessaging.KeyValue;
 import org.apache.openmessaging.MessagingAccessPoint;
 import org.apache.openmessaging.MessagingAccessPointManager;
 import org.apache.openmessaging.ServiceEndPoint;
+import org.apache.openmessaging.samples.service.api.CallRequest;
+import org.apache.openmessaging.samples.service.api.CallResponse;
 import org.apache.openmessaging.samples.service.api.HelloService;
 
 public class SimpleConsumer {

@@ -16,9 +16,6 @@
  */
 package org.apache.openmessaging.samples.service.api;
 
-import org.apache.openmessaging.samples.service.CallRequest;
-import org.apache.openmessaging.samples.service.CallResponse;
-
 public interface HelloService {
     CallResponse sayHello(final CallRequest request);
 

@@ -17,8 +17,8 @@
 package org.apache.openmessaging.samples.service.impl;
 
 import java.util.concurrent.atomic.AtomicInteger;
-import org.apache.openmessaging.samples.service.CallRequest;
-import org.apache.openmessaging.samples.service.CallResponse;
+import org.apache.openmessaging.samples.service.api.CallRequest;
+import org.apache.openmessaging.samples.service.api.CallResponse;
 import org.apache.openmessaging.samples.service.api.HelloService;
 
 public class HelloServiceImpl implements HelloService {
