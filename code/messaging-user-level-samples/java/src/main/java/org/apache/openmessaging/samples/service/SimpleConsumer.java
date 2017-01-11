@@ -31,7 +31,7 @@ public class SimpleConsumer {
         try {
             KeyValue properties = MessagingAccessPointManager.buildKeyValue();
             properties.put("protocol.name", "mvp");
-            final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("relay:default:100.81.2.5:8443", properties);
+            final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("openmessaging:rocketmq:100.81.2.5:8443", properties);
 
             final ServiceEndPoint serviceEndPoint = messagingAccessPoint.createServiceEndPoint();
 
