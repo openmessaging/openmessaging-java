@@ -1,0 +1,1 @@
+## A vendor-neutral open standard for distributed messaging
