@@ -32,4 +32,6 @@ public class MessageHeader {
     public static final String Reliability = "Reliability";
     public static final String SearchKey = "SearchKey";
     public static final String ScheduleExpression = "ScheduleExpression";
+    public static final String ShardingKey = "ShardingKey";
+    public static final String ShardingPartition = "ShardingPartition";
 }
