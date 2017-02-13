@@ -19,7 +19,7 @@ package org.apache.openmessaging;
 public interface PushConsumer extends ServiceLifecycle {
     void resume();
 
-    void suspend();
+    void pause();
 
     void attachQueue(final String queueName, final MessageListener listener);
 

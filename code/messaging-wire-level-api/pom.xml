@@ -17,5 +17,10 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.taobao.metaq.final</groupId>
+            <artifactId>metaq-client</artifactId>
+            <version>3.6.3-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

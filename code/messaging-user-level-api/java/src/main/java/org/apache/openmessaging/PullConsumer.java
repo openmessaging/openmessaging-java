@@ -16,6 +16,6 @@
  */
 package org.apache.openmessaging;
 
-public interface PullConsumer {
+public interface PullConsumer extends ServiceLifecycle {
 
 }
