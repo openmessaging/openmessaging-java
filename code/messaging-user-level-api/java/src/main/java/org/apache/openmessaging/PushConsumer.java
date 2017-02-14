@@ -21,7 +21,9 @@ public interface PushConsumer extends ServiceLifecycle {
 
     void pause();
 
+    KeyValue properties();
+
     void attachQueue(final String queueName, final MessageListener listener);
 
-    void attachQueue(final String queueName, final Filters filters, final MessageListener listener);
+    void bindQueueRouting(final String queueName, final Filters filter);
 }

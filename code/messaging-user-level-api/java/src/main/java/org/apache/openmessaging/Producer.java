@@ -17,6 +17,8 @@
 package org.apache.openmessaging;
 
 public interface Producer extends MessageFactory, ServiceLifecycle {
+    KeyValue properties();
+
     void send(final BytesMessage message);
 
     void send(final BytesMessage message, final KeyValue properties);

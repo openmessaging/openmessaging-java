@@ -30,14 +30,11 @@ public class ConsumerTopicApp {
 
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
 
-        consumer.attachQueue("HELLO_QUEUE", messagingAccessPoint.createFilters()//
-                .addFilter("TOPIC='HELLO_TOPIC1'")//
-                .addFilter("TOPIC='HELLO_TOPIC2' AND KEY2 > 199"),//
-            new MessageListener() {
-                @Override public void onMessage(Message message, OnMessageContext context) {
-                    System.out.println("receive one message: " + message);
-                }
-            });
+        consumer.attachQueue("HELLO_QUEUE", new MessageListener() {
+            @Override public void onMessage(Message message, OnMessageContext context) {
+                System.out.println("receive one message: " + message);
+            }
+        });
 
         messagingAccessPoint.start();
         System.out.println("messagingAccessPoint startup OK");

@@ -16,9 +16,10 @@
  */
 package org.apache.openmessaging;
 
+import java.util.List;
 import org.apache.openmessaging.exception.OMSResourceNotExistException;
 
-public interface ResourceManager {
+public interface ResourceManager extends ServiceLifecycle {
     void createAndUpdateNamespace(final String nsName, KeyValue properties);
 
     void createAndUpdateTopic(final String topicName, KeyValue properties);
@@ -36,4 +37,16 @@ public interface ResourceManager {
     KeyValue getTopicProperties(final String topicName) throws OMSResourceNotExistException;
 
     KeyValue getQueueProperties(final String queueName) throws OMSResourceNotExistException;
+
+    void bindQueueRouting(final String queueName, final String consumerId, final Filters filter);
+
+    List<String> consumerIdListInQueue(final String queueName) throws OMSResourceNotExistException;
+
+    KeyValue getConsumerProperties(final String consumerId) throws OMSResourceNotExistException;
+
+    List<String> producerIdListInQueue(final String queueName) throws OMSResourceNotExistException;
+
+    List<String> producerIdListInTopic(final String topic) throws OMSResourceNotExistException;
+
+    KeyValue getProducerProperties(final String producerId) throws OMSResourceNotExistException;
 }

@@ -17,5 +17,5 @@
 package org.apache.openmessaging;
 
 public interface PullConsumer extends ServiceLifecycle {
-
+    KeyValue properties();
 }
