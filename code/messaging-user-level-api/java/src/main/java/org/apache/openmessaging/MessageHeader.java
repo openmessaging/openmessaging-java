@@ -34,4 +34,5 @@ public class MessageHeader {
     public static final String ScheduleExpression = "ScheduleExpression";
     public static final String ShardingKey = "ShardingKey";
     public static final String ShardingPartition = "ShardingPartition";
+    public static final String TraceId = "TraceId";
 }
