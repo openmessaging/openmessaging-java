@@ -42,9 +42,14 @@ public interface ResourceManager extends ServiceLifecycle {
 
     KeyValue getConsumerProperties(final String consumerId) throws OMSResourceNotExistException;
 
+    void serConsumerProperties(final String consumerId, final KeyValue properties) throws OMSResourceNotExistException;
+
     List<String> producerIdListInQueue(final String queueName) throws OMSResourceNotExistException;
 
     List<String> producerIdListInTopic(final String topic) throws OMSResourceNotExistException;
 
     KeyValue getProducerProperties(final String producerId) throws OMSResourceNotExistException;
+
+    void serProducerProperties(final String producerId, final KeyValue properties) throws OMSResourceNotExistException;
+
 }
