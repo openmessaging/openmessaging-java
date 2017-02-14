@@ -38,8 +38,6 @@ public interface ResourceManager extends ServiceLifecycle {
 
     KeyValue getQueueProperties(final String queueName) throws OMSResourceNotExistException;
 
-    void bindQueueRouting(final String queueName, final String consumerId, final Filters filter);
-
     List<String> consumerIdListInQueue(final String queueName) throws OMSResourceNotExistException;
 
     KeyValue getConsumerProperties(final String consumerId) throws OMSResourceNotExistException;
