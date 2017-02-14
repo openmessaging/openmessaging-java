@@ -36,6 +36,10 @@ public class ConsumerTopicApp {
             }
         });
 
+        consumer.bindQueueRouting("HELLO_QUEUE", messagingAccessPoint.createFilters()
+            .addFilter("TOPIC='HELLO_TOPIC1'")//
+            .addFilter("TOPIC='HELLO_TOPIC2' AND KEY2 > 199"));
+
         messagingAccessPoint.start();
         System.out.println("messagingAccessPoint startup OK");
 
