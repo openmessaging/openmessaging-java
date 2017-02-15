@@ -25,9 +25,13 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
 
     PushConsumer createPushConsumer(final KeyValue properties);
 
-    PullConsumer createPullConsumer();
+    PullConsumerAck createPullConsumerAck();
 
-    PullConsumer createPullConsumer(final KeyValue properties);
+    PullConsumerAck createPullConsumerAck(final KeyValue properties);
+
+    PullConsumerCursor createPullConsumerCursor();
+
+    PullConsumerCursor createPullConsumerCursor(final KeyValue properties);
 
     ResourceManager createResourceManager();
 
