@@ -17,6 +17,9 @@
 
 package io.openmessaging;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public class MessageHeader {
     public static final String MessageId = "MessageId";
     public static final String Destination = "Destination";

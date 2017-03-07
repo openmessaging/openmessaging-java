@@ -19,6 +19,9 @@ package io.openmessaging.filter;
 
 import io.openmessaging.Filters;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public interface FilterChain {
     FilterChain addFirst(final Filters filters);
 

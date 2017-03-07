@@ -17,6 +17,9 @@
 
 package io.openmessaging;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public interface MessageFactory {
     BytesMessage createBytesMessageToTopic(final String topic, final byte[] body);
 

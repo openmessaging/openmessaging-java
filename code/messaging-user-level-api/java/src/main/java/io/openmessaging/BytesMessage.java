@@ -17,6 +17,9 @@
 
 package io.openmessaging;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public interface BytesMessage extends Message {
     BytesMessage putHeaders(final String key, final int value);
 

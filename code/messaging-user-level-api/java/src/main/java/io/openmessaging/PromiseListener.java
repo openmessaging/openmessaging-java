@@ -17,6 +17,9 @@
 
 package io.openmessaging;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public interface PromiseListener<V> {
     void operationComplete(Promise<V> promise);
 

@@ -19,6 +19,9 @@ package io.openmessaging;
 
 import java.util.Set;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public interface KeyValue {
     KeyValue put(final String key, final int value);
 

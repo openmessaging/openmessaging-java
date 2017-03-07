@@ -17,6 +17,9 @@
 
 package io.openmessaging;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public interface Filters {
     Filters addFilter(final String sql);
 }

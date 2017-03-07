@@ -17,6 +17,9 @@
 
 package io.openmessaging;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public interface Producer extends MessageFactory, ServiceLifecycle {
     KeyValue properties();
 

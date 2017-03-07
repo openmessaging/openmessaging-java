@@ -17,6 +17,9 @@
 
 package io.openmessaging;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public interface MessageListener {
     void onMessage(final Message message, final OnMessageContext context);
 }

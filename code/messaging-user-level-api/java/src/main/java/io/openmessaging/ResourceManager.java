@@ -20,6 +20,9 @@ package io.openmessaging;
 import io.openmessaging.exception.OMSResourceNotExistException;
 import java.util.List;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public interface ResourceManager extends ServiceLifecycle {
     void createAndUpdateNamespace(final String nsName, KeyValue properties);
 

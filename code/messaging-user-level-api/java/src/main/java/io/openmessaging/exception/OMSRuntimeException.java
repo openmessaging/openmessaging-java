@@ -17,5 +17,8 @@
 
 package io.openmessaging.exception;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public class OMSRuntimeException extends RuntimeException {
 }

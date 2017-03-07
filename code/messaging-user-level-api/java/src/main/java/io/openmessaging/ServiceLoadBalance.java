@@ -19,6 +19,9 @@ package io.openmessaging;
 
 import java.util.Set;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public interface ServiceLoadBalance {
     /**
      * Select a collection of eligible providerServicePoint object from the the list of providerServicePoint provided

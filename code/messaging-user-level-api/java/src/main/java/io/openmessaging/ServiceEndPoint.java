@@ -19,6 +19,9 @@ package io.openmessaging;
 
 import io.openmessaging.observer.Observer;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public interface ServiceEndPoint extends ServiceLifecycle {
     /**
      * Register/re-register a service in a serviceEndPoint object

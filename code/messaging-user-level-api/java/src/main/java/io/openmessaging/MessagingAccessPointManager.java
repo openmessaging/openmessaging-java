@@ -17,6 +17,9 @@
 
 package io.openmessaging;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public class MessagingAccessPointManager {
     public static MessagingAccessPoint getMessagingAccessPoint(String url) {
         return getMessagingAccessPoint(url, null);

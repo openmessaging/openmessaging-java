@@ -19,6 +19,9 @@ package io.openmessaging.observer;
 
 import java.util.Observable;
 
+/**
+ * @author vintagewang@apache.org
+ */
 public interface Observer<T> {
     /**
      * Notifies the Observer that the {@link Observable} has finished sending push-based notifications.
