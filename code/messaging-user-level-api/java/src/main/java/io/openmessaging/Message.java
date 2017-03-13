@@ -29,19 +29,16 @@ package io.openmessaging;
  * object, and the {@code Message} is composed of the following parts:
  *
  * <UL>
- * <LI>Header - All messages support the same set of header fields.
- * Header fields contain values used by both clients and providers to
- * identify and route messages.
- * <LI>Properties - Each message contains a built-in facility for supporting
- * application-defined property values. Properties provide an efficient
- * mechanism for supporting application-defined message filtering.
+ * <LI>Header - All messages support the same set of header fields. Header fields contain values used by both
+ * clients and providers to identify and route messages.
+ * <LI>Properties - Each message contains a built-in facility for supporting application-defined property values.
+ * Properties provide an efficient mechanism for supporting application-defined message filtering.
  * </UL>
  *
  * The body part is placed in the implementation classes of {@code Message}.
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
- *
  * @version OMS 1.0
  * @since OMS 1.0
  */
@@ -49,78 +46,79 @@ public interface Message {
     /**
      * Returns all the header fields of the {@code Message} object as a {@code KeyValue}.
      *
-     * @return the headers of a {@code Message}.
+     * @return the headers of a {@code Message}
+     * @see MessageHeader
      */
     KeyValue headers();
 
     /**
      * Returns all the built-in property fields of the {@code Message} object as a {@code KeyValue}.
      *
-     * @return the properties of a {@code Message}.
+     * @return the properties of a {@code Message}
      */
     KeyValue properties();
 
     /**
      * Puts a {@code String}-{@code int} {@code KeyValue} entry to he headers of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers.
-     * @param value the value corresponding to <tt>key</tt>.
+     * @param key  the key to be placed into the headers
+     * @param value the value corresponding to <tt>key</tt>
      */
     Message putHeaders(final String key, final int value);
 
     /**
      * Puts a {@code String}-{@code long} {@code KeyValue} entry to he headers of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers.
-     * @param value the value corresponding to <tt>key</tt>.
+     * @param key  the key to be placed into the headers
+     * @param value the value corresponding to <tt>key</tt>
      */
     Message putHeaders(final String key, final long value);
 
     /**
      * Puts a {@code String}-{@code double} {@code KeyValue} entry to he headers of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers.
-     * @param value the value corresponding to <tt>key</tt>.
+     * @param key  the key to be placed into the headers
+     * @param value the value corresponding to <tt>key</tt>
      */
     Message putHeaders(final String key, final double value);
 
     /**
      * Puts a {@code String}-{@code String} {@code KeyValue} entry to he headers of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers.
-     * @param value the value corresponding to <tt>key</tt>.
+     * @param key  the key to be placed into the headers
+     * @param value the value corresponding to <tt>key</tt>
      */
     Message putHeaders(final String key, final String value);
 
     /**
      * Puts a {@code String}-{@code int} {@code KeyValue} entry to he headers of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers.
-     * @param value the value corresponding to <tt>key</tt>.
+     * @param key  the key to be placed into the headers
+     * @param value the value corresponding to <tt>key</tt>
      */
     Message putProperties(final String key, final int value);
 
     /**
      * Puts a {@code String}-{@code long} {@code KeyValue} entry to he headers of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers.
-     * @param value the value corresponding to <tt>key</tt>.
+     * @param key  the key to be placed into the headers
+     * @param value the value corresponding to <tt>key</tt>
      */
     Message putProperties(final String key, final long value);
 
     /**
      * Puts a {@code String}-{@code double} {@code KeyValue} entry to he headers of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers.
-     * @param value the value corresponding to <tt>key</tt>.
+     * @param key  the key to be placed into the headers
+     * @param value the value corresponding to <tt>key</tt>
      */
     Message putProperties(final String key, final double value);
 
     /**
      * Puts a {@code String}-{@code String} {@code KeyValue} entry to he headers of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers.
-     * @param value the value corresponding to <tt>key</tt>.
+     * @param key  the key to be placed into the headers
+     * @param value the value corresponding to <tt>key</tt>
      */
     Message putProperties(final String key, final String value);
 }

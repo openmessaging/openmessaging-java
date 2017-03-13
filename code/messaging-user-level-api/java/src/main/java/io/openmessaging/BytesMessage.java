@@ -31,14 +31,14 @@ public interface BytesMessage extends Message {
     /**
      * Returns the bytes message body.
      *
-     * @return the bytes message body.
+     * @return the bytes message body
      */
     byte[] getBody();
 
     /**
      * Sets the bytes message body.
      *
-     * @param body the message body to be set.
+     * @param body the message body to be set
      */
     BytesMessage setBody(final byte[] body);
 }

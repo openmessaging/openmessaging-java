@@ -42,32 +42,32 @@ public interface KeyValue {
     /**
      * Inserts or replaces {@code int} value for the specified key.
      *
-     * @param key the key to be placed into this {@code KeyValue} object.
-     * @param value the value corresponding to <tt>key</tt>.
+     * @param key the key to be placed into this {@code KeyValue} object
+     * @param value the value corresponding to <tt>key</tt>
      */
     KeyValue put(final String key, final int value);
 
     /**
      * Inserts or replaces {@code long} value for the specified key.
      *
-     * @param key the key to be placed into this {@code KeyValue} object.
-     * @param value the value corresponding to <tt>key</tt>.
+     * @param key the key to be placed into this {@code KeyValue} object
+     * @param value the value corresponding to <tt>key</tt>
      */
     KeyValue put(final String key, final long value);
 
     /**
      * Inserts or replaces {@code double} value for the specified key.
      *
-     * @param key the key to be placed into this {@code KeyValue} object.
-     * @param value the value corresponding to <tt>key</tt>.
+     * @param key the key to be placed into this {@code KeyValue} object
+     * @param value the value corresponding to <tt>key</tt>
      */
     KeyValue put(final String key, final double value);
 
     /**
      * Inserts or replaces {@code String} value for the specified key.
      *
-     * @param key the key to be placed into this {@code KeyValue} object.
-     * @param value the value corresponding to <tt>key</tt>.
+     * @param key the key to be placed into this {@code KeyValue} object
+     * @param value the value corresponding to <tt>key</tt>
      */
     KeyValue put(final String key, final String value);
 
@@ -75,8 +75,8 @@ public interface KeyValue {
      * Searches for the {@code int} property with the specified key in this {@code KeyValue} object.
      * If the key is not found in this property list, zero is returned.
      *
-     * @param key the property key.
-     * @return the value in this {@code KeyValue} object with the specified key value.
+     * @param key the property key
+     * @return the value in this {@code KeyValue} object with the specified key value
      * @see #put(String, int)
      */
     int getInt(final String key);
@@ -85,8 +85,8 @@ public interface KeyValue {
      * Searches for the {@code long} property with the specified key in this {@code KeyValue} object.
      * If the key is not found in this property list, zero is returned.
      *
-     * @param key the property key.
-     * @return the value in this {@code KeyValue} object with the specified key value.
+     * @param key the property key
+     * @return the value in this {@code KeyValue} object with the specified key value
      * @see #put(String, long)
      */
     long getLong(final String key);
@@ -95,8 +95,8 @@ public interface KeyValue {
      * Searches for the {@code double} property with the specified key in this {@code KeyValue} object.
      * If the key is not found in this property list, zero is returned.
      *
-     * @param key the property key.
-     * @return the value in this {@code KeyValue} object with the specified key value.
+     * @param key the property key
+     * @return the value in this {@code KeyValue} object with the specified key value
      * @see #put(String, double)
      */
     double getDouble(final String key);
@@ -105,8 +105,8 @@ public interface KeyValue {
      * Searches for the {@code String} property with the specified key in this {@code KeyValue} object.
      * If the key is not found in this property list, {@code null} is returned.
      *
-     * @param key the property key.
-     * @return the value in this {@code KeyValue} object with the specified key value.
+     * @param key the property key
+     * @return the value in this {@code KeyValue} object with the specified key value
      * @see #put(String, String)
      */
     String getString(final String key);

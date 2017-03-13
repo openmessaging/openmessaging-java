@@ -18,26 +18,33 @@
 package io.openmessaging;
 
 /**
+ * A {@code Promise} represents the result of an asynchronous computation.  Methods are provided to check if the
+ * computation is complete, to wait for its completion, and to retrieve the result of the computation.  The result can
+ * only be retrieved using method {@code get} when the computation has completed, blocking if necessary until it is
+ * ready.  Cancellation is performed by the {@code cancel} method.  Additional methods are provided to determine if the
+ * task completed normally or was cancelled. Once a computation has completed, the computation cannot be cancelled. If
+ * you would like to use a {@code Promise} for the sake of cancellability but not provide a usable result, you can
+ * declare types of the form {@code Promise<?>} and return {@code null} as a result of the underlying task.
+ *
  * @author vintagewang@apache.org
+ * @author yukon@apache.org
  */
 public interface Promise<V> {
 
     /**
-     * Attempts to cancel execution of this task.  This attempt will
-     * fail if the task has already completed, has already been cancelled,
-     * or could not be cancelled for some other reason. If successful,
-     * and this task has not started when {@code cancel} is called,
-     * this task should never run.  If the task has already started,
-     * then the {@code mayInterruptIfRunning} parameter determines
-     * whether the thread executing this task should be interrupted in
-     * an attempt to stop the task.
-     * <p>
-     * <p>After this method returns, subsequent calls to {@link #isDone} will
-     * always return {@code true}.  Subsequent calls to {@link #isCancelled}
-     * will always return {@code true} if this method returned {@code true}.
+     * Attempts to cancel execution of this task.  This attempt will fail if the task has already completed, has already
+     * been cancelled, or could not be cancelled for some other reason. If successful, and this task has not started
+     * when {@code cancel} is called, this task should never run.  If the task has already started, then the {@code
+     * mayInterruptIfRunning} parameter determines whether the thread executing this task should be interrupted in an
+     * attempt to stop the task.
+     * <p/>
+     * After this method returns, subsequent calls to {@link #isDone} will always return {@code true}.  Subsequent calls
+     * to {@link #isCancelled} will always return {@code true} if this method returned {@code true}.
      *
-     * @param mayInterruptIfRunning {@code true} if the thread executing this task should be interrupted; otherwise, in-progress tasks are allowed to complete
-     * @return {@code false} if the task could not be cancelled, typically because it has already completed normally; {@code true} otherwise
+     * @param mayInterruptIfRunning {@code true} if the thread executing this task should be interrupted; otherwise,
+     * in-progress tasks are allowed to complete
+     * @return {@code false} if the task could not be cancelled, typically because it has already completed normally;
+     * {@code true} otherwise
      */
     boolean cancel(boolean mayInterruptIfRunning);
 
@@ -78,18 +85,23 @@ public interface Promise<V> {
     V get(long timeout);
 
     /**
+     * Set the value to this promise and mark it completed if set successfully.
+     *
      * @param value Value
      * @return Whether set is success
      */
     boolean set(V value);
 
     /**
+     * Adds the specified listener to this promise. The specified listener is notified when this promise is done. If this
+     * promise is already completed, the specified listener is notified immediately.
+     *
      * @param listener PromiseListener
      */
     void addListener(PromiseListener listener);
 
     /**
-     * @return
+     * @return a throwable caught by the promise
      */
-    Exception getException();
+    Throwable getThrowable();
 }
