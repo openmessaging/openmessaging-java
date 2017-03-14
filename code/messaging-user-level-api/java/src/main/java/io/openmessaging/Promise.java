@@ -28,6 +28,9 @@ package io.openmessaging;
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
+ *
+ * @version OMS 1.0
+ * @since OMS 1.0
  */
 public interface Promise<V> {
 
@@ -37,7 +40,7 @@ public interface Promise<V> {
      * when {@code cancel} is called, this task should never run.  If the task has already started, then the {@code
      * mayInterruptIfRunning} parameter determines whether the thread executing this task should be interrupted in an
      * attempt to stop the task.
-     * <p/>
+     * <p>
      * After this method returns, subsequent calls to {@link #isDone} will always return {@code true}.  Subsequent calls
      * to {@link #isCancelled} will always return {@code true} if this method returned {@code true}.
      *

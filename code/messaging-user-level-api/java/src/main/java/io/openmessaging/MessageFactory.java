@@ -29,7 +29,7 @@ public interface MessageFactory {
     /**
      * Creates a {@code BytesMessage} object. A {@code BytesMessage} object is used to send a message containing a
      * stream of uninterpreted bytes.
-     * <p/>
+     * <p>
      * The returned {@code BytesMessage} object only can be sent to the specified topic.
      *
      * @param topic the target topic to send
@@ -42,7 +42,7 @@ public interface MessageFactory {
     /**
      * Creates a {@code BytesMessage} object. A {@code BytesMessage} object is used to send a message containing a
      * stream of uninterpreted bytes.
-     * <p/>
+     * <p>
      * The returned {@code BytesMessage} object only can be sent to the specified queue.
      *
      * @param queue the target queue to send

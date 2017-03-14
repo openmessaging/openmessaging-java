@@ -22,6 +22,9 @@ import java.util.List;
 
 /**
  * @author vintagewang@apache.org
+ *
+ * @version OMS 1.0
+ * @since OMS 1.0
  */
 public interface ResourceManager extends ServiceLifecycle {
     void createAndUpdateNamespace(final String nsName, KeyValue properties);

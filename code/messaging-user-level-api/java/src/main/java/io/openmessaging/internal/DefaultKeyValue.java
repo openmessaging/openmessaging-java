@@ -22,41 +22,58 @@ import java.util.Set;
 
 /**
  * WARN: The current interface prohibits direct access by the end user
+ *
+ * @version OMS 1.0
+ * @since OMS 1.0
  */
 public class DefaultKeyValue implements KeyValue {
-    @Override public KeyValue put(String key, int value) {
+    @Override
+    public KeyValue put(String key, int value) {
         return null;
     }
 
-    @Override public KeyValue put(String key, long value) {
+    @Override
+    public KeyValue put(String key, long value) {
         return null;
     }
 
-    @Override public KeyValue put(String key, double value) {
+    @Override
+    public KeyValue put(String key, double value) {
         return null;
     }
 
-    @Override public KeyValue put(String key, String value) {
+    @Override
+    public KeyValue put(String key, String value) {
         return null;
     }
 
-    @Override public int getInt(String key) {
+    @Override
+    public int getInt(String key) {
         return 0;
     }
 
-    @Override public long getLong(String key) {
+    @Override
+    public long getLong(String key) {
         return 0;
     }
 
-    @Override public double getDouble(String key) {
+    @Override
+    public double getDouble(String key) {
         return 0;
     }
 
-    @Override public String getString(String key) {
+    @Override
+    public String getString(String key) {
         return null;
     }
 
-    @Override public Set<String> keySet() {
+    @Override
+    public Set<String> keySet() {
         return null;
+    }
+
+    @Override
+    public boolean containsKey(String key) {
+        return false;
     }
 }

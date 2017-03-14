@@ -21,15 +21,15 @@ import java.util.Set;
 
 /**
  * The {@code KeyValue} class represents a persistent set of properties, which supports method chaining.
- * <p/>
+ * <p>
  * A {@code KeyValue} object only allows {@code String} keys and can contain four primitive type as values:
  * {@code int}, {@code long}, {@code double}, {@code String}.
- * <p/>
+ * <p>
  * The {@code KeyValue} is a replacement of {@code Properties}, with simpler interfaces and reasonable entry limits.
- * <p/>
+ * <p>
  * A {@code KeyValue} object may be used in concurrent scenarios, so the implementation of {@code KeyValue} should
  * consider concurrent related issues.
- * <p/>
+ * <p>
  * All the existing entries in {@code KeyValue} can't be removed but can be replaced by a new value for the specified key.
  *
  * @author vintagewang@apache.org

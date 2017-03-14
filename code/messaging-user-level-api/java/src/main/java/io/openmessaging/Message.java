@@ -20,11 +20,11 @@ package io.openmessaging;
 /**
  * The {@code Message} interface is the root interface of all OMS messages, and the most commonly used OMS message is
  * {@link BytesMessage}.
- * <p/>
+ * <p>
  * Most message-oriented middleware (MOM) products treat messages as lightweight entities that consist of a header and a
  * body, like <a href="http://rocketmq.apache.org/">Apache RocketMQ</a>. The header contains fields used for message
  * routing and identification; the body contains the application data being sent.
- * <p/>
+ * <p>
  * The {@code Message} is a lightweight entity that only contains the property related information of a specific message
  * object, and the {@code Message} is composed of the following parts:
  *
@@ -39,6 +39,7 @@ package io.openmessaging;
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
+ *
  * @version OMS 1.0
  * @since OMS 1.0
  */
