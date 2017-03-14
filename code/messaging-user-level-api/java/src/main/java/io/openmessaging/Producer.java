@@ -26,15 +26,15 @@ package io.openmessaging;
 public interface Producer extends MessageFactory, ServiceLifecycle {
     KeyValue properties();
 
-    void send(final BytesMessage message);
+    void send(final Message message);
 
-    void send(final BytesMessage message, final KeyValue properties);
+    void send(final Message message, final KeyValue properties);
 
-    Promise<Void> sendAsync(final BytesMessage message);
+    Promise<Void> sendAsync(final Message message);
 
-    Promise<Void> sendAsync(final BytesMessage message, final KeyValue properties);
+    Promise<Void> sendAsync(final Message message, final KeyValue properties);
 
-    void sendOneway(final BytesMessage message);
+    void sendOneway(final Message message);
 
-    void sendOneway(final BytesMessage message, final KeyValue properties);
+    void sendOneway(final Message message, final KeyValue properties);
 }
