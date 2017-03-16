@@ -17,24 +17,111 @@
 
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSRuntimeException;
+
 /**
+ * A {@code Producer} is a simple object used to send messages on behalf
+ * of a {@code MessagingAccessPoint}. An instance of {@code Producer} is
+ * created by calling the {@link MessagingAccessPoint#createProducer()} method.
+ * It provides various {@code send} methods to send a message to a specified
+ * destination({@code Topic} or {@code Queue}).
+ * <p>
+ *
+ * {@link Producer#send(Message)} means send a message to destination synchronously,
+ * the calling thread will block until the send request complete.
+ * <p>
+ * {@link Producer#sendAsync(Message)} means send a message to destination asynchronously,
+ * the calling thread won't block and will return immediately. Since the send call is asynchronous
+ * it returns a {@link Promise} for the send result.
+ * <p>
+ * {@link Producer#sendOneway(Message)} means send a message to destination in one way,
+ * the calling thread won't block and will return immediately. The caller won't care about
+ * the send result, while the server has no responsibility for returning the result.
+ *
  * @author vintagewang@apache.org
+ * @author yukon@apache.org
  *
  * @version OMS 1.0
  * @since OMS 1.0
  */
 public interface Producer extends MessageFactory, ServiceLifecycle {
+    /**
+     * Returns the properties of this {@code Producer} instance.
+     * Changes to the return {@code KeyValue} are not reflected in physical {@code Producer},
+     * and use {@link ResourceManager#setProducerProperties(String, KeyValue)} to modify.
+     *
+     * @return the properties
+     */
     KeyValue properties();
 
+    /**
+     * Sends a message to the specified destination synchronously, the destination should be preset to
+     * {@link MessageHeader#DESTINATION}, other header fields as well.
+     *
+     * @param message a message will be sent
+     * @throws OMSRuntimeException if the {@code Producer} fails to send the message due to some internal error.
+     */
     void send(final Message message);
 
+    /**
+     * Sends a message to the specified destination synchronously, using the specified properties, the destination
+     * should be preset to {@link MessageHeader#DESTINATION}, other header fields as well.
+     *
+     * @param message a message will be sent
+     * @param properties the specified properties
+     * @throws OMSRuntimeException if the {@code Producer} fails to send the message due to some internal error.
+     */
     void send(final Message message, final KeyValue properties);
 
+    /**
+     * Sends a message to the specified destination asynchronously, the destination should be preset to
+     * {@link MessageHeader#DESTINATION}, other header fields as well.
+     * <p>
+     * The returned {@code Promise} will have the result once the operation completes, and the registered
+     * {@code PromiseListener} will be notified, either because the operation was successful or because of an error.
+     *
+     * @param message a message will be sent
+     * @return the {@code Promise} of an asynchronous message send operation.
+     * @see Promise
+     * @see PromiseListener
+     */
     Promise<Void> sendAsync(final Message message);
 
+    /**
+     * Sends a message to the specified destination asynchronously, using the specified properties, the destination
+     * should be preset to {@link MessageHeader#DESTINATION}, other header fields as well.
+     * <p>
+     * The returned {@code Promise} will have the result once the operation completes, and the registered
+     * {@code PromiseListener} will be notified, either because the operation was successful or because of an error.
+     *
+     * @param message a message will be sent
+     * @param properties the specified properties
+     * @return the {@code Promise} of an asynchronous message send operation.
+     * @see Promise
+     * @see PromiseListener
+     */
     Promise<Void> sendAsync(final Message message, final KeyValue properties);
 
+    /**
+     * Sends a message to the specified destination in one way, the destination should be preset to
+     * {@link MessageHeader#DESTINATION}, other header fields as well.
+     * <p>
+     * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't
+     * care about the send result and also have no context to get the result.
+     *
+     * @param message a message will be sent
+     */
     void sendOneway(final Message message);
 
+    /**
+     * Sends a message to the specified destination in one way, using the specified properties, the destination
+     * should be preset to {@link MessageHeader#DESTINATION}, other header fields as well.
+     * <p>
+     * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't
+     * care about the send result and also have no context to get the result.
+     *
+     * @param message a message will be sent
+     * @param properties the specified properties
+     */
     void sendOneway(final Message message, final KeyValue properties);
 }

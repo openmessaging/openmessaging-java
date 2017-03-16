@@ -17,20 +17,67 @@
 
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSResourceNotExistException;
+import io.openmessaging.exception.OMSRuntimeException;
+
 /**
+ * A {@code PushConsumer} object to receive messages from a queue, these messages are pushed from
+ * MOM server to {@code PushConsumer} client.
+ *
  * @author vintagewang@apache.org
+ * @author yukon@apache.org
  *
  * @version OMS 1.0
  * @since OMS 1.0
  */
 public interface PushConsumer extends ServiceLifecycle {
+    /**
+     * Resumes the {@code PushConsumer} after a suspend.
+     * <p>
+     * This method resumes the {@code PushConsumer} instance after it was suspended.
+     * The instance will not receive new messages between the suspend and resume calls.
+     *
+     * @throws OMSRuntimeException if the instance has not been suspended.
+     * @see PushConsumer#suspend()
+     */
     void resume();
 
-    void pause();
+    /**
+     * Suspends the {@code PushConsumer} for later resumption.
+     * <p>
+     * This method suspends the {@code PushConsumer} instance until it is resumed.
+     * The instance will not receive new messages between the suspend and resume calls.
+     *
+     * @throws OMSRuntimeException if the instance is not currently running.
+     * @see PushConsumer#resume()
+     */
+    void suspend();
 
+    /**
+     * This method is used to find out whether the {@code PushConsumer} is suspended.
+     *
+     * @return true if this {@code PushConsumer} is suspended, false otherwise
+     */
+    boolean isSuspended();
+
+    /**
+     * Returns the properties of this {@code PushConsumer} instance.
+     * Changes to the return {@code KeyValue} are not reflected in physical {@code PushConsumer},
+     * and use {@link ResourceManager#setConsumerProperties(String, KeyValue)} to modify.
+     *
+     * @return the properties
+     */
     KeyValue properties();
 
-    void attachQueue(final String queueName, final MessageListener listener);
-
-    void bindQueueRouting(final String queueName, final Filters filter);
+    /**
+     * Attaches the {@code PushConsumer} to a specified queue, with a {@code MessageListener}.
+     * {@link MessageListener#onMessage(Message, OnMessageContext)} will be called when new
+     * delivered message is coming.
+     *
+     * @param queueName a specified queue
+     * @param listener a specified listener to receive new message
+     *
+     * @throws OMSResourceNotExistException if the specified queue is not exists
+     */
+    void attachQueue(final String queueName, final MessageListener listener) throws OMSResourceNotExistException;
 }

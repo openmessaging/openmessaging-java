@@ -72,9 +72,10 @@ public interface ResourceManager extends ServiceLifecycle {
      * Note that this method will simply create the physical queue in the specified {@code MessagingAccessPoint}.
      *
      * @param queueName a queue name
+     * @param filter a specified filter
      * @param properties the preset properties
      */
-    void createAndUpdateQueue(final String queueName, KeyValue properties);
+    void createAndUpdateQueue(final String queueName, Filters filter, KeyValue properties);
 
     /**
      * Destroys a physical namespace in the specified {@code MessagingAccessPoint}.
