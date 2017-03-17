@@ -17,12 +17,34 @@
 
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSRuntimeException;
+
 /**
+ * A {@code PullConsumerAck} object has all of the {@code PullConsumer} features,
+ * and supports submit the consume result by acknowledgement.
+ *
  * @author vintagewang@apache.org
+ * @author yukon@apache.org
  *
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface PullConsumerAck extends ServiceLifecycle {
-    KeyValue properties();
+public interface PullConsumerAck extends PullConsumer {
+    /**
+     * Acknowledges the specified and consumed message.
+     * <p>
+     * Messages that have been received but not acknowledged may be redelivered.
+     *
+     * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
+     */
+    void ack(Message message);
+
+    /**
+     * Acknowledges the specified and consumed message with the specified properties.
+     * <p>
+     * Messages that have been received but not acknowledged may be redelivered.
+     *
+     * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
+     */
+    void ack(Message message, final KeyValue properties);
 }
