@@ -24,14 +24,47 @@ package io.openmessaging;
  * @since OMS 1.0
  */
 public class MessageHeader {
+    /**
+     * MessageId is a unique identification of a message.
+     */
     public static final String MESSAGE_ID = "MessageId";
+
+    /**
+     * TODO : Consider to remove it from headers.
+     */
     public static final String DESTINATION = "Destination";
+
+    /**
+     * The specified topic that a message belongs to.
+     */
     public static final String TOPIC = "Topic";
+
+    /**
+     * The specified queue that a message belongs to.
+     */
     public static final String QUEUE = "Queue";
+
+    /**
+     * The born timestamp of a message in client side.
+     */
     public static final String BORN_TIMESTAMP = "BornTimestamp";
+
+    /**
+     * The born host of a message in client side.
+     */
     public static final String BORN_HOST = "BornHost";
+
+    /**
+     * The store timestamp of a message in server side.
+     */
     public static final String STORE_TIMESTAMP = "StoreTimestamp";
+
+    /**
+     * The store host of a message in server side.
+     */
     public static final String STORE_HOST = "StoreHost";
+
+
     public static final String START_TIME = "StartTime";
     public static final String STOP_TIME = "StopTime";
     public static final String TIMEOUT = "Timeout";
