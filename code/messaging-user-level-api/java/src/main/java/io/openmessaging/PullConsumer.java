@@ -17,6 +17,7 @@
 
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSResourceNotExistException;
 import io.openmessaging.exception.OMSRuntimeException;
 import java.util.concurrent.TimeUnit;
 
@@ -116,4 +117,16 @@ public interface PullConsumer extends ServiceLifecycle{
      * error.
      */
     Message pullNoWait(final KeyValue properties);
+
+
+    /**
+     * Attaches the {@code PushConsumer} to a specified queue, with a {@code MessageListener}.
+     * {@link MessageListener#onMessage(Message, OnMessageContext)} will be called when new
+     * delivered message is coming.
+     *
+     * @param queueName a specified queue
+     *
+     * @throws OMSResourceNotExistException if the specified queue is not exists
+     */
+    PullConsumer attachQueue(final String queueName) throws OMSResourceNotExistException;
 }
