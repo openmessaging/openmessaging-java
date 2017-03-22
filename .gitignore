@@ -1,6 +1,7 @@
 *.iml
 *.class
 *.jar
+.idea/
 /code/relay-user-level-api/java/target/maven-archiver
 /code/messaging-user-level-api/java/target/maven-archiver
 /code/messaging-user-level-samples/java/target/maven-archiver

@@ -45,7 +45,7 @@ import java.util.List;
 public interface ResourceManager extends ServiceLifecycle {
     /**
      * Creates a {@code Namespace} resource for the specified {@code MessagingAccessPoint} with some preset properties,
-     * updates if the it already exists.
+     * updates if it already exists.
      * <p>
      * Note that this method will simply create the physical Namespace in the specified {@code MessagingAccessPoint}.
      *
@@ -56,7 +56,7 @@ public interface ResourceManager extends ServiceLifecycle {
 
     /**
      * Creates a {@code Topic} resource for the specified {@code MessagingAccessPoint} with some preset properties,
-     * updates if the it already exists.
+     * updates if it already exists.
      * <p>
      * Note that this method will simply create the physical topic in the specified {@code MessagingAccessPoint}.
      *
@@ -67,7 +67,7 @@ public interface ResourceManager extends ServiceLifecycle {
 
     /**
      * Creates a {@code Queue} resource for the specified {@code MessagingAccessPoint} with some preset properties,
-     * updates if the it already exists.
+     * updates if it already exists.
      * <p>
      * Note that this method will simply create the physical queue in the specified {@code MessagingAccessPoint}.
      *
