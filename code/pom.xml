@@ -10,6 +10,7 @@
     <name>parent-all ${project.version}</name>
 
     <modules>
+        <module>messaging-binlog-core/java</module>
         <module>messaging-benchmark/java</module>
         <module>messaging-router/java</module>
         <module>messaging-user-level-api/java</module>
@@ -74,6 +75,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>messaging-binlog-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>messaging-benchmark</artifactId>
