@@ -24,7 +24,7 @@ import io.openmessaging.Producer;
 import java.nio.charset.Charset;
 
 public class ProducerApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
 
         final Producer producer = messagingAccessPoint.createProducer();
@@ -53,5 +53,10 @@ public class ProducerApp {
         } catch (Exception e) {
             batchToPartition.rollback();
         }
+
+        Thread.sleep(1000L);
+
+        producer.shutdown();
+        messagingAccessPoint.shutdown();
     }
 }
