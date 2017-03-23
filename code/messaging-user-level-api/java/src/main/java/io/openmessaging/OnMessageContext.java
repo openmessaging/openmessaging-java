@@ -25,5 +25,8 @@ package io.openmessaging;
  */
 public interface OnMessageContext {
     KeyValue properties();
-    void ack(boolean result);
+
+    void ack();
+
+    void ack(final KeyValue properties);
 }
