@@ -19,12 +19,23 @@ package io.openmessaging;
 
 /**
  * @author vintagewang@apache.org
+ * @author yukon@apache.org
  *
  * @version OMS 1.0
  * @since OMS 1.0
  */
 public interface PromiseListener<V> {
+    /**
+     * Invoked when the operation associated with the {@code Promise} has been completed successfully.
+     *
+     * @param promise the source {@code Promise} which called this callback
+     */
     void operationComplete(Promise<V> promise);
 
+    /**
+     * Invoked when the operation associated with the {@code Promise} has been completed unsuccessfully.
+     *
+     * @param promise the source {@code Promise} which called this callback
+     */
     void operationFailed(Promise<V> promise);
 }

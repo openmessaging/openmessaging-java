@@ -17,24 +17,19 @@
 
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSRuntimeException;
 import java.util.Set;
 
 /**
- * The {@code KeyValue} class represents a persistent set of properties, which supports method chaining.
- * <p>
- * A {@code KeyValue} object only allows {@code String} keys and can contain four primitive type as values:
- * {@code int}, {@code long}, {@code double}, {@code String}.
- * <p>
- * The {@code KeyValue} is a replacement of {@code Properties}, with simpler interfaces and reasonable entry limits.
- * <p>
- * A {@code KeyValue} object may be used in concurrent scenarios, so the implementation of {@code KeyValue} should
- * consider concurrent related issues.
- * <p>
- * All the existing entries in {@code KeyValue} can't be removed but can be replaced by a new value for the specified key.
+ * The {@code KeyValue} class represents a persistent set of properties, which supports method chaining. <p> A {@code
+ * KeyValue} object only allows {@code String} keys and can contain four primitive type as values: {@code int}, {@code
+ * long}, {@code double}, {@code String}. <p> The {@code KeyValue} is a replacement of {@code Properties}, with simpler
+ * interfaces and reasonable entry limits. <p> A {@code KeyValue} object may be used in concurrent scenarios, so the
+ * implementation of {@code KeyValue} should consider concurrent related issues. <p> All the existing entries in {@code
+ * KeyValue} can't be removed but can be replaced by a new value for the specified key.
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
- *
  * @version OMS 1.0
  * @since OMS 1.0
  */
@@ -77,6 +72,7 @@ public interface KeyValue {
      *
      * @param key the property key
      * @return the value in this {@code KeyValue} object with the specified key value
+     * @throws OMSRuntimeException if the specified {@code key} doesn't exist in this object.
      * @see #put(String, int)
      */
     int getInt(final String key);
@@ -87,6 +83,7 @@ public interface KeyValue {
      *
      * @param key the property key
      * @return the value in this {@code KeyValue} object with the specified key value
+     * @throws OMSRuntimeException if the specified {@code key} doesn't exist in this object.
      * @see #put(String, long)
      */
     long getLong(final String key);
@@ -97,6 +94,7 @@ public interface KeyValue {
      *
      * @param key the property key
      * @return the value in this {@code KeyValue} object with the specified key value
+     * @throws OMSRuntimeException if the specified {@code key} doesn't exist in this object.
      * @see #put(String, double)
      */
     double getDouble(final String key);
@@ -107,6 +105,7 @@ public interface KeyValue {
      *
      * @param key the property key
      * @return the value in this {@code KeyValue} object with the specified key value
+     * @throws OMSRuntimeException if the specified {@code key} doesn't exist in this object.
      * @see #put(String, String)
      */
     String getString(final String key);
@@ -124,7 +123,8 @@ public interface KeyValue {
      * Tests if the specified {@code String} is a key in this {@code KeyValue}.
      *
      * @param key possible key
-     * @return <code>true</code> if and only if the specified key is in this {@code KeyValue}, <code>false</code> otherwise.
+     * @return <code>true</code> if and only if the specified key is in this {@code KeyValue}, <code>false</code>
+     * otherwise.
      */
     boolean containsKey(final String key);
 }

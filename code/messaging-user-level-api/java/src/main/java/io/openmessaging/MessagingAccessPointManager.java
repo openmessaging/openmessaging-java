@@ -29,7 +29,6 @@ public class MessagingAccessPointManager {
     }
 
     public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {
-
         return null;
     }
 

@@ -35,64 +35,70 @@ package io.openmessaging;
  */
 public interface MessagingAccessPoint extends ServiceLifecycle {
     /**
-     * Create a new {@code Producer} for the specified {@code MessagingAccessPoint}.
+     * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}.
      *
      * @return the created producer
      */
     Producer createProducer();
 
     /**
-     * Create a new {@code Producer} for the specified {@code MessagingAccessPoint} with some preset properties.
+     * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint} with some preset properties.
      *
      * @param properties the preset properties
      * @return the created producer
      */
-    Producer createProducer(final KeyValue properties);
+    Producer createProducer(KeyValue properties);
 
     /**
-     * Create a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}.
+     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}.
+     * The returned {@code PushConsumer} isn't attached to any queue,
+     * uses {@link PushConsumer#attachQueue(String, MessageListener)} to attach queues.
      *
-     * @return the created consumer
+     * @return the created {@code PushConsumer}
      */
     PushConsumer createPushConsumer();
 
     /**
-     * Create a new {@code PushConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
+     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
      *
+     * @param properties the preset properties
+     * @return the created {@code PushConsumer}
+     */
+    PushConsumer createPushConsumer(KeyValue properties);
+
+    /**
+     * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint} with the specified queue.
+     *
+     * @param queueName the only attached queue for this {@code PullConsumer}
+     * @return the created {@code PullConsumer}
+     */
+    PullConsumer createPullConsumer(String queueName);
+
+    /**
+     * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
+     *
+     * @param queueName the only attached queue for this {@code PullConsumer}
+     * @param properties the preset properties
+     * @return the created {@code PullConsumer}
+     */
+    PullConsumer createPullConsumer(String queueName, KeyValue properties);
+
+    /**
+     * Creates a new {@code PartitionConsumer} for the specified {@code MessagingAccessPoint}.
+     *
+     * @param queueName the only attached queue for this {@code PartitionConsumer}
+     * @return the created {@code PartitionConsumer}
+     */
+    PartitionConsumer createPartitionConsumer(String queueName);
+
+    /**
+     * Creates a new {@code PartitionConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
+     *
+     * @param queueName the only attached queue for this {@code PartitionConsumer}
      * @param properties the preset properties
      * @return the created consumer
      */
-    PushConsumer createPushConsumer(final KeyValue properties);
-
-    /**
-     * Create a new {@code PullConsumerAck} for the specified {@code MessagingAccessPoint}.
-     *
-     * @return the created consumer
-     */
-    PullConsumerAck createPullConsumerAck();
-
-    /**
-     * Create a new {@code PullConsumerAck} for the specified {@code MessagingAccessPoint} with some preset properties.
-     *
-     * @param properties the preset properties
-     * @return the created consumer
-     */
-    PullConsumerAck createPullConsumerAck(final KeyValue properties);
-
-    /**
-     * Create a new {@code PullConsumerCursor} for the specified {@code MessagingAccessPoint}.
-     *
-     * @return the created consumer
-     */
-    PullConsumerCursor createPullConsumerCursor();
-
-    /**
-     * Create a new {@code PullConsumerCursor} for the specified {@code MessagingAccessPoint} with some preset properties.
-     *
-     * @param properties the preset properties
-     * @return the created consumer
-     */
-    PullConsumerCursor createPullConsumerCursor(final KeyValue properties);
+    PartitionConsumer createPartitionConsumer(String queueName, KeyValue properties);
 
     /**
      * Create a new {@code ResourceManager} for the specified {@code MessagingAccessPoint}.

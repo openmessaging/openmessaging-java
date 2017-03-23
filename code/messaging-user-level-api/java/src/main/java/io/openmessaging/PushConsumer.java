@@ -21,7 +21,7 @@ import io.openmessaging.exception.OMSResourceNotExistException;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
- * A {@code PushConsumer} object to receive messages from a queue, these messages are pushed from
+ * A {@code PushConsumer} object to receive messages from multiple queue, these messages are pushed from
  * MOM server to {@code PushConsumer} client.
  *
  * @author vintagewang@apache.org
@@ -29,6 +29,7 @@ import io.openmessaging.exception.OMSRuntimeException;
  *
  * @version OMS 1.0
  * @since OMS 1.0
+ * @see MessagingAccessPoint#createPushConsumer()
  */
 public interface PushConsumer extends ServiceLifecycle {
     /**
