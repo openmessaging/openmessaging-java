@@ -23,9 +23,10 @@ import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointManager;
 import io.openmessaging.OnMessageContext;
 import io.openmessaging.PushConsumer;
+import io.openmessaging.exception.OMSResourceNotExistException;
 
 public class ConsumerQueueApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws OMSResourceNotExistException {
         final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
 
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();

@@ -31,6 +31,9 @@ import java.util.Properties;
 
 /**
  * WARN: The current interface prohibits direct access by the end user
+ *
+ * @version OMS 1.0
+ * @since OMS 1.0
  */
 public class MessagingAccessPointAdapter {
     private static final String PROTOCOL_NAME = "protocol";

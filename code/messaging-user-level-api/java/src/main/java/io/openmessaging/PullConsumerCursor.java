@@ -17,9 +17,34 @@
 
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSRuntimeException;
+
 /**
+ * A {@code PullConsumerCursor} object has all of the {@code PullConsumer} features,
+ * and supports submit the consume result by cursor.
+ *
  * @author vintagewang@apache.org
+ * @author yukon@apache.org
+ *
+ * @version OMS 1.0
+ * @since OMS 1.0
  */
-public interface PullConsumerCursor extends ServiceLifecycle {
-    KeyValue properties();
+public interface PullConsumerCursor extends PullConsumer {
+    /**
+     * Submits the current consumed cursor.
+     * <p>
+     * Messages that have been received but not acknowledged may be redelivered.
+     *
+     * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
+     */
+    void ack(long cursor);
+
+    /**
+     * Submits the current consumed cursor with the specified properties.
+     * <p>
+     * Messages that have been received but not acknowledged may be redelivered.
+     *
+     * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
+     */
+    void ack(long cursor, final KeyValue properties);
 }

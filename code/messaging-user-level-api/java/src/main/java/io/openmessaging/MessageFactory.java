@@ -17,11 +17,38 @@
 
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSRuntimeException;
+
 /**
+ * A factory interface for creating {@code Message} objects.
+ *
  * @author vintagewang@apache.org
+ * @author yukon@apache.org
  */
 public interface MessageFactory {
+    /**
+     * Creates a {@code BytesMessage} object. A {@code BytesMessage} object is used to send a message containing a
+     * stream of uninterpreted bytes.
+     * <p>
+     * The returned {@code BytesMessage} object only can be sent to the specified topic.
+     *
+     * @param topic the target topic to send
+     * @param body the body data for a message
+     * @return the created {@code BytesMessage} object
+     * @throws OMSRuntimeException if the OMS provider fails to create this message due to some internal error.
+     */
     BytesMessage createBytesMessageToTopic(final String topic, final byte[] body);
 
+    /**
+     * Creates a {@code BytesMessage} object. A {@code BytesMessage} object is used to send a message containing a
+     * stream of uninterpreted bytes.
+     * <p>
+     * The returned {@code BytesMessage} object only can be sent to the specified queue.
+     *
+     * @param queue the target queue to send
+     * @param body the body data for a message
+     * @return the created {@code BytesMessage} object
+     * @throws OMSRuntimeException if the OMS provider fails to create this message due to some internal error.
+     */
     BytesMessage createBytesMessageToQueue(final String queue, final byte[] body);
 }

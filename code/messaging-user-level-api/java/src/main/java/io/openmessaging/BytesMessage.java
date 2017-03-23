@@ -18,26 +18,30 @@
 package io.openmessaging;
 
 /**
+ * The {@code BytesMessage} contains a stream of uninterpreted bytes. It inherits from the {@code Message} interface and
+ * adds a bytes message body.
+ * <p>
+ * The {@code BytesMessage} doesn't know the format or encoding Rules of the body, the provider and consumer decide the
+ * interpretation of the bytes body.
+ *
  * @author vintagewang@apache.org
+ * @author yukon@apache.org
+ *
+ * @version OMS 1.0
+ * @since OMS 1.0
  */
 public interface BytesMessage extends Message {
-    BytesMessage putHeaders(final String key, final int value);
-
-    BytesMessage putHeaders(final String key, final long value);
-
-    BytesMessage putHeaders(final String key, final double value);
-
-    BytesMessage putHeaders(final String key, final String value);
-
-    BytesMessage putProperties(final String key, final int value);
-
-    BytesMessage putProperties(final String key, final long value);
-
-    BytesMessage putProperties(final String key, final double value);
-
-    BytesMessage putProperties(final String key, final String value);
-
+    /**
+     * Returns the bytes message body.
+     *
+     * @return the bytes message body
+     */
     byte[] getBody();
 
+    /**
+     * Sets the bytes message body.
+     *
+     * @param body the message body to be set
+     */
     BytesMessage setBody(final byte[] body);
 }

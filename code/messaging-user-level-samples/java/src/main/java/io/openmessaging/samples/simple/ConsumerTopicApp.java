@@ -23,22 +23,24 @@ import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointManager;
 import io.openmessaging.OnMessageContext;
 import io.openmessaging.PushConsumer;
+import io.openmessaging.exception.OMSResourceNotExistException;
+import io.openmessaging.internal.DefaultKeyValue;
 
 public class ConsumerTopicApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws OMSResourceNotExistException {
         final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
 
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
+
+        messagingAccessPoint.createResourceManager().createAndUpdateQueue("HELLO_QUEUE", messagingAccessPoint.createFilters()
+            .addFilter("TOPIC='HELLO_TOPIC1'")//
+            .addFilter("TOPIC='HELLO_TOPIC2' AND KEY2 > 199"), new DefaultKeyValue());
 
         consumer.attachQueue("HELLO_QUEUE", new MessageListener() {
             @Override public void onMessage(Message message, OnMessageContext context) {
                 System.out.println("receive one message: " + message);
             }
         });
-
-        consumer.bindQueueRouting("HELLO_QUEUE", messagingAccessPoint.createFilters()
-            .addFilter("TOPIC='HELLO_TOPIC1'")//
-            .addFilter("TOPIC='HELLO_TOPIC2' AND KEY2 > 199"));
 
         messagingAccessPoint.start();
         System.out.println("messagingAccessPoint startup OK");
