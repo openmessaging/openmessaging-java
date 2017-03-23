@@ -124,4 +124,8 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @param properties the specified properties
      */
     void sendOneway(final Message message, final KeyValue properties);
+
+    BatchToPartition createBatchToPartition(final String partitionName);
+
+    BatchToPartition createBatchToPartition(final String partitionName, final KeyValue properties);
 }
