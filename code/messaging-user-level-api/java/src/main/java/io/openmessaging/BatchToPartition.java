@@ -20,22 +20,12 @@ package io.openmessaging;
 /**
  * @author vintagewang@apache.org
  */
-public interface Producer extends MessageFactory, ServiceLifecycle {
-    KeyValue properties();
-
+public interface BatchToPartition {
     void send(final BytesMessage message);
 
     void send(final BytesMessage message, final KeyValue properties);
 
-    Promise<Void> sendAsync(final BytesMessage message);
+    void commit();
 
-    Promise<Void> sendAsync(final BytesMessage message, final KeyValue properties);
-
-    void sendOneway(final BytesMessage message);
-
-    void sendOneway(final BytesMessage message, final KeyValue properties);
-
-    BatchToPartition createBatchToPartition(final String partitionName);
-
-    BatchToPartition createBatchToPartition(final String partitionName, final KeyValue properties);
+    void rollback();
 }
