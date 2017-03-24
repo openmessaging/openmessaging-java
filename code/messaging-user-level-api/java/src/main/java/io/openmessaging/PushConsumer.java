@@ -80,5 +80,5 @@ public interface PushConsumer extends ServiceLifecycle {
      *
      * @throws OMSResourceNotExistException if the specified queue is not exists
      */
-    PushConsumer attachQueue(final String queueName, final MessageListener listener) throws OMSResourceNotExistException;
+    PushConsumer attachQueue(String queueName, MessageListener listener) throws OMSResourceNotExistException;
 }

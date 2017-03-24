@@ -24,5 +24,5 @@ package io.openmessaging;
  * @since OMS 1.0
  */
 public interface Filters {
-    Filters addFilter(final String sql);
+    Filters addFilter(String sql);
 }

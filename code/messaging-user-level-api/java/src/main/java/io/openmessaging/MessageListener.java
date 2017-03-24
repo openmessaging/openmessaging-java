@@ -36,5 +36,5 @@ public interface MessageListener {
      * @param message the received Message object
      * @param context the context delivered to the consume thread
      */
-    void onMessage(final Message message, final OnMessageContext context);
+    void onMessage(Message message, OnMessageContext context);
 }

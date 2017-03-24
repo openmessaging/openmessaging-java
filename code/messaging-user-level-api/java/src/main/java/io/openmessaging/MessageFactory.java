@@ -37,7 +37,7 @@ public interface MessageFactory {
      * @return the created {@code BytesMessage} object
      * @throws OMSRuntimeException if the OMS provider fails to create this message due to some internal error.
      */
-    BytesMessage createBytesMessageToTopic(final String topic, final byte[] body);
+    BytesMessage createBytesMessageToTopic(String topic, byte[] body);
 
     /**
      * Creates a {@code BytesMessage} object. A {@code BytesMessage} object is used to send a message containing a
@@ -50,5 +50,5 @@ public interface MessageFactory {
      * @return the created {@code BytesMessage} object
      * @throws OMSRuntimeException if the OMS provider fails to create this message due to some internal error.
      */
-    BytesMessage createBytesMessageToQueue(final String queue, final byte[] body);
+    BytesMessage createBytesMessageToQueue(String queue, byte[] body);
 }

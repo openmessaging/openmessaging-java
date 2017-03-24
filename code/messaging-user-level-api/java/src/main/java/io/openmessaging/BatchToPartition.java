@@ -21,9 +21,9 @@ package io.openmessaging;
  * @author vintagewang@apache.org
  */
 public interface BatchToPartition {
-    void send(final BytesMessage message);
+    void send(BytesMessage message);
 
-    void send(final BytesMessage message, final KeyValue properties);
+    void send(BytesMessage message, KeyValue properties);
 
     void commit();
 

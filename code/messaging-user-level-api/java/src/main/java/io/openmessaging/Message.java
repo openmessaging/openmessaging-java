@@ -65,7 +65,7 @@ public interface Message {
      * @param key  the key to be placed into the headers
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putHeaders(final String key, final int value);
+    Message putHeaders(String key, int value);
 
     /**
      * Puts a {@code String}-{@code long} {@code KeyValue} entry to he headers of a {@code Message}.
@@ -73,7 +73,7 @@ public interface Message {
      * @param key  the key to be placed into the headers
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putHeaders(final String key, final long value);
+    Message putHeaders(String key, long value);
 
     /**
      * Puts a {@code String}-{@code double} {@code KeyValue} entry to he headers of a {@code Message}.
@@ -81,7 +81,7 @@ public interface Message {
      * @param key  the key to be placed into the headers
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putHeaders(final String key, final double value);
+    Message putHeaders(String key, double value);
 
     /**
      * Puts a {@code String}-{@code String} {@code KeyValue} entry to he headers of a {@code Message}.
@@ -89,7 +89,7 @@ public interface Message {
      * @param key  the key to be placed into the headers
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putHeaders(final String key, final String value);
+    Message putHeaders(String key, String value);
 
     /**
      * Puts a {@code String}-{@code int} {@code KeyValue} entry to he headers of a {@code Message}.
@@ -97,7 +97,7 @@ public interface Message {
      * @param key  the key to be placed into the headers
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putProperties(final String key, final int value);
+    Message putProperties(String key, int value);
 
     /**
      * Puts a {@code String}-{@code long} {@code KeyValue} entry to he headers of a {@code Message}.
@@ -105,7 +105,7 @@ public interface Message {
      * @param key  the key to be placed into the headers
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putProperties(final String key, final long value);
+    Message putProperties(String key, long value);
 
     /**
      * Puts a {@code String}-{@code double} {@code KeyValue} entry to he headers of a {@code Message}.
@@ -113,7 +113,7 @@ public interface Message {
      * @param key  the key to be placed into the headers
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putProperties(final String key, final double value);
+    Message putProperties(String key, double value);
 
     /**
      * Puts a {@code String}-{@code String} {@code KeyValue} entry to he headers of a {@code Message}.
@@ -121,5 +121,5 @@ public interface Message {
      * @param key  the key to be placed into the headers
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putProperties(final String key, final String value);
+    Message putProperties(String key, String value);
 }

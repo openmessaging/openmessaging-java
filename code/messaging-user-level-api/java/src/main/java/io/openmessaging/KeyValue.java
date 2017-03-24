@@ -40,7 +40,7 @@ public interface KeyValue {
      * @param key the key to be placed into this {@code KeyValue} object
      * @param value the value corresponding to <tt>key</tt>
      */
-    KeyValue put(final String key, final int value);
+    KeyValue put(String key, int value);
 
     /**
      * Inserts or replaces {@code long} value for the specified key.
@@ -48,7 +48,7 @@ public interface KeyValue {
      * @param key the key to be placed into this {@code KeyValue} object
      * @param value the value corresponding to <tt>key</tt>
      */
-    KeyValue put(final String key, final long value);
+    KeyValue put(String key, long value);
 
     /**
      * Inserts or replaces {@code double} value for the specified key.
@@ -56,7 +56,7 @@ public interface KeyValue {
      * @param key the key to be placed into this {@code KeyValue} object
      * @param value the value corresponding to <tt>key</tt>
      */
-    KeyValue put(final String key, final double value);
+    KeyValue put(String key, double value);
 
     /**
      * Inserts or replaces {@code String} value for the specified key.
@@ -64,7 +64,7 @@ public interface KeyValue {
      * @param key the key to be placed into this {@code KeyValue} object
      * @param value the value corresponding to <tt>key</tt>
      */
-    KeyValue put(final String key, final String value);
+    KeyValue put(String key, String value);
 
     /**
      * Searches for the {@code int} property with the specified key in this {@code KeyValue} object.
@@ -75,7 +75,7 @@ public interface KeyValue {
      * @throws OMSRuntimeException if the specified {@code key} doesn't exist in this object.
      * @see #put(String, int)
      */
-    int getInt(final String key);
+    int getInt(String key);
 
     /**
      * Searches for the {@code long} property with the specified key in this {@code KeyValue} object.
@@ -86,7 +86,7 @@ public interface KeyValue {
      * @throws OMSRuntimeException if the specified {@code key} doesn't exist in this object.
      * @see #put(String, long)
      */
-    long getLong(final String key);
+    long getLong(String key);
 
     /**
      * Searches for the {@code double} property with the specified key in this {@code KeyValue} object.
@@ -97,7 +97,7 @@ public interface KeyValue {
      * @throws OMSRuntimeException if the specified {@code key} doesn't exist in this object.
      * @see #put(String, double)
      */
-    double getDouble(final String key);
+    double getDouble(String key);
 
     /**
      * Searches for the {@code String} property with the specified key in this {@code KeyValue} object.
@@ -108,7 +108,7 @@ public interface KeyValue {
      * @throws OMSRuntimeException if the specified {@code key} doesn't exist in this object.
      * @see #put(String, String)
      */
-    String getString(final String key);
+    String getString(String key);
 
     /**
      * Returns a {@link Set} view of the keys contained in this {@code KeyValue} object.
@@ -126,5 +126,5 @@ public interface KeyValue {
      * @return <code>true</code> if and only if the specified key is in this {@code KeyValue}, <code>false</code>
      * otherwise.
      */
-    boolean containsKey(final String key);
+    boolean containsKey(String key);
 }

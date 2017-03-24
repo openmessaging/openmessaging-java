@@ -26,7 +26,7 @@ import io.openmessaging.Filters;
  * @since OMS 1.0
  */
 public interface FilterChain {
-    FilterChain addFirst(final Filters filters);
+    FilterChain addFirst(Filters filters);
 
-    FilterChain addLast(final Filters filters);
+    FilterChain addLast(Filters filters);
 }

@@ -52,7 +52,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * @param nsName a namespace name
      * @param properties the preset properties
      */
-    void createAndUpdateNamespace(final String nsName, KeyValue properties);
+    void createAndUpdateNamespace(String nsName, KeyValue properties);
 
     /**
      * Creates a {@code Topic} resource for the specified {@code MessagingAccessPoint} with some preset properties,
@@ -63,7 +63,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * @param topicName a topic name
      * @param properties the preset properties
      */
-    void createAndUpdateTopic(final String topicName, KeyValue properties);
+    void createAndUpdateTopic(String topicName, KeyValue properties);
 
     /**
      * Creates a {@code Queue} resource for the specified {@code MessagingAccessPoint} with some preset properties,
@@ -75,7 +75,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * @param filter a specified filter
      * @param properties the preset properties
      */
-    void createAndUpdateQueue(final String queueName, Filters filter, KeyValue properties);
+    void createAndUpdateQueue(String queueName, Filters filter, KeyValue properties);
 
     /**
      * Destroys a physical namespace in the specified {@code MessagingAccessPoint}.
@@ -83,7 +83,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * All this namespace related physical resources may be deleted immediately.
      * @param nsName a namespace name to be destroyed
      */
-    void destroyNamespace(final String nsName);
+    void destroyNamespace(String nsName);
 
     /**
      * Destroys a physical topic in the specified {@code MessagingAccessPoint}.
@@ -91,7 +91,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * All this topic related physical resources may be deleted immediately.
      * @param topicName a namespace name to be destroyed
      */
-    void destroyTopic(final String topicName);
+    void destroyTopic(String topicName);
 
     /**
      * Destroys a physical queue in the specified {@code MessagingAccessPoint}.
@@ -99,7 +99,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * All this queue related physical resources may be deleted immediately.
      * @param queueName a namespace name to be destroyed
      */
-    void destroyQueue(final String queueName);
+    void destroyQueue(String queueName);
 
     /**
      * Fetches the resource properties of a specified namespace.
@@ -108,7 +108,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * @return the properties of this specified namespace
      * @throws OMSResourceNotExistException if the specified namespace is not exists
      */
-    KeyValue getNamespaceProperties(final String nsName) throws OMSResourceNotExistException;
+    KeyValue getNamespaceProperties(String nsName) throws OMSResourceNotExistException;
 
     /**
      * Fetches the resource properties of a specified topic.
@@ -117,7 +117,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * @return the properties of this specified topic
      * @throws OMSResourceNotExistException if the specified topic is not exists
      */
-    KeyValue getTopicProperties(final String topicName) throws OMSResourceNotExistException;
+    KeyValue getTopicProperties(String topicName) throws OMSResourceNotExistException;
 
     /**
      * Fetches the resource properties of a specified queue.
@@ -126,7 +126,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * @return the properties of this specified queue
      * @throws OMSResourceNotExistException if the specified queue is not exists
      */
-    KeyValue getQueueProperties(final String queueName) throws OMSResourceNotExistException;
+    KeyValue getQueueProperties(String queueName) throws OMSResourceNotExistException;
 
     /**
      * Each consumer has a unique id, this method is to fetch the consumer id list in a specified queue.
@@ -135,7 +135,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * @return the consumer id list in this queue
      * @throws OMSResourceNotExistException if the specified queue is not exists
      */
-    List<String> consumerIdListInQueue(final String queueName) throws OMSResourceNotExistException;
+    List<String> consumerIdListInQueue(String queueName) throws OMSResourceNotExistException;
 
     /**
      * Returns the properties of the specified consumer instance with the given consumer id.
@@ -145,7 +145,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * @return the properties of the matching consumer instance
      * @throws OMSResourceNotExistException if the specified consumer is not exists
      */
-    KeyValue getConsumerProperties(final String consumerId) throws OMSResourceNotExistException;
+    KeyValue getConsumerProperties(String consumerId) throws OMSResourceNotExistException;
 
     /**
      * Sets the consumer properties to the specified consumer instance.
@@ -158,7 +158,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * @param properties the new consumer properties
      * @throws OMSResourceNotExistException if the specified consumer is not exists
      */
-    void setConsumerProperties(final String consumerId, final KeyValue properties) throws OMSResourceNotExistException;
+    void setConsumerProperties(String consumerId, KeyValue properties) throws OMSResourceNotExistException;
 
     /**
      * Each producer has a unique id, this method is to fetch the producer id list in a specified queue.
@@ -167,7 +167,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * @return the producer id list in this queue
      * @throws OMSResourceNotExistException if the specified queue is not exists
      */
-    List<String> producerIdListInQueue(final String queueName) throws OMSResourceNotExistException;
+    List<String> producerIdListInQueue(String queueName) throws OMSResourceNotExistException;
 
     /**
      * Each producer has a unique id, this method is to fetch the producer id list in a specified topic.
@@ -176,7 +176,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * @return the producer id list in this topic
      * @throws OMSResourceNotExistException if the specified topic is not exists
      */
-    List<String> producerIdListInTopic(final String topicName) throws OMSResourceNotExistException;
+    List<String> producerIdListInTopic(String topicName) throws OMSResourceNotExistException;
 
     /**
      * Returns the properties of the specified producer instance with the given producer id.
@@ -186,7 +186,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * @return the properties of the matching producer instance
      * @throws OMSResourceNotExistException if the specified producer is not exists
      */
-    KeyValue getProducerProperties(final String producerId) throws OMSResourceNotExistException;
+    KeyValue getProducerProperties(String producerId) throws OMSResourceNotExistException;
 
     /**
      * Sets the producer properties to the specified producer instance.
@@ -199,6 +199,6 @@ public interface ResourceManager extends ServiceLifecycle {
      * @param properties the new producer properties
      * @throws OMSResourceNotExistException if the specified producer is not exists
      */
-    void setProducerProperties(final String producerId, final KeyValue properties) throws OMSResourceNotExistException;
+    void setProducerProperties(String producerId, KeyValue properties) throws OMSResourceNotExistException;
 
 }

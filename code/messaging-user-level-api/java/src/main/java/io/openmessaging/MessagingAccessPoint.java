@@ -127,5 +127,5 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @param properties the preset properties
      * @return the created {@code ServiceEndPoint}
      */
-    ServiceEndPoint createServiceEndPoint(final KeyValue properties);
+    ServiceEndPoint createServiceEndPoint(KeyValue properties);
 }
