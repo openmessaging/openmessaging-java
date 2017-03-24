@@ -50,6 +50,8 @@ public interface PartitionConsumer {
 
     /**
      * Creates a {@code PartitionIterator} from the specified partition.
+     * <p>
+     * If the specified partition doesn't exist, create it automatically.
      *
      * @param partitionName the specified partition name
      * @return the created {@code PartitionIterator}
