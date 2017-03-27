@@ -19,7 +19,7 @@ package io.openmessaging;
 
 /**
  * The {@code MessageHeader} class describes each OMS message header field.
- * A message¡¯s complete header is transmitted to all OMS clients that receive the
+ * A message's complete header is transmitted to all OMS clients that receive the
  * message.
  *
  * @author vintagewang@apache.org
@@ -64,7 +64,7 @@ public class MessageHeader {
      * off to a {@code Producer} to be sent.
      * <p>
      * When a message is sent, BORN_TIMESTAMP will be set with current timestamp as the born
-     * timestamp of a message in client side, on return from the send method, the message¡¯s
+     * timestamp of a message in client side, on return from the send method, the message's
      * BORN_TIMESTAMP header field contains this value. When a message is received its
      * BORN_TIMESTAMP header field contains this same value.
      * <p>
@@ -76,7 +76,7 @@ public class MessageHeader {
      * The {@code BORN_HOST} header field contains the born host info of a message in client side.
      * <p>
      * When a message is sent, BORN_HOST will be set with the local host info,
-     * on return from the send method, the message¡¯s BORN_HOST header field contains this value.
+     * on return from the send method, the message's BORN_HOST header field contains this value.
      * When a message is received its BORN_HOST header field contains this same value.
      */
     public static final String BORN_HOST = "BornHost";
@@ -122,7 +122,7 @@ public class MessageHeader {
      * <p>
      * This filed is a {@code long} value, measured in milliseconds.
      * <p>
-     * When an undelivered message¡¯s expiration time is reached, the message should be destroyed.
+     * When an undelivered message's expiration time is reached, the message should be destroyed.
      * OMS does not define a notification of message expiration.
      */
     public static final String STOP_TIME = "StopTime";
@@ -137,7 +137,7 @@ public class MessageHeader {
      * <p>
      * The TIMEOUT header field has higher priority than START_TIME/STOP_TIME header fields.
      * <p>
-     * When an undelivered message¡¯s expiration time is reached, the message should be destroyed.
+     * When an undelivered message's expiration time is reached, the message should be destroyed.
      * OMS does not define a notification of message expiration.
      */
     public static final String TIMEOUT = "Timeout";
