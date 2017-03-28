@@ -17,7 +17,9 @@
 
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSMessageFormatException;
 import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.exception.OMSTimeOutException;
 
 /**
  * A {@code Producer} is a simple object used to send messages on behalf
@@ -59,6 +61,8 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * {@link MessageHeader}, other header fields as well.
      *
      * @param message a message will be sent
+     * @throws OMSMessageFormatException if an invalid message is specified.
+     * @throws OMSTimeOutException if the given timeout elapses before the send operation completes
      * @throws OMSRuntimeException if the {@code Producer} fails to send the message due to some internal error.
      */
     void send(Message message);
@@ -69,6 +73,8 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      *
      * @param message a message will be sent
      * @param properties the specified properties
+     * @throws OMSMessageFormatException if an invalid message is specified.
+     * @throws OMSTimeOutException if the given timeout elapses before the send operation completes
      * @throws OMSRuntimeException if the {@code Producer} fails to send the message due to some internal error.
      */
     void send(Message message, KeyValue properties);

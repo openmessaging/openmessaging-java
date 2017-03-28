@@ -42,7 +42,8 @@ public interface PullConsumer {
     /**
      * Polls the next message produced for this {@code PullConsumer}.
      * <p>
-     * This call blocks indefinitely until a message is produced or until this {@code PullConsumer} is shut down.
+     * This call blocks indefinitely until a message is arrives, the timeout expires,
+     * or until this {@code PullConsumer} is shut down.
      *
      * @return the next message produced for this {@code PullConsumer}, or null if this {@code PullConsumer} is
      * concurrently shut down
@@ -54,7 +55,8 @@ public interface PullConsumer {
     /**
      * Polls the next message produced for this {@code PullConsumer}, using the specified properties.
      * <p>
-     * This call blocks indefinitely until a message is produced or until this {@code PullConsumer} is shut down.
+     * This call blocks indefinitely until a message is arrives, the timeout expires,
+     * or until this {@code PullConsumer} is shut down.
      *
      * @param properties the specified properties
      * @return the next message produced for this {@code PullConsumer}, or null if this {@code PullConsumer} is
@@ -62,7 +64,7 @@ public interface PullConsumer {
      * @throws OMSRuntimeException if this {@code PullConsumer} fails to pull the next message due to some internal
      * error.
      */
-    Message poll(final KeyValue properties);
+    Message poll(KeyValue properties);
 
     /**
      * Acknowledges the specified and consumed message, with unique message id.
@@ -80,5 +82,5 @@ public interface PullConsumer {
      *
      * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
      */
-    void ack(String messageId, final KeyValue properties);
+    void ack(String messageId, KeyValue properties);
 }

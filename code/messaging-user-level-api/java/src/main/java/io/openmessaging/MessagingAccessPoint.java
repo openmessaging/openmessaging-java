@@ -17,6 +17,9 @@
 
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.observer.Observer;
+
 /**
  * The {@code MessagingAccessPoint} obtained from {@link MessagingAccessPointManager} is capable of creating {@code
  * Producer}, {@code Consumer}, {@code ServiceEndPoint}, and so on.
@@ -36,7 +39,7 @@ package io.openmessaging;
 public interface MessagingAccessPoint extends ServiceLifecycle {
     /**
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}.
-     *
+     * @throws OMSRuntimeException
      * @return the created producer
      */
     Producer createProducer();
@@ -45,6 +48,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint} with some preset properties.
      *
      * @param properties the preset properties
+     * @throws OMSRuntimeException
      * @return the created producer
      */
     Producer createProducer(KeyValue properties);
@@ -54,6 +58,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * The returned {@code PushConsumer} isn't attached to any queue,
      * uses {@link PushConsumer#attachQueue(String, MessageListener)} to attach queues.
      *
+     * @throws OMSRuntimeException
      * @return the created {@code PushConsumer}
      */
     PushConsumer createPushConsumer();
@@ -62,6 +67,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
      *
      * @param properties the preset properties
+     * @throws OMSRuntimeException
      * @return the created {@code PushConsumer}
      */
     PushConsumer createPushConsumer(KeyValue properties);
@@ -70,6 +76,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint} with the specified queue.
      *
      * @param queueName the only attached queue for this {@code PullConsumer}
+     * @throws OMSRuntimeException
      * @return the created {@code PullConsumer}
      */
     PullConsumer createPullConsumer(String queueName);
@@ -79,6 +86,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      *
      * @param queueName the only attached queue for this {@code PullConsumer}
      * @param properties the preset properties
+     * @throws OMSRuntimeException
      * @return the created {@code PullConsumer}
      */
     PullConsumer createPullConsumer(String queueName, KeyValue properties);
@@ -87,6 +95,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * Creates a new {@code PartitionConsumer} for the specified {@code MessagingAccessPoint}.
      *
      * @param queueName the only attached queue for this {@code PartitionConsumer}
+     * @throws OMSRuntimeException
      * @return the created {@code PartitionConsumer}
      */
     PartitionConsumer createPartitionConsumer(String queueName);
@@ -96,6 +105,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      *
      * @param queueName the only attached queue for this {@code PartitionConsumer}
      * @param properties the preset properties
+     * @throws OMSRuntimeException
      * @return the created consumer
      */
     PartitionConsumer createPartitionConsumer(String queueName, KeyValue properties);
@@ -103,6 +113,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     /**
      * Create a new {@code ResourceManager} for the specified {@code MessagingAccessPoint}.
      *
+     * @throws OMSRuntimeException
      * @return the created {@code ResourceManager}
      */
     ResourceManager createResourceManager();
@@ -110,6 +121,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     /**
      * Create a new {@code Filters} for the specified {@code MessagingAccessPoint}.
      *
+     * @throws OMSRuntimeException
      * @return the created {@code Filters}
      */
     Filters createFilters();
@@ -117,6 +129,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     /**
      * Create a new {@code ServiceEndPoint} for the specified {@code MessagingAccessPoint}.
      *
+     * @throws OMSRuntimeException
      * @return the created {@code ServiceEndPoint}
      */
     ServiceEndPoint createServiceEndPoint();
@@ -125,7 +138,28 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * Create a new {@code ServiceEndPoint} for the specified {@code MessagingAccessPoint} with some preset properties.
      *
      * @param properties the preset properties
+     * @throws OMSRuntimeException
      * @return the created {@code ServiceEndPoint}
      */
     ServiceEndPoint createServiceEndPoint(KeyValue properties);
+
+    /**
+     * Register an observer in an serviceEndPoint object. Whenever serviceEndPoint object publish or bind an service
+     * object, it will be notified to the list of observer object registered before
+     *
+     * @param observer observer event object to an serviceEndPoint object
+     */
+    void addObserver(Observer observer);
+
+    /**
+     * Removes the given observer from the list of observer
+     * <p>
+     * If the given observer has not been previously registered (i.e. it was
+     * never added) then this method call is a no-op. If it had been previously
+     * added then it will be removed. If it had been added more than once, then
+     * only the first occurrence will be removed.
+     *
+     * @param observer The observer to remove
+     */
+    void deleteObserver(Observer observer);
 }

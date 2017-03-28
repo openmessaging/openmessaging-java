@@ -17,8 +17,6 @@
 
 package io.openmessaging;
 
-import io.openmessaging.observer.Observer;
-
 /**
  * @author vintagewang@apache.org
  *
@@ -73,26 +71,6 @@ public interface ServiceEndPoint extends ServiceLifecycle {
      * @return service proxy object to bind
      */
     <T> T bind(Class<T> type, KeyValue properties, ServiceLoadBalance serviceLoadBalance);
-
-    /**
-     * Register an observer in an serviceEndPoint object. Whenever serviceEndPoint object publish or bind an service
-     * object, it will be notified to the list of observer object registered before
-     *
-     * @param observer observer event object to an serviceEndPoint object
-     */
-    void addObserver(Observer observer);
-
-    /**
-     * Removes the given observer from the list of observer
-     * <p>
-     * If the given observer has not been previously registered (i.e. it was
-     * never added) then this method call is a no-op. If it had been previously
-     * added then it will be removed. If it had been added more than once, then
-     * only the first occurrence will be removed.
-     *
-     * @param observer The observer to remove
-     */
-    void deleteObserver(Observer observer);
 
     /**
      * @return

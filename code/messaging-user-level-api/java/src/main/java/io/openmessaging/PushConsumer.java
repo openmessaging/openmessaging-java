@@ -17,11 +17,10 @@
 
 package io.openmessaging;
 
-import io.openmessaging.exception.OMSResourceNotExistException;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
- * A {@code PushConsumer} object to receive messages from multiple queue, these messages are pushed from
+ * A {@code PushConsumer} object to receive messages from multiple queues, these messages are pushed from
  * MOM server to {@code PushConsumer} client.
  *
  * @author vintagewang@apache.org
@@ -78,7 +77,7 @@ public interface PushConsumer extends ServiceLifecycle {
      * @param queueName a specified queue
      * @param listener a specified listener to receive new message
      *
-     * @throws OMSResourceNotExistException if the specified queue is not exists
+     * @throws OMSRuntimeException
      */
-    PushConsumer attachQueue(String queueName, MessageListener listener) throws OMSResourceNotExistException;
+    PushConsumer attachQueue(String queueName, MessageListener listener);
 }

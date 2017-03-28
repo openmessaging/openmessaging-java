@@ -24,7 +24,7 @@ import java.nio.charset.Charset;
 
 public class ProducerApp {
     public static void main(String[] args) {
-        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
+        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("openmessaging:rocketmq://IP1:10911,IP2:10900/namespace");
 
         final Producer producer = messagingAccessPoint.createProducer();
 
