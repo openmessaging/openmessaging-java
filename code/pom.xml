@@ -10,9 +10,9 @@
     <name>parent-all ${project.version}</name>
 
     <modules>
-        <module>messaging-binlog-core/java</module>
-        <module>messaging-benchmark/java</module>
-        <module>messaging-router/java</module>
+        <module>messaging-binlog-core</module>
+        <module>messaging-benchmark</module>
+        <module>messaging-router</module>
         <module>messaging-user-level-api/java</module>
         <module>messaging-user-level-samples/java</module>
         <module>messaging-wire-level-api</module>
@@ -75,13 +75,6 @@
                 </executions>
             </plugin>
         </plugins>
-
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
     </build>
 
     <dependencyManagement>
