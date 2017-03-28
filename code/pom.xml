@@ -57,7 +57,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <configuration>
-                    <locales>zh_CN</locales>
+                    <locales>en_US</locales>
                     <outputEncoding>UTF-8</outputEncoding>
                     <inputEncoding>UTF-8</inputEncoding>
                 </configuration>
@@ -71,6 +71,23 @@
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <configuration>
+                    <charset>UTF-8</charset>
+                    <locale>en_US</locale>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>aggregate</id>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                        <phase>site</phase>
                     </execution>
                 </executions>
             </plugin>
