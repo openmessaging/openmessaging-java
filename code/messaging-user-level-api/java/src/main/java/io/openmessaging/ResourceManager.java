@@ -201,5 +201,5 @@ public interface ResourceManager extends ServiceLifecycle {
      */
     void setProducerProperties(String producerId, KeyValue properties) throws OMSResourceNotExistException;
 
-    void updateMessage(Message message);
+    void updateMessage(String messageId, KeyValue headers);
 }
