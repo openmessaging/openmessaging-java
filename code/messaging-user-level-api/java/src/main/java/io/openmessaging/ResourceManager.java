@@ -201,5 +201,20 @@ public interface ResourceManager extends ServiceLifecycle {
      */
     void setProducerProperties(String producerId, KeyValue properties) throws OMSResourceNotExistException;
 
+    /**
+     * Updates the {@code MessageHeader} of specified message, which may be stored by MOM server already.
+     * <p>
+     * Only below message headers allow to be updated:
+     * <UL>
+     * <LI> {@link MessageHeader#PRIORITY}
+     * <LI> {@link MessageHeader#SCHEDULE_EXPRESSION}
+     * <LI> {@link MessageHeader#START_TIME}
+     * <LI> {@link MessageHeader#STOP_TIME}
+     * <LI> {@link MessageHeader#TIMEOUT}
+     * </UL>
+     *
+     * @param messageId a message to be updated
+     * @param headers the message headers to be updated
+     */
     void updateMessage(String messageId, KeyValue headers);
 }
