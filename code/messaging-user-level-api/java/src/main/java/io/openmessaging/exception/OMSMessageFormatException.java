@@ -25,15 +25,23 @@ package io.openmessaging.exception;
  * @since OMS 1.0
  */
 public class OMSMessageFormatException extends OMSRuntimeException{
-
+    /**
+     * @see OMSRuntimeException#OMSRuntimeException(String, String)
+     */
     public OMSMessageFormatException(String errorCode, String message) {
         super(errorCode, message);
     }
 
+    /**
+     * @see OMSRuntimeException#OMSRuntimeException(String, Throwable)
+     */
     public OMSMessageFormatException(String errorCode, Throwable cause) {
         super(errorCode, cause);
     }
 
+    /**
+     * @see OMSRuntimeException#OMSRuntimeException(String, String, Throwable)
+     */
     public OMSMessageFormatException(String errorCode, String message, Throwable cause) {
         super(errorCode, message, cause);
     }

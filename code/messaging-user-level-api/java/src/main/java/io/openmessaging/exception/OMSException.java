@@ -24,4 +24,54 @@ package io.openmessaging.exception;
  * @since OMS 1.0
  */
 public class OMSException extends Exception {
+
+    /**
+     * Vendor-specific error code.
+     **/
+    private final String errorCode;
+
+    /**
+     * Constructs a {@code OMSException} with the specified detail message
+     * and error code.
+     *
+     * @param errorCode a specified error code
+     * @param message a description of the exception
+     **/
+    public OMSException(String errorCode, String message) {
+        super(message);
+        this.errorCode = errorCode;
+    }
+
+    /**
+     * Constructs a {@code OMSException} with the specified error code and cause.
+     *
+     * @param errorCode a specified error code
+     * @param cause the underlying cause of this exception
+     */
+    public OMSException(String errorCode, Throwable cause) {
+        super(cause);
+        this.errorCode = errorCode;
+    }
+
+    /**
+     * Constructs a {@code OMSException} with the specified detail message,
+     * error code and cause.
+     *
+     * @param errorCode a specified error code
+     * @param message a description of the exception
+     * @param cause the underlying cause of this exception
+     */
+    public OMSException(String errorCode, String message, Throwable cause) {
+        super(message, cause);
+        this.errorCode = errorCode;
+    }
+
+    /**
+     * Returns the error code of this {@code OMSException} object.
+     *
+     * @return the error code
+     */
+    public String getErrorCode() {
+        return errorCode;
+    }
 }

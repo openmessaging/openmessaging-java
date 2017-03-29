@@ -26,4 +26,24 @@ package io.openmessaging.exception;
  * @since OMS 1.0
  */
 public class OMSResourceNotExistException extends OMSException {
+    /**
+     * @see OMSException#OMSException(String, String)
+     */
+    public OMSResourceNotExistException(String errorCode, String message) {
+        super(errorCode, message);
+    }
+
+    /**
+     * @see OMSException#OMSException(String, Throwable)
+     */
+    public OMSResourceNotExistException(String errorCode, Throwable cause) {
+        super(errorCode, cause);
+    }
+
+    /**
+     * @see OMSException#OMSException(String, String, Throwable)
+     */
+    public OMSResourceNotExistException(String errorCode, String message, Throwable cause) {
+        super(errorCode, message, cause);
+    }
 }

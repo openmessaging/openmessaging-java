@@ -17,12 +17,22 @@
 
 package io.openmessaging.observer;
 
+import io.openmessaging.MessagingAccessPoint;
+
 /**
+ * A {@code Observer} interface is used to observe the {@code OMSEvent}
+ * dispatches in observable objects, like {@link MessagingAccessPoint}
+ *
  * @author vintagewang@apache.org
  *
  * @version OMS 1.0
  * @since OMS 1.0
  */
 public interface Observer {
-    void onEvent(ActionEvent event);
+    /**
+     * Handler invoked upon arrival of a {@code OMSEvent} dispatch.
+     *
+     * @param event the specified event received
+     */
+    void onEvent(OMSEvent event);
 }

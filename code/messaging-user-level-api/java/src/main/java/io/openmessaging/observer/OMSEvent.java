@@ -24,6 +24,6 @@ package io.openmessaging.observer;
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface ActionEvent {
+public interface OMSEvent {
 
 }

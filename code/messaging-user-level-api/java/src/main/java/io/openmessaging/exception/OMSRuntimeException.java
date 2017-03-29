@@ -25,6 +25,9 @@ package io.openmessaging.exception;
  */
 public class OMSRuntimeException extends RuntimeException {
 
+    /**
+     * Vendor-specific error code.
+     **/
     private final String errorCode;
 
     /**
@@ -63,6 +66,11 @@ public class OMSRuntimeException extends RuntimeException {
         this.errorCode = errorCode;
     }
 
+    /**
+     * Returns the error code of this {@code OMSRuntimeException} object.
+     *
+     * @return the error code
+     */
     public String getErrorCode() {
         return errorCode;
     }
