@@ -20,7 +20,7 @@ package io.openmessaging;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
- * A {@code OnMessageContext} object will be passed to the {@code MessageListener} with a incoming message,
+ * A {@code ReceivedMessageContext} object will be passed to the {@code MessageListener} with a incoming message,
  * used to share some context properties between {@code MessageListener} and {@code PushConsumer}.
  *
  * @author vintagewang@apache.org
@@ -29,16 +29,16 @@ import io.openmessaging.exception.OMSRuntimeException;
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface OnMessageContext {
+public interface ReceivedMessageContext {
     /**
-     * Returns the properties of this {@code OnMessageContext} instance.
+     * Returns the properties of this {@code ReceivedMessageContext} instance.
      *
      * @return the properties
      */
     KeyValue properties();
 
     /**
-     * Acknowledges the specified and consumed message, which is related to this {@code OnMessageContext}.
+     * Acknowledges the specified and consumed message, which is related to this {@code ReceivedMessageContext}.
      * <p>
      * Messages that have been received but not acknowledged may be redelivered.
      *

@@ -18,6 +18,7 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSResourceNotExistException;
+import io.openmessaging.stream.Routing;
 import java.util.List;
 
 /**
@@ -72,16 +73,24 @@ public interface ResourceManager extends ServiceLifecycle {
      * Note that this method will simply create the physical queue in the specified {@code MessagingAccessPoint}.
      *
      * @param queueName a queue name
-     * @param filter a specified filter
      * @param properties the preset properties
      */
-    void createAndUpdateQueue(String queueName, Filters filter, KeyValue properties);
+    void createAndUpdateQueue(String queueName, KeyValue properties);
+
+    /**
+     * Creates a {@code Routing} resource for the the specified {@code MessagingAccessPoint},
+     * updates if it already exits.
+     *
+     * @param routing a {@code Routing} object with some {@code Operators} and properties.
+     */
+    void createAndUpdateRouting(Routing routing);
+
 
     /**
      * Destroys a physical namespace in the specified {@code MessagingAccessPoint}.
      * <p>
      * All this namespace related physical resources may be deleted immediately.
-     * @param nsName a namespace name to be destroyed
+     * @param nsName a namespace to be destroyed
      */
     void destroyNamespace(String nsName);
 
@@ -89,7 +98,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * Destroys a physical topic in the specified {@code MessagingAccessPoint}.
      * <p>
      * All this topic related physical resources may be deleted immediately.
-     * @param topicName a namespace name to be destroyed
+     * @param topicName a topic to be destroyed
      */
     void destroyTopic(String topicName);
 
@@ -97,9 +106,24 @@ public interface ResourceManager extends ServiceLifecycle {
      * Destroys a physical queue in the specified {@code MessagingAccessPoint}.
      * <p>
      * All this queue related physical resources may be deleted immediately.
-     * @param queueName a namespace name to be destroyed
+     * @param queueName a queue to be destroyed
      */
     void destroyQueue(String queueName);
+
+    /**
+     * Destroys a physical {@code Routing} in the specified {@code MessagingAccessPoint}.
+     *
+     * @param routingName a routing to be destroyed
+     */
+    void destroyRouting(String routingName);
+
+    /**
+     * Fetches the {@code Routing} object by routing name.
+     *
+     * @param routingName a routing name
+     * @return the {@code Routing} object
+     */
+    Routing getRouting(String routingName);
 
     /**
      * Fetches the resource properties of a specified namespace.
@@ -205,13 +229,13 @@ public interface ResourceManager extends ServiceLifecycle {
      * Updates the {@code MessageHeader} of specified message, which may be stored by MOM server already.
      * <p>
      * Only below message headers allow to be updated:
-     * <UL>
-     * <LI> {@link MessageHeader#PRIORITY}
-     * <LI> {@link MessageHeader#SCHEDULE_EXPRESSION}
-     * <LI> {@link MessageHeader#START_TIME}
-     * <LI> {@link MessageHeader#STOP_TIME}
-     * <LI> {@link MessageHeader#TIMEOUT}
-     * </UL>
+     * <ul>
+     * <li> {@link MessageHeader#PRIORITY}
+     * <li> {@link MessageHeader#SCHEDULE_EXPRESSION}
+     * <li> {@link MessageHeader#START_TIME}
+     * <li> {@link MessageHeader#STOP_TIME}
+     * <li> {@link MessageHeader#TIMEOUT}
+     * </ul>
      *
      * @param messageId a message to be updated
      * @param headers the message headers to be updated

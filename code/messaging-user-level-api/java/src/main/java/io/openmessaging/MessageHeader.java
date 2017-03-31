@@ -176,15 +176,10 @@ public class MessageHeader {
     public static final String SCHEDULE_EXPRESSION = "ScheduleExpression";
 
     /**
-     * The {@code SHARDING_KEY} header field contains the sharding key a message.
+     * The {@code SHARDING_KEY} header field contains the sharding key of a message.
+     * The messages with same SHARDING_PARTITION should be sent to a destination orderly.
      */
     public static final String SHARDING_KEY = "ShardingKey";
-
-    /**
-     * The {@code SHARDING_PARTITION} header field contains the sharding partition key a message.
-     * The messages with same SHARDING_PARTITION should be sent to the same partition of a destination.
-     */
-    public static final String SHARDING_PARTITION = "ShardingPartition";
 
     /**
      * The {@code TRACE_ID} header field contains the trace id a message, which represents a global and unique

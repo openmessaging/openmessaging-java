@@ -21,7 +21,7 @@ import io.openmessaging.Message;
 import io.openmessaging.MessageListener;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointManager;
-import io.openmessaging.OnMessageContext;
+import io.openmessaging.ReceivedMessageContext;
 import io.openmessaging.PushConsumer;
 import io.openmessaging.exception.OMSResourceNotExistException;
 import io.openmessaging.internal.DefaultKeyValue;
@@ -37,7 +37,7 @@ public class ConsumerTopicApp {
             .addFilter("TOPIC='HELLO_TOPIC2' AND KEY2 > 199"), new DefaultKeyValue());
 
         consumer.attachQueue("HELLO_QUEUE", new MessageListener() {
-            @Override public void onMessage(Message message, OnMessageContext context) {
+            @Override public void onMessage(Message message, ReceivedMessageContext context) {
                 System.out.println("receive one message: " + message);
             }
         });

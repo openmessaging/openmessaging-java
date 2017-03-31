@@ -25,5 +25,9 @@ package io.openmessaging.observer;
  * @since OMS 1.0
  */
 public interface OMSEvent {
-
+    /**
+     * Returns the specified {@code OMSEvent}
+     * @return
+     */
+    String type();
 }

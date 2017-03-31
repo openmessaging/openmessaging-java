@@ -1,38 +1,57 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
- * A {@code PartitionIterator} over a partition of queue, created by
- * {@link PartitionConsumer#partitionIterator(String)}, supports consume
- * messages bilaterally.
+ * A {@code Queue} supports streaming consumption.
+ * <p>
+ * A {@code IterableConsumer} object supports consume messages from a
+ * specified queue by streaming way.
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
  * @version OMS 1.0
+ * @see MessagingAccessPoint#createIterableConsumer(String)
  * @since OMS 1.0
  */
-public interface PartitionIterator {
+public interface IterableConsumer {
     /**
      * Fetches the current offset of this partition iterator.
      *
      * @return the current offset, return -1 if the iterator is first created.
      */
-    long currentOffset();
+    long current();
 
     /**
      * Fetches the first offset of this partition iterator.
      *
      * @return the first offset, return -1 if the partition has no message.
      */
-    long firstOffset();
+    long begin();
 
     /**
      * Fetches the last offset of this partition iterator.
      *
      * @return the last offset, return 0 if the iterator is first created.
      */
-    long lastOffset();
+    long end();
 
     /**
      * Moves the current offset to the specified timestamp.
@@ -56,7 +75,7 @@ public interface PartitionIterator {
 
     /**
      * Persist this iterator to local or remote server, that depends on specified
-     * implementation of {@link PartitionConsumer}.
+     * implementation of {@link IterableConsumer}.
      */
     void persist();
 
