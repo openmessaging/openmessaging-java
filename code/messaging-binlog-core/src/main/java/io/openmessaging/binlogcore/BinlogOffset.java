@@ -17,8 +17,5 @@
 
 package io.openmessaging.binlogcore;
 
-/**
- * Created by vive on 2017/3/23.
- */
 public interface BinlogOffset {
 }
