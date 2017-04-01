@@ -17,10 +17,10 @@
 
 package io.openmessaging.samples.order;
 
-import io.openmessaging.BatchToPartition;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointManager;
 import io.openmessaging.Producer;
+import io.openmessaging.SequenceProducer;
 import java.nio.charset.Charset;
 
 public class ProducerApp {
@@ -43,15 +43,14 @@ public class ProducerApp {
             }
         }));
 
-        BatchToPartition batchToPartition = producer.createBatchToPartition("PARTITION-001", MessagingAccessPointManager.buildKeyValue().put("SessionTimeout", 1000L));
-
+        SequenceProducer sequenceProducer = messagingAccessPoint.createSequenceProducer();
         try {
             for (int i = 0; i < 10000; i++) {
-                batchToPartition.send(producer.createBytesMessageToTopic("HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+                sequenceProducer.send(producer.createBytesMessageToTopic("HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
             }
-            batchToPartition.commit();
+            sequenceProducer.commit();
         } catch (Exception e) {
-            batchToPartition.rollback();
+            sequenceProducer.rollback();
         }
 
         Thread.sleep(1000L);

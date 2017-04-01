@@ -32,9 +32,7 @@ public class ConsumerTopicApp {
 
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
 
-        messagingAccessPoint.createResourceManager().createAndUpdateQueue("HELLO_QUEUE", messagingAccessPoint.createFilters()
-            .addFilter("TOPIC='HELLO_TOPIC1'")//
-            .addFilter("TOPIC='HELLO_TOPIC2' AND KEY2 > 199"), new DefaultKeyValue());
+        messagingAccessPoint.createResourceManager().createAndUpdateQueue("HELLO_QUEUE", new DefaultKeyValue());
 
         consumer.attachQueue("HELLO_QUEUE", new MessageListener() {
             @Override public void onMessage(Message message, ReceivedMessageContext context) {

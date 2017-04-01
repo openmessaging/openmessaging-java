@@ -53,7 +53,7 @@ public class ProducerApp {
         {
             final Promise<Void> result = producer.sendAsync(producer.createBytesMessageToTopic("HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
             result.addListener(new PromiseListener<Void>() {
-                @Override public void operationComplete(Promise<Void> promise) {
+                @Override public void operationCompleted(Promise<Void> promise) {
                     System.out.println("send async message OK");
                 }
 
