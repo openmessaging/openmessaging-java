@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ "$TRAVIS_REPO_SLUG" == "alibaba/openmessaging" ] && [ "$TRAVIS_JDK_VERSION" == "oraclejdk7" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
+if [ "$TRAVIS_REPO_SLUG" == "openmessaging/openmessaging" ] && [ "$TRAVIS_JDK_VERSION" == "oraclejdk7" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
 
   echo -e "Publishing javadoc...\n"
   cd code/ && mvn javadoc:aggregate -pl :parent-all,:messaging-user-level-api
@@ -9,7 +9,7 @@ if [ "$TRAVIS_REPO_SLUG" == "alibaba/openmessaging" ] && [ "$TRAVIS_JDK_VERSION"
   cd $HOME
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "travis-ci"
-  git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/alibaba/openmessaging gh-pages > /dev/null
+  git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/openmessaging/openmessaging gh-pages > /dev/null
 
   cd gh-pages
   git rm -rf .

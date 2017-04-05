@@ -7,7 +7,7 @@ Open-Messaging, whose charter includes the establishment of industry guidelines 
 ![domain-design](./docs/images/new-domain-design.png)
 
 ## Doc
-[API Doc](https://alibaba.github.io/openmessaging/).
+[API Doc](https://openmessaging.github.io/openmessaging/).
 
 
 ## Sponsored by Alibaba Group
