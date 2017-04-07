@@ -37,10 +37,10 @@ public class ConsumerQueueApp {
             }
         });
 
-        messagingAccessPoint.start();
+        messagingAccessPoint.startup();
         System.out.println("messagingAccessPoint startup OK");
 
-        consumer.start();
+        consumer.startup();
         System.out.println("consumer startup OK");
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {

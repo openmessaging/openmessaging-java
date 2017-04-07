@@ -41,7 +41,7 @@ public interface ServiceLifecycle {
      * after this method has been completed.
      */
     @PostConstruct
-    void start();
+    void startup();
 
     /**
      * Notify a service instance of the end of its life cycle. Once this method completes, the service endpoint could be

@@ -39,9 +39,9 @@ public class Provider {
 
             serviceEndPoint.publish(new HelloServiceImpl());
 
-            messagingAccessPoint.start();
+            messagingAccessPoint.startup();
 
-            serviceEndPoint.start();
+            serviceEndPoint.startup();
 
             Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
                 public void run() {

@@ -37,9 +37,9 @@ public class Consumer {
 
             final ServiceEndPoint serviceEndPoint = messagingAccessPoint.createServiceEndPoint();
 
-            messagingAccessPoint.start();
+            messagingAccessPoint.startup();
 
-            serviceEndPoint.start();
+            serviceEndPoint.startup();
 
             HelloService helloServiceGen = serviceEndPoint.bind(HelloService.class);
 

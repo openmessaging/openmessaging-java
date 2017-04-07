@@ -30,10 +30,10 @@ public class ProducerApp {
 
         final Producer producer = messagingAccessPoint.createProducer();
 
-        messagingAccessPoint.start();
+        messagingAccessPoint.startup();
         System.out.println("messagingAccessPoint startup OK");
 
-        producer.start();
+        producer.startup();
         System.out.println("producer startup OK");
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
