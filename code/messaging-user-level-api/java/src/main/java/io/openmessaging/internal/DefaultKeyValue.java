@@ -18,62 +18,82 @@
 package io.openmessaging.internal;
 
 import io.openmessaging.KeyValue;
+import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * WARN: The current interface prohibits direct access by the end user
+ * The default implementation of the interface {@link KeyValue}, used by OMS internally.
+ *
+ * @author yukon@apache.org
  *
  * @version OMS 1.0
  * @since OMS 1.0
  */
 public class DefaultKeyValue implements KeyValue {
+    private Map<String, String> properties;
+
+    public DefaultKeyValue() {
+        properties = new ConcurrentHashMap<>();
+    }
+
     @Override
     public KeyValue put(String key, int value) {
-        return null;
+        properties.put(key, String.valueOf(value));
+        return this;
     }
 
     @Override
     public KeyValue put(String key, long value) {
-        return null;
+        properties.put(key, String.valueOf(value));
+        return this;
     }
 
     @Override
     public KeyValue put(String key, double value) {
-        return null;
+        properties.put(key, String.valueOf(value));
+        return this;
     }
 
     @Override
     public KeyValue put(String key, String value) {
-        return null;
+        properties.put(key, String.valueOf(value));
+        return this;
     }
 
     @Override
     public int getInt(String key) {
-        return 0;
+        if (!properties.containsKey(key))
+            return 0;
+        return Integer.valueOf(properties.get(key));
     }
 
     @Override
     public long getLong(String key) {
-        return 0;
+        if (!properties.containsKey(key))
+            return 0;
+        return Long.valueOf(properties.get(key));
     }
 
     @Override
     public double getDouble(String key) {
-        return 0;
+        if (!properties.containsKey(key))
+            return 0;
+        return Double.valueOf(properties.get(key));
     }
 
     @Override
     public String getString(String key) {
-        return null;
+        return properties.get(key);
     }
 
     @Override
     public Set<String> keySet() {
-        return null;
+        return properties.keySet();
     }
 
     @Override
     public boolean containsKey(String key) {
-        return false;
+        return properties.containsKey(key);
     }
 }
