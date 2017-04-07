@@ -18,7 +18,7 @@ package io.openmessaging.samples.service;
 
 import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.MessagingAccessPointManager;
+import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.ServiceEndPoint;
 import io.openmessaging.samples.service.impl.HelloServiceImpl;
 import org.slf4j.Logger;
@@ -30,10 +30,10 @@ public class Provider {
     public static void main(String[] args) {
 
         try {
-            KeyValue properties = MessagingAccessPointManager.buildKeyValue();
+            KeyValue properties = MessagingAccessPointFactory.buildKeyValue();
             properties.put("protocol.name", "mvp");
             properties.put("service.prefer.tag", "hello");
-            final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("relay:default:100.81.2.5:8443", properties);
+            final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("relay:default:100.81.2.5:8443", properties);
 
             final ServiceEndPoint serviceEndPoint = messagingAccessPoint.createServiceEndPoint();
 

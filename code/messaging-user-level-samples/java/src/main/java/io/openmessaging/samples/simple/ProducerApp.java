@@ -18,13 +18,13 @@
 package io.openmessaging.samples.simple;
 
 import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.MessagingAccessPointManager;
+import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.Producer;
 import java.nio.charset.Charset;
 
 public class ProducerApp {
     public static void main(String[] args) {
-        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("openmessaging:rocketmq://IP1:10911,IP2:10900/namespace");
+        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("openmessaging:rocketmq://IP1:10911,IP2:10900/namespace");
 
         final Producer producer = messagingAccessPoint.createProducer();
 

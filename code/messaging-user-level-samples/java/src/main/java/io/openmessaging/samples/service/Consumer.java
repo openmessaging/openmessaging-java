@@ -19,7 +19,7 @@ package io.openmessaging.samples.service;
 
 import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.MessagingAccessPointManager;
+import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.ServiceEndPoint;
 import io.openmessaging.samples.service.api.CallRequest;
 import io.openmessaging.samples.service.api.CallResponse;
@@ -31,9 +31,9 @@ public class Consumer {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         try {
-            KeyValue properties = MessagingAccessPointManager.buildKeyValue();
+            KeyValue properties = MessagingAccessPointFactory.buildKeyValue();
             properties.put("protocol.name", "mvp");
-            final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("openmessaging:rocketmq:100.81.2.5:8443", properties);
+            final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("openmessaging:rocketmq:100.81.2.5:8443", properties);
 
             final ServiceEndPoint serviceEndPoint = messagingAccessPoint.createServiceEndPoint();
 

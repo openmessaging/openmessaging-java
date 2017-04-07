@@ -20,14 +20,14 @@ package io.openmessaging.samples.simple;
 import io.openmessaging.Message;
 import io.openmessaging.MessageListener;
 import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.MessagingAccessPointManager;
+import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.ReceivedMessageContext;
 import io.openmessaging.PushConsumer;
 import io.openmessaging.exception.OMSResourceNotExistException;
 
 public class ConsumerQueueApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
-        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
+        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
 
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
 

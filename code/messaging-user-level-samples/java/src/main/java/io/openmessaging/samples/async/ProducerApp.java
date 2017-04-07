@@ -18,7 +18,7 @@
 package io.openmessaging.samples.async;
 
 import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.MessagingAccessPointManager;
+import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.Producer;
 import io.openmessaging.Promise;
 import io.openmessaging.PromiseListener;
@@ -26,7 +26,7 @@ import java.nio.charset.Charset;
 
 public class ProducerApp {
     public static void main(String[] args) {
-        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
+        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
 
         final Producer producer = messagingAccessPoint.createProducer();
 

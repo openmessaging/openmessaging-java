@@ -21,11 +21,11 @@ import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.observer.Observer;
 
 /**
- * The {@code MessagingAccessPoint} obtained from {@link MessagingAccessPointManager} is capable of creating {@code
+ * The {@code MessagingAccessPoint} obtained from {@link MessagingAccessPointFactory} is capable of creating {@code
  * Producer}, {@code Consumer}, {@code ServiceEndPoint}, and so on.
  * <p> For example:
  * <pre>
- * MessagingAccessPoint messagingAccessPoint = MessagingAccessPointManager.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
+ * MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
  * Producer producer = messagingAccessPoint.createProducer();
  * producer.send(producer.createBytesMessageToTopic("HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
  * </pre>

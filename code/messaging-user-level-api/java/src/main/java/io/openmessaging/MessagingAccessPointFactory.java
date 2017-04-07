@@ -17,13 +17,18 @@
 
 package io.openmessaging;
 
+import io.openmessaging.internal.DefaultKeyValue;
+
 /**
+ * A factory that provides some static methods to create a {@code MessagingAccessPoint}
+ * from the specified OMS driver url.
+ *
  * @author vintagewang@apache.org
  *
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public class MessagingAccessPointManager {
+public class MessagingAccessPointFactory {
     public static MessagingAccessPoint getMessagingAccessPoint(String url) {
         return getMessagingAccessPoint(url, null);
     }
@@ -32,7 +37,7 @@ public class MessagingAccessPointManager {
         return null;
     }
 
-    public static KeyValue buildKeyValue() {
-        return null;
+    public static KeyValue newKeyValue() {
+        return new DefaultKeyValue();
     }
 }
