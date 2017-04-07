@@ -31,7 +31,7 @@ public class Consumer {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         try {
-            KeyValue properties = MessagingAccessPointFactory.buildKeyValue();
+            KeyValue properties = MessagingAccessPointFactory.newKeyValue();
             properties.put("protocol.name", "mvp");
             final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("openmessaging:rocketmq:100.81.2.5:8443", properties);
 

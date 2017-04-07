@@ -30,7 +30,7 @@ public class Provider {
     public static void main(String[] args) {
 
         try {
-            KeyValue properties = MessagingAccessPointFactory.buildKeyValue();
+            KeyValue properties = MessagingAccessPointFactory.newKeyValue();
             properties.put("protocol.name", "mvp");
             properties.put("service.prefer.tag", "hello");
             final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("relay:default:100.81.2.5:8443", properties);

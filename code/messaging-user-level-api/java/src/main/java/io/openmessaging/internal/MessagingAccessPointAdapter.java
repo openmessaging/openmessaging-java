@@ -17,6 +17,9 @@
 
 package io.openmessaging.internal;
 
+import io.openmessaging.KeyValue;
+import io.openmessaging.MessagingAccessPoint;
+
 /**
  * WARN: The current interface prohibits direct access by the end user
  *
@@ -25,4 +28,7 @@ package io.openmessaging.internal;
  */
 public class MessagingAccessPointAdapter {
 
+    public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {
+        return null;
+    }
 }
