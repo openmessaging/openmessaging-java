@@ -19,16 +19,69 @@ package io.openmessaging.internal;
 
 import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
+import io.openmessaging.exception.OMSRuntimeException;
+import java.lang.reflect.Constructor;
 
 /**
- * WARN: The current interface prohibits direct access by the end user
+ * The {@code MessagingAccessPointAdapter} provides a common implementation to
+ * create a specified {@code MessagingAccessPoint} instance, used by OMS internally.
  *
  * @version OMS 1.0
  * @since OMS 1.0
  */
 public class MessagingAccessPointAdapter {
+    /**
+     * The correct OMS driver url is:
+     * <p>
+     * {@literal openmessaging:<driver_type>://<access_point>[,<access_point>,...]/<namespace>}
+     */
+    private static final String pattern = "^openmessaging:.+://.+/.*$";
 
+    /**
+     * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url
+     * with some preset properties.
+     *
+     * @param url the driver url
+     * @param properties the preset properties
+     * @return a {@code MessagingAccessPoint} instance
+     */
     public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {
-        return null;
+        checkDriverURL(url);
+        String driverImpl = parseDriverImpl(url, properties);
+        String accessPoints = parseAccessPoints(url);
+        String namespace = parseNamespace(url);
+
+        properties.put("NAMESPACE", namespace);
+        properties.put("ACCESS_POINTS", accessPoints);
+        properties.put("DRIVER_IMPL", driverImpl);
+
+        try {
+            Class<?> driverImplClass = Class.forName(driverImpl);
+            Constructor constructor = driverImplClass.getConstructor(KeyValue.class);
+            return (MessagingAccessPoint) constructor.newInstance(properties);
+        } catch (Throwable e) {
+            throw new OMSRuntimeException("-1", "The OMS driver url is illegal.", e);
+        }
+    }
+
+    private static String parseNamespace(String url) {
+        return url.substring(url.lastIndexOf("/") + 1);
+    }
+
+    private static String parseAccessPoints(String url) {
+        return url.substring(url.indexOf("//") + 2, url.lastIndexOf("/"));
+    }
+
+    private static String parseDriverImpl(String url, KeyValue properties) {
+        if (properties.containsKey("DRIVER_IMPL")) {
+            return properties.getString("DRIVER_IMPL");
+        }
+        return "io.openmessaging." + url.split(":")[1] + ".MessagingAccessPointImpl";
+    }
+
+    private static void checkDriverURL(String url) {
+        if (!url.matches(pattern)) {
+            throw new OMSRuntimeException("-1", "The OMS driver url is illegal.");
+        }
     }
 }

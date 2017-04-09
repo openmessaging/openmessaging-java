@@ -17,6 +17,7 @@
 
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.internal.DefaultKeyValue;
 import io.openmessaging.internal.MessagingAccessPointAdapter;
 
@@ -49,6 +50,8 @@ public class MessagingAccessPointFactory {
      *
      * @param url the specified OMS driver url
      * @return a {@code MessagingAccessPoint} instance
+     * @throws OMSRuntimeException if the factory fails to create a {@code MessagingAccessPoint}
+     * due to some driver url some syntax error or internal error.
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url) {
         return getMessagingAccessPoint(url, newKeyValue());
@@ -56,10 +59,20 @@ public class MessagingAccessPointFactory {
 
     /**
      * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url
-     * with some preset properties.
+     * with some preset properties, which will be passed to MessagingAccessPoint's implementation
+     * class as a unique constructor parameter.
+     *
+     * There are some standard properties defined by OMS for this method:
+     *
+     * <ul>
+     * <li> {@code DRIVER_IMPL}, the fully qualified class name of the specified MessagingAccessPoint's
+     * implementation, the default value is {@literal io.openmessaging.<driver_type>.MessagingAccessPointImpl}.
+     * </ul>
      *
      * @param url the specified OMS driver url
      * @return a {@code MessagingAccessPoint} instance
+     * @throws OMSRuntimeException if the factory fails to create a {@code MessagingAccessPoint}
+     * due to some driver url some syntax error or internal error.
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {
         return MessagingAccessPointAdapter.getMessagingAccessPoint(url, properties);
