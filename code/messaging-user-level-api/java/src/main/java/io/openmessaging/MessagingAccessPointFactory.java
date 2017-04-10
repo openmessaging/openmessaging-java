@@ -65,7 +65,7 @@ public class MessagingAccessPointFactory {
      * There are some standard properties defined by OMS for this method:
      *
      * <ul>
-     * <li> {@code DRIVER_IMPL}, the fully qualified class name of the specified MessagingAccessPoint's
+     * <li> {@link PropertyKeys#DRIVER_IMPL}, the fully qualified class name of the specified MessagingAccessPoint's
      * implementation, the default value is {@literal io.openmessaging.<driver_type>.MessagingAccessPointImpl}.
      * </ul>
      *

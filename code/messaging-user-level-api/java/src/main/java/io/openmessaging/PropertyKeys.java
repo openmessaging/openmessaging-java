@@ -18,27 +18,14 @@
 package io.openmessaging;
 
 /**
- * A listener that is called back when a Promise is done.
- * {@code PromiseListener} instances are attached to {@link Promise} by passing
- * them in to {@link Promise#addListener(PromiseListener)}.
+ * This is the centralized source for keys that are used by {@link KeyValue}.
  *
- * @author vintagewang@apache.org
  * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface PromiseListener<V> {
-    /**
-     * Invoked when the operation associated with the {@code Promise} has been completed successfully.
-     *
-     * @param promise the source {@code Promise} which called this callback
-     */
-    void operationCompleted(Promise<V> promise);
-
-    /**
-     * Invoked when the operation associated with the {@code Promise} has been completed unsuccessfully.
-     *
-     * @param promise the source {@code Promise} which called this callback
-     */
-    void operationFailed(Promise<V> promise);
+public interface PropertyKeys {
+    String DRIVER_IMPL = "oms.driver.impl";
+    String ACCESS_POINTS = "oms.access.points";
+    String NAMESPACE = "oms.namespace";
 }
