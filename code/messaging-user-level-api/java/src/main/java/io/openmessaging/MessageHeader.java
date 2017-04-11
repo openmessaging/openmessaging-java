@@ -182,7 +182,7 @@ public class MessageHeader {
     public static final String SHARDING_KEY = "ShardingKey";
 
     /**
-     * The {@code TRACE_ID} header field contains the trace id a message, which represents a global and unique
+     * The {@code TRACE_ID} header field contains the trace id of a message, which represents a global and unique
      * identification, and can be used in distributed system to trace the whole call link.
      */
     public static final String TRACE_ID = "TraceId";

@@ -18,7 +18,7 @@ import io.openmessaging.exception.OMSRuntimeException;
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface SequenceProducer {
+public interface SequenceProducer extends MessageFactory, ServiceLifecycle {
     /**
      * Returns the properties of this {@code SequenceProducer} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code Producer},
