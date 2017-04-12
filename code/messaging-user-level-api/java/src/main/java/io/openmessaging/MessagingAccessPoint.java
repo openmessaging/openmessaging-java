@@ -38,6 +38,21 @@ import io.openmessaging.observer.Observer;
  */
 public interface MessagingAccessPoint extends ServiceLifecycle {
     /**
+     * Returns the properties of this {@code MessagingAccessPoint} instance.
+     * <p>
+     * There are some standard properties defined by OMS for {@code MessagingAccessPoint}:
+     * <ul>
+     * <li> {@link PropertyKeys#ACCESS_POINTS}, the specified access points.
+     * <li> {@link PropertyKeys#DRIVER_IMPL}, the fully qualified class name of the specified MessagingAccessPoint's
+     * implementation, the default value is {@literal io.openmessaging.<driver_type>.MessagingAccessPointImpl}.
+     * <li> {@link PropertyKeys#NAMESPACE}, the specified namespace.
+     * </ul>
+     *
+     * @return the properties
+     */
+    KeyValue properties();
+
+    /**
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}.
      *
      * @return the created {@code Producer}

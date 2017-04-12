@@ -62,12 +62,8 @@ public class MessagingAccessPointFactory {
      * with some preset properties, which will be passed to MessagingAccessPoint's implementation
      * class as a unique constructor parameter.
      *
-     * There are some standard properties defined by OMS for this method:
-     *
-     * <ul>
-     * <li> {@link PropertyKeys#DRIVER_IMPL}, the fully qualified class name of the specified MessagingAccessPoint's
-     * implementation, the default value is {@literal io.openmessaging.<driver_type>.MessagingAccessPointImpl}.
-     * </ul>
+     * There are some standard properties defined by OMS for this method,
+     * the same as {@link MessagingAccessPoint#properties()}
      *
      * @param url the specified OMS driver url
      * @return a {@code MessagingAccessPoint} instance

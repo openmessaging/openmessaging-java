@@ -31,11 +31,12 @@ public class ProducerApp {
         final Producer producer = messagingAccessPoint.createProducer();
 
         messagingAccessPoint.startup();
-        System.out.println("messagingAccessPoint startup OK");
+        System.out.println("MessagingAccessPoint startup OK");
 
         producer.startup();
-        System.out.println("producer startup OK");
+        System.out.println("Producer startup OK");
 
+        //Add a shutdown hook
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {

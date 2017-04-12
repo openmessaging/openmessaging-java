@@ -32,6 +32,21 @@ import io.openmessaging.exception.OMSRuntimeException;
  */
 public interface PushConsumer extends ServiceLifecycle {
     /**
+     * Returns the properties of this {@code PushConsumer} instance.
+     * Changes to the return {@code KeyValue} are not reflected in physical {@code PushConsumer},
+     * and use {@link ResourceManager#setConsumerProperties(String, KeyValue)} to modify.
+     * <p>
+     * There are some standard properties defined by OMS for {@code PushConsumer}:
+     * <ul>
+     * <li> {@link PropertyKeys#CONSUMER_ID}, the unique consumer id for a consumer instance.
+     * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code PushConsumer}.
+     * </ul>
+     *
+     * @return the properties
+     */
+    KeyValue properties();
+
+    /**
      * Resumes the {@code PushConsumer} after a suspend.
      * <p>
      * This method resumes the {@code PushConsumer} instance after it was suspended.
@@ -59,15 +74,6 @@ public interface PushConsumer extends ServiceLifecycle {
      * @return true if this {@code PushConsumer} is suspended, false otherwise
      */
     boolean isSuspended();
-
-    /**
-     * Returns the properties of this {@code PushConsumer} instance.
-     * Changes to the return {@code KeyValue} are not reflected in physical {@code PushConsumer},
-     * and use {@link ResourceManager#setConsumerProperties(String, KeyValue)} to modify.
-     *
-     * @return the properties
-     */
-    KeyValue properties();
 
     /**
      * Attaches the {@code PushConsumer} to a specified queue, with a {@code MessageListener}.

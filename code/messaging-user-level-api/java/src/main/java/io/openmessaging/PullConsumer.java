@@ -34,6 +34,12 @@ public interface PullConsumer {
      * Returns the properties of this {@code PullConsumer} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code PullConsumer},
      * and use {@link ResourceManager#setConsumerProperties(String, KeyValue)} to modify.
+     * <p>
+     * There are some standard properties defined by OMS for {@code PullConsumer}:
+     * <ul>
+     * <li> {@link PropertyKeys#CONSUMER_ID}, the unique consumer id for a consumer instance.
+     * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code PullConsumer}.
+     * </ul>
      *
      * @return the properties
      */

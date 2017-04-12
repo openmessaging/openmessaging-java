@@ -51,6 +51,12 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * Returns the properties of this {@code Producer} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code Producer},
      * and use {@link ResourceManager#setProducerProperties(String, KeyValue)} to modify.
+     * <p>
+     * There are some standard properties defined by OMS for {@code Producer}:
+     * <ul>
+     * <li> {@link PropertyKeys#PRODUCER_ID}, the unique producer id for a producer instance.
+     * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code Producer}.
+     * </ul>
      *
      * @return the properties
      */

@@ -33,6 +33,21 @@ import io.openmessaging.exception.OMSRuntimeException;
  */
 public interface IterableConsumer {
     /**
+     * Returns the properties of this {@code PushConsumer} instance.
+     * Changes to the return {@code KeyValue} are not reflected in physical {@code PushConsumer},
+     * and use {@link ResourceManager#setConsumerProperties(String, KeyValue)} to modify.
+     * <p>
+     * There are some standard properties defined by OMS for {@code IterableConsumer}:
+     * <ul>
+     * <li> {@link PropertyKeys#CONSUMER_ID}, the unique consumer id for a consumer instance.
+     * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code IterableConsumer}.
+     * </ul>
+     *
+     * @return the properties
+     */
+    KeyValue properties();
+
+    /**
      * Fetches the current offset of this partition iterator.
      *
      * @return the current offset, return -1 if the iterator is first created.

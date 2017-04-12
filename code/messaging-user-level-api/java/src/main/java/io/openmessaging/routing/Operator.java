@@ -1,4 +1,4 @@
-package io.openmessaging.stream;
+package io.openmessaging.routing;
 
 import io.openmessaging.KeyValue;
 

@@ -28,9 +28,10 @@ public interface PropertyKeys {
     String DRIVER_IMPL = "oms.driver.impl";
     String ACCESS_POINTS = "oms.access.points";
     String NAMESPACE = "oms.namespace";
-
     String PRODUCER_ID = "oms.producer.id";
     String CONSUMER_ID = "oms.consumer.id";
-
     String OPERATION_TIMEOUT = "oms.operation.timeout";
+    String ROUTING_NAME = "oms.routing.name";
+    String DST_QUEUE = "oms.dst.queue";
+    String SRC_TOPIC = "oms.src.topic";
 }

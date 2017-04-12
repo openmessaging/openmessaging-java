@@ -1,6 +1,7 @@
-package io.openmessaging.stream;
+package io.openmessaging.routing;
 
 import io.openmessaging.KeyValue;
+import io.openmessaging.PropertyKeys;
 import io.openmessaging.ResourceManager;
 import java.util.List;
 
@@ -20,12 +21,12 @@ public interface Routing {
      * and use {@link ResourceManager#createAndUpdateRouting(Routing)} (String, KeyValue)} to modify.
      * <p>
      * There are some standard properties defined by OMS for {@code Routing}:
-     *
      * <ul>
-     * <li> {@code SRC_TOPIC}, the source topic of this {@code Routing} object.
-     * <li> {@code DST_QUEUE}, the destination queue of this {@code Routing} object.
-     * <li> {@code ROUTING_NAME}, the unique name of this {@code Routing} object.
+     * <li> {@link PropertyKeys#SRC_TOPIC}, the source topic of this {@code Routing} object.
+     * <li> {@link PropertyKeys#DST_QUEUE}, the destination queue of this {@code Routing} object.
+     * <li> {@link PropertyKeys#ROUTING_NAME}, the unique name of this {@code Routing} object.
      * </ul>
+     *
      * @return the properties
      */
     KeyValue properties();

@@ -18,7 +18,7 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSResourceNotExistException;
-import io.openmessaging.stream.Routing;
+import io.openmessaging.routing.Routing;
 import java.util.List;
 
 /**
@@ -165,7 +165,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * Returns the properties of the specified consumer instance with the given consumer id.
      * If no such consumer id exists, {@code OMSResourceNotExistException} will be thrown.
      *
-     * @param consumerId The unique consumer id for an consumer instance
+     * @param consumerId The unique consumer id for a consumer instance
      * @return the properties of the matching consumer instance
      * @throws OMSResourceNotExistException if the specified consumer is not exists
      */
@@ -206,7 +206,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * Returns the properties of the specified producer instance with the given producer id.
      * If no such producer id exists, {@code OMSResourceNotExistException} will be thrown.
      *
-     * @param producerId The unique consumer id for an producer instance
+     * @param producerId The unique consumer id for a producer instance
      * @return the properties of the matching producer instance
      * @throws OMSResourceNotExistException if the specified producer is not exists
      */
