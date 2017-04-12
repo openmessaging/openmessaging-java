@@ -61,7 +61,7 @@ public class MessagingAccessPointAdapter {
             Constructor constructor = driverImplClass.getConstructor(KeyValue.class);
             return (MessagingAccessPoint) constructor.newInstance(properties);
         } catch (Throwable e) {
-            throw new OMSRuntimeException("-1", "The OMS driver url is illegal.", e);
+            throw new OMSRuntimeException("-1", "Can't construct a MessagingAccessPoint instance from the given OMS driver url.", e);
         }
     }
 

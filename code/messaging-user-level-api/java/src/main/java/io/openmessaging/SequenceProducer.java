@@ -1,5 +1,6 @@
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSMessageFormatException;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
@@ -29,25 +30,29 @@ public interface SequenceProducer extends MessageFactory, ServiceLifecycle {
     KeyValue properties();
 
     /**
-     * Sends a message to the specified destination in one way, the destination should be preset to
+     * Sends a message to the specified destination, the destination should be preset to
      * {@link MessageHeader}, other header fields as well.
      * <p>
-     * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't
+     * There is no {@code Promise} related. The calling thread doesn't
      * care about the send result and also have no context to get the result.
+     * <p>
+     * This message can't be consumed util it is committed.
      *
      * @param message a message will be sent
+     * @throws OMSMessageFormatException if an invalid message is specified.
      */
     void send(Message message);
 
     /**
-     * Sends a message to the specified destination in one way, using the specified properties, the destination
+     * Sends a message to the specified destination, using the specified properties, the destination
      * should be preset to {@link MessageHeader}, other header fields as well.
      * <p>
-     * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't
+     * There is no {@code Promise} related. The calling thread doesn't
      * care about the send result and also have no context to get the result.
      *
      * @param message a message will be sent
      * @param properties the specified properties
+     * @throws OMSMessageFormatException if an invalid message is specified.
      */
     void send(Message message, KeyValue properties);
 

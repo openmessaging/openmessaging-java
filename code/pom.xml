@@ -5,7 +5,7 @@
     <inceptionYear>2016</inceptionYear>
     <groupId>io.openmessaging</groupId>
     <artifactId>parent-all</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.1.0-beta</version>
     <packaging>pom</packaging>
     <name>parent-all ${project.version}</name>
 

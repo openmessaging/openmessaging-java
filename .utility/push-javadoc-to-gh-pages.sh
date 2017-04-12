@@ -2,7 +2,7 @@
 if [ "$TRAVIS_REPO_SLUG" == "openmessaging/openmessaging" ] && [ "$TRAVIS_JDK_VERSION" == "oraclejdk7" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
 
   echo -e "Publishing javadoc...\n"
-  cd code/ && mvn javadoc:aggregate -pl :parent-all,:messaging-user-level-api
+  cd code/ && mvn javadoc:aggregate -pl :parent-all,:openmessaging-api
   rm -rf $HOME/javadoc-latest
   cp -R target/site/apidocs/ $HOME/javadoc-latest
 

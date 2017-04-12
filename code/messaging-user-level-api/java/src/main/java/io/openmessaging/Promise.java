@@ -96,8 +96,16 @@ public interface Promise<V> {
     boolean set(V value);
 
     /**
+     * Marks this promise as a failure and notifies all listeners.
+     *
+     * @param cause the cause
+     * @return Whether set is success
+     */
+    boolean setFailure(Throwable cause);
+
+    /**
      * Adds the specified listener to this promise. The specified listener is notified when this promise is done. If this
-     * promise is already completed, the specified listener is notified immediately.
+     * promise is already completed, the specified listener will be notified immediately.
      *
      * @param listener PromiseListener
      */
