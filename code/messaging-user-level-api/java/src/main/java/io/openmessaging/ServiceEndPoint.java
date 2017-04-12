@@ -72,8 +72,5 @@ public interface ServiceEndPoint extends ServiceLifecycle {
      */
     <T> T bind(Class<T> type, KeyValue properties, ServiceLoadBalance serviceLoadBalance);
 
-    /**
-     * @return
-     */
     InvokeContext invokeContext();
 }

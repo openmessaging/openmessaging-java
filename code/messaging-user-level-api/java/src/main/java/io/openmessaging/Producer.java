@@ -67,11 +67,12 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * {@link MessageHeader}, other header fields as well.
      *
      * @param message a message will be sent
+     * @return the successful {@code SendResult}
      * @throws OMSMessageFormatException if an invalid message is specified.
      * @throws OMSTimeOutException if the given timeout elapses before the send operation completes
      * @throws OMSRuntimeException if the {@code Producer} fails to send the message due to some internal error.
      */
-    void send(Message message);
+    SendResult send(Message message);
 
     /**
      * Sends a message to the specified destination synchronously, using the specified properties, the destination
@@ -79,11 +80,12 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      *
      * @param message a message will be sent
      * @param properties the specified properties
+     * @return the successful {@code SendResult}
      * @throws OMSMessageFormatException if an invalid message is specified.
      * @throws OMSTimeOutException if the given timeout elapses before the send operation completes
      * @throws OMSRuntimeException if the {@code Producer} fails to send the message due to some internal error.
      */
-    void send(Message message, KeyValue properties);
+    SendResult send(Message message, KeyValue properties);
 
     /**
      * Sends a message to the specified destination asynchronously, the destination should be preset to
@@ -97,7 +99,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @see Promise
      * @see PromiseListener
      */
-    Promise<Void> sendAsync(Message message);
+    Promise<SendResult> sendAsync(Message message);
 
     /**
      * Sends a message to the specified destination asynchronously, using the specified properties, the destination
@@ -112,7 +114,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @see Promise
      * @see PromiseListener
      */
-    Promise<Void> sendAsync(Message message, KeyValue properties);
+    Promise<SendResult> sendAsync(Message message, KeyValue properties);
 
     /**
      * Sends a message to the specified destination in one way, the destination should be preset to
