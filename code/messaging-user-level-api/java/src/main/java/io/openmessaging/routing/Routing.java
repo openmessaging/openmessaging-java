@@ -18,7 +18,7 @@ public interface Routing {
     /**
      * Returns the properties of this {@code Routing} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code Routing},
-     * and use {@link ResourceManager#createAndUpdateRouting(Routing)} (String, KeyValue)} to modify.
+     * and use {@link ResourceManager#createAndUpdateRouting(String, KeyValue)} to modify.
      * <p>
      * There are some standard properties defined by OMS for {@code Routing}:
      * <ul>

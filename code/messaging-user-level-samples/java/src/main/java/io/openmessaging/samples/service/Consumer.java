@@ -17,7 +17,6 @@
 
 package io.openmessaging.samples.service;
 
-import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.ServiceEndPoint;
@@ -31,9 +30,8 @@ public class Consumer {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         try {
-            KeyValue properties = MessagingAccessPointFactory.newKeyValue();
-            properties.put("protocol.name", "mvp");
-            final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("openmessaging:rocketmq:100.81.2.5:8443", properties);
+            final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory
+                .getMessagingAccessPoint("openmessaging:rocketmq://localhost:9876/namespace");
 
             final ServiceEndPoint serviceEndPoint = messagingAccessPoint.createServiceEndPoint();
 

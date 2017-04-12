@@ -32,6 +32,7 @@ public interface PropertyKeys {
     String CONSUMER_ID = "oms.consumer.id";
     String OPERATION_TIMEOUT = "oms.operation.timeout";
     String ROUTING_NAME = "oms.routing.name";
+    String OPERATOR_NAME = "oms.operator.name";
     String DST_QUEUE = "oms.dst.queue";
     String SRC_TOPIC = "oms.src.topic";
 }

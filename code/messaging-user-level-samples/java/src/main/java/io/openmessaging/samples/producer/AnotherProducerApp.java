@@ -15,18 +15,18 @@
  *  limitations under the License.
  */
 
-package io.openmessaging.samples.async;
+package io.openmessaging.samples.producer;
 
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.Producer;
-import io.openmessaging.Promise;
-import io.openmessaging.PromiseListener;
+import io.openmessaging.SendResult;
 import java.nio.charset.Charset;
 
-public class ProducerApp {
+public class AnotherProducerApp {
     public static void main(String[] args) {
-        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
+        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory
+            .getMessagingAccessPoint("openmessaging:rocketmq://IP1:10911,IP2:10900/namespace");
 
         final Producer producer = messagingAccessPoint.createProducer();
 
@@ -36,7 +36,6 @@ public class ProducerApp {
         producer.startup();
         System.out.println("Producer startup OK");
 
-        //Add a shutdown hook
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
@@ -45,30 +44,24 @@ public class ProducerApp {
             }
         }));
 
-        {
-            final Promise<Void> result = producer.sendAsync(producer.createBytesMessageToTopic("HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
-            final Void aVoid = result.get(3000L);
-            System.out.println("send async message OK");
-        }
+        SendResult result = producer.send(producer.createBytesMessageToTopic(
+            "HELLO_TOPIC1", "HELLO_BODY1".getBytes(Charset.forName("UTF-8"))));
 
-        {
-            final Promise<Void> result = producer.sendAsync(producer.createBytesMessageToTopic("HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
-            result.addListener(new PromiseListener<Void>() {
-                @Override public void operationCompleted(Promise<Void> promise) {
-                    System.out.println("send async message OK");
-                }
+        System.out.println("Send first message to topic OK, message id is: " + result.messageId());
 
-                @Override public void operationFailed(Promise<Void> promise) {
-                    System.out.println("send async message Failed");
-                }
-            });
+        producer.send(producer.createBytesMessageToTopic(
+            "HELLO_TOPIC2", "HELLO_BODY2".getBytes(Charset.forName("UTF-8")))
+            .putProperties("KEY1", 100)
+            .putProperties("KEY2", 200L)
+            .putProperties("KEY3", 3.14)
+            .putProperties("KEY4", "value4")
+        );
 
-            System.out.println("send async message OK");
-        }
+        System.out.println("Send second message to topic OK");
 
-        {
-            producer.sendOneway(producer.createBytesMessageToTopic("HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
-            System.out.println("send oneway message OK");
-        }
+        producer.send(producer.createBytesMessageToQueue(
+            "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+
+        System.out.println("send third message to queue OK");
     }
 }

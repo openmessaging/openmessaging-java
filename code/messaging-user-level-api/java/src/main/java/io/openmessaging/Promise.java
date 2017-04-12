@@ -109,7 +109,7 @@ public interface Promise<V> {
      *
      * @param listener PromiseListener
      */
-    void addListener(PromiseListener listener);
+    void addListener(PromiseListener<V> listener);
 
     /**
      * @return a throwable caught by the promise

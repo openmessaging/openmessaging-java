@@ -15,24 +15,26 @@
  *  limitations under the License.
  */
 
-package io.openmessaging.samples.simple;
+package io.openmessaging.samples.producer;
 
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.Producer;
+import io.openmessaging.SequenceProducer;
 import java.nio.charset.Charset;
 
-public class ProducerApp {
-    public static void main(String[] args) {
-        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("openmessaging:rocketmq://IP1:10911,IP2:10900/namespace");
+public class SequenceProducerApp {
+    public static void main(String[] args) throws InterruptedException {
+        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory
+            .getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
 
         final Producer producer = messagingAccessPoint.createProducer();
 
         messagingAccessPoint.startup();
-        System.out.println("messagingAccessPoint startup OK");
+        System.out.println("MessagingAccessPoint startup OK");
 
         producer.startup();
-        System.out.println("producer startup OK");
+        System.out.println("Producer startup OK");
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
@@ -42,18 +44,20 @@ public class ProducerApp {
             }
         }));
 
-        producer.send(producer.createBytesMessageToTopic("HELLO_TOPIC1", "HELLO_BODY1".getBytes(Charset.forName("UTF-8"))));
-        System.out.println("send first message to topic OK");
+        SequenceProducer sequenceProducer = messagingAccessPoint.createSequenceProducer();
+        try {
+            for (int i = 0; i < 10000; i++) {
+                sequenceProducer.send(producer.createBytesMessageToTopic(
+                    "HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+            }
+            sequenceProducer.commit();
+        } catch (Exception e) {
+            sequenceProducer.rollback();
+        }
 
-        producer.send(producer.createBytesMessageToTopic("HELLO_TOPIC2", "HELLO_BODY2".getBytes(Charset.forName("UTF-8")))
-            .putProperties("KEY1", 100)//
-            .putProperties("KEY2", 200L)//
-            .putProperties("KEY3", 3.14)//
-            .putProperties("KEY4", "value4")//
-        );
-        System.out.println("send second message to topic OK");
+        Thread.sleep(1000L);
 
-        producer.send(producer.createBytesMessageToQueue("HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
-        System.out.println("send third message to queue OK");
+        producer.shutdown();
+        messagingAccessPoint.shutdown();
     }
 }

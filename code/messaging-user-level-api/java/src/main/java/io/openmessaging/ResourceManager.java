@@ -18,6 +18,7 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSResourceNotExistException;
+import io.openmessaging.routing.Operator;
 import io.openmessaging.routing.Routing;
 import java.util.List;
 
@@ -50,7 +51,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * <p>
      * Note that this method will simply create the physical Namespace in the specified {@code MessagingAccessPoint}.
      *
-     * @param nsName a namespace name
+     * @param nsName the namespace name
      * @param properties the preset properties
      */
     void createAndUpdateNamespace(String nsName, KeyValue properties);
@@ -61,7 +62,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * <p>
      * Note that this method will simply create the physical topic in the specified {@code MessagingAccessPoint}.
      *
-     * @param topicName a topic name
+     * @param topicName the topic name
      * @param properties the preset properties
      */
     void createAndUpdateTopic(String topicName, KeyValue properties);
@@ -72,7 +73,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * <p>
      * Note that this method will simply create the physical queue in the specified {@code MessagingAccessPoint}.
      *
-     * @param queueName a queue name
+     * @param queueName the queue name
      * @param properties the preset properties
      */
     void createAndUpdateQueue(String queueName, KeyValue properties);
@@ -81,16 +82,29 @@ public interface ResourceManager extends ServiceLifecycle {
      * Creates a {@code Routing} resource for the the specified {@code MessagingAccessPoint},
      * updates if it already exits.
      *
-     * @param routing a {@code Routing} object with some {@code Operators} and properties.
+     * @param routingName the routing name
+     * @param properties the preset properties, includes
+     * {@link PropertyKeys#SRC_TOPIC} and {@link PropertyKeys#DST_QUEUE}
+     * @return the created routing instance
      */
-    void createAndUpdateRouting(Routing routing);
+    Routing createAndUpdateRouting(String routingName, KeyValue properties);
 
+    /**
+     * Creates a {@code Operator} resource for the the specified {@code MessagingAccessPoint},
+     * updates if it already exits.
+     *
+     * @param operatorName the operator name
+     * @param expression the expression of the operator
+     * @param properties the preset properties
+     * @return the created operator instance
+     */
+    Operator createAndUpdateOperator(String operatorName, String expression, KeyValue properties);
 
     /**
      * Destroys a physical namespace in the specified {@code MessagingAccessPoint}.
      * <p>
      * All this namespace related physical resources may be deleted immediately.
-     * @param nsName a namespace to be destroyed
+     * @param nsName the namespace to be destroyed
      */
     void destroyNamespace(String nsName);
 
@@ -98,7 +112,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * Destroys a physical topic in the specified {@code MessagingAccessPoint}.
      * <p>
      * All this topic related physical resources may be deleted immediately.
-     * @param topicName a topic to be destroyed
+     * @param topicName the topic to be destroyed
      */
     void destroyTopic(String topicName);
 
@@ -106,29 +120,37 @@ public interface ResourceManager extends ServiceLifecycle {
      * Destroys a physical queue in the specified {@code MessagingAccessPoint}.
      * <p>
      * All this queue related physical resources may be deleted immediately.
-     * @param queueName a queue to be destroyed
+     * @param queueName the queue to be destroyed
      */
     void destroyQueue(String queueName);
 
     /**
      * Destroys a physical {@code Routing} in the specified {@code MessagingAccessPoint}.
      *
-     * @param routingName a routing to be destroyed
+     * @param routingName the routing to be destroyed
      */
     void destroyRouting(String routingName);
 
     /**
      * Fetches the {@code Routing} object by routing name.
      *
-     * @param routingName a routing name
+     * @param routingName the routing name
      * @return the {@code Routing} object
      */
     Routing getRouting(String routingName);
 
     /**
+     * Fetches the {@code Operator} object by operator name.
+     *
+     * @param operatorName the operator name
+     * @return the {@code Operator} object
+     */
+    Operator getOperator(String operatorName);
+
+    /**
      * Fetches the resource properties of a specified namespace.
      *
-     * @param nsName a namespace name
+     * @param nsName the namespace name
      * @return the properties of this specified namespace
      * @throws OMSResourceNotExistException if the specified namespace is not exists
      */
@@ -137,7 +159,7 @@ public interface ResourceManager extends ServiceLifecycle {
     /**
      * Fetches the resource properties of a specified topic.
      *
-     * @param topicName a topic name
+     * @param topicName the topic name
      * @return the properties of this specified topic
      * @throws OMSResourceNotExistException if the specified topic is not exists
      */
@@ -146,7 +168,7 @@ public interface ResourceManager extends ServiceLifecycle {
     /**
      * Fetches the resource properties of a specified queue.
      *
-     * @param queueName a queue name
+     * @param queueName the queue name
      * @return the properties of this specified queue
      * @throws OMSResourceNotExistException if the specified queue is not exists
      */
@@ -155,7 +177,7 @@ public interface ResourceManager extends ServiceLifecycle {
     /**
      * Each consumer has a unique id, this method is to fetch the consumer id list in a specified queue.
      *
-     * @param queueName a queue name
+     * @param queueName the queue name
      * @return the consumer id list in this queue
      * @throws OMSResourceNotExistException if the specified queue is not exists
      */
@@ -165,7 +187,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * Returns the properties of the specified consumer instance with the given consumer id.
      * If no such consumer id exists, {@code OMSResourceNotExistException} will be thrown.
      *
-     * @param consumerId The unique consumer id for a consumer instance
+     * @param consumerId the unique consumer id for a consumer instance
      * @return the properties of the matching consumer instance
      * @throws OMSResourceNotExistException if the specified consumer is not exists
      */
@@ -187,7 +209,7 @@ public interface ResourceManager extends ServiceLifecycle {
     /**
      * Each producer has a unique id, this method is to fetch the producer id list in a specified queue.
      *
-     * @param queueName a queue name
+     * @param queueName the queue name
      * @return the producer id list in this queue
      * @throws OMSResourceNotExistException if the specified queue is not exists
      */
@@ -196,7 +218,7 @@ public interface ResourceManager extends ServiceLifecycle {
     /**
      * Each producer has a unique id, this method is to fetch the producer id list in a specified topic.
      *
-     * @param topicName a topic name
+     * @param topicName the topic name
      * @return the producer id list in this topic
      * @throws OMSResourceNotExistException if the specified topic is not exists
      */
@@ -237,7 +259,7 @@ public interface ResourceManager extends ServiceLifecycle {
      * <li> {@link MessageHeader#TIMEOUT}
      * </ul>
      *
-     * @param messageId a message to be updated
+     * @param messageId the message to be updated
      * @param headers the message headers to be updated
      */
     void updateMessage(String messageId, KeyValue headers);
