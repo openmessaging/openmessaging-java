@@ -31,7 +31,7 @@ import io.openmessaging.exception.OMSRuntimeException;
  * @see MessagingAccessPoint#createIterableConsumer(String)
  * @since OMS 1.0
  */
-public interface IterableConsumer {
+public interface IterableConsumer extends ServiceLifecycle{
     /**
      * Returns the properties of this {@code PushConsumer} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code PushConsumer},

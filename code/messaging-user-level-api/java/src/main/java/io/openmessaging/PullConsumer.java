@@ -29,7 +29,7 @@ import io.openmessaging.exception.OMSRuntimeException;
  * @see MessagingAccessPoint#createPullConsumer(String)
  * @since OMS 1.0
  */
-public interface PullConsumer {
+public interface PullConsumer extends ServiceLifecycle{
     /**
      * Returns the properties of this {@code PullConsumer} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code PullConsumer},
