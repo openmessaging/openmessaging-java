@@ -4,6 +4,7 @@ import io.openmessaging.Message;
 import io.openmessaging.MessageHeader;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
+import io.openmessaging.OMS;
 import io.openmessaging.PullConsumer;
 import io.openmessaging.ResourceManager;
 
@@ -15,7 +16,7 @@ public class PullConsumerApp {
         System.out.println("MessagingAccessPoint startup OK");
         ResourceManager resourceManager = messagingAccessPoint.getResourceManager();
 
-        resourceManager.createAndUpdateQueue("HELLO_QUEUE", MessagingAccessPointFactory.newKeyValue());
+        resourceManager.createAndUpdateQueue("HELLO_QUEUE", OMS.newKeyValue());
         //PullConsumer only can pull messages from one queue.
         final PullConsumer pullConsumer = messagingAccessPoint.createPullConsumer("HELLO_QUEUE");
 

@@ -21,6 +21,7 @@ import io.openmessaging.Message;
 import io.openmessaging.MessageListener;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
+import io.openmessaging.OMS;
 import io.openmessaging.PropertyKeys;
 import io.openmessaging.PushConsumer;
 import io.openmessaging.ReceivedMessageContext;
@@ -40,7 +41,7 @@ public class PushConsumerApp {
         //Consume messages from a simple queue.
         {
             String simpleQueue = "HELLO_QUEUE";
-            resourceManager.createAndUpdateQueue(simpleQueue, MessagingAccessPointFactory.newKeyValue());
+            resourceManager.createAndUpdateQueue(simpleQueue, OMS.newKeyValue());
 
             //This queue doesn't has a source topic, so only the message delivered to the queue directly can
             //be consumed by this consumer.
@@ -63,17 +64,17 @@ public class PushConsumerApp {
             String sourceTopic = "SOURCE_TOPIC";
 
             //Create the complex queue.
-            resourceManager.createAndUpdateQueue(complexQueue, MessagingAccessPointFactory.newKeyValue());
+            resourceManager.createAndUpdateQueue(complexQueue, OMS.newKeyValue());
             //Create the source topic.
-            resourceManager.createAndUpdateTopic(sourceTopic, MessagingAccessPointFactory.newKeyValue());
+            resourceManager.createAndUpdateTopic(sourceTopic, OMS.newKeyValue());
 
             //Once the routing has been created, the messages will be routed from topic to queue by the sql operator.
             Routing routing = resourceManager.createAndUpdateRouting("HELLO_ROUTING",
-                MessagingAccessPointFactory.newKeyValue()
+                OMS.newKeyValue()
                     .put(PropertyKeys.SRC_TOPIC, sourceTopic).put(PropertyKeys.DST_QUEUE, complexQueue));
 
             routing.addOperator(resourceManager.createAndUpdateOperator("SQL_OPERATOR",
-                "TAGS is not null and TAGS in ('TagA', 'TagB')", MessagingAccessPointFactory.newKeyValue()));
+                "TAGS is not null and TAGS in ('TagA', 'TagB')", OMS.newKeyValue()));
 
             anotherConsumer.attachQueue(complexQueue, new MessageListener() {
                 @Override

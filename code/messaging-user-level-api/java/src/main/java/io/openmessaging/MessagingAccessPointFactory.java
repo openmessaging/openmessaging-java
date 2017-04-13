@@ -18,7 +18,6 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSRuntimeException;
-import io.openmessaging.internal.DefaultKeyValue;
 import io.openmessaging.internal.MessagingAccessPointAdapter;
 
 /**
@@ -54,7 +53,7 @@ public class MessagingAccessPointFactory {
      * due to some driver url some syntax error or internal error.
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url) {
-        return getMessagingAccessPoint(url, newKeyValue());
+        return getMessagingAccessPoint(url, OMS.newKeyValue());
     }
 
     /**
@@ -74,12 +73,4 @@ public class MessagingAccessPointFactory {
         return MessagingAccessPointAdapter.getMessagingAccessPoint(url, properties);
     }
 
-    /**
-     * Returns a default and internal {@code KeyValue} implementation instance.
-     *
-     * @return a {@code KeyValue} instance
-     */
-    public static KeyValue newKeyValue() {
-        return new DefaultKeyValue();
-    }
 }
