@@ -6,7 +6,6 @@ import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.PullConsumer;
 import io.openmessaging.ResourceManager;
-import io.openmessaging.internal.DefaultKeyValue;
 
 public class PullConsumerApp {
     public static void main(String[] args) {
@@ -14,9 +13,9 @@ public class PullConsumerApp {
             .getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
-        ResourceManager resourceManager = messagingAccessPoint.createResourceManager();
+        ResourceManager resourceManager = messagingAccessPoint.getResourceManager();
 
-        resourceManager.createAndUpdateQueue("HELLO_QUEUE", new DefaultKeyValue());
+        resourceManager.createAndUpdateQueue("HELLO_QUEUE", MessagingAccessPointFactory.newKeyValue());
         //PullConsumer only can pull messages from one queue.
         final PullConsumer pullConsumer = messagingAccessPoint.createPullConsumer("HELLO_QUEUE");
 
@@ -31,8 +30,8 @@ public class PullConsumerApp {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                messagingAccessPoint.shutdown();
                 pullConsumer.shutdown();
+                messagingAccessPoint.shutdown();
             }
         }));
     }

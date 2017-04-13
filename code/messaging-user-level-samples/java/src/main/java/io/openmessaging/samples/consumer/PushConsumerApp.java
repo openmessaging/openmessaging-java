@@ -26,7 +26,6 @@ import io.openmessaging.PushConsumer;
 import io.openmessaging.ReceivedMessageContext;
 import io.openmessaging.ResourceManager;
 import io.openmessaging.exception.OMSResourceNotExistException;
-import io.openmessaging.internal.DefaultKeyValue;
 import io.openmessaging.routing.Routing;
 
 public class PushConsumerApp {
@@ -35,13 +34,13 @@ public class PushConsumerApp {
             .getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
-        ResourceManager resourceManager = messagingAccessPoint.createResourceManager();
+        ResourceManager resourceManager = messagingAccessPoint.getResourceManager();
 
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
         //Consume messages from a simple queue.
         {
             String simpleQueue = "HELLO_QUEUE";
-            resourceManager.createAndUpdateQueue(simpleQueue, new DefaultKeyValue());
+            resourceManager.createAndUpdateQueue(simpleQueue, MessagingAccessPointFactory.newKeyValue());
 
             //This queue doesn't has a source topic, so only the message delivered to the queue directly can
             //be consumed by this consumer.
@@ -64,16 +63,17 @@ public class PushConsumerApp {
             String sourceTopic = "SOURCE_TOPIC";
 
             //Create the complex queue.
-            resourceManager.createAndUpdateQueue(complexQueue, new DefaultKeyValue());
+            resourceManager.createAndUpdateQueue(complexQueue, MessagingAccessPointFactory.newKeyValue());
             //Create the source topic.
-            resourceManager.createAndUpdateTopic(sourceTopic, new DefaultKeyValue());
+            resourceManager.createAndUpdateTopic(sourceTopic, MessagingAccessPointFactory.newKeyValue());
 
             //Once the routing has been created, the messages will be routed from topic to queue by the sql operator.
             Routing routing = resourceManager.createAndUpdateRouting("HELLO_ROUTING",
-                new DefaultKeyValue().put(PropertyKeys.SRC_TOPIC, sourceTopic).put(PropertyKeys.DST_QUEUE, complexQueue));
+                MessagingAccessPointFactory.newKeyValue()
+                    .put(PropertyKeys.SRC_TOPIC, sourceTopic).put(PropertyKeys.DST_QUEUE, complexQueue));
 
             routing.addOperator(resourceManager.createAndUpdateOperator("SQL_OPERATOR",
-                "TAGS is not null and TAGS in ('TagA', 'TagB')", new DefaultKeyValue()));
+                "TAGS is not null and TAGS in ('TagA', 'TagB')", MessagingAccessPointFactory.newKeyValue()));
 
             anotherConsumer.attachQueue(complexQueue, new MessageListener() {
                 @Override
@@ -87,9 +87,9 @@ public class PushConsumerApp {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                messagingAccessPoint.shutdown();
                 consumer.shutdown();
                 anotherConsumer.shutdown();
+                messagingAccessPoint.shutdown();
             }
         }));
     }

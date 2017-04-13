@@ -5,7 +5,6 @@ import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.ResourceManager;
-import io.openmessaging.internal.DefaultKeyValue;
 
 public class IterableConsumerApp {
     public static void main(String[] args) {
@@ -13,9 +12,9 @@ public class IterableConsumerApp {
             .getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
-        ResourceManager resourceManager = messagingAccessPoint.createResourceManager();
+        ResourceManager resourceManager = messagingAccessPoint.getResourceManager();
 
-        resourceManager.createAndUpdateQueue("HELLO_QUEUE", new DefaultKeyValue());
+        resourceManager.createAndUpdateQueue("HELLO_QUEUE", MessagingAccessPointFactory.newKeyValue());
 
         final IterableConsumer iterableConsumer = messagingAccessPoint.createIterableConsumer("HELLO_QUEUE");
 
@@ -40,8 +39,8 @@ public class IterableConsumerApp {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                messagingAccessPoint.shutdown();
                 iterableConsumer.shutdown();
+                messagingAccessPoint.shutdown();
             }
         }));
 
