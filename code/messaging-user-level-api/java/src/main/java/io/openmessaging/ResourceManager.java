@@ -34,7 +34,7 @@ import java.util.List;
  * allows the user to fetch producer and consumer list in a specified topic or queue,
  * and update their resource properties dynamically.
  * <p>
- * {@link MessagingAccessPoint#createResourceManager()} is the unique method to obtain a {@code ResourceManager}
+ * {@link MessagingAccessPoint#getResourceManager()} is the unique method to obtain a {@code ResourceManager}
  * instance, any changes made by this instance will reflect to the message-oriented middleware (MOM) or
  * other product behind the {@code MessagingAccessPoint}.
  *

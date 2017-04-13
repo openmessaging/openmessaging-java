@@ -156,13 +156,13 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     IterableConsumer createIterableConsumer(String queueName, KeyValue properties);
 
     /**
-     * Create a new {@code ResourceManager} for the specified {@code MessagingAccessPoint}.
+     * Gets a lightweight {@code ResourceManager} instance from the specified {@code MessagingAccessPoint}.
      *
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
      * to handle this request due to some internal error
      * @return the created {@code ResourceManager}
      */
-    ResourceManager createResourceManager();
+    ResourceManager getResourceManager();
 
 
     /**
