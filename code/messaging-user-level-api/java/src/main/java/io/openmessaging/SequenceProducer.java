@@ -81,14 +81,16 @@ public interface SequenceProducer extends MessageFactory, ServiceLifecycle {
     void send(Message message, KeyValue properties);
 
     /**
-     * Commits all the sent messages since last commit or rollback operation.
+     * Commits all the sent messages since last commit or rollback operation,
+     * and all the messages should has the same destination.
      *
      * @throws OMSRuntimeException if the commit operation failed
      */
     void commit();
 
     /**
-     * Discards all the sent messages since last commit or rollback operation.
+     * Discards all the sent messages since last commit or rollback operation,
+     * and all the messages should has the same destination.
      *
      * @throws OMSRuntimeException if the rollback operation failed
      */
