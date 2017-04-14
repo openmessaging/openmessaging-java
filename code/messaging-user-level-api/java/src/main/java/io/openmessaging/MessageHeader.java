@@ -24,11 +24,10 @@ package io.openmessaging;
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
- *
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public class MessageHeader {
+public interface MessageHeader {
     /**
      * The {@code MESSAGE_ID} header field contains a value that uniquely identifies
      * each message sent by a {@code Producer}.
@@ -37,7 +36,7 @@ public class MessageHeader {
      * <p>
      * When the send method returns it contains a producer-assigned value.
      */
-    public static final String MESSAGE_ID = "MessageId";
+    String MESSAGE_ID = "MessageId";
 
     /**
      * The {@code TOPIC} header field is the destination which the message is being sent.
@@ -47,7 +46,7 @@ public class MessageHeader {
      * When a message is received, its {@code TOPIC} value must be equivalent to the
      * value assigned when it was sent.
      */
-    public static final String TOPIC = "Topic";
+    String TOPIC = "Topic";
 
     /**
      * The {@code QUEUE} header field is the destination which the message is being sent.
@@ -57,7 +56,7 @@ public class MessageHeader {
      * When a message is received, its {@code QUEUE} value must be equivalent to the
      * value assigned when it was sent.
      */
-    public static final String QUEUE = "Queue";
+    String QUEUE = "Queue";
 
     /**
      * The {@code BORN_TIMESTAMP} header field contains the time a message was handed
@@ -70,7 +69,7 @@ public class MessageHeader {
      * <p>
      * This filed is a {@code long} value, measured in milliseconds.
      */
-    public static final String BORN_TIMESTAMP = "BornTimestamp";
+    String BORN_TIMESTAMP = "BornTimestamp";
 
     /**
      * The {@code BORN_HOST} header field contains the born host info of a message in client side.
@@ -79,7 +78,7 @@ public class MessageHeader {
      * on return from the send method, the message's BORN_HOST header field contains this value.
      * When a message is received its BORN_HOST header field contains this same value.
      */
-    public static final String BORN_HOST = "BornHost";
+    String BORN_HOST = "BornHost";
 
     /**
      * The {@code STORE_TIMESTAMP} header field contains the store timestamp of a message in server side.
@@ -90,7 +89,7 @@ public class MessageHeader {
      * <p>
      * This filed is a {@code long} value, measured in milliseconds.
      */
-    public static final String STORE_TIMESTAMP = "StoreTimestamp";
+    String STORE_TIMESTAMP = "StoreTimestamp";
 
     /**
      * The {@code STORE_HOST} header field contains the store host info of a message in server side.
@@ -99,17 +98,17 @@ public class MessageHeader {
      * <p>
      * When the send method returns it contains a server-assigned value.
      */
-    public static final String STORE_HOST = "StoreHost";
+    String STORE_HOST = "StoreHost";
 
     /**
-     * The {@code START_TIME} header field contains the start timestamp that a message
+     * The {@code START_TIME} header field contains the startup timestamp that a message
      * can be delivered to consumer client.
      * <p>
-     * If START_TIME field isn't set explicitly, use BORN_TIMESTAMP as the start timestamp.
+     * If START_TIME field isn't set explicitly, use BORN_TIMESTAMP as the startup timestamp.
      * <p>
      * This filed is a {@code long} value, measured in milliseconds.
      */
-    public static final String START_TIME = "StartTime";
+    String START_TIME = "StartTime";
 
     /**
      * The {@code STOP_TIME} header field contains the stop timestamp that a message
@@ -125,7 +124,7 @@ public class MessageHeader {
      * When an undelivered message's expiration time is reached, the message should be destroyed.
      * OMS does not define a notification of message expiration.
      */
-    public static final String STOP_TIME = "StopTime";
+    String STOP_TIME = "StopTime";
 
     /**
      * The {@code TIMEOUT} header field contains the expiration time, it represents a
@@ -140,7 +139,7 @@ public class MessageHeader {
      * When an undelivered message's expiration time is reached, the message should be destroyed.
      * OMS does not define a notification of message expiration.
      */
-    public static final String TIMEOUT = "Timeout";
+    String TIMEOUT = "Timeout";
 
     /**
      * The {@code PRIORITY} header field contains the priority level of a message,
@@ -152,19 +151,19 @@ public class MessageHeader {
      * <p>
      * If PRIORITY field isn't set explicitly, use {@code 4} as the default priority.
      */
-    public static final String PRIORITY = "Priority";
+    String PRIORITY = "Priority";
 
     /**
      * The {@code RELIABILITY} header field contains the reliability level of a message.
      * A MOM server should guarantee the reliability level for a message.
      */
-    public static final String RELIABILITY = "Reliability";
+    String RELIABILITY = "Reliability";
 
     /**
      * The {@code SEARCH_KEY} header field contains index search key of a message.
      * Clients can query similar messages by search key, and have a quick response.
      */
-    public static final String SEARCH_KEY = "SearchKey";
+    String SEARCH_KEY = "SearchKey";
 
     /**
      * The {@code SCHEDULE_EXPRESSION} header field contains schedule expression of a message.
@@ -173,17 +172,17 @@ public class MessageHeader {
      *
      * @see <a href="https://en.wikipedia.org/wiki/Cron#CRON_expression">https://en.wikipedia.org/wiki/Cron#CRON_expression</a>
      */
-    public static final String SCHEDULE_EXPRESSION = "ScheduleExpression";
+    String SCHEDULE_EXPRESSION = "ScheduleExpression";
 
     /**
      * The {@code SHARDING_KEY} header field contains the sharding key of a message.
      * The messages with same SHARDING_PARTITION should be sent to a destination orderly.
      */
-    public static final String SHARDING_KEY = "ShardingKey";
+    String SHARDING_KEY = "ShardingKey";
 
     /**
      * The {@code TRACE_ID} header field contains the trace id of a message, which represents a global and unique
      * identification, and can be used in distributed system to trace the whole call link.
      */
-    public static final String TRACE_ID = "TraceId";
+    String TRACE_ID = "TraceId";
 }

@@ -17,9 +17,6 @@
 
 package io.openmessaging;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-
 /**
  * The {@code ServiceLifecycle} defines a lifecycle interface for a OMS related service endpoint, like {@link Producer},
  * {@link PushConsumer}, and so on.
@@ -31,22 +28,20 @@ import javax.annotation.PreDestroy;
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
- *
+ * @author vongosling@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */
 public interface ServiceLifecycle {
     /**
-     * Used for start or initialization of a service endpoint. A service endpoint instance will be in a ready state
+     * Used for startup or initialization of a service endpoint. A service endpoint instance will be in a ready state
      * after this method has been completed.
      */
-    @PostConstruct
     void startup();
 
     /**
      * Notify a service instance of the end of its life cycle. Once this method completes, the service endpoint could be
      * destroyed and eligible for garbage collection.
      */
-    @PreDestroy
     void shutdown();
 }
