@@ -1,13 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>9</version>
+    </parent>
+
     <modelVersion>4.0.0</modelVersion>
-    <inceptionYear>2016</inceptionYear>
+
     <groupId>io.openmessaging</groupId>
-    <artifactId>parent-all</artifactId>
-    <version>0.1.0-beta</version>
+    <artifactId>parent</artifactId>
+    <version>0.1.0-alpha-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>parent-all ${project.version}</name>
+
+    <name>OpenMessaging (Parent)</name>
+    <description>OpenMessaging Specification for Java</description>
+    <url>https://github.com/openmessaging/openmessaging</url>
+    <inceptionYear>2017</inceptionYear>
+
+    <organization>
+        <name>OpenMessaging</name>
+        <url>http://openmessaging.io/</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/openmessaging/openmessaging</url>
+        <connection>scm:git:https://github.com/openmessaging/openmessaging.git</connection>
+        <developerConnection>scm:git:https://github.com/openmessaging/openmessaging.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>OpenMessaging</id>
+            <name>OpenMessaging Organization</name>
+            <url>http://openmessaging.io/</url>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,12 +57,12 @@
     </properties>
 
     <modules>
-        <module>messaging-binlog-core</module>
-        <module>messaging-benchmark</module>
-        <module>messaging-router</module>
+        <!--<module>messaging-binlog-core</module>-->
+        <!--<module>messaging-benchmark</module>-->
+        <!--<module>messaging-router</module>-->
+        <!--<module>messaging-wire-level-api</module>-->
         <module>messaging-user-level-api/java</module>
         <module>messaging-user-level-samples/java</module>
-        <module>messaging-wire-level-api</module>
     </modules>
 
     <build>

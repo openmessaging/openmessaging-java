@@ -4,6 +4,7 @@ import io.openmessaging.IterableConsumer;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
+import io.openmessaging.OMS;
 import io.openmessaging.ResourceManager;
 
 public class IterableConsumerApp {
@@ -14,7 +15,7 @@ public class IterableConsumerApp {
         System.out.println("MessagingAccessPoint startup OK");
         ResourceManager resourceManager = messagingAccessPoint.getResourceManager();
 
-        resourceManager.createAndUpdateQueue("HELLO_QUEUE", MessagingAccessPointFactory.newKeyValue());
+        resourceManager.createAndUpdateQueue("HELLO_QUEUE", OMS.newKeyValue());
 
         final IterableConsumer iterableConsumer = messagingAccessPoint.createIterableConsumer("HELLO_QUEUE");
 

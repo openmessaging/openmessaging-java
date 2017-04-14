@@ -1,3 +1,20 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSMessageFormatException;
@@ -64,14 +81,16 @@ public interface SequenceProducer extends MessageFactory, ServiceLifecycle {
     void send(Message message, KeyValue properties);
 
     /**
-     * Commits all the sent messages since last commit or rollback operation.
+     * Commits all the sent messages since last commit or rollback operation,
+     * and all the messages should has the same destination.
      *
      * @throws OMSRuntimeException if the commit operation failed
      */
     void commit();
 
     /**
-     * Discards all the sent messages since last commit or rollback operation.
+     * Discards all the sent messages since last commit or rollback operation,
+     * and all the messages should has the same destination.
      *
      * @throws OMSRuntimeException if the rollback operation failed
      */

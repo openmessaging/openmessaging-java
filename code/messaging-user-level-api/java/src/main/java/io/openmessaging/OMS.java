@@ -17,26 +17,23 @@
 
 package io.openmessaging;
 
+import io.openmessaging.internal.DefaultKeyValue;
+
 /**
- * The result of sending a OMS message to server
- * with the message id and some properties.
+ * The OMS class provides some useful util methods.
  *
  * @author yukon@apache.org
+ *
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface SendResult {
+public class OMS {
     /**
-     * The unique message id related to the {@code SendResult} instance.
+     * Returns a default and internal {@code KeyValue} implementation instance.
      *
-     * @return the message id
+     * @return a {@code KeyValue} instance
      */
-    String messageId();
-
-    /**
-     * Returns the properties of this {@code SendResult} instance.
-     *
-     * @return the properties
-     */
-    KeyValue properties();
+    public static KeyValue newKeyValue() {
+        return new DefaultKeyValue();
+    }
 }
