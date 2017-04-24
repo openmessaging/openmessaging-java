@@ -25,10 +25,9 @@ import io.openmessaging.exception.OMSRuntimeException;
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
- *
  * @version OMS 1.0
- * @since OMS 1.0
  * @see MessagingAccessPoint#createPushConsumer()
+ * @since OMS 1.0
  */
 public interface PushConsumer extends ServiceLifecycle {
     /**
@@ -82,8 +81,34 @@ public interface PushConsumer extends ServiceLifecycle {
      *
      * @param queueName a specified queue
      * @param listener a specified listener to receive new message
-     *
-     * @throws OMSRuntimeException
+     * @return this {@code PushConsumer} instance
+     * @throws OMSRuntimeException if this {@code PushConsumer} fails to attach the specified queue
+     * due to some internal error.
      */
     PushConsumer attachQueue(String queueName, MessageListener listener);
+
+    /**
+     * Attaches the {@code PushConsumer} to a specified queue, with a {@code MessageListener} and some
+     * specified properties.
+     * {@link MessageListener#onMessage(Message, ReceivedMessageContext)} will be called when new
+     * delivered message is coming.
+     *
+     * @param queueName a specified queue
+     * @param listener a specified listener to receive new message
+     * @param properties some specified properties
+     * @return this {@code PushConsumer} instance
+     * @throws OMSRuntimeException if this {@code PushConsumer} fails to attach the specified queue
+     * due to some internal error.
+     */
+    PushConsumer attachQueue(String queueName, MessageListener listener, KeyValue properties);
+
+    /**
+     * Detaches the {@code PushConsumer} from a specified queue.
+     * After the success call, this consumer won't receive new message
+     * from the specified queue any more.
+     *
+     * @param queueName a specified queue
+     * @return this {@code PushConsumer} instance
+     */
+    PushConsumer detachQueue(String queueName);
 }
