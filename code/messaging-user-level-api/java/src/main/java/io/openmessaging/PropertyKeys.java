@@ -35,4 +35,8 @@ public interface PropertyKeys {
     String OPERATOR_NAME = "oms.operator.name";
     String DST_QUEUE = "oms.dst.queue";
     String SRC_TOPIC = "oms.src.topic";
+    String BEGIN_OFFSET = "oms.begin.offset";
+    String END_OFFSET = "oms.end.offset";
+    String BEGIN_TIMESTAMP = "oms.begin.timestamp";
+    String END_TIMESTAMP = "oms.end.timestamp";
 }

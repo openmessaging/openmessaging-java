@@ -135,25 +135,25 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     PullConsumer createPullConsumer(String queueName, KeyValue properties);
 
     /**
-     * Creates a new {@code IterableConsumer} for the specified {@code MessagingAccessPoint}.
+     * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint}.
      *
-     * @param queueName the only attached queue for this {@code IterableConsumer}
+     * @param queueName the only attached queue for this {@code StreamingConsumer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
      * to handle this request due to some internal error
-     * @return the created {@code IterableConsumer}
+     * @return the created {@code PartitionIterator}
      */
-    IterableConsumer createIterableConsumer(String queueName);
+    StreamingConsumer createStreamingConsumer(String queueName);
 
     /**
-     * Creates a new {@code IterableConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
+     * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
      *
-     * @param queueName the only attached queue for this {@code IterableConsumer}
+     * @param queueName the only attached queue for this {@code StreamingConsumer}
      * @param properties the preset properties
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
      * to handle this request due to some internal error
      * @return the created consumer
      */
-    IterableConsumer createIterableConsumer(String queueName, KeyValue properties);
+    StreamingConsumer createStreamingConsumer(String queueName, KeyValue properties);
 
     /**
      * Gets a lightweight {@code ResourceManager} instance from the specified {@code MessagingAccessPoint}.

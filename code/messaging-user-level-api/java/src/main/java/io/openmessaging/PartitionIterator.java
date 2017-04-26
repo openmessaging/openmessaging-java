@@ -20,27 +20,31 @@ package io.openmessaging;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
- * A {@code Queue} supports streaming consumption.
+ * A {@code Queue} is divided by many partitions.
  * <p>
- * A {@code IterableConsumer} object supports consume messages from a
- * specified queue by streaming way.
+ * A {@code PartitionIterator} object supports consume messages from a
+ * specified partition like a iterator.
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
  * @version OMS 1.0
- * @see MessagingAccessPoint#createIterableConsumer(String)
+ * @see StreamingConsumer#partitionIterator(String)
  * @since OMS 1.0
  */
-public interface IterableConsumer extends ServiceLifecycle{
+public interface PartitionIterator extends ServiceLifecycle {
     /**
-     * Returns the properties of this {@code PushConsumer} instance.
-     * Changes to the return {@code KeyValue} are not reflected in physical {@code PushConsumer},
-     * and use {@link ResourceManager#setConsumerProperties(String, KeyValue)} to modify.
+     * Returns the properties of this {@code PartitionIterator} instance.
      * <p>
-     * There are some standard properties defined by OMS for {@code IterableConsumer}:
+     * There are some standard properties defined by OMS for {@code PartitionIterator}:
      * <ul>
-     * <li> {@link PropertyKeys#CONSUMER_ID}, the unique consumer id for a consumer instance.
-     * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code IterableConsumer}.
+     * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code
+     * PartitionIterator}.
+     * <li> {@link PropertyKeys#BEGIN_OFFSET}, the begin offset boarder of this partition iterator.
+     * <li> {@link PropertyKeys#END_OFFSET}, the end offset boarder of this partition iterator.
+     * <li> {@link PropertyKeys#BEGIN_TIMESTAMP}, the begin offset represented
+     * by this timestamp of this partition iterator.
+     * <li> {@link PropertyKeys#END_TIMESTAMP}, the end offset represented
+     * by this timestamp of this partition iterator.
      * </ul>
      *
      * @return the properties
@@ -90,7 +94,7 @@ public interface IterableConsumer extends ServiceLifecycle{
 
     /**
      * Persist this iterator to local or remote server, that depends on specified
-     * implementation of {@link IterableConsumer}.
+     * implementation of {@link PartitionIterator}.
      */
     void persist();
 
@@ -99,7 +103,7 @@ public interface IterableConsumer extends ServiceLifecycle{
      * traversing the iterator in the forward direction.
      *
      * @return {@code true} if the partition iterator has more messages when
-     *         traversing the iterator in the forward direction
+     * traversing the iterator in the forward direction
      */
     boolean hasNext();
 
@@ -119,7 +123,7 @@ public interface IterableConsumer extends ServiceLifecycle{
      * traversing the iterator in the reverse direction.
      *
      * @return {@code true} if the partition iterator has more messages when
-     *         traversing the iterator in the reverse direction
+     * traversing the iterator in the reverse direction
      */
     boolean hasPrevious();
 

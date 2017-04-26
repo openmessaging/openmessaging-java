@@ -1,13 +1,14 @@
 package io.openmessaging.samples.consumer;
 
-import io.openmessaging.IterableConsumer;
+import io.openmessaging.PartitionIterator;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.OMS;
 import io.openmessaging.ResourceManager;
+import io.openmessaging.StreamingConsumer;
 
-public class IterableConsumerApp {
+public class StreamingConsumerApp {
     public static void main(String[] args) {
         final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory
             .getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
@@ -17,30 +18,32 @@ public class IterableConsumerApp {
 
         resourceManager.createAndUpdateQueue("HELLO_QUEUE", OMS.newKeyValue());
 
-        final IterableConsumer iterableConsumer = messagingAccessPoint.createIterableConsumer("HELLO_QUEUE");
+        final StreamingConsumer streamingConsumer = messagingAccessPoint.createStreamingConsumer("HELLO_QUEUE");
 
-        iterableConsumer.startup();
+        streamingConsumer.startup();
 
-        while (iterableConsumer.hasNext()) {
-            Message message = iterableConsumer.next();
+        PartitionIterator partitionIterator = streamingConsumer.partitionIterator(streamingConsumer.partitions().get(0));
+
+        while (partitionIterator.hasNext()) {
+            Message message = partitionIterator.next();
             System.out.println("Received one message: " + message);
         }
 
         //All the messages in the queue has been consumed.
 
         //Now consume the messages in reverse order
-        while (iterableConsumer.hasPrevious()) {
-            Message message = iterableConsumer.previous();
+        while (partitionIterator.hasPrevious()) {
+            Message message = partitionIterator.previous();
             System.out.println("Received one message again: " + message);
         }
 
         //Persist the consume offset.
-        iterableConsumer.persist();
+        partitionIterator.persist();
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                iterableConsumer.shutdown();
+                streamingConsumer.shutdown();
                 messagingAccessPoint.shutdown();
             }
         }));
