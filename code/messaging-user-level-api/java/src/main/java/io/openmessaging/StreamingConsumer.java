@@ -55,6 +55,13 @@ public interface StreamingConsumer extends ServiceLifecycle {
     List<String> partitions();
 
     /**
+     * Returns all the consumers of the related queue.
+     *
+     * @return the consumers list
+     */
+    List<String> consumers();
+
+    /**
      * Creates a partition iterator from a specified partition.
      *
      * @param partition a specified partition
