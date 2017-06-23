@@ -13,8 +13,8 @@
     <version>0.1.1-alpha-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>OpenMessaging (Parent)</name>
-    <description>OpenMessaging Specification for Java</description>
+    <name>openmessaging</name>
+    <description>openmessaging specification for java</description>
     <url>https://github.com/openmessaging/openmessaging</url>
     <inceptionYear>2017</inceptionYear>
 
