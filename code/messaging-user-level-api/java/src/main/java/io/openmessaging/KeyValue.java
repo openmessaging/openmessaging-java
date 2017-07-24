@@ -20,7 +20,7 @@ package io.openmessaging;
 import java.util.Set;
 
 /**
- * The {@code KeyValue} class represents a persistent set of properties,
+ * The {@code KeyValue} class represents a persistent set of attributes,
  * which supports method chaining.
  * <p>
  * A {@code KeyValue} object only allows {@code String} keys and can contain four primitive type

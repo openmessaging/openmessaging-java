@@ -32,18 +32,18 @@ import java.util.List;
  */
 public interface StreamingConsumer extends ServiceLifecycle {
     /**
-     * Returns the properties of this {@code StreamingConsumer} instance.
+     * Returns the attributes of this {@code StreamingConsumer} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code StreamingConsumer},
      * and use {@link ResourceManager#setConsumerProperties(String, KeyValue)} to modify.
      * <p>
-     * There are some standard properties defined by OMS for {@code StreamingConsumer}:
+     * There are some standard attributes defined by OMS for {@code StreamingConsumer}:
      * <ul>
      * <li> {@link PropertyKeys#CONSUMER_ID}, the unique consumer id for a consumer instance.
      * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code
      * StreamingConsumer}.
      * </ul>
      *
-     * @return the properties
+     * @return the attributes
      */
     KeyValue properties();
 
@@ -70,7 +70,7 @@ public interface StreamingConsumer extends ServiceLifecycle {
     PartitionIterator partitionIterator(String partition);
 
     /**
-     * Creates a partition iterator from a specified partition, with some preset properties.
+     * Creates a partition iterator from a specified partition, with some preset attributes.
      *
      * @param partition a specified partition
      * @return a partition iterator

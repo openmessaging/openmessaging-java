@@ -33,11 +33,11 @@ public interface ServiceEndPoint extends ServiceLifecycle {
     void publish(Object service);
 
     /**
-     * Like {@link #publish(Object)} but specifying {@code properties}
+     * Like {@link #publish(Object)} but specifying {@code attributes}
      * that can be used to configure the service published
      *
      * @param service the service to publish in serviceEndPoint
-     * @param properties the service published properties
+     * @param properties the service published attributes
      */
 
     void publish(Object service, KeyValue properties);
@@ -51,10 +51,10 @@ public interface ServiceEndPoint extends ServiceLifecycle {
     <T> T bind(Class<T> type);
 
     /**
-     * Like {@link #bind(Class)} but specifying {@code properties} that can be used to configure the service band
+     * Like {@link #bind(Class)} but specifying {@code attributes} that can be used to configure the service band
      *
      * @param type service type to bind in serviceEndPoint
-     * @param properties the service bind properties
+     * @param properties the service bind attributes
      * @param <T> service proxy object to bind
      * @return service proxy object to bind
      */
@@ -65,7 +65,7 @@ public interface ServiceEndPoint extends ServiceLifecycle {
      * endPoint target
      *
      * @param type service type to bind in serviceConsumer
-     * @param properties the service band properties
+     * @param properties the service band attributes
      * @param serviceLoadBalance select endPoint target algorithm
      * @param <T> service proxy object to bind
      * @return service proxy object to bind

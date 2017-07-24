@@ -31,19 +31,19 @@ import io.openmessaging.exception.OMSRuntimeException;
  */
 public interface PullConsumer extends ServiceLifecycle{
     /**
-     * Returns the properties of this {@code PullConsumer} instance.
+     * Returns the attributes of this {@code PullConsumer} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code PullConsumer},
      * and use {@link ResourceManager#setConsumerProperties(String, KeyValue)} to modify.
      * <p>
-     * There are some standard properties defined by OMS for {@code PullConsumer}:
+     * There are some standard attributes defined by OMS for {@code PullConsumer}:
      * <ul>
      * <li> {@link PropertyKeys#CONSUMER_ID}, the unique consumer id for a consumer instance.
      * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code PullConsumer}.
      * </ul>
      *
-     * @return the properties
+     * @return the attributes
      */
-    KeyValue properties();
+    KeyValue attributes();
 
     /**
      * Polls the next message produced for this {@code PullConsumer}.
@@ -59,12 +59,12 @@ public interface PullConsumer extends ServiceLifecycle{
     Message poll();
 
     /**
-     * Polls the next message produced for this {@code PullConsumer}, using the specified properties.
+     * Polls the next message produced for this {@code PullConsumer}, using the specified attributes.
      * <p>
      * This call blocks indefinitely until a message is arrives, the timeout expires,
      * or until this {@code PullConsumer} is shut down.
      *
-     * @param properties the specified properties
+     * @param properties the specified attributes
      * @return the next message produced for this {@code PullConsumer}, or null if this {@code PullConsumer} is
      * concurrently shut down
      * @throws OMSRuntimeException if this {@code PullConsumer} fails to pull the next message due to some internal
@@ -82,7 +82,7 @@ public interface PullConsumer extends ServiceLifecycle{
     void ack(String messageId);
 
     /**
-     * Acknowledges the specified and consumed message with the specified properties.
+     * Acknowledges the specified and consumed message with the specified attributes.
      * <p>
      * Messages that have been received but not acknowledged may be redelivered.
      *

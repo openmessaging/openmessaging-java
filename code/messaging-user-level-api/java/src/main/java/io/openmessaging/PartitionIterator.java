@@ -33,9 +33,9 @@ import io.openmessaging.exception.OMSRuntimeException;
  */
 public interface PartitionIterator extends ServiceLifecycle {
     /**
-     * Returns the properties of this {@code PartitionIterator} instance.
+     * Returns the attributes of this {@code PartitionIterator} instance.
      * <p>
-     * There are some standard properties defined by OMS for {@code PartitionIterator}:
+     * There are some standard attributes defined by OMS for {@code PartitionIterator}:
      * <ul>
      * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code
      * PartitionIterator}.
@@ -47,7 +47,7 @@ public interface PartitionIterator extends ServiceLifecycle {
      * by this timestamp of this partition iterator.
      * </ul>
      *
-     * @return the properties
+     * @return the attributes
      */
     KeyValue properties();
 

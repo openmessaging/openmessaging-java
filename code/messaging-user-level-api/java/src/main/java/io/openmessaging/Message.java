@@ -47,79 +47,79 @@ public interface Message {
     /**
      * Returns all the header fields of the {@code Message} object as a {@code KeyValue}.
      *
-     * @return the headers of a {@code Message}
+     * @return the sysHeaders of a {@code Message}
      * @see MessageHeader
      */
-    KeyValue headers();
+    KeyValue sysHeaders();
 
     /**
      * Returns all the built-in property fields of the {@code Message} object as a {@code KeyValue}.
      *
-     * @return the properties of a {@code Message}
+     * @return the attributes of a {@code Message}
      */
-    KeyValue properties();
+    KeyValue userHeaders();
 
     /**
-     * Puts a {@code String}-{@code int} {@code KeyValue} entry to he headers of a {@code Message}.
+     * Puts a {@code String}-{@code int} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers
+     * @param key  the key to be placed into the sysHeaders
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putHeaders(String key, int value);
+    Message putSysHeaders(String key, int value);
 
     /**
-     * Puts a {@code String}-{@code long} {@code KeyValue} entry to he headers of a {@code Message}.
+     * Puts a {@code String}-{@code long} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers
+     * @param key  the key to be placed into the sysHeaders
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putHeaders(String key, long value);
+    Message putSysHeaders(String key, long value);
 
     /**
-     * Puts a {@code String}-{@code double} {@code KeyValue} entry to he headers of a {@code Message}.
+     * Puts a {@code String}-{@code double} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers
+     * @param key  the key to be placed into the sysHeaders
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putHeaders(String key, double value);
+    Message putSysHeaders(String key, double value);
 
     /**
-     * Puts a {@code String}-{@code String} {@code KeyValue} entry to he headers of a {@code Message}.
+     * Puts a {@code String}-{@code String} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers
+     * @param key  the key to be placed into the sysHeaders
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putHeaders(String key, String value);
+    Message putSysHeaders(String key, String value);
 
     /**
-     * Puts a {@code String}-{@code int} {@code KeyValue} entry to he headers of a {@code Message}.
+     * Puts a {@code String}-{@code int} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers
+     * @param key  the key to be placed into the sysHeaders
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putProperties(String key, int value);
+    Message putUserHeaders(String key, int value);
 
     /**
-     * Puts a {@code String}-{@code long} {@code KeyValue} entry to he headers of a {@code Message}.
+     * Puts a {@code String}-{@code long} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers
+     * @param key  the key to be placed into the sysHeaders
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putProperties(String key, long value);
+    Message putUserHeaders(String key, long value);
 
     /**
-     * Puts a {@code String}-{@code double} {@code KeyValue} entry to he headers of a {@code Message}.
+     * Puts a {@code String}-{@code double} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers
+     * @param key  the key to be placed into the sysHeaders
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putProperties(String key, double value);
+    Message putUserHeaders(String key, double value);
 
     /**
-     * Puts a {@code String}-{@code String} {@code KeyValue} entry to he headers of a {@code Message}.
+     * Puts a {@code String}-{@code String} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
      *
-     * @param key  the key to be placed into the headers
+     * @param key  the key to be placed into the sysHeaders
      * @param value the value corresponding to <tt>key</tt>
      */
-    Message putProperties(String key, String value);
+    Message putUserHeaders(String key, String value);
 }

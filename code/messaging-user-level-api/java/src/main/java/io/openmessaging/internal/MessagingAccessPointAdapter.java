@@ -40,10 +40,10 @@ public class MessagingAccessPointAdapter {
 
     /**
      * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url
-     * with some preset properties.
+     * with some preset userHeaders.
      *
      * @param url the driver url
-     * @param properties the preset properties
+     * @param properties the preset userHeaders
      * @return a {@code MessagingAccessPoint} instance
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {

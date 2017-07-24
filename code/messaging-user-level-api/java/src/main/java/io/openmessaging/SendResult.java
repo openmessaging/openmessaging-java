@@ -19,7 +19,7 @@ package io.openmessaging;
 
 /**
  * The result of sending a OMS message to server
- * with the message id and some properties.
+ * with the message id and some attributes.
  *
  * @author yukon@apache.org
  * @version OMS 1.0
@@ -34,9 +34,9 @@ public interface SendResult {
     String messageId();
 
     /**
-     * Returns the properties of this {@code SendResult} instance.
+     * Returns the attributes of this {@code SendResult} instance.
      *
-     * @return the properties
+     * @return the attributes
      */
     KeyValue properties();
 }

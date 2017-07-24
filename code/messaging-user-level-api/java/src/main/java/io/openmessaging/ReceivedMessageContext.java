@@ -21,7 +21,7 @@ import io.openmessaging.exception.OMSRuntimeException;
 
 /**
  * A {@code ReceivedMessageContext} object will be passed to the {@code MessageListener} with a incoming message,
- * used to share some context properties between {@code MessageListener} and {@code PushConsumer}.
+ * used to share some context attributes between {@code MessageListener} and {@code PushConsumer}.
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
@@ -31,11 +31,11 @@ import io.openmessaging.exception.OMSRuntimeException;
  */
 public interface ReceivedMessageContext {
     /**
-     * Returns the properties of this {@code ReceivedMessageContext} instance.
+     * Returns the attributes of this {@code ReceivedMessageContext} instance.
      *
-     * @return the properties
+     * @return the attributes
      */
-    KeyValue properties();
+    KeyValue attributes();
 
     /**
      * Acknowledges the specified and consumed message, which is related to this {@code ReceivedMessageContext}.
@@ -47,7 +47,7 @@ public interface ReceivedMessageContext {
     void ack();
 
     /**
-     * Acknowledges the specified and consumed message with the specified properties.
+     * Acknowledges the specified and consumed message with the specified attributes.
      * <p>
      * Messages that have been received but not acknowledged may be redelivered.
      *

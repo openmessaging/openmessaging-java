@@ -48,17 +48,17 @@ import io.openmessaging.exception.OMSTimeOutException;
  */
 public interface Producer extends MessageFactory, ServiceLifecycle {
     /**
-     * Returns the properties of this {@code Producer} instance.
+     * Returns the attributes of this {@code Producer} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code Producer},
      * and use {@link ResourceManager#setProducerProperties(String, KeyValue)} to modify.
      * <p>
-     * There are some standard properties defined by OMS for {@code Producer}:
+     * There are some standard attributes defined by OMS for {@code Producer}:
      * <ul>
      * <li> {@link PropertyKeys#PRODUCER_ID}, the unique producer id for a producer instance.
      * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code Producer}.
      * </ul>
      *
-     * @return the properties
+     * @return the attributes
      */
     KeyValue properties();
 
@@ -75,11 +75,11 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
     SendResult send(Message message);
 
     /**
-     * Sends a message to the specified destination synchronously, using the specified properties, the destination
+     * Sends a message to the specified destination synchronously, using the specified attributes, the destination
      * should be preset to {@link MessageHeader}, other header fields as well.
      *
      * @param message a message will be sent
-     * @param properties the specified properties
+     * @param properties the specified attributes
      * @return the successful {@code SendResult}
      * @throws OMSMessageFormatException if an invalid message is specified.
      * @throws OMSTimeOutException if the given timeout elapses before the send operation completes
@@ -102,14 +102,14 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
     Promise<SendResult> sendAsync(Message message);
 
     /**
-     * Sends a message to the specified destination asynchronously, using the specified properties, the destination
+     * Sends a message to the specified destination asynchronously, using the specified attributes, the destination
      * should be preset to {@link MessageHeader}, other header fields as well.
      * <p>
      * The returned {@code Promise} will have the result once the operation completes, and the registered
      * {@code PromiseListener} will be notified, either because the operation was successful or because of an error.
      *
      * @param message a message will be sent
-     * @param properties the specified properties
+     * @param properties the specified attributes
      * @return the {@code Promise} of an asynchronous message send operation.
      * @see Promise
      * @see PromiseListener
@@ -128,14 +128,14 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
     void sendOneway(Message message);
 
     /**
-     * Sends a message to the specified destination in one way, using the specified properties, the destination
+     * Sends a message to the specified destination in one way, using the specified attributes, the destination
      * should be preset to {@link MessageHeader}, other header fields as well.
      * <p>
      * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't
      * care about the send result and also have no context to get the result.
      *
      * @param message a message will be sent
-     * @param properties the specified properties
+     * @param properties the specified userHeaders
      */
     void sendOneway(Message message, KeyValue properties);
 }

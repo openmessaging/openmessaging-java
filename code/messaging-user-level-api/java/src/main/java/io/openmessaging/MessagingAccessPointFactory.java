@@ -58,10 +58,10 @@ public class MessagingAccessPointFactory {
 
     /**
      * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url
-     * with some preset properties, which will be passed to MessagingAccessPoint's implementation
+     * with some preset attributes, which will be passed to MessagingAccessPoint's implementation
      * class as a unique constructor parameter.
      *
-     * There are some standard properties defined by OMS for this method,
+     * There are some standard attributes defined by OMS for this method,
      * the same as {@link MessagingAccessPoint#properties()}
      *
      * @param url the specified OMS driver url

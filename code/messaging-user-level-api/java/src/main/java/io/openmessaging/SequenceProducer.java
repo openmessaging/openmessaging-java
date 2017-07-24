@@ -38,18 +38,18 @@ import io.openmessaging.exception.OMSRuntimeException;
  */
 public interface SequenceProducer extends MessageFactory, ServiceLifecycle {
     /**
-     * Returns the properties of this {@code SequenceProducer} instance.
+     * Returns the attributes of this {@code SequenceProducer} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code Producer},
      * and use {@link ResourceManager#setProducerProperties(String, KeyValue)} to modify.
      * <p>
-     * There are some standard properties defined by OMS for {@code SequenceProducer}:
+     * There are some standard attributes defined by OMS for {@code SequenceProducer}:
      * <ul>
      * <li> {@link PropertyKeys#PRODUCER_ID}, the unique producer id for a producer instance.
      * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for
      * operations of {@code SequenceProducer}.
      * </ul>
      *
-     * @return the properties
+     * @return the attributes
      */
     KeyValue properties();
 
@@ -68,14 +68,14 @@ public interface SequenceProducer extends MessageFactory, ServiceLifecycle {
     void send(Message message);
 
     /**
-     * Sends a message to the specified destination, using the specified properties, the destination
+     * Sends a message to the specified destination, using the specified attributes, the destination
      * should be preset to {@link MessageHeader}, other header fields as well.
      * <p>
      * There is no {@code Promise} related. The calling thread doesn't
      * care about the send result and also have no context to get the result.
      *
      * @param message a message will be sent
-     * @param properties the specified properties
+     * @param properties the specified attributes
      * @throws OMSMessageFormatException if an invalid message is specified.
      */
     void send(Message message, KeyValue properties);

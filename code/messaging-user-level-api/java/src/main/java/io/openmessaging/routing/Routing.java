@@ -33,18 +33,18 @@ import java.util.List;
  */
 public interface Routing {
     /**
-     * Returns the properties of this {@code Routing} instance.
+     * Returns the attributes of this {@code Routing} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code Routing},
      * and use {@link ResourceManager#createAndUpdateRouting(String, KeyValue)} to modify.
      * <p>
-     * There are some standard properties defined by OMS for {@code Routing}:
+     * There are some standard attributes defined by OMS for {@code Routing}:
      * <ul>
      * <li> {@link PropertyKeys#SRC_TOPIC}, the source topic of this {@code Routing} object.
      * <li> {@link PropertyKeys#DST_QUEUE}, the destination queue of this {@code Routing} object.
      * <li> {@link PropertyKeys#ROUTING_NAME}, the unique name of this {@code Routing} object.
      * </ul>
      *
-     * @return the properties
+     * @return the attributes
      */
     KeyValue properties();
 

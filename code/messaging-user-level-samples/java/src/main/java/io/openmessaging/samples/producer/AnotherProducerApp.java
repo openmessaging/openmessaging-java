@@ -51,10 +51,10 @@ public class AnotherProducerApp {
 
         producer.send(producer.createBytesMessageToTopic(
             "HELLO_TOPIC2", "HELLO_BODY2".getBytes(Charset.forName("UTF-8")))
-            .putProperties("KEY1", 100)
-            .putProperties("KEY2", 200L)
-            .putProperties("KEY3", 3.14)
-            .putProperties("KEY4", "value4")
+            .putUserHeaders("KEY1", 100)
+            .putUserHeaders("KEY2", 200L)
+            .putUserHeaders("KEY3", 3.14)
+            .putUserHeaders("KEY4", "value4")
         );
 
         System.out.println("Send second message to topic OK");

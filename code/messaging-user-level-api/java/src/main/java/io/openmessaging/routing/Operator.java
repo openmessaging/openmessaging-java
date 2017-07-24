@@ -35,16 +35,16 @@ import io.openmessaging.ResourceManager;
  */
 public interface Operator {
     /**
-     * Returns the properties of this {@code Operator} object.
+     * Returns the attributes of this {@code Operator} object.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code Operator},
      * and use {@link ResourceManager#createAndUpdateOperator(String, String, KeyValue)} to modify.
      * <p>
-     * There are some standard properties defined by OMS for {@code Routing}:
+     * There are some standard attributes defined by OMS for {@code Routing}:
      * <ul>
      * <li> {@link PropertyKeys#OPERATOR_NAME}, the unique name of this {@code Operator} object.
      * </ul>
      *
-     * @return the properties
+     * @return the attributes
      */
     KeyValue properties();
 
