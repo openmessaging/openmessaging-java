@@ -76,6 +76,5 @@ public class MessagingAccessPointFactory {
 
     public static List<MessagingAccessPoint> listMessagingAccessPoints(){
         return null;
-    };
-
+    }
 }
