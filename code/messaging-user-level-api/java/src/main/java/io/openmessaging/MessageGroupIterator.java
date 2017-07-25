@@ -20,25 +20,25 @@ package io.openmessaging;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
- * A {@code Queue} is divided by many partitions.
+ * A {@code Queue} is divided by many messageGroups.
  * <p>
- * A {@code PartitionIterator} object supports consume messages from a
+ * A {@code MessageGroupIterator} object supports consume messages from a
  * specified partition like a iterator.
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
  * @version OMS 1.0
- * @see StreamingConsumer#partitionIterator(String)
+ * @see StreamingConsumer#messageGroupIterator(String)
  * @since OMS 1.0
  */
-public interface PartitionIterator extends ServiceLifecycle {
+public interface MessageGroupIterator extends ServiceLifecycle {
     /**
-     * Returns the attributes of this {@code PartitionIterator} instance.
+     * Returns the attributes of this {@code MessageGroupIterator} instance.
      * <p>
-     * There are some standard attributes defined by OMS for {@code PartitionIterator}:
+     * There are some standard attributes defined by OMS for {@code MessageGroupIterator}:
      * <ul>
      * <li> {@link OMSBuiltinKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code
-     * PartitionIterator}.
+     * MessageGroupIterator}.
      * <li> {@link OMSBuiltinKeys#BEGIN_OFFSET}, the begin offset boarder of this partition iterator.
      * <li> {@link OMSBuiltinKeys#END_OFFSET}, the end offset boarder of this partition iterator.
      * <li> {@link OMSBuiltinKeys#BEGIN_TIMESTAMP}, the begin offset represented
@@ -56,21 +56,21 @@ public interface PartitionIterator extends ServiceLifecycle {
      *
      * @return the current offset, return -1 if the iterator is first created.
      */
-    long current();
+    MessageGroupCursor current();
 
     /**
      * Fetches the first offset of this partition iterator.
      *
      * @return the first offset, return -1 if the partition has no message.
      */
-    long begin();
+    MessageGroupCursor begin();
 
     /**
      * Fetches the last offset of this partition iterator.
      *
      * @return the last offset, return 0 if the iterator is first created.
      */
-    long end();
+    MessageGroupCursor end();
 
     /**
      * Moves the current offset to the specified timestamp.
@@ -88,13 +88,13 @@ public interface PartitionIterator extends ServiceLifecycle {
     /**
      * Moves the current offset to the specified offset.
      *
-     * @param offset the specified offset
+     * @param cursor the specified offset
      */
-    void seekByOffset(long offset);
+    void seekByCursor(MessageGroupCursor cursor);
 
     /**
      * Persist this iterator to local or remote server, that depends on specified
-     * implementation of {@link PartitionIterator}.
+     * implementation of {@link MessageGroupIterator}.
      */
     void persist();
 

@@ -140,7 +140,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @param queueName the only attached queue for this {@code StreamingConsumer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
      * to handle this request due to some internal error
-     * @return the created {@code PartitionIterator}
+     * @return the created {@code MessageGroupIterator}
      */
     StreamingConsumer createStreamingConsumer(String queueName);
 

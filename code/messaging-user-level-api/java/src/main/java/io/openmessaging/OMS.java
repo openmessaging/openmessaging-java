@@ -23,7 +23,6 @@ import io.openmessaging.internal.DefaultKeyValue;
  * The OMS class provides some useful util methods.
  *
  * @author yukon@apache.org
- *
  * @version OMS 1.0
  * @since OMS 1.0
  */
@@ -35,5 +34,13 @@ public class OMS {
      */
     public static KeyValue newKeyValue() {
         return new DefaultKeyValue();
+    }
+
+    public static MessageGroupCursor newMessageGroupCursor() {
+        return new MessageGroupCursor() {
+            @Override public String value() {
+                return null;
+            }
+        };
     }
 }

@@ -1,6 +1,6 @@
 package io.openmessaging.samples.consumer;
 
-import io.openmessaging.PartitionIterator;
+import io.openmessaging.MessageGroupIterator;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
@@ -22,7 +22,7 @@ public class StreamingConsumerApp {
 
         streamingConsumer.startup();
 
-        PartitionIterator partitionIterator = streamingConsumer.partitionIterator(streamingConsumer.partitions().get(0));
+        MessageGroupIterator partitionIterator = streamingConsumer.messageGroupIterator(streamingConsumer.messageGroups().get(0));
 
         while (partitionIterator.hasNext()) {
             Message message = partitionIterator.next();

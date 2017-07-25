@@ -20,14 +20,14 @@ package io.openmessaging;
 import java.util.List;
 
 /**
- * A {@code Queue} is divided by many partitions.
+ * A {@code Queue} is divided by many messageGroups.
  * <p>
  * A {@code StreamingConsumer} object supports consume messages from a
  * specified partition like a iterator.
  *
  * @author yukon@apache.org
  * @version OMS 1.0
- * @see PartitionIterator
+ * @see MessageGroupIterator
  * @since OMS 1.0
  */
 public interface StreamingConsumer extends ServiceLifecycle {
@@ -48,11 +48,11 @@ public interface StreamingConsumer extends ServiceLifecycle {
     KeyValue properties();
 
     /**
-     * Returns all the partitions of the related queue.
+     * Returns all the messageGroups of the related queue.
      *
      * @return the partition list
      */
-    List<String> partitions();
+    List<String> messageGroups();
 
     /**
      * Returns all the consumers of the related queue.
@@ -64,17 +64,17 @@ public interface StreamingConsumer extends ServiceLifecycle {
     /**
      * Creates a partition iterator from a specified partition.
      *
-     * @param partition a specified partition
+     * @param messageGroupName a specified partition
      * @return a partition iterator
      */
-    PartitionIterator partitionIterator(String partition);
+    MessageGroupIterator messageGroupIterator(String messageGroupName);
 
     /**
      * Creates a partition iterator from a specified partition, with some preset attributes.
      *
-     * @param partition a specified partition
+     * @param messageGroupName a specified partition
      * @return a partition iterator
-     * @see PartitionIterator#properties()
+     * @see MessageGroupIterator#properties()
      */
-    PartitionIterator partitionIterator(String partition, KeyValue properties);
+    MessageGroupIterator messageGroupIterator(String messageGroupName, KeyValue properties);
 }
