@@ -19,6 +19,7 @@ package io.openmessaging;
 
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.internal.MessagingAccessPointAdapter;
+import java.util.List;
 
 /**
  * A factory that provides some static methods to create a {@code MessagingAccessPoint}
@@ -72,5 +73,9 @@ public class MessagingAccessPointFactory {
     public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {
         return MessagingAccessPointAdapter.getMessagingAccessPoint(url, properties);
     }
+
+    public static List<MessagingAccessPoint> listMessagingAccessPoints(){
+        return null;
+    };
 
 }
