@@ -18,6 +18,7 @@
 package io.openmessaging;
 
 import io.openmessaging.internal.DefaultKeyValue;
+import io.openmessaging.internal.DefaultMessageGroupCursor;
 
 /**
  * The OMS class provides some useful util methods.
@@ -36,11 +37,7 @@ public class OMS {
         return new DefaultKeyValue();
     }
 
-    public static MessageGroupCursor newMessageGroupCursor() {
-        return new MessageGroupCursor() {
-            @Override public String value() {
-                return null;
-            }
-        };
+    public static MessageGroupCursor newMessageGroupCursor(final String value) {
+        return new DefaultMessageGroupCursor(value);
     }
 }
