@@ -39,4 +39,10 @@ public interface OMSBuiltinKeys {
     String END_OFFSET = "oms.end.offset";
     String BEGIN_TIMESTAMP = "oms.begin.timestamp";
     String END_TIMESTAMP = "oms.end.timestamp";
+
+
+    String ORDER_POLICY = "OrderPolicy";
+    short AnyOrder = 0;
+    short FifoOrder = 1;
+    short LifoOrder = 2;
 }

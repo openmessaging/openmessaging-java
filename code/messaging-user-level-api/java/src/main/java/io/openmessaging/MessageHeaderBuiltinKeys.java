@@ -185,9 +185,4 @@ public interface MessageHeaderBuiltinKeys {
      * identification, and can be used in distributed system to trace the whole call link.
      */
     String TRACE_ID = "TraceId";
-
-    String ORDER_POLICY = "OrderPolicy";
-    short AnyOrder = 0;
-    short FifoOrder = 1;
-    short LifoOrder = 2;
 }
