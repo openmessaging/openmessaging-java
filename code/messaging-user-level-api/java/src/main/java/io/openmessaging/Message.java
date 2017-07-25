@@ -48,7 +48,7 @@ public interface Message {
      * Returns all the header fields of the {@code Message} object as a {@code KeyValue}.
      *
      * @return the sysHeaders of a {@code Message}
-     * @see MessageHeader
+     * @see MessageHeaderBuiltinKeys
      */
     KeyValue sysHeaders();
 

@@ -38,19 +38,19 @@ import io.openmessaging.observer.Observer;
  */
 public interface MessagingAccessPoint extends ServiceLifecycle {
     /**
-     * Returns the attributes of this {@code MessagingAccessPoint} instance.
+     * Returns the properties of this {@code MessagingAccessPoint} instance.
      * <p>
-     * There are some standard attributes defined by OMS for {@code MessagingAccessPoint}:
+     * There are some standard properties defined by OMS for {@code MessagingAccessPoint}:
      * <ul>
-     * <li> {@link PropertyKeys#ACCESS_POINTS}, the specified access points.
-     * <li> {@link PropertyKeys#DRIVER_IMPL}, the fully qualified class name of the specified MessagingAccessPoint's
+     * <li> {@link OMSBuiltinKeys#ACCESS_POINTS}, the specified access points.
+     * <li> {@link OMSBuiltinKeys#DRIVER_IMPL}, the fully qualified class name of the specified MessagingAccessPoint's
      * implementation, the default value is {@literal io.openmessaging.<driver_type>.MessagingAccessPointImpl}.
-     * <li> {@link PropertyKeys#NAMESPACE}, the specified namespace.
+     * <li> {@link OMSBuiltinKeys#NAMESPACE}, the specified namespace.
      * </ul>
      *
-     * @return the attributes
+     * @return the properties
      */
-    KeyValue properties();
+    KeyValue attributes();
 
     /**
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}.
@@ -63,9 +63,9 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
 
     /**
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}
-     * with some preset attributes.
+     * with some preset properties.
      *
-     * @param properties the preset attributes
+     * @param properties the preset properties
      * @return the created {@code Producer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
      * to handle this request due to some internal error
@@ -83,9 +83,9 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
 
     /**
      * Creates a new {@code SequenceProducer} for the specified {@code MessagingAccessPoint}
-     * with some preset attributes.
+     * with some preset properties.
      *
-     * @param properties the preset attributes
+     * @param properties the preset properties
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
      * to handle this request due to some internal error
      * @return the created {@code SequenceProducer}
@@ -104,9 +104,9 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     PushConsumer createPushConsumer();
 
     /**
-     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint} with some preset attributes.
+     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
      *
-     * @param properties the preset attributes
+     * @param properties the preset properties
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
      * to handle this request due to some internal error
      * @return the created {@code PushConsumer}
@@ -124,10 +124,10 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     PullConsumer createPullConsumer(String queueName);
 
     /**
-     * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint} with some preset attributes.
+     * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
      *
      * @param queueName the only attached queue for this {@code PullConsumer}
-     * @param properties the preset attributes
+     * @param properties the preset properties
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
      * to handle this request due to some internal error
      * @return the created {@code PullConsumer}
@@ -145,10 +145,10 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     StreamingConsumer createStreamingConsumer(String queueName);
 
     /**
-     * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint} with some preset attributes.
+     * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
      *
      * @param queueName the only attached queue for this {@code StreamingConsumer}
-     * @param properties the preset attributes
+     * @param properties the preset properties
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
      * to handle this request due to some internal error
      * @return the created consumer
@@ -175,9 +175,9 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     ServiceEndPoint createServiceEndPoint();
 
     /**
-     * Create a new {@code ServiceEndPoint} for the specified {@code MessagingAccessPoint} with some preset attributes.
+     * Create a new {@code ServiceEndPoint} for the specified {@code MessagingAccessPoint} with some preset properties.
      *
-     * @param properties the preset attributes
+     * @param properties the preset properties
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
      * to handle this request due to some internal error
      * @return the created {@code ServiceEndPoint}

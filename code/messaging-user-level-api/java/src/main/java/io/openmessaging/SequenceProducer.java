@@ -28,7 +28,7 @@ import io.openmessaging.exception.OMSRuntimeException;
  * {@link MessagingAccessPoint#createSequenceProducer()} method.
  * <p>
  * It provides a group way to send batch message to a specified destination.
- * A destination can be a {@link MessageHeader#TOPIC} or a {@link MessageHeader#QUEUE}.
+ * A destination can be a {@link MessageHeaderBuiltinKeys#TOPIC} or a {@link MessageHeaderBuiltinKeys#QUEUE}.
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
@@ -44,8 +44,8 @@ public interface SequenceProducer extends MessageFactory, ServiceLifecycle {
      * <p>
      * There are some standard attributes defined by OMS for {@code SequenceProducer}:
      * <ul>
-     * <li> {@link PropertyKeys#PRODUCER_ID}, the unique producer id for a producer instance.
-     * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for
+     * <li> {@link OMSBuiltinKeys#PRODUCER_ID}, the unique producer id for a producer instance.
+     * <li> {@link OMSBuiltinKeys#OPERATION_TIMEOUT}, the default timeout period for
      * operations of {@code SequenceProducer}.
      * </ul>
      *
@@ -55,7 +55,7 @@ public interface SequenceProducer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination, the destination should be preset to
-     * {@link MessageHeader}, other header fields as well.
+     * {@link MessageHeaderBuiltinKeys}, other header fields as well.
      * <p>
      * There is no {@code Promise} related. The calling thread doesn't
      * care about the send result and also have no context to get the result.
@@ -69,7 +69,7 @@ public interface SequenceProducer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination, using the specified attributes, the destination
-     * should be preset to {@link MessageHeader}, other header fields as well.
+     * should be preset to {@link MessageHeaderBuiltinKeys}, other header fields as well.
      * <p>
      * There is no {@code Promise} related. The calling thread doesn't
      * care about the send result and also have no context to get the result.

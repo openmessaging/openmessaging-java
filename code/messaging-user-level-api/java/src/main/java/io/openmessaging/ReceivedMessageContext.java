@@ -35,7 +35,7 @@ public interface ReceivedMessageContext {
      *
      * @return the attributes
      */
-    KeyValue attributes();
+    KeyValue properties();
 
     /**
      * Acknowledges the specified and consumed message, which is related to this {@code ReceivedMessageContext}.

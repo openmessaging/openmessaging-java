@@ -18,7 +18,7 @@
 package io.openmessaging.routing;
 
 import io.openmessaging.KeyValue;
-import io.openmessaging.PropertyKeys;
+import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.ResourceManager;
 
 /**
@@ -41,7 +41,7 @@ public interface Operator {
      * <p>
      * There are some standard attributes defined by OMS for {@code Routing}:
      * <ul>
-     * <li> {@link PropertyKeys#OPERATOR_NAME}, the unique name of this {@code Operator} object.
+     * <li> {@link OMSBuiltinKeys#OPERATOR_NAME}, the unique name of this {@code Operator} object.
      * </ul>
      *
      * @return the attributes

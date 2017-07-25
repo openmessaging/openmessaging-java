@@ -18,7 +18,7 @@
 package io.openmessaging.routing;
 
 import io.openmessaging.KeyValue;
-import io.openmessaging.PropertyKeys;
+import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.ResourceManager;
 import java.util.List;
 
@@ -39,9 +39,9 @@ public interface Routing {
      * <p>
      * There are some standard attributes defined by OMS for {@code Routing}:
      * <ul>
-     * <li> {@link PropertyKeys#SRC_TOPIC}, the source topic of this {@code Routing} object.
-     * <li> {@link PropertyKeys#DST_QUEUE}, the destination queue of this {@code Routing} object.
-     * <li> {@link PropertyKeys#ROUTING_NAME}, the unique name of this {@code Routing} object.
+     * <li> {@link OMSBuiltinKeys#SRC_TOPIC}, the source topic of this {@code Routing} object.
+     * <li> {@link OMSBuiltinKeys#DST_QUEUE}, the destination queue of this {@code Routing} object.
+     * <li> {@link OMSBuiltinKeys#ROUTING_NAME}, the unique name of this {@code Routing} object.
      * </ul>
      *
      * @return the attributes

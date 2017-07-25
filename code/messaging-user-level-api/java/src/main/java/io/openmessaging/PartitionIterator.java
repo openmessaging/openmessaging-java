@@ -37,13 +37,13 @@ public interface PartitionIterator extends ServiceLifecycle {
      * <p>
      * There are some standard attributes defined by OMS for {@code PartitionIterator}:
      * <ul>
-     * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code
+     * <li> {@link OMSBuiltinKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code
      * PartitionIterator}.
-     * <li> {@link PropertyKeys#BEGIN_OFFSET}, the begin offset boarder of this partition iterator.
-     * <li> {@link PropertyKeys#END_OFFSET}, the end offset boarder of this partition iterator.
-     * <li> {@link PropertyKeys#BEGIN_TIMESTAMP}, the begin offset represented
+     * <li> {@link OMSBuiltinKeys#BEGIN_OFFSET}, the begin offset boarder of this partition iterator.
+     * <li> {@link OMSBuiltinKeys#END_OFFSET}, the end offset boarder of this partition iterator.
+     * <li> {@link OMSBuiltinKeys#BEGIN_TIMESTAMP}, the begin offset represented
      * by this timestamp of this partition iterator.
-     * <li> {@link PropertyKeys#END_TIMESTAMP}, the end offset represented
+     * <li> {@link OMSBuiltinKeys#END_TIMESTAMP}, the end offset represented
      * by this timestamp of this partition iterator.
      * </ul>
      *

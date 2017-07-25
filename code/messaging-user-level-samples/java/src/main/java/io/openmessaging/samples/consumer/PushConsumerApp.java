@@ -22,7 +22,7 @@ import io.openmessaging.MessageListener;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.OMS;
-import io.openmessaging.PropertyKeys;
+import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.PushConsumer;
 import io.openmessaging.ReceivedMessageContext;
 import io.openmessaging.ResourceManager;
@@ -71,7 +71,7 @@ public class PushConsumerApp {
             //Once the routing has been created, the messages will be routed from topic to queue by the sql operator.
             Routing routing = resourceManager.createAndUpdateRouting("HELLO_ROUTING",
                 OMS.newKeyValue()
-                    .put(PropertyKeys.SRC_TOPIC, sourceTopic).put(PropertyKeys.DST_QUEUE, complexQueue));
+                    .put(OMSBuiltinKeys.SRC_TOPIC, sourceTopic).put(OMSBuiltinKeys.DST_QUEUE, complexQueue));
 
             routing.addOperator(resourceManager.createAndUpdateOperator("SQL_OPERATOR",
                 "TAGS is not null and TAGS in ('TagA', 'TagB')", OMS.newKeyValue()));

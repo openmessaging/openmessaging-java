@@ -18,7 +18,7 @@
 package io.openmessaging;
 
 /**
- * The {@code MessageHeader} class describes each OMS message header field.
+ * The {@code MessageHeaderBuiltinKeys} class describes each OMS message header field.
  * A message's complete header is transmitted to all OMS clients that receive the
  * message.
  *
@@ -27,7 +27,7 @@ package io.openmessaging;
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface MessageHeader {
+public interface MessageHeaderBuiltinKeys {
     /**
      * The {@code MESSAGE_ID} header field contains a value that uniquely identifies
      * each message sent by a {@code Producer}.
@@ -185,4 +185,9 @@ public interface MessageHeader {
      * identification, and can be used in distributed system to trace the whole call link.
      */
     String TRACE_ID = "TraceId";
+
+    String ORDER_POLICY = "OrderPolicy";
+    short AnyOrder = 0;
+    short FifoOrder = 1;
+    short LifoOrder = 2;
 }

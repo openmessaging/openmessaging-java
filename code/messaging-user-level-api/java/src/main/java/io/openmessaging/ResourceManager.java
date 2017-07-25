@@ -84,7 +84,7 @@ public interface ResourceManager extends ServiceLifecycle {
      *
      * @param routingName the routing name
      * @param properties the preset attributes, includes
-     * {@link PropertyKeys#SRC_TOPIC} and {@link PropertyKeys#DST_QUEUE}
+     * {@link OMSBuiltinKeys#SRC_TOPIC} and {@link OMSBuiltinKeys#DST_QUEUE}
      * @return the created routing instance
      */
     Routing createAndUpdateRouting(String routingName, KeyValue properties);
@@ -248,15 +248,15 @@ public interface ResourceManager extends ServiceLifecycle {
     void setProducerProperties(String producerId, KeyValue properties) throws OMSResourceNotExistException;
 
     /**
-     * Updates the {@code MessageHeader} of specified message, which may be stored by MOM server already.
+     * Updates the {@code MessageHeaderBuiltinKeys} of specified message, which may be stored by MOM server already.
      * <p>
      * Only below message sysHeaders allow to be updated:
      * <ul>
-     * <li> {@link MessageHeader#PRIORITY}
-     * <li> {@link MessageHeader#SCHEDULE_EXPRESSION}
-     * <li> {@link MessageHeader#START_TIME}
-     * <li> {@link MessageHeader#STOP_TIME}
-     * <li> {@link MessageHeader#TIMEOUT}
+     * <li> {@link MessageHeaderBuiltinKeys#PRIORITY}
+     * <li> {@link MessageHeaderBuiltinKeys#SCHEDULE_EXPRESSION}
+     * <li> {@link MessageHeaderBuiltinKeys#START_TIME}
+     * <li> {@link MessageHeaderBuiltinKeys#STOP_TIME}
+     * <li> {@link MessageHeaderBuiltinKeys#TIMEOUT}
      * </ul>
      *
      * @param messageId the message to be updated

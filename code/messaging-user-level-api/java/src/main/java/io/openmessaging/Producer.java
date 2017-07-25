@@ -26,7 +26,7 @@ import io.openmessaging.exception.OMSTimeOutException;
  * of a {@code MessagingAccessPoint}. An instance of {@code Producer} is
  * created by calling the {@link MessagingAccessPoint#createProducer()} method.
  * It provides various {@code send} methods to send a message to a specified destination.
- * A destination can be a {@link MessageHeader#TOPIC} or a {@link MessageHeader#QUEUE}.
+ * A destination can be a {@link MessageHeaderBuiltinKeys#TOPIC} or a {@link MessageHeaderBuiltinKeys#QUEUE}.
  * <p>
  *
  * {@link Producer#send(Message)} means send a message to destination synchronously,
@@ -54,8 +54,8 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * <p>
      * There are some standard attributes defined by OMS for {@code Producer}:
      * <ul>
-     * <li> {@link PropertyKeys#PRODUCER_ID}, the unique producer id for a producer instance.
-     * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code Producer}.
+     * <li> {@link OMSBuiltinKeys#PRODUCER_ID}, the unique producer id for a producer instance.
+     * <li> {@link OMSBuiltinKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code Producer}.
      * </ul>
      *
      * @return the attributes
@@ -64,7 +64,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination synchronously, the destination should be preset to
-     * {@link MessageHeader}, other header fields as well.
+     * {@link MessageHeaderBuiltinKeys}, other header fields as well.
      *
      * @param message a message will be sent
      * @return the successful {@code SendResult}
@@ -76,7 +76,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination synchronously, using the specified attributes, the destination
-     * should be preset to {@link MessageHeader}, other header fields as well.
+     * should be preset to {@link MessageHeaderBuiltinKeys}, other header fields as well.
      *
      * @param message a message will be sent
      * @param properties the specified attributes
@@ -89,7 +89,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination asynchronously, the destination should be preset to
-     * {@link MessageHeader}, other header fields as well.
+     * {@link MessageHeaderBuiltinKeys}, other header fields as well.
      * <p>
      * The returned {@code Promise} will have the result once the operation completes, and the registered
      * {@code PromiseListener} will be notified, either because the operation was successful or because of an error.
@@ -103,7 +103,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination asynchronously, using the specified attributes, the destination
-     * should be preset to {@link MessageHeader}, other header fields as well.
+     * should be preset to {@link MessageHeaderBuiltinKeys}, other header fields as well.
      * <p>
      * The returned {@code Promise} will have the result once the operation completes, and the registered
      * {@code PromiseListener} will be notified, either because the operation was successful or because of an error.
@@ -118,7 +118,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination in one way, the destination should be preset to
-     * {@link MessageHeader}, other header fields as well.
+     * {@link MessageHeaderBuiltinKeys}, other header fields as well.
      * <p>
      * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't
      * care about the send result and also have no context to get the result.
@@ -129,7 +129,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination in one way, using the specified attributes, the destination
-     * should be preset to {@link MessageHeader}, other header fields as well.
+     * should be preset to {@link MessageHeaderBuiltinKeys}, other header fields as well.
      * <p>
      * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't
      * care about the send result and also have no context to get the result.

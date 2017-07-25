@@ -37,8 +37,8 @@ public interface PushConsumer extends ServiceLifecycle {
      * <p>
      * There are some standard attributes defined by OMS for {@code PushConsumer}:
      * <ul>
-     * <li> {@link PropertyKeys#CONSUMER_ID}, the unique consumer id for a consumer instance.
-     * <li> {@link PropertyKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code PushConsumer}.
+     * <li> {@link OMSBuiltinKeys#CONSUMER_ID}, the unique consumer id for a consumer instance.
+     * <li> {@link OMSBuiltinKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code PushConsumer}.
      * </ul>
      *
      * @return the attributes

@@ -19,7 +19,7 @@ package io.openmessaging.internal;
 
 import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.PropertyKeys;
+import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.exception.OMSRuntimeException;
 import java.lang.reflect.Constructor;
 
@@ -52,9 +52,9 @@ public class MessagingAccessPointAdapter {
         String accessPoints = parseAccessPoints(url);
         String namespace = parseNamespace(url);
 
-        properties.put(PropertyKeys.NAMESPACE, namespace);
-        properties.put(PropertyKeys.ACCESS_POINTS, accessPoints);
-        properties.put(PropertyKeys.DRIVER_IMPL, driverImpl);
+        properties.put(OMSBuiltinKeys.NAMESPACE, namespace);
+        properties.put(OMSBuiltinKeys.ACCESS_POINTS, accessPoints);
+        properties.put(OMSBuiltinKeys.DRIVER_IMPL, driverImpl);
 
         try {
             Class<?> driverImplClass = Class.forName(driverImpl);
@@ -74,8 +74,8 @@ public class MessagingAccessPointAdapter {
     }
 
     private static String parseDriverImpl(String url, KeyValue properties) {
-        if (properties.containsKey(PropertyKeys.DRIVER_IMPL)) {
-            return properties.getString(PropertyKeys.DRIVER_IMPL);
+        if (properties.containsKey(OMSBuiltinKeys.DRIVER_IMPL)) {
+            return properties.getString(OMSBuiltinKeys.DRIVER_IMPL);
         }
         return "io.openmessaging." + url.split(":")[1] + ".MessagingAccessPointImpl";
     }

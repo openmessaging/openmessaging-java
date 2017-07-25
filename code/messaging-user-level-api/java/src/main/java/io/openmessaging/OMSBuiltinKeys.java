@@ -24,7 +24,7 @@ package io.openmessaging;
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface PropertyKeys {
+public interface OMSBuiltinKeys {
     String DRIVER_IMPL = "oms.driver.impl";
     String ACCESS_POINTS = "oms.access.points";
     String NAMESPACE = "oms.namespace";

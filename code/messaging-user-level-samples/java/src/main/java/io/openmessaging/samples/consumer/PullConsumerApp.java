@@ -1,7 +1,7 @@
 package io.openmessaging.samples.consumer;
 
 import io.openmessaging.Message;
-import io.openmessaging.MessageHeader;
+import io.openmessaging.MessageHeaderBuiltinKeys;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.OMS;
@@ -26,7 +26,7 @@ public class PullConsumerApp {
         Message message = pullConsumer.poll();
 
         //Acknowledges the consumed message
-        pullConsumer.ack(message.sysHeaders().getString(MessageHeader.MESSAGE_ID));
+        pullConsumer.ack(message.sysHeaders().getString(MessageHeaderBuiltinKeys.MESSAGE_ID));
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
