@@ -74,26 +74,6 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     Producer createProducer(KeyValue properties);
 
     /**
-     * Creates a new {@code SequenceProducer} for the specified {@code MessagingAccessPoint}.
-     *
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
-     * to handle this request due to some internal error
-     * @return the created {@code SequenceProducer}
-     */
-    SequenceProducer createSequenceProducer();
-
-    /**
-     * Creates a new {@code SequenceProducer} for the specified {@code MessagingAccessPoint}
-     * with some preset properties.
-     *
-     * @param properties the preset properties
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
-     * to handle this request due to some internal error
-     * @return the created {@code SequenceProducer}
-     */
-    SequenceProducer createSequenceProducer(KeyValue properties);
-
-    /**
      * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}.
      * The returned {@code PushConsumer} isn't attached to any queue,
      * uses {@link PushConsumer#attachQueue(String, MessageListener)} to attach queues.
