@@ -18,6 +18,7 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.interceptor.SendMessageInterceptor;
 import io.openmessaging.observer.Observer;
 
 /**
@@ -50,7 +51,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      *
      * @return the properties
      */
-    KeyValue attributes();
+    KeyValue properties();
 
     /**
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}.
@@ -204,7 +205,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      */
     void removeObserver(Observer observer);
 
-    void addInterceptor(Interceptor interceptor);
+    void addInterceptor(SendMessageInterceptor interceptor);
 
-    void removeInterceptor(Interceptor interceptor);
+    void removeInterceptor(SendMessageInterceptor interceptor);
 }
