@@ -26,7 +26,7 @@ import io.openmessaging.exception.OMSTimeOutException;
  * of a {@code MessagingAccessPoint}. An instance of {@code Producer} is
  * created by calling the {@link MessagingAccessPoint#createProducer()} method.
  * It provides various {@code send} methods to send a message to a specified destination.
- * A destination can be a {@link MessageHeaderBuiltinKeys#TOPIC} or a {@link MessageHeaderBuiltinKeys#QUEUE}.
+ * A destination can be a {@link MessageHeaderBuiltinKeys#Topic} or a {@link MessageHeaderBuiltinKeys#Queue}.
  * <p>
  *
  * {@link Producer#send(Message)} means send a message to destination synchronously,

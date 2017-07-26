@@ -28,7 +28,7 @@ import io.openmessaging.exception.OMSRuntimeException;
  * {@link MessagingAccessPoint#createSequenceProducer()} method.
  * <p>
  * It provides a group way to send batch message to a specified destination.
- * A destination can be a {@link MessageHeaderBuiltinKeys#TOPIC} or a {@link MessageHeaderBuiltinKeys#QUEUE}.
+ * A destination can be a {@link MessageHeaderBuiltinKeys#Topic} or a {@link MessageHeaderBuiltinKeys#Queue}.
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org

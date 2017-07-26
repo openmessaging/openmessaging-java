@@ -252,11 +252,11 @@ public interface ResourceManager extends ServiceLifecycle {
      * <p>
      * Only below message sysHeaders allow to be updated:
      * <ul>
-     * <li> {@link MessageHeaderBuiltinKeys#PRIORITY}
-     * <li> {@link MessageHeaderBuiltinKeys#SCHEDULE_EXPRESSION}
-     * <li> {@link MessageHeaderBuiltinKeys#START_TIME}
-     * <li> {@link MessageHeaderBuiltinKeys#STOP_TIME}
-     * <li> {@link MessageHeaderBuiltinKeys#TIMEOUT}
+     * <li> {@link MessageHeaderBuiltinKeys#Priority}
+     * <li> {@link MessageHeaderBuiltinKeys#ScheduleExpression}
+     * <li> {@link MessageHeaderBuiltinKeys#StartTime}
+     * <li> {@link MessageHeaderBuiltinKeys#StopTime}
+     * <li> {@link MessageHeaderBuiltinKeys#Timeout}
      * </ul>
      *
      * @param messageId the message to be updated

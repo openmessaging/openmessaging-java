@@ -202,5 +202,9 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      *
      * @param observer The observer to remove
      */
-    void deleteObserver(Observer observer);
+    void removeObserver(Observer observer);
+
+    void addInterceptor(Interceptor interceptor);
+
+    void removeInterceptor(Interceptor interceptor);
 }

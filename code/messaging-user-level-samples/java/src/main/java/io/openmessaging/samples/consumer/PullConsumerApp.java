@@ -26,7 +26,7 @@ public class PullConsumerApp {
         Message message = pullConsumer.poll();
 
         //Acknowledges the consumed message
-        pullConsumer.ack(message.sysHeaders().getString(MessageHeaderBuiltinKeys.MESSAGE_ID));
+        pullConsumer.ack(message.sysHeaders().getString(MessageHeaderBuiltinKeys.MessageId));
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
