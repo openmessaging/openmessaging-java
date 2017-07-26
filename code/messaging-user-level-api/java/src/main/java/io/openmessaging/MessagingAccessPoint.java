@@ -73,6 +73,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      */
     Producer createProducer(KeyValue properties);
 
+
     /**
      * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}.
      * The returned {@code PushConsumer} isn't attached to any queue,
