@@ -185,4 +185,6 @@ public interface MessageHeaderBuiltinKeys {
      * identification, and can be used in distributed system to trace the whole call link.
      */
     String TraceId = "TraceId";
+
+    String MessageGroup = "MessageGroup";
 }
