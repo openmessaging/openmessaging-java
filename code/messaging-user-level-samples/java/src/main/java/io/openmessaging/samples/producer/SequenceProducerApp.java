@@ -20,7 +20,6 @@ package io.openmessaging.samples.producer;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.Producer;
-import io.openmessaging.SequenceProducer;
 import java.nio.charset.Charset;
 
 public class SequenceProducerApp {

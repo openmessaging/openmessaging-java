@@ -138,4 +138,6 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @param properties the specified userHeaders
      */
     void sendOneway(Message message, KeyValue properties);
+
+    SequenceBatchMessageSender createSequenceBatchMessageSender();
 }
