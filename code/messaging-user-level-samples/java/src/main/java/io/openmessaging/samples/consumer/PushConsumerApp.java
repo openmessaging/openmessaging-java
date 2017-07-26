@@ -23,8 +23,8 @@ import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
+import io.openmessaging.OnMessageContext;
 import io.openmessaging.PushConsumer;
-import io.openmessaging.ReceivedMessageContext;
 import io.openmessaging.ResourceManager;
 import io.openmessaging.exception.OMSResourceNotExistException;
 import io.openmessaging.routing.Routing;
@@ -47,7 +47,7 @@ public class PushConsumerApp {
             //be consumed by this consumer.
             consumer.attachQueue(simpleQueue, new MessageListener() {
                 @Override
-                public void onMessage(Message message, ReceivedMessageContext context) {
+                public void onMessage(Message message, OnMessageContext context) {
                     System.out.println("Received one message: " + message);
                     context.ack();
                 }
@@ -78,7 +78,7 @@ public class PushConsumerApp {
 
             anotherConsumer.attachQueue(complexQueue, new MessageListener() {
                 @Override
-                public void onMessage(final Message message, final ReceivedMessageContext context) {
+                public void onMessage(final Message message, final OnMessageContext context) {
                     System.out.println("Received one message: " + message);
                     context.ack();
                 }

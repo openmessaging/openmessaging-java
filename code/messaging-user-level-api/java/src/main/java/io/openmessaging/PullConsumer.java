@@ -43,7 +43,7 @@ public interface PullConsumer extends ServiceLifecycle{
      *
      * @return the attributes
      */
-    KeyValue attributes();
+    KeyValue properties();
 
     /**
      * Polls the next message produced for this {@code PullConsumer}.
