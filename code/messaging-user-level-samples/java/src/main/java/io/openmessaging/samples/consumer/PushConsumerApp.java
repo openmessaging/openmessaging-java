@@ -40,13 +40,13 @@ public class PushConsumerApp {
         // Consume messages from a simple queue.
         {
             String simpleQueue = "HELLO_QUEUE";
-            resourceManager.createQueue(simpleQueue, OMS.newKeyValue());
+            resourceManager.createQueue("NS1", simpleQueue, OMS.newKeyValue());
 
             //This queue doesn't has a source topic, so only the message delivered to the queue directly can
             //be consumed by this consumer.
             consumer.attachQueue(simpleQueue, new MessageListener() {
                 @Override
-                public void onMessage(Message message, Context context) {
+                public void onReceived(Message message, Context context) {
                     System.out.println("Received one message: " + message);
                     context.ack();
                 }

@@ -74,7 +74,7 @@ public class MessagingAccessPointFactory {
         return MessagingAccessPointAdapter.getMessagingAccessPoint(url, properties);
     }
 
-    public static List<MessagingAccessPoint> listMessagingAccessPoints(){
+    public static List<MessagingAccessPoint> messagingAccessPoints(){
         return null;
     }
 }

@@ -20,6 +20,8 @@ package io.openmessaging;
 import io.openmessaging.exception.OMSMessageFormatException;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSTimeOutException;
+import io.openmessaging.interceptor.ProducerInterceptor;
+import io.openmessaging.interceptor.PushConsumerInterceptor;
 
 /**
  * A {@code Producer} is a simple object used to send messages on behalf
@@ -140,4 +142,11 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
     void sendOneway(Message message, KeyValue properties);
 
     SequenceBatchMessageSender createSequenceBatchMessageSender();
+
+
+    void addInterceptor(ProducerInterceptor interceptor);
+
+
+    void removeInterceptor(ProducerInterceptor interceptor);
+
 }

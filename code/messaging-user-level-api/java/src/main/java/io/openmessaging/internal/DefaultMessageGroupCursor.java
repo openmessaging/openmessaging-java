@@ -1,7 +1,5 @@
 package io.openmessaging.internal;
 
-import io.openmessaging.MessageGroupCursor;
-
 /**
  * @author vintagewang@apache.org
  * @version OMS 1.0

@@ -18,14 +18,14 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSRuntimeException;
-import io.openmessaging.interceptor.OnMessageInterceptor;
-import io.openmessaging.interceptor.SendMessageInterceptor;
+import io.openmessaging.interceptor.PushConsumerInterceptor;
+import io.openmessaging.interceptor.ProducerInterceptor;
 import io.openmessaging.observer.Observer;
+import java.util.List;
 
 /**
  * The {@code MessagingAccessPoint} obtained from {@link MessagingAccessPointFactory} is capable of creating {@code
- * Producer}, {@code Consumer}, {@code ServiceEndPoint}, and so on.
- * <p> For example:
+ * Producer}, {@code Consumer}, {@code ServiceEndPoint}, and so on. <p> For example:
  * <pre>
  * MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
  * Producer producer = messagingAccessPoint.createProducer();
@@ -34,7 +34,6 @@ import io.openmessaging.observer.Observer;
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
- *
  * @version OMS 1.0
  * @since OMS 1.0
  */
@@ -58,8 +57,8 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}.
      *
      * @return the created {@code Producer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
-     * to handle this request due to some internal error
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     Producer createProducer();
 
@@ -69,20 +68,19 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      *
      * @param properties the preset properties
      * @return the created {@code Producer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
-     * to handle this request due to some internal error
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     Producer createProducer(KeyValue properties);
-
 
     /**
      * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}.
      * The returned {@code PushConsumer} isn't attached to any queue,
      * uses {@link PushConsumer#attachQueue(String, MessageListener)} to attach queues.
      *
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
-     * to handle this request due to some internal error
      * @return the created {@code PushConsumer}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     PushConsumer createPushConsumer();
 
@@ -90,9 +88,9 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
      *
      * @param properties the preset properties
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
-     * to handle this request due to some internal error
      * @return the created {@code PushConsumer}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     PushConsumer createPushConsumer(KeyValue properties);
 
@@ -100,9 +98,9 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint} with the specified queue.
      *
      * @param queueName the only attached queue for this {@code PullConsumer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
-     * to handle this request due to some internal error
      * @return the created {@code PullConsumer}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     PullConsumer createPullConsumer(String queueName);
 
@@ -111,9 +109,9 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      *
      * @param queueName the only attached queue for this {@code PullConsumer}
      * @param properties the preset properties
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
-     * to handle this request due to some internal error
      * @return the created {@code PullConsumer}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     PullConsumer createPullConsumer(String queueName, KeyValue properties);
 
@@ -121,39 +119,39 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint}.
      *
      * @param queueName the only attached queue for this {@code StreamingConsumer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
-     * to handle this request due to some internal error
      * @return the created {@code Stream}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     StreamingConsumer createStreamingConsumer(String queueName);
 
     /**
-     * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
+     * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint} with some preset
+     * properties.
      *
      * @param queueName the only attached queue for this {@code StreamingConsumer}
      * @param properties the preset properties
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
-     * to handle this request due to some internal error
      * @return the created consumer
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     StreamingConsumer createStreamingConsumer(String queueName, KeyValue properties);
 
     /**
      * Gets a lightweight {@code CloudResourceManager} instance from the specified {@code MessagingAccessPoint}.
      *
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
-     * to handle this request due to some internal error
      * @return the created {@code CloudResourceManager}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     CloudResourceManager getResourceManager();
-
 
     /**
      * Create a new {@code ServiceEndPoint} for the specified {@code MessagingAccessPoint}.
      *
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
-     * to handle this request due to some internal error
      * @return the created {@code ServiceEndPoint}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     ServiceEndPoint createServiceEndPoint();
 
@@ -161,9 +159,9 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * Create a new {@code ServiceEndPoint} for the specified {@code MessagingAccessPoint} with some preset properties.
      *
      * @param properties the preset properties
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
-     * to handle this request due to some internal error
      * @return the created {@code ServiceEndPoint}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     ServiceEndPoint createServiceEndPoint(KeyValue properties);
 
@@ -187,11 +185,8 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      */
     void removeObserver(Observer observer);
 
-    void addInterceptor(SendMessageInterceptor interceptor);
 
-    void addInterceptor(OnMessageInterceptor interceptor);
+    List<Producer> producers();
 
-    void removeInterceptor(SendMessageInterceptor interceptor);
-
-    void removeInterceptor(OnMessageInterceptor interceptor);
+    List<PushConsumer> pushConsumers();
 }

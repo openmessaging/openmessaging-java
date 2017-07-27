@@ -18,6 +18,8 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.interceptor.ProducerInterceptor;
+import io.openmessaging.interceptor.PushConsumerInterceptor;
 
 /**
  * A {@code PushConsumer} object to receive messages from multiple queues, these messages are pushed from
@@ -82,8 +84,8 @@ public interface PushConsumer extends ServiceLifecycle {
      * @param queueName a specified queue
      * @param listener a specified listener to receive new message
      * @return this {@code PushConsumer} instance
-     * @throws OMSRuntimeException if this {@code PushConsumer} fails to attach the specified queue
-     * due to some internal error.
+     * @throws OMSRuntimeException if this {@code PushConsumer} fails to attach the specified queue due to some internal
+     * error.
      */
     PushConsumer attachQueue(String queueName, MessageListener listener);
 
@@ -97,8 +99,8 @@ public interface PushConsumer extends ServiceLifecycle {
      * @param listener a specified listener to receive new message
      * @param properties some specified attributes
      * @return this {@code PushConsumer} instance
-     * @throws OMSRuntimeException if this {@code PushConsumer} fails to attach the specified queue
-     * due to some internal error.
+     * @throws OMSRuntimeException if this {@code PushConsumer} fails to attach the specified queue due to some internal
+     * error.
      */
     PushConsumer attachQueue(String queueName, MessageListener listener, KeyValue properties);
 
@@ -111,4 +113,8 @@ public interface PushConsumer extends ServiceLifecycle {
      * @return this {@code PushConsumer} instance
      */
     PushConsumer detachQueue(String queueName);
+
+    void addInterceptor(PushConsumerInterceptor interceptor);
+
+    void removeInterceptor(PushConsumerInterceptor interceptor);
 }
