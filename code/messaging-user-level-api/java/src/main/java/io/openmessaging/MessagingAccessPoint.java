@@ -29,7 +29,7 @@ import io.openmessaging.observer.Observer;
  * <pre>
  * MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
  * Producer producer = messagingAccessPoint.createProducer();
- * producer.send(producer.createBytesMessageToTopic("HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+ * producer.send(producer.createTopicBytesMessage("HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
  * </pre>
  *
  * @author vintagewang@apache.org
@@ -123,7 +123,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @param queueName the only attached queue for this {@code StreamingConsumer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails
      * to handle this request due to some internal error
-     * @return the created {@code MessageGroupIterator}
+     * @return the created {@code Stream}
      */
     StreamingConsumer createStreamingConsumer(String queueName);
 

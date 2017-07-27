@@ -17,28 +17,26 @@
 
 package io.openmessaging;
 
-import io.openmessaging.exception.OMSRuntimeException;
-
 /**
- * A {@code Queue} is divided by many messageGroups.
+ * A {@code Queue} is divided by many streams.
  * <p>
- * A {@code MessageGroupIterator} object supports consume messages from a
+ * A {@code Stream} object supports consume messages from a
  * specified partition like a iterator.
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
  * @version OMS 1.0
- * @see StreamingConsumer#messageGroupIterator(String)
+ * @see StreamingConsumer#stream(String)
  * @since OMS 1.0
  */
-public interface MessageGroupIterator extends ServiceLifecycle {
+public interface Stream extends ServiceLifecycle {
     /**
-     * Returns the attributes of this {@code MessageGroupIterator} instance.
+     * Returns the attributes of this {@code Stream} instance.
      * <p>
-     * There are some standard attributes defined by OMS for {@code MessageGroupIterator}:
+     * There are some standard attributes defined by OMS for {@code Stream}:
      * <ul>
      * <li> {@link OMSBuiltinKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code
-     * MessageGroupIterator}.
+     * Stream}.
      * <li> {@link OMSBuiltinKeys#BEGIN_OFFSET}, the begin offset boarder of this partition iterator.
      * <li> {@link OMSBuiltinKeys#END_OFFSET}, the end offset boarder of this partition iterator.
      * <li> {@link OMSBuiltinKeys#BEGIN_TIMESTAMP}, the begin offset represented
@@ -56,21 +54,21 @@ public interface MessageGroupIterator extends ServiceLifecycle {
      *
      * @return the current offset, return -1 if the iterator is first created.
      */
-    MessageGroupCursor current();
+    MessageIterator current();
 
     /**
      * Fetches the first offset of this partition iterator.
      *
      * @return the first offset, return -1 if the partition has no message.
      */
-    MessageGroupCursor begin();
+    MessageIterator begin();
 
     /**
      * Fetches the last offset of this partition iterator.
      *
      * @return the last offset, return 0 if the iterator is first created.
      */
-    MessageGroupCursor end();
+    MessageIterator end();
 
     /**
      * Moves the current offset to the specified timestamp.
@@ -83,59 +81,5 @@ public interface MessageGroupIterator extends ServiceLifecycle {
      *
      * @param timestamp the specified timestamp
      */
-    void seekByTime(long timestamp);
-
-    /**
-     * Moves the current offset to the specified offset.
-     *
-     * @param cursor the specified offset
-     */
-    void seekByCursor(MessageGroupCursor cursor);
-
-    /**
-     * Persist this iterator to local or remote server, that depends on specified
-     * implementation of {@link MessageGroupIterator}.
-     */
-    void persist();
-
-    /**
-     * Returns {@code true} if this partition iterator has more messages when
-     * traversing the iterator in the forward direction.
-     *
-     * @return {@code true} if the partition iterator has more messages when
-     * traversing the iterator in the forward direction
-     */
-    boolean hasNext();
-
-    /**
-     * Returns the next message in the iteration and advances the offset position.
-     * <p>
-     * This method may be called repeatedly to iterate through the iteration,
-     * or intermixed with calls to {@link #previous} to go back and forth.
-     *
-     * @return the next message in the list
-     * @throws OMSRuntimeException if the iteration has no more message
-     */
-    Message next();
-
-    /**
-     * Returns {@code true} if this partition iterator has more messages when
-     * traversing the iterator in the reverse direction.
-     *
-     * @return {@code true} if the partition iterator has more messages when
-     * traversing the iterator in the reverse direction
-     */
-    boolean hasPrevious();
-
-    /**
-     * Returns the previous message in the iteration and moves the offset
-     * position backwards.
-     * <p>
-     * This method may be called repeatedly to iterate through the iteration backwards,
-     * or intermixed with calls to {@link #next} to go back and forth.
-     *
-     * @return the previous message in the list
-     * @throws OMSRuntimeException if the iteration has no previous message
-     */
-    Message previous();
+    MessageIterator seekByTime(long timestamp);
 }

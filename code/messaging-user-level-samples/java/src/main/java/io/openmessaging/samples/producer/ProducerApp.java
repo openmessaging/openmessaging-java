@@ -17,6 +17,7 @@
 
 package io.openmessaging.samples.producer;
 
+import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.Producer;
@@ -49,7 +50,7 @@ public class ProducerApp {
 
         //Sync
         {
-            SendResult sendResult = producer.send(producer.createBytesMessageToTopic(
+            SendResult sendResult = producer.send(producer.createTopicBytesMessage(
                 "HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             System.out.println("Send sync message OK, message id is: " + sendResult.messageId());
@@ -57,7 +58,7 @@ public class ProducerApp {
 
         //Async with Promise
         {
-            final Promise<SendResult> result = producer.sendAsync(producer.createBytesMessageToTopic(
+            final Promise<SendResult> result = producer.sendAsync(producer.createTopicBytesMessage(
                 "HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             final SendResult sendResult = result.get(3000L);
@@ -66,12 +67,12 @@ public class ProducerApp {
 
         //Async with PromiseListener
         {
-            final Promise<SendResult> result = producer.sendAsync(producer.createBytesMessageToTopic(
+            final Promise<SendResult> result = producer.sendAsync(producer.createTopicBytesMessage(
                 "HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             result.addListener(new PromiseListener<SendResult>() {
                 @Override
-                public void operationCompleted(Promise<SendResult> promise) {
+                public void operationSucceeded(Promise<SendResult> promise) {
                     System.out.println("Send async message OK, message id is: " + promise.get().messageId());
                 }
 
@@ -84,7 +85,7 @@ public class ProducerApp {
 
         //Oneway
         {
-            producer.sendOneway(producer.createBytesMessageToTopic(
+            producer.sendOneway(producer.createTopicBytesMessage(
                 "HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             System.out.println("Send oneway message OK");

@@ -33,7 +33,7 @@ public interface PromiseListener<V> {
      *
      * @param promise the source {@code Promise} which called this callback
      */
-    void operationCompleted(Promise<V> promise);
+    void operationSucceeded(Promise<V> promise);
 
     /**
      * Invoked when the operation associated with the {@code Promise} has been completed unsuccessfully.

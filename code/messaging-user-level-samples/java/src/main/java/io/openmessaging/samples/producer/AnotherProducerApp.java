@@ -44,12 +44,12 @@ public class AnotherProducerApp {
             }
         }));
 
-        SendResult result = producer.send(producer.createBytesMessageToTopic(
+        SendResult result = producer.send(producer.createTopicBytesMessage(
             "HELLO_TOPIC1", "HELLO_BODY1".getBytes(Charset.forName("UTF-8"))));
 
         System.out.println("Send first message to topic OK, message id is: " + result.messageId());
 
-        producer.send(producer.createBytesMessageToTopic(
+        producer.send(producer.createTopicBytesMessage(
             "HELLO_TOPIC2", "HELLO_BODY2".getBytes(Charset.forName("UTF-8")))
             .putUserHeaders("KEY1", 100)
             .putUserHeaders("KEY2", 200L)
@@ -59,7 +59,7 @@ public class AnotherProducerApp {
 
         System.out.println("Send second message to topic OK");
 
-        producer.send(producer.createBytesMessageToQueue(
+        producer.send(producer.createQueueBytesMessage(
             "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
         System.out.println("send third message to queue OK");

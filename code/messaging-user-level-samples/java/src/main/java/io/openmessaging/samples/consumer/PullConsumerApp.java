@@ -2,7 +2,6 @@ package io.openmessaging.samples.consumer;
 
 import io.openmessaging.CloudResourceManager;
 import io.openmessaging.Message;
-import io.openmessaging.MessageHeaderBuiltinKeys;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.OMS;

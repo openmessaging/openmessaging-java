@@ -23,7 +23,6 @@ import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.OnMessageContext;
 import io.openmessaging.PushConsumer;
 import io.openmessaging.CloudResourceManager;
 import io.openmessaging.exception.OMSResourceNotExistException;
@@ -38,19 +37,21 @@ public class PushConsumerApp {
         CloudResourceManager resourceManager = messagingAccessPoint.getResourceManager();
 
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
-        //Consume messages from a simple queue.
+        // Consume messages from a simple queue.
         {
             String simpleQueue = "HELLO_QUEUE";
-            resourceManager.createAndUpdateQueue(simpleQueue, OMS.newKeyValue());
+            resourceManager.createQueue(simpleQueue, OMS.newKeyValue());
 
             //This queue doesn't has a source topic, so only the message delivered to the queue directly can
             //be consumed by this consumer.
             consumer.attachQueue(simpleQueue, new MessageListener() {
                 @Override
-                public void onMessage(Message message, OnMessageContext context) {
+                public void onMessage(Message message, Context context) {
                     System.out.println("Received one message: " + message);
                     context.ack();
                 }
+
+
             });
 
             consumer.startup();
@@ -64,9 +65,9 @@ public class PushConsumerApp {
             String sourceTopic = "SOURCE_TOPIC";
 
             //Create the complex queue.
-            resourceManager.createAndUpdateQueue(complexQueue, OMS.newKeyValue());
+            resourceManager.createQueue(complexQueue, OMS.newKeyValue());
             //Create the source topic.
-            resourceManager.createAndUpdateTopic(sourceTopic, OMS.newKeyValue());
+            resourceManager.createTopic(sourceTopic, OMS.newKeyValue());
 
             //Once the routing has been created, the messages will be routed from topic to queue by the sql operator.
             Routing routing = resourceManager.createAndUpdateRouting("HELLO_ROUTING",
@@ -78,7 +79,7 @@ public class PushConsumerApp {
 
             anotherConsumer.attachQueue(complexQueue, new MessageListener() {
                 @Override
-                public void onMessage(final Message message, final OnMessageContext context) {
+                public void onMessage(final Message message, final MessageContext context) {
                     System.out.println("Received one message: " + message);
                     context.ack();
                 }
