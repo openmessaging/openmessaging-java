@@ -5,7 +5,7 @@ import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.OMS;
-import io.openmessaging.ResourceManager;
+import io.openmessaging.CloudResourceManager;
 import io.openmessaging.StreamingConsumer;
 
 public class StreamingConsumerApp {
@@ -14,7 +14,7 @@ public class StreamingConsumerApp {
             .getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
-        ResourceManager resourceManager = messagingAccessPoint.getResourceManager();
+        CloudResourceManager resourceManager = messagingAccessPoint.getResourceManager();
 
         resourceManager.createAndUpdateQueue("HELLO_QUEUE", OMS.newKeyValue());
 

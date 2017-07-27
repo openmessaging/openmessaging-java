@@ -1,0 +1,91 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+package io.openmessaging;
+
+import io.openmessaging.exception.OMSResourceNotExistException;
+import io.openmessaging.routing.Operator;
+import io.openmessaging.routing.Routing;
+import java.util.List;
+
+/**
+ * The {@code CloudResourceManager} is responsible for providing a unified interface of resource management,
+ * allows the user to manage the topic, queue, namespace resources.
+ * <p>
+ * Create, fetch, update and destroy are the four basic functions of {@code CloudResourceManager}.
+ * <p>
+ * And the {@code CloudResourceManager} also supports fetch and update resource attributes dynamically.
+ * <p>
+ * The attributes of consumer and producer also are treated as {@code Resource}. {@code CloudResourceManager}
+ * allows the user to fetch producer and consumer list in a specified topic or queue,
+ * and update their resource attributes dynamically.
+ * <p>
+ * {@link MessagingAccessPoint#getResourceManager()} is the unique method to obtain a {@code CloudResourceManager}
+ * instance, any changes made by this instance will reflect to the message-oriented middleware (MOM) or
+ * other product behind the {@code MessagingAccessPoint}.
+ *
+ * @author vintagewang@apache.org
+ * @author yukon@apache.org
+ *
+ * @version OMS 1.0
+ * @since OMS 1.0
+ */
+public interface CloudResourceManager extends ServiceLifecycle {
+    /**
+     * --------------
+     */
+    void createNamespace(String nsName, KeyValue attributes);
+
+    void setNamespaceAttributes(String nsName, KeyValue attributes);
+
+    KeyValue getNamespaceAttributes(String nsName);
+
+    void deleteNamespace(String nsName);
+
+    void listNamespaces();
+
+    /**
+     * --------------
+     */
+    void createTopic(String nsName, String topicName, KeyValue attributes);
+
+    void setTopicAttributes(String nsName, String topicName, KeyValue attributes);
+
+    KeyValue getTopicAttributes(String nsName, String topicName);
+
+    void deleteTopic(String nsName, String topicName);
+
+    void listTopics();
+
+    /**
+     * --------------
+     */
+    void createQueue(String nsName, String queueName, KeyValue attributes);
+
+    void setQueueAttributes(String nsName, String queueName, KeyValue attributes);
+
+    KeyValue getQueueAttributes(String nsName, String queueName);
+
+    void deleteQueue(String nsName, String queueName);
+
+    void listQueues();
+
+    /**
+     * --------------
+     */
+    void updateMessage(String messageId, KeyValue headers);
+}

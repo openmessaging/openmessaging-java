@@ -17,9 +17,9 @@
 
 package io.openmessaging.routing;
 
+import io.openmessaging.CloudResourceManager;
 import io.openmessaging.KeyValue;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.ResourceManager;
 import java.util.List;
 
 /**
@@ -35,7 +35,7 @@ public interface Routing {
     /**
      * Returns the attributes of this {@code Routing} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code Routing},
-     * and use {@link ResourceManager#createAndUpdateRouting(String, KeyValue)} to modify.
+     * and use {@link CloudResourceManager#createAndUpdateRouting(String, KeyValue)} to modify.
      * <p>
      * There are some standard attributes defined by OMS for {@code Routing}:
      * <ul>

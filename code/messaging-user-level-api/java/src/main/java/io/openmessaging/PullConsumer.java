@@ -33,7 +33,7 @@ public interface PullConsumer extends ServiceLifecycle{
     /**
      * Returns the attributes of this {@code PullConsumer} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code PullConsumer},
-     * and use {@link ResourceManager#setConsumerProperties(String, KeyValue)} to modify.
+     * and use {@link CloudResourceManager#setConsumerProperties(String, KeyValue)} to modify.
      * <p>
      * There are some standard attributes defined by OMS for {@code PullConsumer}:
      * <ul>

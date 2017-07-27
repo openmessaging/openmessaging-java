@@ -25,7 +25,7 @@ import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.OnMessageContext;
 import io.openmessaging.PushConsumer;
-import io.openmessaging.ResourceManager;
+import io.openmessaging.CloudResourceManager;
 import io.openmessaging.exception.OMSResourceNotExistException;
 import io.openmessaging.routing.Routing;
 
@@ -35,7 +35,7 @@ public class PushConsumerApp {
             .getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
-        ResourceManager resourceManager = messagingAccessPoint.getResourceManager();
+        CloudResourceManager resourceManager = messagingAccessPoint.getResourceManager();
 
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
         //Consume messages from a simple queue.
