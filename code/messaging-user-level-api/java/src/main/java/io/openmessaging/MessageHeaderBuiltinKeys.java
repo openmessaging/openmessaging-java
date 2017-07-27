@@ -175,12 +175,6 @@ public interface MessageHeaderBuiltinKeys {
     String ScheduleExpression = "ScheduleExpression";
 
     /**
-     * The {@code ShardingKey} header field contains the sharding key of a message.
-     * The messages with same SHARDING_PARTITION should be sent to a destination orderly.
-     */
-    String ShardingKey = "ShardingKey";
-
-    /**
      * The {@code TraceId} header field contains the trace id of a message, which represents a global and unique
      * identification, and can be used in distributed system to trace the whole call link.
      */
