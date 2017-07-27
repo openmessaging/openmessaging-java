@@ -68,7 +68,7 @@ public interface CloudResourceManager extends ServiceLifecycle {
 
     void deleteTopic(String nsName, String topicName) throws OMSResourceNotExistException;
 
-    List<String> listTopics();
+    List<String> listTopics(String nsName);
 
     /**
      * --------------
@@ -81,7 +81,7 @@ public interface CloudResourceManager extends ServiceLifecycle {
 
     void deleteQueue(String nsName, String queueName) throws OMSResourceNotExistException;
 
-    List<String> listQueues();
+    List<String> listQueues(String nsName);
 
     /**
      * --------------
