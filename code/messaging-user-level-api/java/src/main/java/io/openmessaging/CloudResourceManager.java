@@ -40,7 +40,6 @@ import java.util.List;
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
- *
  * @version OMS 1.0
  * @since OMS 1.0
  */
@@ -50,39 +49,39 @@ public interface CloudResourceManager extends ServiceLifecycle {
      */
     void createNamespace(String nsName, KeyValue attributes);
 
-    void setNamespaceAttributes(String nsName, KeyValue attributes);
+    void setNamespaceAttributes(String nsName, KeyValue attributes) throws OMSResourceNotExistException;
 
-    KeyValue getNamespaceAttributes(String nsName);
+    KeyValue getNamespaceAttributes(String nsName) throws OMSResourceNotExistException;
 
-    void deleteNamespace(String nsName);
+    void deleteNamespace(String nsName) throws OMSResourceNotExistException;
 
-    void listNamespaces();
+    List<String> listNamespaces();
 
     /**
      * --------------
      */
     void createTopic(String nsName, String topicName, KeyValue attributes);
 
-    void setTopicAttributes(String nsName, String topicName, KeyValue attributes);
+    void setTopicAttributes(String nsName, String topicName, KeyValue attributes) throws OMSResourceNotExistException;
 
-    KeyValue getTopicAttributes(String nsName, String topicName);
+    KeyValue getTopicAttributes(String nsName, String topicName) throws OMSResourceNotExistException;
 
-    void deleteTopic(String nsName, String topicName);
+    void deleteTopic(String nsName, String topicName) throws OMSResourceNotExistException;
 
-    void listTopics();
+    List<String> listTopics();
 
     /**
      * --------------
      */
     void createQueue(String nsName, String queueName, KeyValue attributes);
 
-    void setQueueAttributes(String nsName, String queueName, KeyValue attributes);
+    void setQueueAttributes(String nsName, String queueName, KeyValue attributes) throws OMSResourceNotExistException;
 
-    KeyValue getQueueAttributes(String nsName, String queueName);
+    KeyValue getQueueAttributes(String nsName, String queueName) throws OMSResourceNotExistException;
 
-    void deleteQueue(String nsName, String queueName);
+    void deleteQueue(String nsName, String queueName) throws OMSResourceNotExistException;
 
-    void listQueues();
+    List<String> listQueues();
 
     /**
      * --------------
