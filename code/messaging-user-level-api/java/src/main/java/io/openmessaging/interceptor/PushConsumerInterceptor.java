@@ -12,7 +12,7 @@ public interface PushConsumerInterceptor {
     interface OnMessageAfterContext {
     }
 
-    void beforeOnReceived(OnMessageBeforeContext context);
+    void onMessageBefore(OnMessageBeforeContext context);
 
-    void afterOnReceived(OnMessageAfterContext context);
+    void onMessageAfter(OnMessageAfterContext context);
 }
