@@ -17,7 +17,6 @@
 
 package io.openmessaging.samples.producer;
 
-import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.Producer;

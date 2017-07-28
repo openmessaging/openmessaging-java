@@ -15,7 +15,7 @@ public class PullConsumerApp {
         System.out.println("MessagingAccessPoint startup OK");
         CloudResourceManager resourceManager = messagingAccessPoint.getResourceManager();
 
-        resourceManager.createAndUpdateQueue("HELLO_QUEUE", OMS.newKeyValue());
+        resourceManager.createQueue("NS1", "HELLO_QUEUE", OMS.newKeyValue());
         //PullConsumer only can pull messages from one queue.
         final PullConsumer pullConsumer = messagingAccessPoint.createPullConsumer("HELLO_QUEUE");
 
@@ -25,7 +25,7 @@ public class PullConsumerApp {
         Message message = pullConsumer.poll();
 
         //Acknowledges the consumed message
-        pullConsumer.ack(message.sysHeaders().getString(MessageHeaderBuiltinKeys.MessageId));
+        pullConsumer.ack(message.sysHeaders().getString(Message.BuiltinKeys.MessageId));
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override

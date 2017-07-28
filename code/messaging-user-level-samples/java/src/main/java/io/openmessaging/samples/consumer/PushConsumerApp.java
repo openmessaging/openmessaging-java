@@ -17,16 +17,14 @@
 
 package io.openmessaging.samples.consumer;
 
+import io.openmessaging.CloudResourceManager;
 import io.openmessaging.Message;
 import io.openmessaging.MessageListener;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.OMS;
-import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.PushConsumer;
-import io.openmessaging.CloudResourceManager;
 import io.openmessaging.exception.OMSResourceNotExistException;
-import io.openmessaging.routing.Routing;
 
 public class PushConsumerApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
@@ -51,7 +49,6 @@ public class PushConsumerApp {
                     context.ack();
                 }
 
-
             });
 
             consumer.startup();
@@ -65,25 +62,10 @@ public class PushConsumerApp {
             String sourceTopic = "SOURCE_TOPIC";
 
             //Create the complex queue.
-            resourceManager.createQueue(complexQueue, OMS.newKeyValue());
+            resourceManager.createQueue("NS_01", complexQueue, OMS.newKeyValue());
             //Create the source topic.
-            resourceManager.createTopic(sourceTopic, OMS.newKeyValue());
+            resourceManager.createTopic("NS_01", sourceTopic, OMS.newKeyValue());
 
-            //Once the routing has been created, the messages will be routed from topic to queue by the sql operator.
-            Routing routing = resourceManager.createAndUpdateRouting("HELLO_ROUTING",
-                OMS.newKeyValue()
-                    .put(OMSBuiltinKeys.SRC_TOPIC, sourceTopic).put(OMSBuiltinKeys.DST_QUEUE, complexQueue));
-
-            routing.addOperator(resourceManager.createAndUpdateOperator("SQL_OPERATOR",
-                "TAGS is not null and TAGS in ('TagA', 'TagB')", OMS.newKeyValue()));
-
-            anotherConsumer.attachQueue(complexQueue, new MessageListener() {
-                @Override
-                public void onMessage(final Message message, final MessageContext context) {
-                    System.out.println("Received one message: " + message);
-                    context.ack();
-                }
-            });
         }
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {

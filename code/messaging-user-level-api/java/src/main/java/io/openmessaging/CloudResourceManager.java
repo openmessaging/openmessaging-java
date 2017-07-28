@@ -83,6 +83,19 @@ public interface CloudResourceManager extends ServiceLifecycle {
 
     List<String> listQueues(String nsName);
 
+
+    /**
+     * --------------
+     */
+    void createRouting(String nsName, String routingName, KeyValue attributes);
+
+    void setRoutingAttributes(String nsName, String routingName, KeyValue attributes) throws OMSResourceNotExistException;
+
+    KeyValue getRoutingAttributes(String nsName, String routingName) throws OMSResourceNotExistException;
+
+    void deleteRouting(String nsName, String routingName) throws OMSResourceNotExistException;
+
+    List<String> listRoutings(String nsName);
     /**
      * --------------
      */

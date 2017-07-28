@@ -54,16 +54,14 @@ public class Consumer {
                 try {
                     final CallResponse response = helloServiceGen.sayHello(req);
                     System.out.println(response);
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
                 TimeUnit.MILLISECONDS.sleep(10);
             }
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

@@ -46,8 +46,7 @@ public class Provider {
                     serviceEndPoint.shutdown();
                 }
             }));
-        }
-        catch (Throwable e) {
+        } catch (Throwable e) {
             LOG.error(e.toString());
         }
     }
