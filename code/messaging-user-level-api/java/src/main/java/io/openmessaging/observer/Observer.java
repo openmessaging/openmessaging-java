@@ -24,7 +24,6 @@ import io.openmessaging.MessagingAccessPoint;
  * dispatches in observable objects, like {@link MessagingAccessPoint}
  *
  * @author vintagewang@apache.org
- *
  * @version OMS 1.0
  * @since OMS 1.0
  */

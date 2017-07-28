@@ -6,13 +6,13 @@ package io.openmessaging.interceptor;
  * @since OMS 1.0
  */
 public interface PushConsumerInterceptor {
+    void onMessageBefore(OnMessageBeforeContext context);
+
+    void onMessageAfter(OnMessageAfterContext context);
+
     interface OnMessageBeforeContext {
     }
 
     interface OnMessageAfterContext {
     }
-
-    void onMessageBefore(OnMessageBeforeContext context);
-
-    void onMessageAfter(OnMessageAfterContext context);
 }

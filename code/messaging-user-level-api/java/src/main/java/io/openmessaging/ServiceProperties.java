@@ -19,7 +19,6 @@ package io.openmessaging;
 
 /**
  * @author vintagewang@apache.
- *
  * @version OMS 1.0
  * @since OMS 1.0
  */

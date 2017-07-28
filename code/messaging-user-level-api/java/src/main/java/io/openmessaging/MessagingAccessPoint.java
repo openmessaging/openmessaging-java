@@ -18,8 +18,6 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSRuntimeException;
-import io.openmessaging.interceptor.PushConsumerInterceptor;
-import io.openmessaging.interceptor.ProducerInterceptor;
 import io.openmessaging.observer.Observer;
 import java.util.List;
 
@@ -184,7 +182,6 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @param observer The observer to remove
      */
     void removeObserver(Observer observer);
-
 
     List<Producer> producers();
 

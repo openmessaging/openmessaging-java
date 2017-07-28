@@ -43,6 +43,85 @@ package io.openmessaging;
  * @since OMS 1.0
  */
 public interface Message {
+    /**
+     * Returns all the header fields of the {@code Message} object as a {@code KeyValue}.
+     *
+     * @return the sysHeaders of a {@code Message}
+     * @see MessageHeaderBuiltinKeys
+     */
+    KeyValue sysHeaders();
+
+    /**
+     * Returns all the built-in property fields of the {@code Message} object as a {@code KeyValue}.
+     *
+     * @return the attributes of a {@code Message}
+     */
+    KeyValue userHeaders();
+
+    /**
+     * Puts a {@code String}-{@code int} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
+     *
+     * @param key the key to be placed into the sysHeaders
+     * @param value the value corresponding to <tt>key</tt>
+     */
+    Message putSysHeaders(String key, int value);
+
+    /**
+     * Puts a {@code String}-{@code long} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
+     *
+     * @param key the key to be placed into the sysHeaders
+     * @param value the value corresponding to <tt>key</tt>
+     */
+    Message putSysHeaders(String key, long value);
+
+    /**
+     * Puts a {@code String}-{@code double} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
+     *
+     * @param key the key to be placed into the sysHeaders
+     * @param value the value corresponding to <tt>key</tt>
+     */
+    Message putSysHeaders(String key, double value);
+
+    /**
+     * Puts a {@code String}-{@code String} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
+     *
+     * @param key the key to be placed into the sysHeaders
+     * @param value the value corresponding to <tt>key</tt>
+     */
+    Message putSysHeaders(String key, String value);
+
+    /**
+     * Puts a {@code String}-{@code int} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
+     *
+     * @param key the key to be placed into the sysHeaders
+     * @param value the value corresponding to <tt>key</tt>
+     */
+    Message putUserHeaders(String key, int value);
+
+    /**
+     * Puts a {@code String}-{@code long} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
+     *
+     * @param key the key to be placed into the sysHeaders
+     * @param value the value corresponding to <tt>key</tt>
+     */
+    Message putUserHeaders(String key, long value);
+
+    /**
+     * Puts a {@code String}-{@code double} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
+     *
+     * @param key the key to be placed into the sysHeaders
+     * @param value the value corresponding to <tt>key</tt>
+     */
+    Message putUserHeaders(String key, double value);
+
+    /**
+     * Puts a {@code String}-{@code String} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
+     *
+     * @param key the key to be placed into the sysHeaders
+     * @param value the value corresponding to <tt>key</tt>
+     */
+    Message putUserHeaders(String key, String value);
+
     interface BuiltinKeys {
         /**
          * The {@code MessageId} header field contains a value that uniquely identifies
@@ -198,83 +277,4 @@ public interface Message {
 
         String Stream = "Stream";
     }
-
-    /**
-     * Returns all the header fields of the {@code Message} object as a {@code KeyValue}.
-     *
-     * @return the sysHeaders of a {@code Message}
-     * @see MessageHeaderBuiltinKeys
-     */
-    KeyValue sysHeaders();
-
-    /**
-     * Returns all the built-in property fields of the {@code Message} object as a {@code KeyValue}.
-     *
-     * @return the attributes of a {@code Message}
-     */
-    KeyValue userHeaders();
-
-    /**
-     * Puts a {@code String}-{@code int} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
-     *
-     * @param key the key to be placed into the sysHeaders
-     * @param value the value corresponding to <tt>key</tt>
-     */
-    Message putSysHeaders(String key, int value);
-
-    /**
-     * Puts a {@code String}-{@code long} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
-     *
-     * @param key the key to be placed into the sysHeaders
-     * @param value the value corresponding to <tt>key</tt>
-     */
-    Message putSysHeaders(String key, long value);
-
-    /**
-     * Puts a {@code String}-{@code double} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
-     *
-     * @param key the key to be placed into the sysHeaders
-     * @param value the value corresponding to <tt>key</tt>
-     */
-    Message putSysHeaders(String key, double value);
-
-    /**
-     * Puts a {@code String}-{@code String} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
-     *
-     * @param key the key to be placed into the sysHeaders
-     * @param value the value corresponding to <tt>key</tt>
-     */
-    Message putSysHeaders(String key, String value);
-
-    /**
-     * Puts a {@code String}-{@code int} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
-     *
-     * @param key the key to be placed into the sysHeaders
-     * @param value the value corresponding to <tt>key</tt>
-     */
-    Message putUserHeaders(String key, int value);
-
-    /**
-     * Puts a {@code String}-{@code long} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
-     *
-     * @param key the key to be placed into the sysHeaders
-     * @param value the value corresponding to <tt>key</tt>
-     */
-    Message putUserHeaders(String key, long value);
-
-    /**
-     * Puts a {@code String}-{@code double} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
-     *
-     * @param key the key to be placed into the sysHeaders
-     * @param value the value corresponding to <tt>key</tt>
-     */
-    Message putUserHeaders(String key, double value);
-
-    /**
-     * Puts a {@code String}-{@code String} {@code KeyValue} entry to he sysHeaders of a {@code Message}.
-     *
-     * @param key the key to be placed into the sysHeaders
-     * @param value the value corresponding to <tt>key</tt>
-     */
-    Message putUserHeaders(String key, String value);
 }

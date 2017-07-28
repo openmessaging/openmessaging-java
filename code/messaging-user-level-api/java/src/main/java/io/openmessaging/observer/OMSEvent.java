@@ -20,13 +20,13 @@ package io.openmessaging.observer;
 /**
  * @author vintagewang@apache.org
  * @author yukon@apache.org
- *
  * @version OMS 1.0
  * @since OMS 1.0
  */
 public interface OMSEvent {
     /**
      * Returns the specified {@code OMSEvent}
+     *
      * @return
      */
     String type();

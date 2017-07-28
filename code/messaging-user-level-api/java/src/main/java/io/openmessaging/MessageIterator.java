@@ -51,7 +51,6 @@ public interface MessageIterator extends ServiceLifecycle {
      */
     KeyValue properties();
 
-
     /**
      * Persist this iterator to local or remote server, that depends on specified
      * implementation of {@link MessageIterator}.
@@ -62,8 +61,8 @@ public interface MessageIterator extends ServiceLifecycle {
      * Returns {@code true} if this partition iterator has more messages when
      * traversing the iterator in the forward direction.
      *
-     * @return {@code true} if the partition iterator has more messages when
-     * traversing the iterator in the forward direction
+     * @return {@code true} if the partition iterator has more messages when traversing the iterator in the forward
+     * direction
      */
     boolean hasNext();
 
@@ -82,8 +81,8 @@ public interface MessageIterator extends ServiceLifecycle {
      * Returns {@code true} if this partition iterator has more messages when
      * traversing the iterator in the reverse direction.
      *
-     * @return {@code true} if the partition iterator has more messages when
-     * traversing the iterator in the reverse direction
+     * @return {@code true} if the partition iterator has more messages when traversing the iterator in the reverse
+     * direction
      */
     boolean hasPrevious();
 

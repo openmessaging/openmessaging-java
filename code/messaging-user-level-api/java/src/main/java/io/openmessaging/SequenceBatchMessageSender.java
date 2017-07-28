@@ -1,7 +1,5 @@
 package io.openmessaging;
 
-import io.openmessaging.exception.OMSMessageFormatException;
-
 /**
  * @author vintagewang@apache.org
  * @author yukon@apache.org

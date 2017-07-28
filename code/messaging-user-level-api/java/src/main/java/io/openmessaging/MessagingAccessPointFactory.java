@@ -50,8 +50,8 @@ public class MessagingAccessPointFactory {
      *
      * @param url the specified OMS driver url
      * @return a {@code MessagingAccessPoint} instance
-     * @throws OMSRuntimeException if the factory fails to create a {@code MessagingAccessPoint}
-     * due to some driver url some syntax error or internal error.
+     * @throws OMSRuntimeException if the factory fails to create a {@code MessagingAccessPoint} due to some driver url
+     * some syntax error or internal error.
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url) {
         return getMessagingAccessPoint(url, OMS.newKeyValue());
@@ -67,14 +67,14 @@ public class MessagingAccessPointFactory {
      *
      * @param url the specified OMS driver url
      * @return a {@code MessagingAccessPoint} instance
-     * @throws OMSRuntimeException if the factory fails to create a {@code MessagingAccessPoint}
-     * due to some driver url some syntax error or internal error.
+     * @throws OMSRuntimeException if the factory fails to create a {@code MessagingAccessPoint} due to some driver url
+     * some syntax error or internal error.
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {
         return MessagingAccessPointAdapter.getMessagingAccessPoint(url, properties);
     }
 
-    public static List<MessagingAccessPoint> messagingAccessPoints(){
+    public static List<MessagingAccessPoint> messagingAccessPoints() {
         return null;
     }
 }

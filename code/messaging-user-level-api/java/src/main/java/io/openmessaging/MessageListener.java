@@ -29,6 +29,16 @@ import io.openmessaging.exception.OMSRuntimeException;
  * @since OMS 1.0
  */
 public interface MessageListener {
+    /**
+     * Callback method to receive incoming messages.
+     * <p>
+     * A message listener should handle different types of {@code Message}.
+     *
+     * @param message the received Message object
+     * @param context the context delivered to the consume thread
+     */
+    void onReceived(Message message, Context context);
+
     interface Context {
         /**
          * Returns the attributes of this {@code MessageContext} instance.
@@ -55,14 +65,4 @@ public interface MessageListener {
          */
         void ack(KeyValue properties);
     }
-
-    /**
-     * Callback method to receive incoming messages.
-     * <p>
-     * A message listener should handle different types of {@code Message}.
-     *
-     * @param message the received Message object
-     * @param context the context delivered to the consume thread
-     */
-    void onReceived(Message message, Context context);
 }

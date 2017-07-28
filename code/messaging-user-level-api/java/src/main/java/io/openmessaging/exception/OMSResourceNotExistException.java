@@ -21,7 +21,6 @@ package io.openmessaging.exception;
  * The {@code OMSResourceNotExistException} occurs if requested resource is not exist.
  *
  * @author vintagewang@apache.org
- *
  * @version OMS 1.0
  * @since OMS 1.0
  */

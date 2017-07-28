@@ -6,6 +6,10 @@ package io.openmessaging.interceptor;
  * @since OMS 1.0
  */
 public interface ProducerInterceptor {
+    void sendBefore(SendBeforeContext context);
+
+    void sendAfter(SendAfterContext context);
+
     interface SendBeforeContext {
 
     }
@@ -13,8 +17,4 @@ public interface ProducerInterceptor {
     interface SendAfterContext {
 
     }
-
-    void sendBefore(SendBeforeContext context);
-
-    void sendAfter(SendAfterContext context);
 }

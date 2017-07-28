@@ -28,7 +28,6 @@ package io.openmessaging;
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
- *
  * @version OMS 1.0
  * @since OMS 1.0
  */
@@ -104,8 +103,8 @@ public interface Promise<V> {
     boolean setFailure(Throwable cause);
 
     /**
-     * Adds the specified listener to this promise. The specified listener is notified when this promise is done. If this
-     * promise is already completed, the specified listener will be notified immediately.
+     * Adds the specified listener to this promise. The specified listener is notified when this promise is done. If
+     * this promise is already completed, the specified listener will be notified immediately.
      *
      * @param listener PromiseListener
      */

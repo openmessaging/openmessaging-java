@@ -18,7 +18,6 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSRuntimeException;
-import io.openmessaging.interceptor.ProducerInterceptor;
 import io.openmessaging.interceptor.PushConsumerInterceptor;
 
 /**

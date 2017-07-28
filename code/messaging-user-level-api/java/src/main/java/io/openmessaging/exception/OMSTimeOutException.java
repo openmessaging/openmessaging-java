@@ -20,7 +20,6 @@ package io.openmessaging.exception;
 /**
  * @author vintagewang@apache.org
  * @author yukon@apache.org
- *
  * @version OMS 1.0
  * @since OMS 1.0
  */
