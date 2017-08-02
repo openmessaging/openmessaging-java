@@ -186,4 +186,8 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     List<Producer> producers();
 
     List<PushConsumer> pushConsumers();
+
+    List<StreamingConsumer> streamingConsumers();
+
+    List<PullConsumer> pullConsumers();
 }

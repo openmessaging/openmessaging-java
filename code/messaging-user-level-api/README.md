@@ -2,6 +2,7 @@
 * Namespace
 * Topic
 * Queue
+    * Stream
 * Routing
     * Operator
 
@@ -10,3 +11,5 @@
 * PushConsumer
 * PullConsumer
 * StreamingConsumer
+* Message
+    * BytesMessage
