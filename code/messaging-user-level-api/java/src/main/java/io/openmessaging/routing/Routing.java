@@ -17,9 +17,9 @@
 
 package io.openmessaging.routing;
 
-import io.openmessaging.ResourceManager;
 import io.openmessaging.KeyValue;
 import io.openmessaging.OMSBuiltinKeys;
+import io.openmessaging.ResourceManager;
 import java.util.List;
 
 /**
