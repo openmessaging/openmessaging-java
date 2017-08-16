@@ -17,7 +17,7 @@
 
 package io.openmessaging.routing;
 
-import io.openmessaging.CloudResourceManager;
+import io.openmessaging.ResourceManager;
 import io.openmessaging.KeyValue;
 import io.openmessaging.OMSBuiltinKeys;
 
@@ -36,7 +36,7 @@ public interface Operator {
     /**
      * Returns the attributes of this {@code Operator} object.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code Operator},
-     * and use {@link CloudResourceManager#createAndUpdateOperator(String, String, KeyValue)} to modify.
+     * and use {@link ResourceManager#createAndUpdateOperator(String, String, KeyValue)} to modify.
      * <p>
      * There are some standard attributes defined by OMS for {@code Routing}:
      * <ul>

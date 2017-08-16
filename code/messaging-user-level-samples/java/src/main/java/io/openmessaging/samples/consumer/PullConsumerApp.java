@@ -1,6 +1,6 @@
 package io.openmessaging.samples.consumer;
 
-import io.openmessaging.CloudResourceManager;
+import io.openmessaging.ResourceManager;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
@@ -13,7 +13,7 @@ public class PullConsumerApp {
             .getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
-        CloudResourceManager resourceManager = messagingAccessPoint.getResourceManager();
+        ResourceManager resourceManager = messagingAccessPoint.getResourceManager();
 
         resourceManager.createQueue("NS1", "HELLO_QUEUE", OMS.newKeyValue());
         //PullConsumer only can pull messages from one queue.

@@ -41,7 +41,7 @@ import java.util.List;
  * @author vintagewang@apache.org
  * @author yukon@apache.org
  * @version OMS 1.0
- * @see CloudResourceManager
+ * @see ResourceManager
  * @since OMS 1.0
  */
 public class MessagingAccessPointFactory {

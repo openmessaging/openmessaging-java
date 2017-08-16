@@ -34,7 +34,7 @@ public interface PushConsumer extends ServiceLifecycle {
     /**
      * Returns the attributes of this {@code PushConsumer} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code PushConsumer},
-     * and use {@link CloudResourceManager#setConsumerProperties(String, KeyValue)} to modify.
+     * and use {@link ResourceManager#setConsumerProperties(String, KeyValue)} to modify.
      * <p>
      * There are some standard attributes defined by OMS for {@code PushConsumer}:
      * <ul>

@@ -17,7 +17,7 @@
 
 package io.openmessaging.samples.consumer;
 
-import io.openmessaging.CloudResourceManager;
+import io.openmessaging.ResourceManager;
 import io.openmessaging.Message;
 import io.openmessaging.MessageListener;
 import io.openmessaging.MessagingAccessPoint;
@@ -32,7 +32,7 @@ public class PushConsumerApp {
             .getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
-        CloudResourceManager resourceManager = messagingAccessPoint.getResourceManager();
+        ResourceManager resourceManager = messagingAccessPoint.getResourceManager();
 
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
         // Consume messages from a simple queue.

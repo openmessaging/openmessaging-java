@@ -21,18 +21,18 @@ import io.openmessaging.exception.OMSResourceNotExistException;
 import java.util.List;
 
 /**
- * The {@code CloudResourceManager} is responsible for providing a unified interface of resource management,
+ * The {@code ResourceManager} is responsible for providing a unified interface of resource management,
  * allows the user to manage the topic, queue, namespace resources.
  * <p>
- * Create, fetch, update and destroy are the four basic functions of {@code CloudResourceManager}.
+ * Create, fetch, update and destroy are the four basic functions of {@code ResourceManager}.
  * <p>
- * And the {@code CloudResourceManager} also supports fetch and update resource attributes dynamically.
+ * And the {@code ResourceManager} also supports fetch and update resource attributes dynamically.
  * <p>
- * The attributes of consumer and producer also are treated as {@code Resource}. {@code CloudResourceManager}
+ * The attributes of consumer and producer also are treated as {@code Resource}. {@code ResourceManager}
  * allows the user to fetch producer and consumer list in a specified topic or queue,
  * and update their resource attributes dynamically.
  * <p>
- * {@link MessagingAccessPoint#getResourceManager()} is the unique method to obtain a {@code CloudResourceManager}
+ * {@link MessagingAccessPoint#getResourceManager()} is the unique method to obtain a {@code ResourceManager}
  * instance, any changes made by this instance will reflect to the message-oriented middleware (MOM) or
  * other product behind the {@code MessagingAccessPoint}.
  *
@@ -41,7 +41,7 @@ import java.util.List;
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface CloudResourceManager extends ServiceLifecycle {
+public interface ResourceManager extends ServiceLifecycle {
     /**
      * --------------
      */

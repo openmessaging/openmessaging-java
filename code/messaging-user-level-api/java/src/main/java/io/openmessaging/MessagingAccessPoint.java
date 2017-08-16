@@ -137,13 +137,13 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     StreamingConsumer createStreamingConsumer(String queueName, KeyValue properties);
 
     /**
-     * Gets a lightweight {@code CloudResourceManager} instance from the specified {@code MessagingAccessPoint}.
+     * Gets a lightweight {@code ResourceManager} instance from the specified {@code MessagingAccessPoint}.
      *
-     * @return the created {@code CloudResourceManager}
+     * @return the created {@code ResourceManager}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    CloudResourceManager getResourceManager();
+    ResourceManager getResourceManager();
 
     /**
      * Create a new {@code ServiceEndPoint} for the specified {@code MessagingAccessPoint}.
