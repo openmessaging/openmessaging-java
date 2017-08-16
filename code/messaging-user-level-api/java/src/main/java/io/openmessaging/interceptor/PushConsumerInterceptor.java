@@ -1,8 +1,5 @@
 package io.openmessaging.interceptor;
 
-import io.openmessaging.KeyValue;
-import io.openmessaging.PushConsumer;
-
 /**
  * @author vintagewang@apache.org
  * @version OMS 1.0
