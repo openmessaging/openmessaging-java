@@ -9,8 +9,6 @@ import io.openmessaging.PushConsumer;
  * @since OMS 1.0
  */
 public interface PushConsumerInterceptor {
-    PushConsumer constructPushConsumer(KeyValue properties);
-
     void onMessageBefore(OnMessageBeforeContext context);
 
     void onMessageAfter(OnMessageAfterContext context);
