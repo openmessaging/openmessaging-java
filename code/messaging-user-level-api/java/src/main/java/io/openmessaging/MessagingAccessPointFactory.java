@@ -18,6 +18,7 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.interceptor.ObjectInterceptor;
 import io.openmessaging.internal.MessagingAccessPointAdapter;
 import java.util.List;
 
@@ -76,5 +77,11 @@ public class MessagingAccessPointFactory {
 
     public static List<MessagingAccessPoint> messagingAccessPoints() {
         return null;
+    }
+
+    public static void registerObjectInterceptor(ObjectInterceptor objectInterceptor) {
+    }
+
+    public static void unregisterObjectInterceptor() {
     }
 }
