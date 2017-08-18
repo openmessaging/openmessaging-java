@@ -1,6 +1,7 @@
 package io.openmessaging.interceptor;
 
 import io.openmessaging.KeyValue;
+import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.Producer;
 import io.openmessaging.PullConsumer;
 import io.openmessaging.PushConsumer;
@@ -12,6 +13,8 @@ import io.openmessaging.StreamingConsumer;
  * @since OMS 1.0
  */
 public interface ObjectInterceptor {
+    MessagingAccessPoint constructMessagingAccessPoint(ConstructMessagingAccessPointContext context);
+
     PushConsumer constructPushConsumer(ConstructPushConsumerContext context);
 
     Producer constructProducer(ConstructProducerContext context);
@@ -20,19 +23,41 @@ public interface ObjectInterceptor {
 
     StreamingConsumer constructStreamingConsumer(ConstructStreamingConsumerContext context);
 
-    interface ConstructPullConsumerContext {
+    interface ConstructMessagingAccessPointContext {
+        MessagingAccessPoint messagingAccessPoint();
+
         KeyValue properties();
+    }
+
+    interface ConstructPullConsumerContext {
+        MessagingAccessPoint messagingAccessPoint();
+
+        KeyValue properties();
+
+        PullConsumer pullConsumer();
     }
 
     interface ConstructStreamingConsumerContext {
+        MessagingAccessPoint messagingAccessPoint();
+
         KeyValue properties();
+
+        StreamingConsumer streamingConsumer();
     }
 
     interface ConstructProducerContext {
+        MessagingAccessPoint messagingAccessPoint();
+
         KeyValue properties();
+
+        Producer producer();
     }
 
     interface ConstructPushConsumerContext {
+        MessagingAccessPoint messagingAccessPoint();
+
         KeyValue properties();
+
+        PushConsumer pushConsumer();
     }
 }
