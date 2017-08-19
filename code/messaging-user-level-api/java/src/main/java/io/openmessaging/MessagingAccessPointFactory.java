@@ -20,6 +20,7 @@ package io.openmessaging;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.interceptor.ObjectInterceptor;
 import io.openmessaging.internal.MessagingAccessPointAdapter;
+import io.openmessaging.internal.ObjectInterceptorFactory;
 import java.util.List;
 
 /**
@@ -55,7 +56,7 @@ public class MessagingAccessPointFactory {
      * some syntax error or internal error.
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url) {
-        return getMessagingAccessPoint(url, OMS.newKeyValue());
+        return ObjectInterceptorFactory.wrapMessagingAccessPoint(getMessagingAccessPoint(url, OMS.newKeyValue()));
     }
 
     /**
@@ -72,16 +73,16 @@ public class MessagingAccessPointFactory {
      * some syntax error or internal error.
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {
-        return MessagingAccessPointAdapter.getMessagingAccessPoint(url, properties);
+        return ObjectInterceptorFactory.wrapMessagingAccessPoint(MessagingAccessPointAdapter.getMessagingAccessPoint(url, properties));
     }
 
     public static List<MessagingAccessPoint> messagingAccessPoints() {
         return null;
     }
 
-    public static void registerObjectInterceptor(ObjectInterceptor objectInterceptor) {
+    public static void addObjectInterceptor(ObjectInterceptor objectInterceptor) {
     }
 
-    public static void unregisterObjectInterceptor() {
+    public static void removeObjectInterceptor(ObjectInterceptor objectInterceptor) {
     }
 }
