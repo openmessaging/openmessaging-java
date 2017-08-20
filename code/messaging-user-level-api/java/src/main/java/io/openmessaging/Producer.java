@@ -87,7 +87,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      */
     SendResult send(Message message, KeyValue properties);
 
-    SendResult send(Message message, LocalTransactionBranchExecutor branchExecutor, KeyValue properties);
+    SendResult send(Message message, LocalTransactionBranchExecutor branchExecutor, Object arg, KeyValue properties);
 
     /**
      * Sends a message to the specified destination asynchronously, the destination should be preset to

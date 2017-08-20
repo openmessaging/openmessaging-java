@@ -6,13 +6,19 @@ package io.openmessaging;
  * @since OMS 1.0
  */
 public interface LocalTransactionBranchExecutor {
-    boolean doLocalTransactionBranch(Message message, DoLocalTransactionBranchContext context);
+    void doLocalTransactionBranch(Message message, DoLocalTransactionBranchContext context, Object arg);
 
-    boolean checkLocalTransactionBranch(Message message, CheckLocalTransactionBranchContext context);
+    void checkLocalTransactionBranch(Message message, CheckLocalTransactionBranchContext context);
 
     interface DoLocalTransactionBranchContext {
+        void commit();
+
+        void rollback();
     }
 
     interface CheckLocalTransactionBranchContext {
+        void commit();
+
+        void rollback();
     }
 }
