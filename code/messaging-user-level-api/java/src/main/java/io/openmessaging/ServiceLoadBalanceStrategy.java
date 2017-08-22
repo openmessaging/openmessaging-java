@@ -24,15 +24,15 @@ import java.util.Set;
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface ServiceLoadBalance {
+public interface ServiceLoadBalanceStrategy {
     /**
      * Select a collection of eligible providerServicePoint object from the the list of providerServicePoint provided
      * According to different selection strategies to select providerServicePoint that satisfied with application needs,
      * such as RoundRobin or Random etc.
      *
-     * @param servicePropertiesList providerServicePoint to choose from.
+     * @param serviceInstanceList providerServicePoint to choose from.
      * @return a collection of eligible providerServicePoint object
      */
-    Set<ServiceProperties> select(Set<ServiceProperties> servicePropertiesList);
+    Set<ServiceInstance> select(Set<ServiceInstance> serviceInstanceList);
 
 }

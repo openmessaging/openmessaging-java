@@ -69,7 +69,7 @@ public interface ServiceEndPoint extends ServiceLifecycle {
      * @param <T> service proxy object to bind
      * @return service proxy object to bind
      */
-    <T> T bind(Class<T> type, KeyValue properties, ServiceLoadBalance serviceLoadBalance);
+    <T> T bind(Class<T> type, KeyValue properties, ServiceLoadBalanceStrategy serviceLoadBalance);
 
     InvokeContext invokeContext();
 }

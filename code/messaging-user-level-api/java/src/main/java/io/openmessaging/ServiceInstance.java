@@ -22,16 +22,6 @@ package io.openmessaging;
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface ServiceProperties {
-    String id();
-
-    void id(String id);
-
-    String relayAddress();
-
-    void relayAddress(String address);
-
+public interface ServiceInstance {
     String providerId();
-
-    void providerId(String id);
 }
