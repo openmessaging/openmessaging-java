@@ -141,7 +141,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      */
     void sendOneway(Message message, KeyValue properties);
 
-    SequenceBatchMessageSender createSequenceBatchMessageSender();
+    BatchMessageSender createSequenceBatchMessageSender();
 
     void addInterceptor(ProducerInterceptor interceptor);
 

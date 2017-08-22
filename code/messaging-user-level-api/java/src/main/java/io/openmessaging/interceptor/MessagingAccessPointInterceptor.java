@@ -8,7 +8,7 @@ import io.openmessaging.MessagingAccessPoint;
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface ObjectInterceptor {
+public interface MessagingAccessPointInterceptor {
     MessagingAccessPoint constructMessagingAccessPoint(ConstructMessagingAccessPointContext context);
 
     interface ConstructMessagingAccessPointContext {

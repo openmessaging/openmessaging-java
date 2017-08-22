@@ -6,7 +6,7 @@ package io.openmessaging;
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface SequenceBatchMessageSender {
+public interface BatchMessageSender {
     void send(Message message);
 
     void send(Message message, KeyValue properties);

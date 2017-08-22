@@ -2,18 +2,18 @@ package io.openmessaging.internal;
 
 import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.interceptor.ObjectInterceptor;
+import io.openmessaging.interceptor.MessagingAccessPointInterceptor;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ObjectInterceptorFactory {
-    private static List<ObjectInterceptor> listObjectInterceptor = new CopyOnWriteArrayList<ObjectInterceptor>();
+    private static List<MessagingAccessPointInterceptor> listObjectInterceptor = new CopyOnWriteArrayList<MessagingAccessPointInterceptor>();
 
-    public static void addObjectInterceptor(ObjectInterceptor objectInterceptor) {
+    public static void addObjectInterceptor(MessagingAccessPointInterceptor objectInterceptor) {
         listObjectInterceptor.add(objectInterceptor);
     }
 
-    public static void removeObjectInterceptor(ObjectInterceptor objectInterceptor) {
+    public static void removeObjectInterceptor(MessagingAccessPointInterceptor objectInterceptor) {
         listObjectInterceptor.remove(objectInterceptor);
     }
 
@@ -24,7 +24,7 @@ public class ObjectInterceptorFactory {
             try {
                 final MessagingAccessPoint nextMessagingAccessPoint = newMessagingAccessPoint;
 
-                final MessagingAccessPoint thisMessagingAccessPoint = listObjectInterceptor.get(i).constructMessagingAccessPoint(new ObjectInterceptor.ConstructMessagingAccessPointContext() {
+                final MessagingAccessPoint thisMessagingAccessPoint = listObjectInterceptor.get(i).constructMessagingAccessPoint(new MessagingAccessPointInterceptor.ConstructMessagingAccessPointContext() {
                     @Override public MessagingAccessPoint messagingAccessPoint() {
                         return nextMessagingAccessPoint;
                     }

@@ -18,7 +18,7 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSRuntimeException;
-import io.openmessaging.interceptor.ObjectInterceptor;
+import io.openmessaging.interceptor.MessagingAccessPointInterceptor;
 import io.openmessaging.internal.MessagingAccessPointAdapter;
 import io.openmessaging.internal.ObjectInterceptorFactory;
 import java.util.List;
@@ -80,9 +80,9 @@ public class MessagingAccessPointFactory {
         return null;
     }
 
-    public static void addObjectInterceptor(ObjectInterceptor objectInterceptor) {
+    public static void addInterceptor(MessagingAccessPointInterceptor interceptor) {
     }
 
-    public static void removeObjectInterceptor(ObjectInterceptor objectInterceptor) {
+    public static void removeInterceptor(MessagingAccessPointInterceptor interceptor) {
     }
 }
