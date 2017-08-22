@@ -6,7 +6,7 @@ import io.openmessaging.interceptor.MessagingAccessPointInterceptor;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class ObjectInterceptorFactory {
+public class MessagingAccessPointInterceptorFactory {
     private static List<MessagingAccessPointInterceptor> listObjectInterceptor = new CopyOnWriteArrayList<MessagingAccessPointInterceptor>();
 
     public static void addObjectInterceptor(MessagingAccessPointInterceptor objectInterceptor) {
