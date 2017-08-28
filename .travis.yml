@@ -1,7 +1,6 @@
 language: java
 jdk:
 - oraclejdk8
-- openjdk6
 
 script: cd code/ && mvn install
 env:
