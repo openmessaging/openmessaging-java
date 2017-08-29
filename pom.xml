@@ -56,12 +56,10 @@
     </properties>
 
     <modules>
-        <!--<module>messaging-binlog-core</module>-->
-        <!--<module>messaging-benchmark</module>-->
-        <!--<module>messaging-router</module>-->
-        <!--<module>messaging-wire-level-api</module>-->
-        <module>messaging-user-level-api/java</module>
-        <module>messaging-user-level-samples/java</module>
+        <module>openmessaging-admin</module>
+        <module>openmessaging-benchmark</module>
+        <module>openmessaging-api</module>
+        <module>openmessaging-api-samples</module>
     </modules>
 
     <build>

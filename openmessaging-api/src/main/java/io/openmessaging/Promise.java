@@ -24,7 +24,7 @@ package io.openmessaging;
  * ready.  Cancellation is performed by the {@code cancel} method.  Additional methods are provided to determine if the
  * task completed normally or was cancelled. Once a computation has completed, the computation cannot be cancelled. If
  * you would like to use a {@code Promise} for the sake of cancellability but not provide a usable result, you can
- * declare types of the form {@code Promise<?>} and return {@code null} as a result of the underlying task.
+ * declare type+s of the form {@code Promise<?>} and return {@code null} as a result of the underlying task.
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org

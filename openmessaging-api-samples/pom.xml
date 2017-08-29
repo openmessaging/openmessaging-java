@@ -4,7 +4,6 @@
         <groupId>io.openmessaging</groupId>
         <artifactId>parent</artifactId>
         <version>0.1.1-alpha-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>

@@ -3,14 +3,13 @@
     <parent>
         <groupId>io.openmessaging</groupId>
         <artifactId>parent</artifactId>
-        <version>0.1.0-alpha-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>0.1.1-alpha-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
-    <artifactId>messaging-spark</artifactId>
-    <name>messaging-spark ${project.version}</name>
+    <artifactId>openmessaging-benchmark</artifactId>
+    <name>openmessaging-benchmark ${project.version}</name>
 
     <dependencies>
         <dependency>
