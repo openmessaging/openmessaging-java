@@ -17,6 +17,9 @@
 
 package io.openmessaging;
 
+import io.openmessaging.consumer.PushConsumer;
+import io.openmessaging.producer.Producer;
+
 /**
  * The {@code ServiceLifecycle} defines a lifecycle interface for a OMS related service endpoint, like {@link Producer},
  * {@link PushConsumer}, and so on.

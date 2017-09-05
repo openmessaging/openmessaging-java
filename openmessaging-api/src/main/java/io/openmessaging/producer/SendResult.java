@@ -15,24 +15,30 @@
  *  limitations under the License.
  */
 
-package io.openmessaging;
+package io.openmessaging.producer;
 
-import java.util.Set;
+import io.openmessaging.KeyValue;
 
 /**
- * @author vintagewang@apache.org
+ * The result of sending a OMS message to server
+ * with the message id and some attributes.
+ *
+ * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface ServiceLoadBalanceStrategy {
+public interface SendResult {
     /**
-     * Select a collection of eligible providerServicePoint object from the the list of providerServicePoint provided
-     * According to different selection strategies to select providerServicePoint that satisfied with application needs,
-     * such as RoundRobin or Random etc.
+     * The unique message id related to the {@code SendResult} instance.
      *
-     * @param serviceInstanceList providerServicePoint to choose from.
-     * @return a collection of eligible providerServicePoint object
+     * @return the message id
      */
-    Set<ServiceInstance> select(Set<ServiceInstance> serviceInstanceList);
+    String messageId();
 
+    /**
+     * Returns the attributes of this {@code SendResult} instance.
+     *
+     * @return the attributes
+     */
+    KeyValue properties();
 }

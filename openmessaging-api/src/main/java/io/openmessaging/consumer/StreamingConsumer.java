@@ -15,8 +15,12 @@
  *  limitations under the License.
  */
 
-package io.openmessaging;
+package io.openmessaging.consumer;
 
+import io.openmessaging.KeyValue;
+import io.openmessaging.OMSBuiltinKeys;
+import io.openmessaging.ResourceManager;
+import io.openmessaging.ServiceLifecycle;
 import java.util.List;
 
 /**
@@ -62,18 +66,18 @@ public interface StreamingConsumer extends ServiceLifecycle {
     List<String> consumers();
 
     /**
-     * Creates a partition iterator from a specified partition.
+     * Creates a {@code Stream} instance from a {@code Stream}.
      *
-     * @param messageStreams a specified partition
+     * @param streamName a specified {@code Stream}
      * @return a partition iterator
      */
     Stream stream(String streamName);
 
     /**
-     * Creates a partition iterator from a specified partition, with some preset attributes.
+     * Creates a {@code Stream} instance from a {@code Stream}, with some preset attributes.
      *
-     * @param messageGroupName a specified partition
-     * @return a partition iterator
+     * @param streamName a specified {@code Stream}
+     * @return a {@code Stream} instance
      * @see Stream#properties()
      */
     Stream stream(String streamName, KeyValue properties);

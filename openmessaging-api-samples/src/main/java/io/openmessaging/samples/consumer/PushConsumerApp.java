@@ -19,11 +19,11 @@ package io.openmessaging.samples.consumer;
 
 import io.openmessaging.ResourceManager;
 import io.openmessaging.Message;
-import io.openmessaging.MessageListener;
+import io.openmessaging.consumer.MessageListener;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.OMS;
-import io.openmessaging.PushConsumer;
+import io.openmessaging.consumer.PushConsumer;
 import io.openmessaging.exception.OMSResourceNotExistException;
 
 public class PushConsumerApp {

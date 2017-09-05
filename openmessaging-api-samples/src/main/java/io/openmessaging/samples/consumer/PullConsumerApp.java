@@ -5,7 +5,7 @@ import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.OMS;
-import io.openmessaging.PullConsumer;
+import io.openmessaging.consumer.PullConsumer;
 
 public class PullConsumerApp {
     public static void main(String[] args) {

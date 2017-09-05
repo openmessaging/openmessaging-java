@@ -15,9 +15,11 @@
  *  limitations under the License.
  */
 
-package io.openmessaging;
+package io.openmessaging.consumer;
 
-import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.KeyValue;
+import io.openmessaging.OMSBuiltinKeys;
+import io.openmessaging.ServiceLifecycle;
 
 /**
  * A {@code Queue} is divided by many streams.
@@ -31,7 +33,7 @@ import io.openmessaging.exception.OMSRuntimeException;
  * @see StreamingConsumer#stream(String)
  * @since OMS 1.0
  */
-public interface MessageIterator extends ServiceLifecycle {
+public interface Stream extends ServiceLifecycle {
     /**
      * Returns the attributes of this {@code Stream} instance.
      * <p>
@@ -52,49 +54,36 @@ public interface MessageIterator extends ServiceLifecycle {
     KeyValue properties();
 
     /**
-     * Persist this iterator to local or remote server, that depends on specified
-     * implementation of {@link MessageIterator}.
-     */
-    void commit(boolean flush);
-
-    /**
-     * Returns {@code true} if this partition iterator has more messages when
-     * traversing the iterator in the forward direction.
+     * Fetches the current offset of this partition iterator.
      *
-     * @return {@code true} if the partition iterator has more messages when traversing the iterator in the forward
-     * direction
+     * @return the current offset, return -1 if the iterator is first created.
      */
-    boolean hasNext();
+    MessageIterator current();
 
     /**
-     * Returns the next message in the iteration and advances the offset position.
+     * Fetches the first offset of this partition iterator.
+     *
+     * @return the first offset, return -1 if the partition has no message.
+     */
+    MessageIterator begin();
+
+    /**
+     * Fetches the last offset of this partition iterator.
+     *
+     * @return the last offset, return 0 if the iterator is first created.
+     */
+    MessageIterator end();
+
+    /**
+     * Moves the current offset to the specified timestamp.
      * <p>
-     * This method may be called repeatedly to iterate through the iteration,
-     * or intermixed with calls to {@link #previous} to go back and forth.
-     *
-     * @return the next message in the list
-     * @throws OMSRuntimeException if the iteration has no more message
-     */
-    Message next();
-
-    /**
-     * Returns {@code true} if this partition iterator has more messages when
-     * traversing the iterator in the reverse direction.
-     *
-     * @return {@code true} if the partition iterator has more messages when traversing the iterator in the reverse
-     * direction
-     */
-    boolean hasPrevious();
-
-    /**
-     * Returns the previous message in the iteration and moves the offset
-     * position backwards.
+     * Moves the current offset to the first offset, if the given timestamp
+     * is earlier than the first message's store timestamp in this partition iterator.
      * <p>
-     * This method may be called repeatedly to iterate through the iteration backwards,
-     * or intermixed with calls to {@link #next} to go back and forth.
+     * Moves the current offset to the last offset, if the given timestamp
+     * is later than the last message's store timestamp in this partition iterator.
      *
-     * @return the previous message in the list
-     * @throws OMSRuntimeException if the iteration has no previous message
+     * @param timestamp the specified timestamp
      */
-    Message previous();
+    MessageIterator seekByTime(long timestamp);
 }

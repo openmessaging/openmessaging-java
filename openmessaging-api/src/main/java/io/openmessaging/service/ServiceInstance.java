@@ -15,28 +15,13 @@
  *  limitations under the License.
  */
 
-package io.openmessaging;
+package io.openmessaging.service;
 
 /**
- * The result of sending a OMS message to server
- * with the message id and some attributes.
- *
- * @author yukon@apache.org
+ * @author vintagewang@apache.
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface SendResult {
-    /**
-     * The unique message id related to the {@code SendResult} instance.
-     *
-     * @return the message id
-     */
-    String messageId();
-
-    /**
-     * Returns the attributes of this {@code SendResult} instance.
-     *
-     * @return the attributes
-     */
-    KeyValue properties();
+public interface ServiceInstance {
+    String providerId();
 }

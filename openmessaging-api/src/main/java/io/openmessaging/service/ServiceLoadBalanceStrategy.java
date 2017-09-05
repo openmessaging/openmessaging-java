@@ -15,13 +15,24 @@
  *  limitations under the License.
  */
 
-package io.openmessaging;
+package io.openmessaging.service;
+
+import java.util.Set;
 
 /**
- * @author vintagewang@apache.
+ * @author vintagewang@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface ServiceInstance {
-    String providerId();
+public interface ServiceLoadBalanceStrategy {
+    /**
+     * Select a collection of eligible providerServicePoint object from the the list of providerServicePoint provided
+     * According to different selection strategies to select providerServicePoint that satisfied with application needs,
+     * such as RoundRobin or Random etc.
+     *
+     * @param serviceInstanceList providerServicePoint to choose from.
+     * @return a collection of eligible providerServicePoint object
+     */
+    Set<ServiceInstance> select(Set<ServiceInstance> serviceInstanceList);
+
 }

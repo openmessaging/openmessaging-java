@@ -15,8 +15,17 @@
  *  limitations under the License.
  */
 
-package io.openmessaging;
+package io.openmessaging.producer;
 
+import io.openmessaging.KeyValue;
+import io.openmessaging.Message;
+import io.openmessaging.MessageFactory;
+import io.openmessaging.MessagingAccessPoint;
+import io.openmessaging.OMSBuiltinKeys;
+import io.openmessaging.Promise;
+import io.openmessaging.PromiseListener;
+import io.openmessaging.ResourceManager;
+import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSMessageFormatException;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSTimeOutException;

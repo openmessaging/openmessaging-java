@@ -15,7 +15,9 @@
  *  limitations under the License.
  */
 
-package io.openmessaging;
+package io.openmessaging.service;
+
+import io.openmessaging.KeyValue;
 
 /**
  * @author vintagewang@apache.org

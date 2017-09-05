@@ -2,12 +2,12 @@ package io.openmessaging.samples.consumer;
 
 import io.openmessaging.ResourceManager;
 import io.openmessaging.Message;
-import io.openmessaging.MessageIterator;
+import io.openmessaging.consumer.MessageIterator;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.OMS;
-import io.openmessaging.Stream;
-import io.openmessaging.StreamingConsumer;
+import io.openmessaging.consumer.Stream;
+import io.openmessaging.consumer.StreamingConsumer;
 
 public class StreamingConsumerApp {
     public static void main(String[] args) {

@@ -19,7 +19,7 @@ package io.openmessaging.samples.service;
 
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
-import io.openmessaging.ServiceEndPoint;
+import io.openmessaging.service.ServiceEndPoint;
 import io.openmessaging.samples.service.api.CallRequest;
 import io.openmessaging.samples.service.api.CallResponse;
 import io.openmessaging.samples.service.api.HelloService;

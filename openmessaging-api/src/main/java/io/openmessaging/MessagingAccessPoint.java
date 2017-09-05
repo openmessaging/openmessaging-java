@@ -17,8 +17,14 @@
 
 package io.openmessaging;
 
+import io.openmessaging.consumer.MessageListener;
+import io.openmessaging.consumer.PullConsumer;
+import io.openmessaging.consumer.PushConsumer;
+import io.openmessaging.consumer.StreamingConsumer;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.observer.Observer;
+import io.openmessaging.producer.Producer;
+import io.openmessaging.service.ServiceEndPoint;
 import java.util.List;
 
 /**

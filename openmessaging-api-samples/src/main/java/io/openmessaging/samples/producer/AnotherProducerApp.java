@@ -19,8 +19,8 @@ package io.openmessaging.samples.producer;
 
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
-import io.openmessaging.Producer;
-import io.openmessaging.SendResult;
+import io.openmessaging.producer.Producer;
+import io.openmessaging.producer.SendResult;
 import java.nio.charset.Charset;
 
 public class AnotherProducerApp {

@@ -1,4 +1,7 @@
-package io.openmessaging;
+package io.openmessaging.producer;
+
+import io.openmessaging.KeyValue;
+import io.openmessaging.Message;
 
 /**
  * @author vintagewang@apache.org

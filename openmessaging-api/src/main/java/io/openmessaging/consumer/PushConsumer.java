@@ -15,8 +15,14 @@
  *  limitations under the License.
  */
 
-package io.openmessaging;
+package io.openmessaging.consumer;
 
+import io.openmessaging.KeyValue;
+import io.openmessaging.Message;
+import io.openmessaging.MessagingAccessPoint;
+import io.openmessaging.OMSBuiltinKeys;
+import io.openmessaging.ResourceManager;
+import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.interceptor.PushConsumerInterceptor;
 

@@ -24,12 +24,15 @@ public class MessagingAccessPointInterceptorFactory {
             try {
                 final MessagingAccessPoint nextMessagingAccessPoint = newMessagingAccessPoint;
 
-                final MessagingAccessPoint thisMessagingAccessPoint = listObjectInterceptor.get(i).constructMessagingAccessPoint(new MessagingAccessPointInterceptor.ConstructMessagingAccessPointContext() {
-                    @Override public MessagingAccessPoint messagingAccessPoint() {
+                final MessagingAccessPoint thisMessagingAccessPoint = listObjectInterceptor.get(i).constructMessagingAccessPoint(
+                    new MessagingAccessPointInterceptor.ConstructMessagingAccessPointContext() {
+                    @Override
+                    public MessagingAccessPoint messagingAccessPoint() {
                         return nextMessagingAccessPoint;
                     }
 
-                    @Override public KeyValue properties() {
+                    @Override
+                    public KeyValue properties() {
                         return nextMessagingAccessPoint.properties();
                     }
                 });
