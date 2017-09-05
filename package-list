@@ -1,6 +1,9 @@
 io.openmessaging
+io.openmessaging.consumer
 io.openmessaging.exception
 io.openmessaging.interceptor
 io.openmessaging.internal
 io.openmessaging.observer
+io.openmessaging.producer
 io.openmessaging.routing
+io.openmessaging.service
