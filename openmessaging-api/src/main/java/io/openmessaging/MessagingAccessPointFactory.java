@@ -65,7 +65,7 @@ public class MessagingAccessPointFactory {
      * class as a unique constructor parameter.
      *
      * There are some standard properties defined by OMS for this method,
-     * the same as {@link MessagingAccessPoint#attributes()}
+     * the same as {@link MessagingAccessPoint#properties()}
      *
      * @param url the specified OMS driver url
      * @return a {@code MessagingAccessPoint} instance

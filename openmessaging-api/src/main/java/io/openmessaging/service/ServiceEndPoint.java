@@ -67,12 +67,12 @@ public interface ServiceEndPoint extends ServiceLifecycle {
      * endPoint target
      *
      * @param type service type to bind in serviceConsumer
-     * @param properties the service band attributes
      * @param serviceLoadBalance select endPoint target algorithm
+     * @param properties the service band attributes
      * @param <T> service proxy object to bind
      * @return service proxy object to bind
      */
-    <T> T bind(Class<T> type, KeyValue properties, ServiceLoadBalanceStrategy serviceLoadBalance);
+    <T> T bind(Class<T> type, ServiceLoadBalanceStrategy serviceLoadBalance, KeyValue properties);
 
     InvokeContext invokeContext();
 }

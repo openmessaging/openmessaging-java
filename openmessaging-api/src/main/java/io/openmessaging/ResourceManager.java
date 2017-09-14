@@ -43,60 +43,198 @@ import java.util.List;
  */
 public interface ResourceManager extends ServiceLifecycle {
     /**
-     * --------------
+     * Creates a {@code Namespace} resource for the specified {@code MessagingAccessPoint} with some preset properties.
+     * <p>
+     * Note that this method will simply create the physical Namespace in the specified {@code MessagingAccessPoint}.
+     *
+     * @param nsName the namespace name
+     * @param attributes the preset properties
      */
     void createNamespace(String nsName, KeyValue attributes);
 
+    /**
+     * Updates the attributes of a specified namespace, all the old attributes will be removed and apply the new
+     * attributes.
+     *
+     * @param nsName the namespace name
+     * @param attributes the new attributes
+     * @throws OMSResourceNotExistException if the specified namespace is not exists
+     */
     void setNamespaceAttributes(String nsName, KeyValue attributes) throws OMSResourceNotExistException;
 
+    /**
+     * Gets the attributes of a specified namespace.
+     *
+     * @param nsName the namespace name
+     * @return the attributes of namespace
+     * @throws OMSResourceNotExistException if the specified namespace is not exists
+     */
     KeyValue getNamespaceAttributes(String nsName) throws OMSResourceNotExistException;
 
+    /**
+     * Deletes an existing namespace resource.
+     *
+     * @param nsName the namespace needs to be deleted
+     * @throws OMSResourceNotExistException if the specified namespace is not exists
+     */
     void deleteNamespace(String nsName) throws OMSResourceNotExistException;
 
+    /**
+     * Gets the namespace list in current {@code MessagingAccessPoint}.
+     *
+     * @return the list of all namespaces
+     */
     List<String> listNamespaces();
 
     /**
-     * --------------
+     * Creates a {@code Topic} resource in the specified namespace with some preset properties.
+     * <p>
+     *
+     * @param nsName the namespace name
+     * @param topicName the topic name
+     * @param attributes the preset properties
      */
     void createTopic(String nsName, String topicName, KeyValue attributes);
 
+    /**
+     * Updates the attributes of a specified topic, all the old attributes will be removed and apply the new
+     * attributes.
+     *
+     * @param nsName the namespace name
+     * @param topicName the topic name
+     * @param attributes the new attributes
+     * @throws OMSResourceNotExistException if the specified topic or namespace is not exists
+     */
     void setTopicAttributes(String nsName, String topicName, KeyValue attributes) throws OMSResourceNotExistException;
 
+    /**
+     * Gets the attributes of a specified topic.
+     *
+     * @param nsName the namespace name
+     * @param topicName the topic name
+     * @return the attributes of namespace
+     * @throws OMSResourceNotExistException if the specified topic or namespace is not exists
+     */
     KeyValue getTopicAttributes(String nsName, String topicName) throws OMSResourceNotExistException;
 
+    /**
+     * Deletes an existing topic resource.
+     *
+     * @param nsName the namespace of the existing topic
+     * @param topicName the topic needs to be deleted
+     * @throws OMSResourceNotExistException if the specified namespace is not exists
+     */
     void deleteTopic(String nsName, String topicName) throws OMSResourceNotExistException;
 
+    /**
+     * Gets the topic list in specified namespace, return a empty list if the namespace is not exists
+     *
+     * @param nsName the namespace name
+     * @return the list of all topics
+     */
     List<String> listTopics(String nsName);
 
     /**
-     * --------------
+     * Creates a {@code Queue} resource in the specified namespace with some preset properties.
+     * <p>
+     *
+     * @param nsName the namespace name
+     * @param queueName the queue name
+     * @param attributes the preset properties
      */
     void createQueue(String nsName, String queueName, KeyValue attributes);
 
+    /**
+     * Updates the attributes of a specified queue, all the old attributes will be removed and apply the new
+     * attributes.
+     *
+     * @param nsName the namespace name
+     * @param queueName the topic name
+     * @param attributes the new attributes
+     * @throws OMSResourceNotExistException if the specified topic or namespace is not exists
+     */
     void setQueueAttributes(String nsName, String queueName, KeyValue attributes) throws OMSResourceNotExistException;
 
+    /**
+     * Gets the attributes of a specified queue.
+     *
+     * @param nsName the namespace name
+     * @param queueName the topic name
+     * @return the attributes of namespace
+     * @throws OMSResourceNotExistException if the specified topic or namespace is not exists
+     */
     KeyValue getQueueAttributes(String nsName, String queueName) throws OMSResourceNotExistException;
 
+    /**
+     * Deletes an existing queue resource.
+     *
+     * @param nsName the namespace of the existing queue
+     * @param queueName the queue needs to be deleted
+     * @throws OMSResourceNotExistException if the specified queue or namespace is not exists
+     */
     void deleteQueue(String nsName, String queueName) throws OMSResourceNotExistException;
 
+    /**
+     * Gets the queue list in specified namespace, return a empty list if the namespace is not exists
+     *
+     * @param nsName the namespace name
+     * @return the list of all queues
+     */
     List<String> listQueues(String nsName);
 
     /**
-     * --------------
+     * Creates a {@code Routing} resource in the specified namespace with some preset properties.
+     * <p>
+     *
+     * @param nsName the namespace name
+     * @param routingName the routing name
+     * @param attributes the preset properties
      */
     void createRouting(String nsName, String routingName, KeyValue attributes);
 
-    void setRoutingAttributes(String nsName, String routingName,
-        KeyValue attributes) throws OMSResourceNotExistException;
+    /**
+     * Updates the attributes of a specified routing, all the old attributes will be removed and apply the new
+     * attributes.
+     *
+     * @param nsName the namespace name
+     * @param routingName the routing name
+     * @param attributes the new attributes
+     * @throws OMSResourceNotExistException if the specified routing or namespace is not exists
+     */
+    void setRoutingAttributes(String nsName, String routingName, KeyValue attributes) throws OMSResourceNotExistException;
 
+    /**
+     * Gets the attributes of a specified routing.
+     *
+     * @param nsName the namespace name
+     * @param routingName the routing name
+     * @return the attributes of namespace
+     * @throws OMSResourceNotExistException if the specified routing or namespace is not exists
+     */
     KeyValue getRoutingAttributes(String nsName, String routingName) throws OMSResourceNotExistException;
 
+    /**
+     * Deletes an existing routing resource.
+     *
+     * @param nsName the namespace of the existing routing
+     * @param routingName the routing needs to be deleted
+     * @throws OMSResourceNotExistException if the specified routing or namespace is not exists
+     */
     void deleteRouting(String nsName, String routingName) throws OMSResourceNotExistException;
 
+    /**
+     * Gets the routing list in specified namespace, return a empty list if the namespace is not exists
+     *
+     * @param nsName the namespace name
+     * @return the list of all routing
+     */
     List<String> listRoutings(String nsName);
 
     /**
-     * --------------
+     * Message also is a resource, the headers of message can be updated by this method
+     *
+     * @param messageId the id of message
+     * @param headers the new headers
      */
     void updateMessage(String messageId, KeyValue headers);
 }
