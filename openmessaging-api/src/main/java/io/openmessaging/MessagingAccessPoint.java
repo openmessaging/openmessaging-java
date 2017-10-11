@@ -42,6 +42,8 @@ import java.util.List;
  * @since OMS 1.0
  */
 public interface MessagingAccessPoint extends ServiceLifecycle {
+    String implVersion();
+
     /**
      * Returns the properties of this {@code MessagingAccessPoint} instance.
      * <p>

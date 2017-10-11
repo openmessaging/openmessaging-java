@@ -47,6 +47,8 @@ import java.util.List;
  * @since OMS 1.0
  */
 public class MessagingAccessPointFactory {
+    public static final String SpecVersion = "1.0.0";
+
     /**
      * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url.
      *
