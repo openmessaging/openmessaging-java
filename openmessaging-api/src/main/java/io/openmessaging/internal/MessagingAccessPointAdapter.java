@@ -19,6 +19,7 @@ package io.openmessaging.internal;
 
 import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
+import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.exception.OMSRuntimeException;
 import java.lang.reflect.Constructor;
@@ -59,9 +60,19 @@ public class MessagingAccessPointAdapter {
         try {
             Class<?> driverImplClass = Class.forName(driverImpl);
             Constructor constructor = driverImplClass.getConstructor(KeyValue.class);
-            return (MessagingAccessPoint) constructor.newInstance(properties);
+            MessagingAccessPoint vendorImpl = (MessagingAccessPoint) constructor.newInstance(properties);
+            checkSpecVersion(OMS.specVersion, vendorImpl.implVersion());
+            return vendorImpl;
         } catch (Throwable e) {
             throw new OMSRuntimeException("-1", "Can't construct a MessagingAccessPoint instance from the given OMS driver url.", e);
+        }
+    }
+
+    private static void checkSpecVersion(final String specVersion, final String implVersion) {
+        String majorVerOfImpl = implVersion.substring(0, implVersion.lastIndexOf('.'));
+        String majorVerOfSpec = specVersion.substring(0, specVersion.lastIndexOf('.'));
+        if (!majorVerOfImpl.equals(majorVerOfSpec)) {
+            throw new OMSRuntimeException("-1", "The implementation version does not match the specification version.");
         }
     }
 

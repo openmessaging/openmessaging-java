@@ -18,6 +18,9 @@
 package io.openmessaging;
 
 import io.openmessaging.internal.DefaultKeyValue;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * The OMS class provides some useful util methods.
@@ -34,5 +37,16 @@ public class OMS {
      */
     public static KeyValue newKeyValue() {
         return new DefaultKeyValue();
+    }
+
+    public static String specVersion = "UnKnown";
+
+    static {
+        try (final InputStream stream = OMS.class.getClassLoader().getResourceAsStream("oms.spec.properties")) {
+            Properties properties = new Properties();
+            properties.load(stream);
+            specVersion = String.valueOf(properties.get("version"));
+        } catch (IOException ignore) {
+        }
     }
 }

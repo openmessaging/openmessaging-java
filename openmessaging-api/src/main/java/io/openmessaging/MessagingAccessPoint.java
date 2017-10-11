@@ -42,6 +42,12 @@ import java.util.List;
  * @since OMS 1.0
  */
 public interface MessagingAccessPoint extends ServiceLifecycle {
+    /**
+     * Returns the target OMS specification version of specified vendor implementation.
+     *
+     * @return the OMS version of implementation
+     * @see OMS#specVersion
+     */
     String implVersion();
 
     /**
