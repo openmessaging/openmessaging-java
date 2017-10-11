@@ -34,9 +34,9 @@ public class MessagingAccessPointAdapter {
     /**
      * The correct OMS driver url is:
      * <p>
-     * {@literal openmessaging:<driver_type>://<access_point>[,<access_point>,...]/<namespace>}
+     * {@literal oms:<driver_type>://<access_point>[,<access_point>,...]/<namespace>}
      */
-    private static final String pattern = "^openmessaging:.+://.+/.*$";
+    private static final String pattern = "^oms:.+://.+/.*$";
 
     /**
      * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url
