@@ -39,6 +39,15 @@ public class OMS {
         return new DefaultKeyValue();
     }
 
+    /**
+     * The version format is X.Y.Z (Major.Minor.Patch), a pre-release version may be denoted by appending a hyphen and a
+     * series of dot-separated identifiers immediately following the patch version, like X.Y.Z-alpha.
+     *
+     * <p>
+     * OMS version follows semver scheme partially.
+     *
+     * @see <a href="http://semver.org">http://semver.org</a>
+     */
     public static String specVersion = "UnKnown";
 
     static {

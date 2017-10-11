@@ -33,19 +33,20 @@ import java.lang.reflect.Constructor;
  */
 public class MessagingAccessPointAdapter {
     /**
-     * The correct OMS driver url is:
+     * The correct OMS driver URL is:
      * <p>
      * {@literal oms:<driver_type>://<access_point>[,<access_point>,...]/<namespace>}
      */
     private static final String pattern = "^oms:.+://.+/.*$";
 
     /**
-     * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url
+     * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver URL
      * with some preset userHeaders.
      *
-     * @param url the driver url
+     * @param url the driver URL
      * @param properties the preset userHeaders
      * @return a {@code MessagingAccessPoint} instance
+     * @throws OMSRuntimeException if the adapter fails to create a {@code MessagingAccessPoint} instance from the URL
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {
         checkDriverURL(url);
@@ -64,15 +65,7 @@ public class MessagingAccessPointAdapter {
             checkSpecVersion(OMS.specVersion, vendorImpl.implVersion());
             return vendorImpl;
         } catch (Throwable e) {
-            throw new OMSRuntimeException("-1", "Can't construct a MessagingAccessPoint instance from the given OMS driver url.", e);
-        }
-    }
-
-    private static void checkSpecVersion(final String specVersion, final String implVersion) {
-        String majorVerOfImpl = implVersion.substring(0, implVersion.lastIndexOf('.'));
-        String majorVerOfSpec = specVersion.substring(0, specVersion.lastIndexOf('.'));
-        if (!majorVerOfImpl.equals(majorVerOfSpec)) {
-            throw new OMSRuntimeException("-1", "The implementation version does not match the specification version.");
+            throw generateInternalException(InternalErrorCode.OMS_DRIVER_URL_UNAVAILABLE, url);
         }
     }
 
@@ -88,12 +81,30 @@ public class MessagingAccessPointAdapter {
         if (properties.containsKey(OMSBuiltinKeys.DRIVER_IMPL)) {
             return properties.getString(OMSBuiltinKeys.DRIVER_IMPL);
         }
-        return "io.openmessaging." + url.split(":")[1] + ".MessagingAccessPointImpl";
+        String driverType = url.split(":")[1];
+        return "io.openmessaging." + driverType + ".MessagingAccessPointImpl";
     }
 
     private static void checkDriverURL(String url) {
         if (!url.matches(pattern)) {
-            throw new OMSRuntimeException("-1", "The OMS driver url is illegal.");
+            throw generateInternalException(InternalErrorCode.OMS_DRIVER_URL_ILLEGAL, url);
         }
+    }
+
+    private static void checkSpecVersion(final String specVersion, final String implVersion) {
+        String majorVerOfImpl;
+        String majorVerOfSpec = specVersion.substring(0, specVersion.indexOf('.', specVersion.indexOf('.') + 1));
+        try {
+            majorVerOfImpl = implVersion.substring(0, implVersion.indexOf('.', implVersion.indexOf('.') + 1));
+        } catch (Throwable e) {
+            throw generateInternalException(InternalErrorCode.IMPL_VERSION_ILLEGAL, implVersion);
+        }
+        if (!majorVerOfSpec.equals(majorVerOfImpl)) {
+            throw generateInternalException(InternalErrorCode.SPEC_IMPL_VERSION_MISMATCH, implVersion, specVersion);
+        }
+    }
+
+    private static OMSRuntimeException generateInternalException(InternalErrorCode errorCode, String... messageArgs) {
+        return new OMSRuntimeException(errorCode.name(), String.format(errorCode.message, (Object[]) messageArgs));
     }
 }
