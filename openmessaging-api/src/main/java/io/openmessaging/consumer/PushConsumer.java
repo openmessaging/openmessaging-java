@@ -83,7 +83,7 @@ public interface PushConsumer extends ServiceLifecycle {
 
     /**
      * Attaches the {@code PushConsumer} to a specified queue, with a {@code MessageListener}.
-     * {@link MessageListener#onMessage(Message, MessageContext)} will be called when new
+     * {@link MessageListener#onReceived(Message, MessageListener.Context)} will be called when new
      * delivered message is coming.
      *
      * @param queueName a specified queue
@@ -97,7 +97,7 @@ public interface PushConsumer extends ServiceLifecycle {
     /**
      * Attaches the {@code PushConsumer} to a specified queue, with a {@code MessageListener} and some
      * specified attributes.
-     * {@link MessageListener#onMessage(Message, MessageContext)} will be called when new
+     * {@link MessageListener#onReceived(Message, MessageListener.Context)}  will be called when new
      * delivered message is coming.
      *
      * @param queueName a specified queue

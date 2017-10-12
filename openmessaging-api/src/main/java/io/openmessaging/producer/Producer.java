@@ -37,9 +37,8 @@ import io.openmessaging.interceptor.ProducerInterceptor;
  * of a {@code MessagingAccessPoint}. An instance of {@code Producer} is
  * created by calling the {@link MessagingAccessPoint#createProducer()} method.
  * It provides various {@code send} methods to send a message to a specified destination.
- * A destination can be a {@link MessageHeaderBuiltinKeys#Topic} or a {@link MessageHeaderBuiltinKeys#Queue}.
+ * A destination can be a {@link Message.BuiltinKeys#Topic} or a {@link Message.BuiltinKeys#Queue}.
  * <p>
- *
  * {@link Producer#send(Message)} means send a message to destination synchronously,
  * the calling thread will block until the send request complete.
  * <p>
@@ -68,13 +67,13 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * <li> {@link OMSBuiltinKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code Producer}.
      * </ul>
      *
-     * @return the attributes
+     * @return the properties
      */
     KeyValue properties();
 
     /**
      * Sends a message to the specified destination synchronously, the destination should be preset to
-     * {@link MessageHeaderBuiltinKeys}, other header fields as well.
+     * {@link Message#sysHeaders()}, other header fields as well.
      *
      * @param message a message will be sent
      * @return the successful {@code SendResult}
@@ -86,7 +85,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination synchronously, using the specified attributes, the destination
-     * should be preset to {@link MessageHeaderBuiltinKeys}, other header fields as well.
+     * should be preset to {@link Message#sysHeaders()}, other header fields as well.
      *
      * @param message a message will be sent
      * @param properties the specified attributes
@@ -101,7 +100,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination asynchronously, the destination should be preset to
-     * {@link MessageHeaderBuiltinKeys}, other header fields as well.
+     * {@link Message#sysHeaders()}, other header fields as well.
      * <p>
      * The returned {@code Promise} will have the result once the operation completes, and the registered
      * {@code FutureListener} will be notified, either because the operation was successful or because of an error.
@@ -115,7 +114,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination asynchronously, using the specified attributes, the destination
-     * should be preset to {@link MessageHeaderBuiltinKeys}, other header fields as well.
+     * should be preset to {@link Message#sysHeaders()}, other header fields as well.
      * <p>
      * The returned {@code Promise} will have the result once the operation completes, and the registered
      * {@code FutureListener} will be notified, either because the operation was successful or because of an error.
@@ -130,7 +129,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination in one way, the destination should be preset to
-     * {@link MessageHeaderBuiltinKeys}, other header fields as well.
+     * {@link Message#sysHeaders()}, other header fields as well.
      * <p>
      * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't
      * care about the send result and also have no context to get the result.
@@ -141,7 +140,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination in one way, using the specified attributes, the destination
-     * should be preset to {@link MessageHeaderBuiltinKeys}, other header fields as well.
+     * should be preset to {@link Message#sysHeaders()}, other header fields as well.
      * <p>
      * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't
      * care about the send result and also have no context to get the result.
