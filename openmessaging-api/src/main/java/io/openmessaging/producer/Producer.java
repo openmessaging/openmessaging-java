@@ -17,13 +17,14 @@
 
 package io.openmessaging.producer;
 
+import io.openmessaging.Future;
 import io.openmessaging.KeyValue;
 import io.openmessaging.Message;
 import io.openmessaging.MessageFactory;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.Promise;
-import io.openmessaging.PromiseListener;
+import io.openmessaging.FutureListener;
 import io.openmessaging.ResourceManager;
 import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSMessageFormatException;
@@ -44,7 +45,7 @@ import io.openmessaging.interceptor.ProducerInterceptor;
  * <p>
  * {@link Producer#sendAsync(Message)} means send a message to destination asynchronously,
  * the calling thread won't block and will return immediately. Since the send call is asynchronous
- * it returns a {@link Promise} for the send result.
+ * it returns a {@link Future} for the send result.
  * <p>
  * {@link Producer#sendOneway(Message)} means send a message to destination in one way,
  * the calling thread won't block and will return immediately. The caller won't care about
@@ -103,29 +104,29 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * {@link MessageHeaderBuiltinKeys}, other header fields as well.
      * <p>
      * The returned {@code Promise} will have the result once the operation completes, and the registered
-     * {@code PromiseListener} will be notified, either because the operation was successful or because of an error.
+     * {@code FutureListener} will be notified, either because the operation was successful or because of an error.
      *
      * @param message a message will be sent
      * @return the {@code Promise} of an asynchronous message send operation.
-     * @see Promise
-     * @see PromiseListener
+     * @see Future
+     * @see FutureListener
      */
-    Promise<SendResult> sendAsync(Message message);
+    Future<SendResult> sendAsync(Message message);
 
     /**
      * Sends a message to the specified destination asynchronously, using the specified attributes, the destination
      * should be preset to {@link MessageHeaderBuiltinKeys}, other header fields as well.
      * <p>
      * The returned {@code Promise} will have the result once the operation completes, and the registered
-     * {@code PromiseListener} will be notified, either because the operation was successful or because of an error.
+     * {@code FutureListener} will be notified, either because the operation was successful or because of an error.
      *
      * @param message a message will be sent
      * @param properties the specified attributes
      * @return the {@code Promise} of an asynchronous message send operation.
-     * @see Promise
-     * @see PromiseListener
+     * @see Future
+     * @see FutureListener
      */
-    Promise<SendResult> sendAsync(Message message, KeyValue properties);
+    Future<SendResult> sendAsync(Message message, KeyValue properties);
 
     /**
      * Sends a message to the specified destination in one way, the destination should be preset to

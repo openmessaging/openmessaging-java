@@ -17,11 +17,11 @@
 
 package io.openmessaging.samples.producer;
 
+import io.openmessaging.Future;
+import io.openmessaging.FutureListener;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.producer.Producer;
-import io.openmessaging.Promise;
-import io.openmessaging.PromiseListener;
 import io.openmessaging.producer.SendResult;
 import java.nio.charset.Charset;
 
@@ -57,26 +57,26 @@ public class ProducerApp {
 
         //Async with Promise
         {
-            final Promise<SendResult> result = producer.sendAsync(producer.createTopicBytesMessage(
+            final Future<SendResult> result = producer.sendAsync(producer.createTopicBytesMessage(
                 "HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             final SendResult sendResult = result.get(3000L);
             System.out.println("Send async message OK, message id is: " + sendResult.messageId());
         }
 
-        //Async with PromiseListener
+        //Async with FutureListener
         {
-            final Promise<SendResult> result = producer.sendAsync(producer.createTopicBytesMessage(
+            final Future<SendResult> result = producer.sendAsync(producer.createTopicBytesMessage(
                 "HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
-            result.addListener(new PromiseListener<SendResult>() {
+            result.addListener(new FutureListener<SendResult>() {
                 @Override
-                public void operationSucceeded(Promise<SendResult> promise) {
+                public void operationSucceeded(Future<SendResult> promise) {
                     System.out.println("Send async message OK, message id is: " + promise.get().messageId());
                 }
 
                 @Override
-                public void operationFailed(Promise<SendResult> promise) {
+                public void operationFailed(Future<SendResult> promise) {
                     System.out.println("Send async message Failed, cause is: " + promise.getThrowable().getMessage());
                 }
             });

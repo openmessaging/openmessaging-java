@@ -18,20 +18,19 @@
 package io.openmessaging;
 
 /**
- * A {@code Promise} represents the result of an asynchronous computation.  Methods are provided to check if the
- * computation is complete, to wait for its completion, and to retrieve the result of the computation.  The result can
- * only be retrieved using method {@code get} when the computation has completed, blocking if necessary until it is
- * ready.  Cancellation is performed by the {@code cancel} method.  Additional methods are provided to determine if the
- * task completed normally or was cancelled. Once a computation has completed, the computation cannot be cancelled. If
- * you would like to use a {@code Promise} for the sake of cancellability but not provide a usable result, you can
- * declare type+s of the form {@code Promise<?>} and return {@code null} as a result of the underlying task.
+ * Special {@link Future} which is writable.
+ * <p>
+ * A {@code Promise} can be completed or canceled, cancellation is performed by the {@code cancel} method.
+ * Once a computation has completed, the computation cannot be cancelled. If you would like to use a {@code Promise}
+ * for the sake of cancellability but not provide a usable result, you can declare type+s of the form
+ * {@code Promise<?>} and return {@code null} as a result of the underlying task.
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface Promise<V> {
+public interface Promise<V> extends Future<V> {
 
     /**
      * Attempts to cancel execution of this task.  This attempt will fail if the task has already completed, has already
@@ -51,42 +50,6 @@ public interface Promise<V> {
     boolean cancel(boolean mayInterruptIfRunning);
 
     /**
-     * Returns {@code true} if this task was cancelled before it completed
-     * normally.
-     *
-     * @return {@code true} if this task was cancelled before it completed
-     */
-    boolean isCancelled();
-
-    /**
-     * Returns {@code true} if this task completed.
-     * <p>
-     * Completion may be due to normal termination, an exception, or
-     * cancellation -- in all of these cases, this method will return
-     * {@code true}.
-     *
-     * @return {@code true} if this task completed
-     */
-    boolean isDone();
-
-    /**
-     * Waits if necessary for the computation to complete, and then
-     * retrieves its result.
-     *
-     * @return the computed result
-     */
-    V get();
-
-    /**
-     * Waits if necessary for at most the given time for the computation
-     * to complete, and then retrieves its result, if available.
-     *
-     * @param timeout the maximum time to wait
-     * @return the computed result <p> if the computation was cancelled
-     */
-    V get(long timeout);
-
-    /**
      * Set the value to this promise and mark it completed if set successfully.
      *
      * @param value Value
@@ -101,17 +64,4 @@ public interface Promise<V> {
      * @return Whether set is success
      */
     boolean setFailure(Throwable cause);
-
-    /**
-     * Adds the specified listener to this promise. The specified listener is notified when this promise is done. If
-     * this promise is already completed, the specified listener will be notified immediately.
-     *
-     * @param listener PromiseListener
-     */
-    void addListener(PromiseListener<V> listener);
-
-    /**
-     * @return a throwable caught by the promise
-     */
-    Throwable getThrowable();
 }

@@ -19,26 +19,26 @@ package io.openmessaging;
 
 /**
  * A listener that is called back when a Promise is done.
- * {@code PromiseListener} instances are attached to {@link Promise} by passing
- * them in to {@link Promise#addListener(PromiseListener)}.
+ * {@code FutureListener} instances are attached to {@link Future} by passing
+ * them in to {@link Future#addListener(FutureListener)}.
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface PromiseListener<V> {
+public interface FutureListener<V> {
     /**
      * Invoked when the operation associated with the {@code Promise} has been completed successfully.
      *
-     * @param promise the source {@code Promise} which called this callback
+     * @param future the source {@code Future} which called this callback
      */
-    void operationSucceeded(Promise<V> promise);
+    void operationSucceeded(Future<V> future);
 
     /**
-     * Invoked when the operation associated with the {@code Promise} has been completed unsuccessfully.
+     * Invoked when the operation associated with the {@code Future} has been completed unsuccessfully.
      *
-     * @param promise the source {@code Promise} which called this callback
+     * @param future the source {@code Future} which called this callback
      */
-    void operationFailed(Promise<V> promise);
+    void operationFailed(Future<V> future);
 }
