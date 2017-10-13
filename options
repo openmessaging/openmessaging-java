@@ -19,7 +19,7 @@
 -doctitle
 'openmessaging 0.1.1-alpha-SNAPSHOT API'
 -linkoffline
-'http://docs.oracle.com/javase/7/docs/api' '/home/travis/build/openmessaging/openmessaging-java/target/javadoc-bundle-options'
+'http://docs.oracle.com/javase/6/docs/api' '/home/travis/build/openmessaging/openmessaging-java/target/javadoc-bundle-options'
 -use
 -version
 -windowtitle
