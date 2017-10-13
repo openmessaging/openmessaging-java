@@ -167,9 +167,18 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      */
     BatchMessageSender createSequenceBatchMessageSender();
 
-
+    /**
+     * Adds a {@code ProducerInterceptor} to intercept send operations of producer.
+     *
+     * @param interceptor a producer interceptor
+     */
     void addInterceptor(ProducerInterceptor interceptor);
 
+    /**
+     * Removes a {@code ProducerInterceptor}
+     *
+     * @param interceptor a producer interceptor will be removed
+     */
     void removeInterceptor(ProducerInterceptor interceptor);
 
 }
