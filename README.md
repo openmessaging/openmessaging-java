@@ -9,7 +9,7 @@ OpenMessaging, which includes the establishment of industry guidelines and messa
 ![domain-design](assets/images/domain-design.png)
 
 ## Doc
-[API Doc](https://openmessaging.github.io/openmessaging-cloud/).
+[API Doc](https://openmessaging.github.io/openmessaging-java/).
 
 
 ## ![Powered by Linux Foundation](http://openmessaging.cloud/images/linux-foundation-logo.png)
