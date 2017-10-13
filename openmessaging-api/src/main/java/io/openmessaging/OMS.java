@@ -51,10 +51,13 @@ public class OMS {
     public static String specVersion = "UnKnown";
 
     static {
-        try (final InputStream stream = OMS.class.getClassLoader().getResourceAsStream("oms.spec.properties")) {
-            Properties properties = new Properties();
-            properties.load(stream);
-            specVersion = String.valueOf(properties.get("version"));
+        InputStream stream = OMS.class.getClassLoader().getResourceAsStream("oms.spec.properties");
+        try {
+            if (stream != null) {
+                Properties properties = new Properties();
+                properties.load(stream);
+                specVersion = String.valueOf(properties.get("version"));
+            }
         } catch (IOException ignore) {
         }
     }

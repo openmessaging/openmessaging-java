@@ -33,7 +33,7 @@ public class DefaultKeyValue implements KeyValue {
     private Map<String, String> properties;
 
     public DefaultKeyValue() {
-        properties = new ConcurrentHashMap<>();
+        properties = new ConcurrentHashMap<String, String>();
     }
 
     @Override
