@@ -19,7 +19,6 @@ package io.openmessaging.consumer;
 
 import io.openmessaging.KeyValue;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.ResourceManager;
 import io.openmessaging.ServiceLifecycle;
 import java.util.List;
 
@@ -37,8 +36,7 @@ import java.util.List;
 public interface StreamingConsumer extends ServiceLifecycle {
     /**
      * Returns the attributes of this {@code StreamingConsumer} instance.
-     * Changes to the return {@code KeyValue} are not reflected in physical {@code StreamingConsumer},
-     * and use {@link ResourceManager#setConsumerProperties(String, KeyValue)} to modify.
+     * Changes to the return {@code KeyValue} are not reflected in physical {@code StreamingConsumer}.
      * <p>
      * There are some standard attributes defined by OMS for {@code StreamingConsumer}:
      * <ul>

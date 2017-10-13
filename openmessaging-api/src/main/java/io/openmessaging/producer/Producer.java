@@ -18,14 +18,12 @@
 package io.openmessaging.producer;
 
 import io.openmessaging.Future;
+import io.openmessaging.FutureListener;
 import io.openmessaging.KeyValue;
 import io.openmessaging.Message;
 import io.openmessaging.MessageFactory;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.Promise;
-import io.openmessaging.FutureListener;
-import io.openmessaging.ResourceManager;
 import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSMessageFormatException;
 import io.openmessaging.exception.OMSRuntimeException;
@@ -58,8 +56,7 @@ import io.openmessaging.interceptor.ProducerInterceptor;
 public interface Producer extends MessageFactory, ServiceLifecycle {
     /**
      * Returns the attributes of this {@code Producer} instance.
-     * Changes to the return {@code KeyValue} are not reflected in physical {@code Producer},
-     * and use {@link ResourceManager#setProducerProperties(String, KeyValue)} to modify.
+     * Changes to the return {@code KeyValue} are not reflected in physical {@code Producer}.
      * <p>
      * There are some standard attributes defined by OMS for {@code Producer}:
      * <ul>
@@ -96,6 +93,19 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      */
     SendResult send(Message message, KeyValue properties);
 
+    /**
+     * Sends a transactional message to the specified destination synchronously, using the specified attributes,
+     * the destination should be preset to {@link Message#sysHeaders()}, other header fields as well.
+     * <p>
+     * A transactional message will be exposed to consumer if and only if the local transaction
+     * branch has been committed, or be discarded if local transaction has been rolled back.
+     *
+     * @param message a transactional message will be sent
+     * @param branchExecutor local transaction executor associated with the message
+     * @param arg a parameter passed to transaction executor
+     * @param properties the specified attributes
+     * @return the successful {@code SendResult}
+     */
     SendResult send(Message message, LocalTransactionBranchExecutor branchExecutor, Object arg, KeyValue properties);
 
     /**
@@ -150,7 +160,13 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      */
     void sendOneway(Message message, KeyValue properties);
 
+    /**
+     * Creates a {@code BatchMessageSender} to send message in batch way.
+     *
+     * @return a {@code BatchMessageSender} instance
+     */
     BatchMessageSender createSequenceBatchMessageSender();
+
 
     void addInterceptor(ProducerInterceptor interceptor);
 

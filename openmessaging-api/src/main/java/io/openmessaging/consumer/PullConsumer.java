@@ -21,7 +21,6 @@ import io.openmessaging.KeyValue;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.ResourceManager;
 import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSRuntimeException;
 
@@ -38,8 +37,7 @@ import io.openmessaging.exception.OMSRuntimeException;
 public interface PullConsumer extends ServiceLifecycle {
     /**
      * Returns the attributes of this {@code PullConsumer} instance.
-     * Changes to the return {@code KeyValue} are not reflected in physical {@code PullConsumer},
-     * and use {@link ResourceManager#setConsumerProperties(String, KeyValue)} to modify.
+     * Changes to the return {@code KeyValue} are not reflected in physical {@code PullConsumer}.
      * <p>
      * There are some standard attributes defined by OMS for {@code PullConsumer}:
      * <ul>

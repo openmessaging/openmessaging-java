@@ -18,6 +18,8 @@
 package io.openmessaging.observer;
 
 /**
+ * Observable objects can trigger a {@code OMSEvent}, which will be handled in {@link Observer#onEvent(OMSEvent)}
+ *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
  * @version OMS 1.0
@@ -27,9 +29,14 @@ public interface OMSEvent {
     /**
      * Returns the specified {@code OMSEvent}
      *
-     * @return
+     * @return the type of this event
      */
     String type();
 
+    /**
+     * Returns the detail message to describe this event
+     *
+     * @return the detail message of this event
+     */
     String detailMessage();
 }
