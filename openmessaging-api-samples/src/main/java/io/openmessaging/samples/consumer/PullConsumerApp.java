@@ -10,7 +10,7 @@ import io.openmessaging.consumer.PullConsumer;
 public class PullConsumerApp {
     public static void main(String[] args) {
         final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory
-            .getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
+            .getMessagingAccessPoint("oms:rocketmq://localhost:10911/namespace");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
         ResourceManager resourceManager = messagingAccessPoint.getResourceManager();

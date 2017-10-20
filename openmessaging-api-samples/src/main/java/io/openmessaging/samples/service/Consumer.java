@@ -31,7 +31,7 @@ public class Consumer {
 
         try {
             final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory
-                .getMessagingAccessPoint("openmessaging:rocketmq://localhost:9876/namespace");
+                .getMessagingAccessPoint("oms:rocketmq://localhost:9876/namespace");
 
             final ServiceEndPoint serviceEndPoint = messagingAccessPoint.createServiceEndPoint();
 
