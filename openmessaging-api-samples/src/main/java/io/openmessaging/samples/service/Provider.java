@@ -30,7 +30,7 @@ public class Provider {
 
         try {
             final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory
-                .getMessagingAccessPoint("oms:rocketmq://localhost:9876/namespace");
+                .getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:namespace");
 
             final ServiceEndPoint serviceEndPoint = messagingAccessPoint.createServiceEndPoint();
 
