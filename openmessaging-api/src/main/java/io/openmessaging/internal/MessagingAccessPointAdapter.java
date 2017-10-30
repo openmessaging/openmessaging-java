@@ -24,6 +24,8 @@ import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.exception.OMSRuntimeException;
 import java.lang.reflect.Constructor;
 
+import static io.openmessaging.internal.InternalErrorCode.generateInternalException;
+
 /**
  * The {@code MessagingAccessPointAdapter} provides a common implementation to
  * create a specified {@code MessagingAccessPoint} instance, used by OMS internally.
@@ -32,13 +34,6 @@ import java.lang.reflect.Constructor;
  * @since OMS 1.0
  */
 public class MessagingAccessPointAdapter {
-    /**
-     * The correct OMS driver URL is:
-     * <p>
-     * {@literal oms:<driver_type>://<access_point>[,<access_point>,...]/<namespace>}
-     */
-    private static final String pattern = "^oms:.+://.+/.*$";
-
     /**
      * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver URL
      * with some preset userHeaders.
@@ -49,14 +44,14 @@ public class MessagingAccessPointAdapter {
      * @throws OMSRuntimeException if the adapter fails to create a {@code MessagingAccessPoint} instance from the URL
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {
-        checkDriverURL(url);
-        String driverImpl = parseDriverImpl(url, properties);
-        String accessPoints = parseAccessPoints(url);
-        String namespace = parseNamespace(url);
+        AccessPointURI accessPointURI = new AccessPointURI(url);
+        String driverImpl = parseDriverImpl(accessPointURI.getDriverType(), properties);
 
-        properties.put(OMSBuiltinKeys.NAMESPACE, namespace);
-        properties.put(OMSBuiltinKeys.ACCESS_POINTS, accessPoints);
+        properties.put(OMSBuiltinKeys.NAMESPACE, accessPointURI.getNamespace());
+        properties.put(OMSBuiltinKeys.ACCESS_POINTS, accessPointURI.getHosts());
         properties.put(OMSBuiltinKeys.DRIVER_IMPL, driverImpl);
+        properties.put(OMSBuiltinKeys.REGION, accessPointURI.getRegion());
+        properties.put(OMSBuiltinKeys.ACCOUNT_ID, accessPointURI.getAccountId());
 
         try {
             Class<?> driverImplClass = Class.forName(driverImpl);
@@ -69,26 +64,11 @@ public class MessagingAccessPointAdapter {
         }
     }
 
-    private static String parseNamespace(String url) {
-        return url.substring(url.lastIndexOf("/") + 1);
-    }
-
-    private static String parseAccessPoints(String url) {
-        return url.substring(url.indexOf("//") + 2, url.lastIndexOf("/"));
-    }
-
-    private static String parseDriverImpl(String url, KeyValue properties) {
+    private static String parseDriverImpl(String driverType, KeyValue properties) {
         if (properties.containsKey(OMSBuiltinKeys.DRIVER_IMPL)) {
             return properties.getString(OMSBuiltinKeys.DRIVER_IMPL);
         }
-        String driverType = url.split(":")[1];
         return "io.openmessaging." + driverType + ".MessagingAccessPointImpl";
-    }
-
-    private static void checkDriverURL(String url) {
-        if (!url.matches(pattern)) {
-            throw generateInternalException(InternalErrorCode.OMS_DRIVER_URL_ILLEGAL, url);
-        }
     }
 
     private static void checkSpecVersion(final String specVersion, final String implVersion) {
@@ -102,9 +82,5 @@ public class MessagingAccessPointAdapter {
         if (!majorVerOfSpec.equals(majorVerOfImpl)) {
             throw generateInternalException(InternalErrorCode.SPEC_IMPL_VERSION_MISMATCH, implVersion, specVersion);
         }
-    }
-
-    private static OMSRuntimeException generateInternalException(InternalErrorCode errorCode, String... messageArgs) {
-        return new OMSRuntimeException(errorCode.name(), String.format(errorCode.message, (Object[]) messageArgs));
     }
 }

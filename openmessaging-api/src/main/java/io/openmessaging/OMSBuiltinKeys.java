@@ -28,6 +28,8 @@ public interface OMSBuiltinKeys {
     String DRIVER_IMPL = "oms.driver.impl";
     String ACCESS_POINTS = "oms.access.points";
     String NAMESPACE = "oms.namespace";
+    String ACCOUNT_ID = "oms.account.id";
+    String REGION = "oms.region";
     String PRODUCER_ID = "oms.producer.id";
     String CONSUMER_ID = "oms.consumer.id";
     String OPERATION_TIMEOUT = "oms.operation.timeout";

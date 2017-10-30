@@ -17,6 +17,8 @@
 
 package io.openmessaging.internal;
 
+import io.openmessaging.exception.OMSRuntimeException;
+
 /**
  * The internal error code used by {@link MessagingAccessPointAdapter}
  */
@@ -32,5 +34,9 @@ public enum InternalErrorCode {
 
     InternalErrorCode(String refLoc, String message) {
         this.message = message + "\nFor more information, please visit the URL, " + refBase + refLoc;
+    }
+
+    public static OMSRuntimeException generateInternalException(InternalErrorCode errorCode, String... messageArgs) {
+        return new OMSRuntimeException(errorCode.name(), String.format(errorCode.message, (Object[]) messageArgs));
     }
 }
