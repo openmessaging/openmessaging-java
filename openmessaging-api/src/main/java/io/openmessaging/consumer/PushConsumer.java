@@ -117,7 +117,17 @@ public interface PushConsumer extends ServiceLifecycle {
      */
     PushConsumer detachQueue(String queueName);
 
+    /**
+     * Adds a {@code PushConsumerInterceptor} to this consumer.
+     *
+     * @param interceptor an interceptor instance
+     */
     void addInterceptor(PushConsumerInterceptor interceptor);
 
+    /**
+     * Removes an interceptor from this consumer.
+     *
+     * @param interceptor an interceptor to be removed
+     */
     void removeInterceptor(PushConsumerInterceptor interceptor);
 }

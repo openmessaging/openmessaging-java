@@ -21,7 +21,6 @@ import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.interceptor.MessagingAccessPointInterceptor;
 import io.openmessaging.internal.MessagingAccessPointAdapter;
 import io.openmessaging.internal.MessagingAccessPointInterceptorFactory;
-import java.util.List;
 
 /**
  * A factory that provides some static methods to create a {@code MessagingAccessPoint}
@@ -76,13 +75,21 @@ public class MessagingAccessPointFactory {
         return MessagingAccessPointInterceptorFactory.wrapMessagingAccessPoint(MessagingAccessPointAdapter.getMessagingAccessPoint(url, properties));
     }
 
-    public static List<MessagingAccessPoint> messagingAccessPoints() {
-        return null;
-    }
-
+    /**
+     * Adds an interceptor to {@code MessagingAccessPointInterceptorFactory}
+     *
+     * @param interceptor an interceptor object
+     */
     public static void addInterceptor(MessagingAccessPointInterceptor interceptor) {
+        MessagingAccessPointInterceptorFactory.addObjectInterceptor(interceptor);
     }
 
+    /**
+     * Removes an interceptor from {@code MessagingAccessPointInterceptorFactory}
+     *
+     * @param interceptor an interceptor object to be removed
+     */
     public static void removeInterceptor(MessagingAccessPointInterceptor interceptor) {
+        MessagingAccessPointInterceptorFactory.removeObjectInterceptor(interceptor);
     }
 }
