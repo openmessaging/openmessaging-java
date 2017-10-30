@@ -39,10 +39,15 @@ public interface OMSBuiltinKeys {
     String END_OFFSET = "oms.end.offset";
     String BEGIN_TIMESTAMP = "oms.begin.timestamp";
     String END_TIMESTAMP = "oms.end.timestamp";
-    String ORDER_POLICY = "order.policy";
 
-    //TODO: Move these order value to right place
-    short ANY_ORDER = 0;
-    short FIFO_ORDER = 1;
-    short LIFO_ORDER = 2;
+    /**
+     * There are three order policies:
+     *
+     * <ul>
+     * <li>ANY_ORDER</li>
+     * <li>FIFO_ORDER</li>
+     * <li>LIFO_ORDER</li>
+     * </ul>
+     */
+    String ORDER_POLICY = "order.policy";
 }

@@ -21,7 +21,6 @@ import io.openmessaging.KeyValue;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.ResourceManager;
 import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.interceptor.PushConsumerInterceptor;
@@ -39,8 +38,7 @@ import io.openmessaging.interceptor.PushConsumerInterceptor;
 public interface PushConsumer extends ServiceLifecycle {
     /**
      * Returns the attributes of this {@code PushConsumer} instance.
-     * Changes to the return {@code KeyValue} are not reflected in physical {@code PushConsumer},
-     * and use {@link ResourceManager#setConsumerProperties(String, KeyValue)} to modify.
+     * Changes to the return {@code KeyValue} are not reflected in physical {@code PushConsumer}.
      * <p>
      * There are some standard attributes defined by OMS for {@code PushConsumer}:
      * <ul>

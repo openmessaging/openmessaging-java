@@ -19,7 +19,6 @@ package io.openmessaging.routing;
 
 import io.openmessaging.KeyValue;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.ResourceManager;
 
 /**
  * A {@code Operator} is used to handle the flowing messages in {@code Routing}.
@@ -35,8 +34,7 @@ import io.openmessaging.ResourceManager;
 public interface Operator {
     /**
      * Returns the attributes of this {@code Operator} object.
-     * Changes to the return {@code KeyValue} are not reflected in physical {@code Operator},
-     * and use {@link ResourceManager#createAndUpdateOperator(String, String, KeyValue)} to modify.
+     * Changes to the return {@code KeyValue} are not reflected in physical {@code Operator}.
      * <p>
      * There are some standard attributes defined by OMS for {@code Routing}:
      * <ul>

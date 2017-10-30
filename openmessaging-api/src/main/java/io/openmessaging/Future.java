@@ -74,7 +74,9 @@ public interface Future<V> {
     void addListener(FutureListener<V> listener);
 
     /**
-     * @return a throwable caught by the future
+     * Returns the cause of the failed future
+     *
+     * @return the cause of the failure. {@code null} if succeeded or this future is not completed yet.
      */
     Throwable getThrowable();
 }
