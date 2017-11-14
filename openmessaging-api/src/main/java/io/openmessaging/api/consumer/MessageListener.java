@@ -28,9 +28,6 @@ import io.openmessaging.api.Message;
  */
 public interface MessageListener {
 
-
     void onReceived(Consumer consumer, Message message);
-
-    default void reachedEndOfTopic(Consumer consumer) {}
 
 }

@@ -95,7 +95,7 @@ public interface MessageBuilder {
      * @param key routing key.
      * @return message builder
      */
-    MessageBuilder setKey(String key);
+    MessageBuilder setRoutingKey(String key);
 
     /**
      * Set the event time for a given message.

@@ -89,7 +89,6 @@ public interface Message {
      * <p>If there isn't any event time associated with this event, it will return 0.
      *
      * @see MessageBuilder#setEventTime(long)
-     * @since 1.20.0
      */
     long getEventTime();
 
@@ -99,13 +98,13 @@ public interface Message {
      * @return true if the key was set while creating the message
      * @return false if the key was not set while creating the message
      */
-    boolean hasKey();
+    boolean hasRoutingKey();
 
     /**
      * Get the key of the message
      *
      * @return the key of the message
      */
-    String getKey();
+    String getRoutingKey();
 
 }

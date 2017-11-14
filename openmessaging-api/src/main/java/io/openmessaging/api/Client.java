@@ -36,26 +36,6 @@ import java.util.concurrent.CompletableFuture;
 public interface Client extends AutoCloseable {
 
     /**
-     * Create a producer with default {@link ProducerConfiguration} for publishing on a specific topic
-     *
-     * @param topic
-     *            The name of the topic where to produce
-     * @return The producer object
-     * @throws OMSException
-     *             if the client encounters an exception
-     */
-    Producer createProducer(String topic) throws OMSException;
-
-    /**
-     * Asynchronously create a producer with default {@link ProducerConfiguration} for publishing on a specific topic
-     *
-     * @param topic
-     *            The name of the topic where to produce
-     * @return Future of the asynchronously created producer object
-     */
-    CompletableFuture<Producer> createProducerAsync(String topic);
-
-    /**
      * Create a producer with given {@code ProducerConfiguration} for publishing on a specific topic
      *
      * @param topic
@@ -79,31 +59,6 @@ public interface Client extends AutoCloseable {
      * @return Future of the asynchronously created producer object
      */
     CompletableFuture<Producer> createProducerAsync(String topic, ProducerConfiguration conf);
-
-    /**
-     * Subscribe to the given topic and subscription combination with default {@code ConsumerConfiguration}
-     *
-     * @param topic
-     *            The name of the topic
-     * @param subscription
-     *            The name of the subscription
-     * @return The {@code Consumer} object
-     * @throws OMSException
-     * @throws InterruptedException
-     */
-    Consumer subscribe(String topic, String subscription) throws OMSException;
-
-    /**
-     * Asynchronously subscribe to the given topic and subscription combination using default
-     * {@code ConsumerConfiguration}
-     *
-     * @param topic
-     *            The topic name
-     * @param subscription
-     *            The subscription name
-     * @return Future of the {@code Consumer} object
-     */
-    CompletableFuture<Consumer> subscribeAsync(String topic, String subscription);
 
     /**
      * Subscribe to the given topic and subscription combination with given {@code ConsumerConfiguration}

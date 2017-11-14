@@ -21,10 +21,10 @@
 
 package io.openmessaging.api.producer;
 
-import io.openmessaging.api.ClientConfiguration;
+import java.util.Properties;
 
 /**
  * The instance for representing the producer configuration.
  */
-public interface ProducerConfiguration extends ClientConfiguration {
+public class ProducerConfiguration extends Properties {
 }

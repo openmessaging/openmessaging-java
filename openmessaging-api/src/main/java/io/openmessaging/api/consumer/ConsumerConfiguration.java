@@ -21,10 +21,10 @@
 
 package io.openmessaging.api.consumer;
 
-import io.openmessaging.api.ClientConfiguration;
+import java.util.Properties;
 
 /**
  * The instance for representing the consumer configuration.
  */
-public interface ConsumerConfiguration extends ClientConfiguration {
+public class ConsumerConfiguration extends Properties {
 }

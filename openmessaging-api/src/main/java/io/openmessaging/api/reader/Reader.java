@@ -62,9 +62,4 @@ public interface Reader extends AutoCloseable {
      */
     CompletableFuture<Void> closeAsync();
 
-    /**
-     * Return true if the topic was terminated and this reader has reached the end of the topic
-     */
-    boolean hasReachedEndOfTopic();
-
 }

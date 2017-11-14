@@ -21,8 +21,10 @@
 
 package io.openmessaging.api;
 
+import java.util.Properties;
+
 /**
  * The instance used for specifying client side configuration.
  */
-public interface ClientConfiguration extends Configuration {
+public class ClientConfiguration extends Properties {
 }

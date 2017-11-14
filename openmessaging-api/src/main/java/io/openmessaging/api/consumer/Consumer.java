@@ -97,7 +97,6 @@ public interface Consumer extends AutoCloseable {
      */
     Message receive(int timeout, TimeUnit unit) throws OMSException;
 
-
     /**
      *
      * @param listener
@@ -219,38 +218,5 @@ public interface Consumer extends AutoCloseable {
      * @return a future that can be used to track the completion of the operation
      */
     CompletableFuture<Void> closeAsync();
-
-    /**
-     * Reset the subscription associated with this consumer to a specific message id.
-     * <p>
-     *
-     * The message id can either be a specific message or represent the first or last messages in the topic.
-     * <p>
-     * <ul>
-     * <li><code>MessageId.earliest</code> : Reset the subscription on the earliest message available in the topic
-     * <li><code>MessageId.latest</code> : Reset the subscription on the latest message in the topic
-     * </ul>
-     *
-     * @param messageId
-     *            the message id where to reposition the subscription
-     */
-    void seek(MessageId messageId) throws OMSException;
-
-    /**
-     * Reset the subscription associated with this consumer to a specific message id.
-     * <p>
-     *
-     * The message id can either be a specific message or represent the first or last messages in the topic.
-     * <p>
-     * <ul>
-     * <li><code>MessageId.earliest</code> : Reset the subscription on the earliest message available in the topic
-     * <li><code>MessageId.latest</code> : Reset the subscription on the latest message in the topic
-     * </ul>
-     *
-     * @param messageId
-     *            the message id where to reposition the subscription
-     * @return a future to track the completion of the seek operation
-     */
-    CompletableFuture<Void> seekAsync(MessageId messageId);
 
 }

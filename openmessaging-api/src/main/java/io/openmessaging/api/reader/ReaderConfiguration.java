@@ -21,10 +21,12 @@
 
 package io.openmessaging.api.reader;
 
+import java.util.Properties;
+
 /**
  * The instance for representing the reader configuration.
  *
  * @see Reader
  */
-public interface ReaderConfiguration {
+public class ReaderConfiguration extends Properties {
 }
