@@ -126,4 +126,6 @@ public interface MessageBuilder {
      */
     MessageBuilder setSequenceId(long sequenceId);
 
+    Message build();
+
 }

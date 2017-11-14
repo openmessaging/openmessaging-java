@@ -43,7 +43,7 @@ public class AccessPointURI {
      */
     private static final String PATTERN = "^oms:.+://.+/.+:.+$";
 
-    AccessPointURI(String accessPointString) {
+    public AccessPointURI(String accessPointString) {
         validateAccessPointString(accessPointString);
         this.accessPointString = accessPointString;
         String unprocessedString = accessPointString.substring(PREFIX.length());
