@@ -24,7 +24,6 @@ import io.openmessaging.consumer.StreamingConsumer;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.observer.Observer;
 import io.openmessaging.producer.Producer;
-import io.openmessaging.service.ServiceEndPoint;
 import java.util.List;
 
 /**
@@ -159,25 +158,6 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * error
      */
     ResourceManager getResourceManager();
-
-    /**
-     * Create a new {@code ServiceEndPoint} for the specified {@code MessagingAccessPoint}.
-     *
-     * @return the created {@code ServiceEndPoint}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
-     * error
-     */
-    ServiceEndPoint createServiceEndPoint();
-
-    /**
-     * Create a new {@code ServiceEndPoint} for the specified {@code MessagingAccessPoint} with some preset properties.
-     *
-     * @param properties the preset properties
-     * @return the created {@code ServiceEndPoint}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
-     * error
-     */
-    ServiceEndPoint createServiceEndPoint(KeyValue properties);
 
     /**
      * Register an observer in an serviceEndPoint object. Whenever serviceEndPoint object publish or bind an service
