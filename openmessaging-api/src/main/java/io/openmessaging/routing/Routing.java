@@ -18,13 +18,11 @@
 package io.openmessaging.routing;
 
 import io.openmessaging.KeyValue;
-import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.ResourceManager;
-import java.util.List;
 
 /**
  * A {@code Routing} object is responsible for routing the messages from {@code Topic} to {@code Queue}, with
- * some useful operators to filter or compute the source messages.
+ * an expression to filter or compute the source messages.
  *
  * @author vintagewang@apache.org
  * @author yukon@apache.org
@@ -35,39 +33,39 @@ public interface Routing {
     /**
      * Returns the attributes of this {@code Routing} instance.
      * Changes to the return {@code KeyValue} are not reflected in physical {@code Routing},
-     * and use {@link ResourceManager#setRoutingAttributes(String, String, KeyValue)} to modify.
-     * <p>
-     * There are some standard attributes defined by OMS for {@code Routing}:
-     * <ul>
-     * <li> {@link OMSBuiltinKeys#SRC_TOPIC}, the source topic of this {@code Routing} object.
-     * <li> {@link OMSBuiltinKeys#DST_QUEUE}, the destination queue of this {@code Routing} object.
-     * <li> {@link OMSBuiltinKeys#ROUTING_NAME}, the unique name of this {@code Routing} object.
-     * </ul>
+     * and use {@link ResourceManager#updateRouting(String, Routing)} to modify.
      *
      * @return the attributes
      */
     KeyValue properties();
 
     /**
-     * Adds a {@code Operator} to the tail of operator pipeline in this {@code Routing} object.
+     * The routing source, naming scheme is {@literal TOPIC::<TOPIC_NAME>}.
+     * Messages sent to the source topic will be routing to the destination Queue.
      *
-     * @param op a specified operator
-     * @return this {@code Routing} object
+     * @return the source topic
      */
-    Routing addOperator(Operator op);
+    String source();
 
     /**
-     * Removes a specified {@code Operator} from the operator pipeline in this {@code Routing} object.
+     * The routing destination, naming scheme is {@literal QUEUE::<QUEUE_NAME>}
+     * Messages sent to the source topic will be routing to this Queue.
      *
-     * @param op a specified operator
-     * @return this {@code Routing} object
+     * @return the destination queue
      */
-    Routing deleteOperator(Operator op);
+    String destination();
 
     /**
-     * Returns the operator pipeline in this {@code Routing} object.
+     * The routing rule, expression scheme is {@literal SQL::<SQL92_STRING>}
      *
-     * @return the operator pipeline
+     * @return the routing expression
      */
-    List<Operator> operators();
+    String expression();
+
+    /**
+     * Returns the unique routing name of current namespace
+     *
+     * @return the routing name
+     */
+    String routingName();
 }

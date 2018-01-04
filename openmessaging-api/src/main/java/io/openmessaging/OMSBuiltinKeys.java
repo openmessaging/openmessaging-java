@@ -33,10 +33,6 @@ public interface OMSBuiltinKeys {
     String PRODUCER_ID = "oms.producer.id";
     String CONSUMER_ID = "oms.consumer.id";
     String OPERATION_TIMEOUT = "oms.operation.timeout";
-    String ROUTING_NAME = "oms.routing.name";
-    String OPERATOR_NAME = "oms.operator.name";
-    String DST_QUEUE = "oms.dst.queue";
-    String SRC_TOPIC = "oms.src.topic";
     String BEGIN_OFFSET = "oms.begin.offset";
     String END_OFFSET = "oms.end.offset";
     String BEGIN_TIMESTAMP = "oms.begin.timestamp";

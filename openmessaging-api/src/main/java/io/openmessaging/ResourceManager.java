@@ -18,6 +18,7 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSResourceNotExistException;
+import io.openmessaging.routing.Routing;
 import java.util.List;
 
 /**
@@ -183,35 +184,32 @@ public interface ResourceManager extends ServiceLifecycle {
     List<String> listQueues(String nsName);
 
     /**
-     * Creates a {@code Routing} resource in the specified namespace with some preset properties.
+     * Creates a {@code Routing} resource in the specified namespace.
      * <p>
      *
      * @param nsName the namespace name
-     * @param routingName the routing name
-     * @param attributes the preset properties
+     * @param routing the routing instance to create
      */
-    void createRouting(String nsName, String routingName, KeyValue attributes);
+    void createRouting(String nsName, Routing routing);
 
     /**
-     * Updates the attributes of a specified routing, all the old attributes will be removed and apply the new
-     * attributes.
+     * Updates the specified Routing instance.
      *
      * @param nsName the namespace name
-     * @param routingName the routing name
-     * @param attributes the new attributes
+     * @param routing the updated routing instance
      * @throws OMSResourceNotExistException if the specified routing or namespace is not exists
      */
-    void setRoutingAttributes(String nsName, String routingName, KeyValue attributes) throws OMSResourceNotExistException;
+    void updateRouting(String nsName, Routing routing) throws OMSResourceNotExistException;
 
     /**
-     * Gets the attributes of a specified routing.
+     * Gets the Routing instance of a specified routing name.
      *
      * @param nsName the namespace name
      * @param routingName the routing name
      * @return the attributes of namespace
      * @throws OMSResourceNotExistException if the specified routing or namespace is not exists
      */
-    KeyValue getRoutingAttributes(String nsName, String routingName) throws OMSResourceNotExistException;
+    Routing getRouting(String nsName, String routingName) throws OMSResourceNotExistException;
 
     /**
      * Deletes an existing routing resource.
@@ -228,10 +226,10 @@ public interface ResourceManager extends ServiceLifecycle {
      * @param nsName the namespace name
      * @return the list of all routing
      */
-    List<String> listRoutings(String nsName);
+    List<Routing> listRoutings(String nsName);
 
     /**
-     * Message also is a resource, the headers of message can be updated by this method
+     * Message also is a resource, some headers of message can be updated by this method
      *
      * @param messageId the id of message
      * @param headers the new headers
