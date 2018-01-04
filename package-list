@@ -6,4 +6,3 @@ io.openmessaging.internal
 io.openmessaging.observer
 io.openmessaging.producer
 io.openmessaging.routing
-io.openmessaging.service
