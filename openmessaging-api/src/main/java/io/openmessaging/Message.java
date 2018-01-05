@@ -275,6 +275,17 @@ public interface Message {
          */
         String TraceId = "TraceId";
 
+        /**
+         * The {@code RetryNumbers} header field contains a number, which represents the number of message delivery.
+         */
+        String RetryNumbers = "RetryNumbers";
+
+        /**
+         * The {@code RetryReason} header field contains the text description of the reason that causes
+         * the last message delivery retry.
+         */
+        String RetryReason = "RetryReason";
+
         String Stream = "Stream";
     }
 }
