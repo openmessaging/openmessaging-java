@@ -20,8 +20,6 @@ package io.openmessaging.observer;
 /**
  * Special {@link OMSEvent} which is abnormal.
  *
- * @author vintagewang@apache.org
- * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */

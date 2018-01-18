@@ -48,8 +48,6 @@ import io.openmessaging.interceptor.ProducerInterceptor;
  * the calling thread won't block and will return immediately. The caller won't care about
  * the send result, while the server has no responsibility for returning the result.
  *
- * @author vintagewang@apache.org
- * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */

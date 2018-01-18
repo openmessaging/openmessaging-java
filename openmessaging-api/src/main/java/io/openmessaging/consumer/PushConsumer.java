@@ -29,8 +29,6 @@ import io.openmessaging.interceptor.PushConsumerInterceptor;
  * A {@code PushConsumer} object to receive messages from multiple queues, these messages are pushed from
  * MOM server to {@code PushConsumer} client.
  *
- * @author vintagewang@apache.org
- * @author yukon@apache.org
  * @version OMS 1.0
  * @see MessagingAccessPoint#createPushConsumer()
  * @since OMS 1.0

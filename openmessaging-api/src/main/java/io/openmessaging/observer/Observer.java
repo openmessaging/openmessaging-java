@@ -23,7 +23,6 @@ import io.openmessaging.MessagingAccessPoint;
  * A {@code Observer} interface is used to observe the {@code OMSEvent}
  * dispatches in observable objects, like {@link MessagingAccessPoint}
  *
- * @author vintagewang@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */

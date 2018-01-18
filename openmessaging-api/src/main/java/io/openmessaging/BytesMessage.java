@@ -24,8 +24,6 @@ package io.openmessaging;
  * The {@code BytesMessage} doesn't know the format or encoding Rules of the body, the provider and consumer decide the
  * interpretation of the bytes body.
  *
- * @author vintagewang@apache.org
- * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */

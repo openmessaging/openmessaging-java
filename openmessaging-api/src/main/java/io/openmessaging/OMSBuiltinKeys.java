@@ -20,7 +20,6 @@ package io.openmessaging;
 /**
  * This is the centralized source for keys that are used by {@link KeyValue}.
  *
- * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */

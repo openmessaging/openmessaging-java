@@ -3,7 +3,6 @@ package io.openmessaging.interceptor;
 /**
  * A {@code ProducerInterceptor} is used to intercept send operations of producer.
  *
- * @author vintagewang@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */

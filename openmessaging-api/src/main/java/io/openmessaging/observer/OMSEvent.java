@@ -20,8 +20,6 @@ package io.openmessaging.observer;
 /**
  * Observable objects can trigger a {@code OMSEvent}, which will be handled in {@link Observer#onEvent(OMSEvent)}
  *
- * @author vintagewang@apache.org
- * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */

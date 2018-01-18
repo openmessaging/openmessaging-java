@@ -32,8 +32,6 @@ import java.util.Set;
  * A {@code KeyValue} object may be used in concurrent scenarios, so the implementation
  * of {@code KeyValue} should consider concurrent related issues.
  *
- * @author vintagewang@apache.org
- * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */

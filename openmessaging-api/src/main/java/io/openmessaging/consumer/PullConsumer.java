@@ -28,8 +28,6 @@ import io.openmessaging.exception.OMSRuntimeException;
  * A {@code PullConsumer} object can poll messages from the specified queue,
  * and supports submit the consume result by acknowledgement.
  *
- * @author vintagewang@apache.org
- * @author yukon@apache.org
  * @version OMS 1.0
  * @see MessagingAccessPoint#createPullConsumer(String)
  * @since OMS 1.0

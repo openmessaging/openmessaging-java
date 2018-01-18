@@ -23,8 +23,6 @@ package io.openmessaging;
  * only be retrieved using method {@code get} when the computation has completed, blocking if necessary until it is
  * ready. Additional methods are provided to determine if the task completed normally or was cancelled.
  *
- * @author vintagewang@apache.org
- * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */

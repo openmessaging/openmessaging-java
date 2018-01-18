@@ -29,8 +29,6 @@ import io.openmessaging.exception.OMSRuntimeException;
  * A {@code Stream} object supports consume messages from a
  * specified partition like a iterator.
  *
- * @author vintagewang@apache.org
- * @author yukon@apache.org
  * @version OMS 1.0
  * @see StreamingConsumer#stream(String)
  * @since OMS 1.0

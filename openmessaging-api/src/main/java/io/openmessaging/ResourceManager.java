@@ -37,8 +37,6 @@ import java.util.List;
  * instance, any changes made by this instance will reflect to the message-oriented middleware (MOM) or
  * other product behind the {@code MessagingAccessPoint}.
  *
- * @author vintagewang@apache.org
- * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */

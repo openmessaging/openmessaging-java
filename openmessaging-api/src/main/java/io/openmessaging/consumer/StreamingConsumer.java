@@ -28,7 +28,6 @@ import java.util.List;
  * A {@code StreamingConsumer} object supports consume messages from a
  * specified partition like a iterator.
  *
- * @author yukon@apache.org
  * @version OMS 1.0
  * @see Stream
  * @since OMS 1.0

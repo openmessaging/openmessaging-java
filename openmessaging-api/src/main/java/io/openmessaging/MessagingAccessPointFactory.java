@@ -39,8 +39,6 @@ import io.openmessaging.internal.MessagingAccessPointInterceptorFactory;
  * A namespace wraps the OMS resources in an abstraction that makes it appear to the users
  * within the namespace that they have their own isolated instance of the global OMS resources.
  *
- * @author vintagewang@apache.org
- * @author yukon@apache.org
  * @version OMS 1.0
  * @see ResourceManager
  * @since OMS 1.0

@@ -6,7 +6,6 @@ import io.openmessaging.MessagingAccessPoint;
 /**
  * A {@code MessagingAccessPointInterceptor} is used to wrap {@code MessagingAccessPoint}.
  *
- * @author vintagewang@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */

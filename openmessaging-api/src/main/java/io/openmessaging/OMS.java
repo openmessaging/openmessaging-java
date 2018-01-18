@@ -25,7 +25,6 @@ import java.util.Properties;
 /**
  * The OMS class provides some useful util methods.
  *
- * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */

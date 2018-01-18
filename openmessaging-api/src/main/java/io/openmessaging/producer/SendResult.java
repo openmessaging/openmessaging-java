@@ -23,7 +23,6 @@ import io.openmessaging.KeyValue;
  * The result of sending a OMS message to server
  * with the message id and some attributes.
  *
- * @author yukon@apache.org
  * @version OMS 1.0
  * @since OMS 1.0
  */
