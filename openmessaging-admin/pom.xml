@@ -9,11 +9,4 @@
     <packaging>jar</packaging>
     <artifactId>openmessaging-admin</artifactId>
     <name>openmessaging-admin ${project.version}</name>
-
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-    </dependencies>
 </project>
