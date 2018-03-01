@@ -25,7 +25,7 @@ import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
- * A {@code PullConsumer} object can poll messages from the specified queue,
+ * A {@code PullConsumer} object can pull messages from the specified queue,
  * and supports submit the consume result by acknowledgement.
  *
  * @version OMS 1.0
@@ -48,7 +48,7 @@ public interface PullConsumer extends ServiceLifecycle {
     KeyValue properties();
 
     /**
-     * Polls the next message produced for this {@code PullConsumer}.
+     * Pulls the next message produced for this {@code PullConsumer}.
      * <p>
      * This call blocks indefinitely until a message is arrives, the timeout expires,
      * or until this {@code PullConsumer} is shut down.
@@ -58,10 +58,10 @@ public interface PullConsumer extends ServiceLifecycle {
      * @throws OMSRuntimeException if this {@code PullConsumer} fails to pull the next message due to some internal
      * error.
      */
-    Message poll();
+    Message pull();
 
     /**
-     * Polls the next message produced for this {@code PullConsumer}, using the specified attributes.
+     * Pulls the next message produced for this {@code PullConsumer}, using the specified attributes.
      * <p>
      * This call blocks indefinitely until a message is arrives, the timeout expires,
      * or until this {@code PullConsumer} is shut down.
@@ -72,7 +72,7 @@ public interface PullConsumer extends ServiceLifecycle {
      * @throws OMSRuntimeException if this {@code PullConsumer} fails to pull the next message due to some internal
      * error.
      */
-    Message poll(KeyValue properties);
+    Message pull(KeyValue properties);
 
     /**
      * Acknowledges the specified and consumed message, with unique message id.

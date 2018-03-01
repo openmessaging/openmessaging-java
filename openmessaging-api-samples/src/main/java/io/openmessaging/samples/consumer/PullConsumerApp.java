@@ -21,8 +21,8 @@ public class PullConsumerApp {
 
         pullConsumer.startup();
 
-        //Poll one message from queue.
-        Message message = pullConsumer.poll();
+        //Pull one message from queue.
+        Message message = pullConsumer.pull();
 
         //Acknowledges the consumed message
         pullConsumer.ack(message.sysHeaders().getString(Message.BuiltinKeys.MessageId));
