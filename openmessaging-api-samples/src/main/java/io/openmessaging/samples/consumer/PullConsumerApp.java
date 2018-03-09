@@ -1,16 +1,14 @@
 package io.openmessaging.samples.consumer;
 
-import io.openmessaging.ResourceManager;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.MessagingAccessPointFactory;
 import io.openmessaging.OMS;
+import io.openmessaging.ResourceManager;
 import io.openmessaging.consumer.PullConsumer;
 
 public class PullConsumerApp {
     public static void main(String[] args) {
-        final MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory
-            .getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:namespace");
+        final MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:namespace");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
         ResourceManager resourceManager = messagingAccessPoint.getResourceManager();

@@ -17,18 +17,84 @@
 
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.interceptor.MessagingAccessPointInterceptor;
 import io.openmessaging.internal.DefaultKeyValue;
+import io.openmessaging.internal.MessagingAccessPointAdapter;
+import io.openmessaging.internal.MessagingAccessPointInterceptorFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * The OMS class provides some useful util methods.
+ * The oms class provides some static methods to create a {@code MessagingAccessPoint}
+ * from the specified OMS driver url and some useful util methods.
+ * <p>
+ * The complete OMS driver URL syntax is:
+ * <p>
+ * {@literal openmessaging:<driver_type>://<access_point>[,<access_point>,...]/<namespace>}
+ * <p>
+ * The first part of the URL specifies which OMS implementation is to be used, rocketmq is a
+ * optional driver type.
+ * <p>
+ * The brackets indicate that the extra access points are optional, but a correct OMS driver url
+ * needs at least one access point, which consists of hostname and port, like localhost:8081.
+ * <p>
+ * A namespace wraps the OMS resources in an abstraction that makes it appear to the users
+ * within the namespace that they have their own isolated instance of the global OMS resources.
  *
  * @version OMS 1.0
+ * @see ResourceManager
  * @since OMS 1.0
  */
 public class OMS {
+    /**
+     * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url.
+     *
+     * @param url the specified OMS driver url
+     * @return a {@code MessagingAccessPoint} instance
+     * @throws OMSRuntimeException if the factory fails to create a {@code MessagingAccessPoint} due to some driver url
+     * some syntax error or internal error.
+     */
+    public static MessagingAccessPoint getMessagingAccessPoint(String url) {
+        return MessagingAccessPointInterceptorFactory.wrapMessagingAccessPoint(getMessagingAccessPoint(url, OMS.newKeyValue()));
+    }
+
+    /**
+     * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url
+     * with some preset properties, which will be passed to MessagingAccessPoint's implementation
+     * class as a unique constructor parameter.
+     *
+     * There are some standard properties defined by OMS for this method,
+     * the same as {@link MessagingAccessPoint#properties()}
+     *
+     * @param url the specified OMS driver url
+     * @return a {@code MessagingAccessPoint} instance
+     * @throws OMSRuntimeException if the factory fails to create a {@code MessagingAccessPoint} due to some driver url
+     * some syntax error or internal error.
+     */
+    public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {
+        return MessagingAccessPointInterceptorFactory.wrapMessagingAccessPoint(MessagingAccessPointAdapter.getMessagingAccessPoint(url, properties));
+    }
+
+    /**
+     * Adds an interceptor to {@code MessagingAccessPointInterceptorFactory}
+     *
+     * @param interceptor an interceptor object
+     */
+    public static void addInterceptor(MessagingAccessPointInterceptor interceptor) {
+        MessagingAccessPointInterceptorFactory.addObjectInterceptor(interceptor);
+    }
+
+    /**
+     * Removes an interceptor from {@code MessagingAccessPointInterceptorFactory}
+     *
+     * @param interceptor an interceptor object to be removed
+     */
+    public static void removeInterceptor(MessagingAccessPointInterceptor interceptor) {
+        MessagingAccessPointInterceptorFactory.removeObjectInterceptor(interceptor);
+    }
+
     /**
      * Returns a default and internal {@code KeyValue} implementation instance.
      *
