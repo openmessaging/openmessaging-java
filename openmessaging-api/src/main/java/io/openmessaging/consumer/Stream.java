@@ -52,14 +52,14 @@ public interface Stream extends ServiceLifecycle {
     /**
      * Creates a {@code MessageIterator} from the begin position of current stream.
      *
-     * @return the first offset, return -1 if the partition has no message.
+     * @return a message iterator at the begin position.
      */
     MessageIterator begin();
 
     /**
      * Creates a {@code MessageIterator} from the end position of current stream.
      *
-     * @return the last offset, return 0 if the iterator is first created.
+     * @return a message iterator at the begin position.
      */
     MessageIterator end();
 
@@ -74,6 +74,7 @@ public interface Stream extends ServiceLifecycle {
      * is later than the last message's store timestamp in this stream.
      *
      * @param timestamp the specified timestamp
+     * @return a message iterator at the specified timestamp
      */
     MessageIterator seekByTime(long timestamp);
 }
