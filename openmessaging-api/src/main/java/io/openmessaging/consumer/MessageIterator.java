@@ -24,10 +24,8 @@ import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
- * A {@code Queue} is divided by many streams.
- * <p>
- * A {@code Stream} object supports consume messages from a
- * specified partition like a iterator.
+ * A {@code MessageIterator} is provided by {@code Stream} and is used to
+ * retrieve messages a specified stream like a read-only iterator.
  *
  * @version OMS 1.0
  * @see StreamingConsumer#stream(String)
@@ -35,18 +33,12 @@ import io.openmessaging.exception.OMSRuntimeException;
  */
 public interface MessageIterator extends ServiceLifecycle {
     /**
-     * Returns the attributes of this {@code Stream} instance.
+     * Returns the attributes of this {@code MessageIterator} instance.
      * <p>
      * There are some standard attributes defined by OMS for {@code Stream}:
      * <ul>
      * <li> {@link OMSBuiltinKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code
      * Stream}.
-     * <li> {@link OMSBuiltinKeys#BEGIN_OFFSET}, the begin offset boarder of this partition iterator.
-     * <li> {@link OMSBuiltinKeys#END_OFFSET}, the end offset boarder of this partition iterator.
-     * <li> {@link OMSBuiltinKeys#BEGIN_TIMESTAMP}, the begin offset represented
-     * by this timestamp of this partition iterator.
-     * <li> {@link OMSBuiltinKeys#END_TIMESTAMP}, the end offset represented
-     * by this timestamp of this partition iterator.
      * </ul>
      *
      * @return the attributes
@@ -54,17 +46,16 @@ public interface MessageIterator extends ServiceLifecycle {
     KeyValue properties();
 
     /**
-     * Persist this iterator to local or remote server, that depends on specified
+     * Persists this iterator to local or remote server, that depends on specified
      * implementation of {@link MessageIterator}.
      */
-    void commit(boolean flush);
+    void commit();
 
     /**
-     * Returns {@code true} if this partition iterator has more messages when
+     * Returns {@code true} if this iterator has more messages when
      * traversing the iterator in the forward direction.
      *
-     * @return {@code true} if the partition iterator has more messages when traversing the iterator in the forward
-     * direction
+     * @return {@code true} if the iterator has more messages
      */
     boolean hasNext();
 

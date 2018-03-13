@@ -22,10 +22,8 @@ import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.ServiceLifecycle;
 
 /**
- * A {@code Queue} is divided by many streams.
- * <p>
- * A {@code Stream} object supports consume messages from a
- * specified partition like a iterator.
+ * A {@code Queue} is consists of many streams. A {@code Stream} supports consume
+ * messages from a specified stream through an iterator.
  *
  * @version OMS 1.0
  * @see StreamingConsumer#stream(String)
@@ -39,12 +37,12 @@ public interface Stream extends ServiceLifecycle {
      * <ul>
      * <li> {@link OMSBuiltinKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code
      * Stream}.
-     * <li> {@link OMSBuiltinKeys#BEGIN_OFFSET}, the begin offset boarder of this partition iterator.
-     * <li> {@link OMSBuiltinKeys#END_OFFSET}, the end offset boarder of this partition iterator.
-     * <li> {@link OMSBuiltinKeys#BEGIN_TIMESTAMP}, the begin offset represented
-     * by this timestamp of this partition iterator.
-     * <li> {@link OMSBuiltinKeys#END_TIMESTAMP}, the end offset represented
-     * by this timestamp of this partition iterator.
+     * <li> {@link OMSBuiltinKeys#BEGIN_POSITION}, the begin position of this stream.
+     * <li> {@link OMSBuiltinKeys#END_POSITION}, the end position of this stream.
+     * <li> {@link OMSBuiltinKeys#BEGIN_TIMESTAMP}, the begin position represented
+     * by this timestamp of this stream.
+     * <li> {@link OMSBuiltinKeys#END_TIMESTAMP}, the end offset position
+     * by this timestamp of this stream.
      * </ul>
      *
      * @return the attributes
@@ -52,34 +50,28 @@ public interface Stream extends ServiceLifecycle {
     KeyValue properties();
 
     /**
-     * Fetches the current offset of this partition iterator.
-     *
-     * @return the current offset, return -1 if the iterator is first created.
-     */
-    MessageIterator current();
-
-    /**
-     * Fetches the first offset of this partition iterator.
+     * Creates a {@code MessageIterator} from the begin position of current stream.
      *
      * @return the first offset, return -1 if the partition has no message.
      */
     MessageIterator begin();
 
     /**
-     * Fetches the last offset of this partition iterator.
+     * Creates a {@code MessageIterator} from the end position of current stream.
      *
      * @return the last offset, return 0 if the iterator is first created.
      */
     MessageIterator end();
 
     /**
-     * Moves the current offset to the specified timestamp.
+     * Creates a {@code MessageIterator} from the fixed position represented
+     * by the specified timestamp of current stream.
      * <p>
-     * Moves the current offset to the first offset, if the given timestamp
-     * is earlier than the first message's store timestamp in this partition iterator.
+     * Creates a {@code MessageIterator} from the begin position if the given timestamp
+     * is earlier than the first message's store timestamp in this stream.
      * <p>
-     * Moves the current offset to the last offset, if the given timestamp
-     * is later than the last message's store timestamp in this partition iterator.
+     * Creates a {@code MessageIterator} from the end position, if the given timestamp
+     * is later than the last message's store timestamp in this stream.
      *
      * @param timestamp the specified timestamp
      */

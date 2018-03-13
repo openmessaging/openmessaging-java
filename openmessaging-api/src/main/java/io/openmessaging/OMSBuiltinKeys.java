@@ -32,8 +32,8 @@ public interface OMSBuiltinKeys {
     String PRODUCER_ID = "oms.producer.id";
     String CONSUMER_ID = "oms.consumer.id";
     String OPERATION_TIMEOUT = "oms.operation.timeout";
-    String BEGIN_OFFSET = "oms.begin.offset";
-    String END_OFFSET = "oms.end.offset";
+    String BEGIN_POSITION = "oms.begin.position";
+    String END_POSITION = "oms.end.position";
     String BEGIN_TIMESTAMP = "oms.begin.timestamp";
     String END_TIMESTAMP = "oms.end.timestamp";
 

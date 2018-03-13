@@ -23,10 +23,11 @@ import io.openmessaging.ServiceLifecycle;
 import java.util.List;
 
 /**
- * A {@code Queue} is divided by many streams.
- * <p>
- * A {@code StreamingConsumer} object supports consume messages from a
- * specified partition like a iterator.
+ * A {@code StreamingConsumer} provides low level APIs to open multiple streams
+ * from a specified queue and then retrieve messages from them through @{code MessageIterator}.
+ *
+ * A {@code Queue} is consists of multiple streams, the {@code Stream} is an abstract concept and
+ * can be associated with partition in most messaging systems.
  *
  * @version OMS 1.0
  * @see Stream
@@ -51,29 +52,29 @@ public interface StreamingConsumer extends ServiceLifecycle {
     /**
      * Returns all the streams of the related queue.
      *
-     * @return the partition list
+     * @return the name list of streams
      */
     List<String> streams();
 
     /**
-     * Returns all the consumers of the related queue.
+     * Returns all the attached consumers of the related queue.
      *
-     * @return the consumers list
+     * @return the id list of consumers
      */
     List<String> consumers();
 
     /**
-     * Creates a {@code Stream} instance from a {@code Stream}.
+     * Creates a {@code Stream} instance from a specified stream name.
      *
-     * @param streamName a specified {@code Stream}
-     * @return a partition iterator
+     * @param streamName a specified stream name
+     * @return a {@code Stream} instance
      */
     Stream stream(String streamName);
 
     /**
-     * Creates a {@code Stream} instance from a {@code Stream}, with some preset attributes.
+     * Creates a {@code Stream} instance from a specified stream name with some preset attributes.
      *
-     * @param streamName a specified {@code Stream}
+     * @param streamName a specified streamName
      * @return a {@code Stream} instance
      * @see Stream#properties()
      */
