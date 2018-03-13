@@ -4,7 +4,7 @@ import io.openmessaging.KeyValue;
 import io.openmessaging.Message;
 
 /**
- * A message sender created through {@link Producer#createSequenceBatchMessageSender()}, to send
+ * A message sender created through {@link Producer#createBatchMessageSender()}, to send
  * messages in batch way, and commit or roll back at the appropriate time.
  *
  * @version OMS 1.0

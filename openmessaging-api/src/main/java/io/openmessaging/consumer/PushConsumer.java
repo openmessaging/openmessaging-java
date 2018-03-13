@@ -26,7 +26,7 @@ import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.interceptor.PushConsumerInterceptor;
 
 /**
- * A {@code PushConsumer} object to receive messages from multiple queues, these messages are pushed from
+ * A {@code PushConsumer} receives messages from multiple queues, these messages are pushed from
  * MOM server to {@code PushConsumer} client.
  *
  * @version OMS 1.0

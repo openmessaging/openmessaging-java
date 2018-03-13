@@ -36,15 +36,4 @@ public interface OMSBuiltinKeys {
     String END_POSITION = "oms.end.position";
     String BEGIN_TIMESTAMP = "oms.begin.timestamp";
     String END_TIMESTAMP = "oms.end.timestamp";
-
-    /**
-     * There are three order policies:
-     *
-     * <ul>
-     * <li>ANY_ORDER</li>
-     * <li>FIFO_ORDER</li>
-     * <li>LIFO_ORDER</li>
-     * </ul>
-     */
-    String ORDER_POLICY = "order.policy";
 }

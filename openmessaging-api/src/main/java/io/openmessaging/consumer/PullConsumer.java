@@ -25,7 +25,7 @@ import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
- * A {@code PullConsumer} object can pull messages from the specified queue,
+ * A {@code PullConsumer} pulls messages from the specified queue,
  * and supports submit the consume result by acknowledgement.
  *
  * @version OMS 1.0
@@ -75,7 +75,7 @@ public interface PullConsumer extends ServiceLifecycle {
     Message pull(KeyValue properties);
 
     /**
-     * Acknowledges the specified and consumed message, with unique message id.
+     * Acknowledges the specified and consumed message with unique message id.
      * <p>
      * Messages that have been received but not acknowledged may be redelivered.
      *

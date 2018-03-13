@@ -163,7 +163,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      *
      * @return a {@code BatchMessageSender} instance
      */
-    BatchMessageSender createSequenceBatchMessageSender();
+    BatchMessageSender createBatchMessageSender();
 
     /**
      * Adds a {@code ProducerInterceptor} to intercept send operations of producer.

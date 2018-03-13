@@ -274,9 +274,9 @@ public interface Message {
         String TraceId = "TraceId";
 
         /**
-         * The {@code RetryNumbers} header field contains a number, which represents the number of message delivery.
+         * The {@code RetryNumber} header field contains a number, which represents the number of message delivery.
          */
-        String RetryNumbers = "RetryNumbers";
+        String RetryNumber = "RetryNumber";
 
         /**
          * The {@code RetryReason} header field contains the text description of the reason that causes
