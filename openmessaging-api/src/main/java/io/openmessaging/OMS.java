@@ -18,10 +18,8 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSRuntimeException;
-import io.openmessaging.interceptor.MessagingAccessPointInterceptor;
 import io.openmessaging.internal.DefaultKeyValue;
 import io.openmessaging.internal.MessagingAccessPointAdapter;
-import io.openmessaging.internal.MessagingAccessPointInterceptorFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -57,7 +55,7 @@ public class OMS {
      * some syntax error or internal error.
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url) {
-        return MessagingAccessPointInterceptorFactory.wrapMessagingAccessPoint(getMessagingAccessPoint(url, OMS.newKeyValue()));
+        return getMessagingAccessPoint(url, OMS.newKeyValue());
     }
 
     /**
@@ -74,25 +72,7 @@ public class OMS {
      * some syntax error or internal error.
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {
-        return MessagingAccessPointInterceptorFactory.wrapMessagingAccessPoint(MessagingAccessPointAdapter.getMessagingAccessPoint(url, properties));
-    }
-
-    /**
-     * Adds an interceptor to {@code MessagingAccessPointInterceptorFactory}
-     *
-     * @param interceptor an interceptor object
-     */
-    public static void addInterceptor(MessagingAccessPointInterceptor interceptor) {
-        MessagingAccessPointInterceptorFactory.addObjectInterceptor(interceptor);
-    }
-
-    /**
-     * Removes an interceptor from {@code MessagingAccessPointInterceptorFactory}
-     *
-     * @param interceptor an interceptor object to be removed
-     */
-    public static void removeInterceptor(MessagingAccessPointInterceptor interceptor) {
-        MessagingAccessPointInterceptorFactory.removeObjectInterceptor(interceptor);
+        return MessagingAccessPointAdapter.getMessagingAccessPoint(url, properties);
     }
 
     /**
