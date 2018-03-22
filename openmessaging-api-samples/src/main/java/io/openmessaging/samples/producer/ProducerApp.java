@@ -37,27 +37,18 @@ public class ProducerApp {
         producer.startup();
         System.out.println("Producer startup OK");
 
-        //Add a shutdown hook
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                producer.shutdown();
-                messagingAccessPoint.shutdown();
-            }
-        }));
-
         //Sync
         {
-            SendResult sendResult = producer.send(producer.createTopicBytesMessage(
-                "HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+            SendResult sendResult = producer.send(producer.createQueueBytesMessage(
+                "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             System.out.println("Send sync message OK, message id is: " + sendResult.messageId());
         }
 
         //Async with Promise
         {
-            final Future<SendResult> result = producer.sendAsync(producer.createTopicBytesMessage(
-                "HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+            final Future<SendResult> result = producer.sendAsync(producer.createQueueBytesMessage(
+                "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             final SendResult sendResult = result.get(3000L);
             System.out.println("Send async message OK, message id is: " + sendResult.messageId());
@@ -65,8 +56,8 @@ public class ProducerApp {
 
         //Async with FutureListener
         {
-            final Future<SendResult> result = producer.sendAsync(producer.createTopicBytesMessage(
-                "HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+            final Future<SendResult> result = producer.sendAsync(producer.createQueueBytesMessage(
+                "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             result.addListener(new FutureListener<SendResult>() {
                 @Override
@@ -83,10 +74,18 @@ public class ProducerApp {
 
         //Oneway
         {
-            producer.sendOneway(producer.createTopicBytesMessage(
-                "HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+            producer.sendOneway(producer.createQueueBytesMessage(
+                "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             System.out.println("Send oneway message OK");
         }
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                producer.shutdown();
+                messagingAccessPoint.shutdown();
+            }
+        }));
     }
 }

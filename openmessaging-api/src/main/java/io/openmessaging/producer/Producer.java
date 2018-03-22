@@ -35,7 +35,7 @@ import io.openmessaging.interceptor.ProducerInterceptor;
  * of a {@code MessagingAccessPoint}. An instance of {@code Producer} is
  * created by calling the {@link MessagingAccessPoint#createProducer()} method.
  * It provides various {@code send} methods to send a message to a specified destination.
- * A destination can be a {@link Message.BuiltinKeys#Topic} or a {@link Message.BuiltinKeys#Queue}.
+ * A destination should be a {@link Message.BuiltinKeys#Queue}.
  * <p>
  * {@link Producer#send(Message)} means send a message to destination synchronously,
  * the calling thread will block until the send request complete.

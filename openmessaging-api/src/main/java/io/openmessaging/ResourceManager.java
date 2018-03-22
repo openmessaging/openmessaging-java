@@ -23,14 +23,14 @@ import java.util.List;
 
 /**
  * The {@code ResourceManager} is responsible for providing a unified interface of resource management,
- * allows the user to manage the topic, queue, namespace resources.
+ * allows the user to manage the queue, namespace resources.
  * <p>
  * Create, fetch, update and destroy are the four basic functions of {@code ResourceManager}.
  * <p>
  * And the {@code ResourceManager} also supports fetch and update resource attributes dynamically.
  * <p>
  * The attributes of consumer and producer also are treated as {@code Resource}. {@code ResourceManager}
- * allows the user to fetch producer and consumer list in a specified topic or queue,
+ * allows the user to fetch producer and consumer list in a specified queue,
  * and update their resource attributes dynamically.
  * <p>
  * {@link MessagingAccessPoint#getResourceManager()} is the unique method to obtain a {@code ResourceManager}
@@ -86,54 +86,6 @@ public interface ResourceManager extends ServiceLifecycle {
     List<String> listNamespaces();
 
     /**
-     * Creates a {@code Topic} resource in the specified namespace with some preset properties.
-     * <p>
-     *
-     * @param nsName the namespace name
-     * @param topicName the topic name
-     * @param attributes the preset properties
-     */
-    void createTopic(String nsName, String topicName, KeyValue attributes);
-
-    /**
-     * Updates the attributes of a specified topic, all the old attributes will be removed and apply the new
-     * attributes.
-     *
-     * @param nsName the namespace name
-     * @param topicName the topic name
-     * @param attributes the new attributes
-     * @throws OMSResourceNotExistException if the specified topic or namespace is not exists
-     */
-    void setTopicAttributes(String nsName, String topicName, KeyValue attributes) throws OMSResourceNotExistException;
-
-    /**
-     * Gets the attributes of a specified topic.
-     *
-     * @param nsName the namespace name
-     * @param topicName the topic name
-     * @return the attributes of namespace
-     * @throws OMSResourceNotExistException if the specified topic or namespace is not exists
-     */
-    KeyValue getTopicAttributes(String nsName, String topicName) throws OMSResourceNotExistException;
-
-    /**
-     * Deletes an existing topic resource.
-     *
-     * @param nsName the namespace of the existing topic
-     * @param topicName the topic needs to be deleted
-     * @throws OMSResourceNotExistException if the specified namespace is not exists
-     */
-    void deleteTopic(String nsName, String topicName) throws OMSResourceNotExistException;
-
-    /**
-     * Gets the topic list in specified namespace, return a empty list if the namespace is not exists
-     *
-     * @param nsName the namespace name
-     * @return the list of all topics
-     */
-    List<String> listTopics(String nsName);
-
-    /**
      * Creates a {@code Queue} resource in the specified namespace with some preset properties.
      * <p>
      *
@@ -148,9 +100,9 @@ public interface ResourceManager extends ServiceLifecycle {
      * attributes.
      *
      * @param nsName the namespace name
-     * @param queueName the topic name
+     * @param queueName the queue name
      * @param attributes the new attributes
-     * @throws OMSResourceNotExistException if the specified topic or namespace is not exists
+     * @throws OMSResourceNotExistException if the specified queue or namespace is not exists
      */
     void setQueueAttributes(String nsName, String queueName, KeyValue attributes) throws OMSResourceNotExistException;
 
@@ -158,9 +110,9 @@ public interface ResourceManager extends ServiceLifecycle {
      * Gets the attributes of a specified queue.
      *
      * @param nsName the namespace name
-     * @param queueName the topic name
+     * @param queueName the queue name
      * @return the attributes of namespace
-     * @throws OMSResourceNotExistException if the specified topic or namespace is not exists
+     * @throws OMSResourceNotExistException if the specified queue or namespace is not exists
      */
     KeyValue getQueueAttributes(String nsName, String queueName) throws OMSResourceNotExistException;
 
@@ -219,7 +171,7 @@ public interface ResourceManager extends ServiceLifecycle {
     void deleteRouting(String nsName, String routingName) throws OMSResourceNotExistException;
 
     /**
-     * Gets the routing list in specified namespace, return a empty list if the namespace is not exists
+     * Gets the routing list in specified namespace, return a empty list if the namespace is not exists.
      *
      * @param nsName the namespace name
      * @return the list of all routing
@@ -227,7 +179,7 @@ public interface ResourceManager extends ServiceLifecycle {
     List<Routing> listRoutings(String nsName);
 
     /**
-     * Message also is a resource, some headers of message can be updated by this method
+     * Updates some system headers of a message.
      *
      * @param messageId the id of message
      * @param headers the new headers

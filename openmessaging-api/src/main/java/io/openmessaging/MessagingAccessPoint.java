@@ -22,17 +22,16 @@ import io.openmessaging.consumer.PullConsumer;
 import io.openmessaging.consumer.PushConsumer;
 import io.openmessaging.consumer.StreamingConsumer;
 import io.openmessaging.exception.OMSRuntimeException;
-import io.openmessaging.observer.Observer;
 import io.openmessaging.producer.Producer;
 import java.util.List;
 
 /**
- * The {@code MessagingAccessPoint} obtained from {@link MessagingAccessPointFactory} is capable of creating {@code
+ * The {@code MessagingAccessPoint} obtained from {@link OMS} is capable of creating {@code
  * Producer}, {@code Consumer}, {@code ServiceEndPoint}, and so on. <p> For example:
  * <pre>
  * MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
  * Producer producer = messagingAccessPoint.createProducer();
- * producer.send(producer.createTopicBytesMessage("HELLO_TOPIC", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+ * producer.send(producer.createQueueBytesMessage("HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
  * </pre>
  *
  * @version OMS 1.0
@@ -158,30 +157,30 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     ResourceManager getResourceManager();
 
     /**
-     * Register an observer in an serviceEndPoint object. Whenever serviceEndPoint object publish or bind an service
-     * object, it will be notified to the list of observer object registered before
+     * Returns the {@code Producer} list created by the specified {@code MessagingAccessPoint}
      *
-     * @param observer observer event object to an serviceEndPoint object
+     * @return the producer list
      */
-    void addObserver(Observer observer);
-
-    /**
-     * Removes the given observer from the list of observer
-     * <p>
-     * If the given observer has not been previously registered (i.e. it was
-     * never added) then this method call is a no-op. If it had been previously
-     * added then it will be removed. If it had been added more than once, then
-     * only the first occurrence will be removed.
-     *
-     * @param observer The observer to remove
-     */
-    void removeObserver(Observer observer);
-
     List<Producer> producers();
 
+    /**
+     * Returns the {@code PushConsumer} list created by the specified {@code MessagingAccessPoint}
+     *
+     * @return the push consumer list
+     */
     List<PushConsumer> pushConsumers();
 
+    /**
+     * Returns the {@code StreamingConsumer} list created by the specified {@code MessagingAccessPoint}
+     *
+     * @return the streaming consumer list
+     */
     List<StreamingConsumer> streamingConsumers();
 
+    /**
+     * Returns the {@code PullConsumer} list created by the specified {@code MessagingAccessPoint}
+     *
+     * @return the pull consumer list
+     */
     List<PullConsumer> pullConsumers();
 }

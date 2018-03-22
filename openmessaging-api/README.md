@@ -1,10 +1,9 @@
 ## Server Side
 * Namespace
-* Topic
 * Queue
     * Stream
 * Routing
-    * Operator
+    * Expression
 
 ## Client Side
 * Producer

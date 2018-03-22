@@ -39,7 +39,7 @@ public class StreamingConsumerApp {
         }
 
         //Persist the consume offset.
-        messageIterator.commit(true);
+        messageIterator.commit();
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override

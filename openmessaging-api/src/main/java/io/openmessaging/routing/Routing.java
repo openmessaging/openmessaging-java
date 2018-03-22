@@ -21,7 +21,7 @@ import io.openmessaging.KeyValue;
 import io.openmessaging.ResourceManager;
 
 /**
- * A {@code Routing} object is responsible for routing the messages from {@code Topic} to {@code Queue}, with
+ * A {@code Routing} object is responsible for routing the messages from a queue to another queue, with
  * an expression to filter or compute the source messages.
  *
  * @version OMS 1.0
@@ -38,16 +38,16 @@ public interface Routing {
     KeyValue properties();
 
     /**
-     * The routing source, naming scheme is {@literal TOPIC::<TOPIC_NAME>}.
-     * Messages sent to the source topic will be routing to the destination Queue.
+     * The routing source, naming scheme is {@literal QUEUE::<QUEUE_NAME>}.
+     * Messages sent to the source queue will be routing to the destination Queue.
      *
-     * @return the source topic
+     * @return the source queue
      */
     String source();
 
     /**
      * The routing destination, naming scheme is {@literal QUEUE::<QUEUE_NAME>}
-     * Messages sent to the source topic will be routing to this Queue.
+     * Messages sent to the source queue will be routing to this Queue.
      *
      * @return the destination queue
      */

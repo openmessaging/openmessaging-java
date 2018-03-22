@@ -132,16 +132,6 @@ public interface Message {
         String MessageId = "MessageId";
 
         /**
-         * The {@code Topic} header field is the destination which the message is being sent.
-         * <p>
-         * When a message is sent this value is should be set properly.
-         * <p>
-         * When a message is received, its {@code Topic} value must be equivalent to the
-         * value assigned when it was sent.
-         */
-        String Topic = "Topic";
-
-        /**
          * The {@code Queue} header field is the destination which the message is being sent.
          * <p>
          * When a message is sent this value is should be set properly.
@@ -284,6 +274,6 @@ public interface Message {
          */
         String RetryReason = "RetryReason";
 
-        String Stream = "Stream";
+        String StreamName = "StreamName";
     }
 }

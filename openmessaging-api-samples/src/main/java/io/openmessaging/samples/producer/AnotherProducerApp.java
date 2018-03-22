@@ -19,8 +19,8 @@ package io.openmessaging.samples.producer;
 
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
+import io.openmessaging.producer.BatchMessageSender;
 import io.openmessaging.producer.Producer;
-import io.openmessaging.producer.SendResult;
 import java.nio.charset.Charset;
 
 public class AnotherProducerApp {
@@ -35,6 +35,26 @@ public class AnotherProducerApp {
         producer.startup();
         System.out.println("Producer startup OK");
 
+        BatchMessageSender batchMessageSender = producer.createBatchMessageSender();
+
+        batchMessageSender.send(producer.createQueueBytesMessage(
+            "HELLO_QUEUE1", "HELLO_BODY1".getBytes(Charset.forName("UTF-8"))));
+
+        batchMessageSender.send(producer.createQueueBytesMessage(
+            "HELLO_QUEUE2", "HELLO_BODY2".getBytes(Charset.forName("UTF-8")))
+            .putUserHeaders("KEY1", 100)
+            .putUserHeaders("KEY2", 200L)
+            .putUserHeaders("KEY3", 3.14)
+            .putUserHeaders("KEY4", "value4")
+        );
+
+        batchMessageSender.send(producer.createQueueBytesMessage(
+            "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+
+        batchMessageSender.commit();
+
+        System.out.println("Send a batch of messages OK");
+
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
@@ -42,25 +62,5 @@ public class AnotherProducerApp {
                 messagingAccessPoint.shutdown();
             }
         }));
-
-        SendResult result = producer.send(producer.createTopicBytesMessage(
-            "HELLO_TOPIC1", "HELLO_BODY1".getBytes(Charset.forName("UTF-8"))));
-
-        System.out.println("Send first message to topic OK, message id is: " + result.messageId());
-
-        producer.send(producer.createTopicBytesMessage(
-            "HELLO_TOPIC2", "HELLO_BODY2".getBytes(Charset.forName("UTF-8")))
-            .putUserHeaders("KEY1", 100)
-            .putUserHeaders("KEY2", 200L)
-            .putUserHeaders("KEY3", 3.14)
-            .putUserHeaders("KEY4", "value4")
-        );
-
-        System.out.println("Send second message to topic OK");
-
-        producer.send(producer.createQueueBytesMessage(
-            "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
-
-        System.out.println("send third message to queue OK");
     }
 }

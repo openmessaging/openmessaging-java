@@ -38,7 +38,7 @@ public class PushConsumerApp {
             String simpleQueue = "HELLO_QUEUE";
             resourceManager.createQueue("NS1", simpleQueue, OMS.newKeyValue());
 
-            //This queue doesn't has a source topic, so only the message delivered to the queue directly can
+            //This queue doesn't has a source queue, so only the message delivered to the queue directly can
             //be consumed by this consumer.
             consumer.attachQueue(simpleQueue, new MessageListener() {
                 @Override
@@ -56,14 +56,23 @@ public class PushConsumerApp {
         //Consume messages from a complex queue.
         final PushConsumer anotherConsumer = messagingAccessPoint.createPushConsumer();
         {
-            String complexQueue = "QUEUE_HAS_SOURCE_TOPIC";
-            String sourceTopic = "SOURCE_TOPIC";
+            String complexQueue = "QUEUE_WITH_SOURCE_QUEUE";
+            String sourceQueue = "SOURCE_QUEUE";
 
             //Create the complex queue.
             resourceManager.createQueue("NS_01", complexQueue, OMS.newKeyValue());
-            //Create the source topic.
-            resourceManager.createTopic("NS_01", sourceTopic, OMS.newKeyValue());
+            //Create the source queue.
+            resourceManager.createQueue("NS_01", sourceQueue, OMS.newKeyValue());
 
+            anotherConsumer.attachQueue(complexQueue, new MessageListener() {
+                @Override
+                public void onReceived(Message message, Context context) {
+                    //The message sent to the sourceQueue will be delivered to anotherConsumer
+                    System.out.println("Received one message: " + message);
+                    context.ack();
+                }
+
+            });
         }
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
