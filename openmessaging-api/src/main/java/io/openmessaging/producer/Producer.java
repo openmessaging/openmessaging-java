@@ -100,11 +100,10 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      *
      * @param message a transactional message will be sent
      * @param branchExecutor local transaction executor associated with the message
-     * @param arg a parameter passed to transaction executor
      * @param properties the specified attributes
      * @return the successful {@code SendResult}
      */
-    SendResult send(Message message, LocalTransactionBranchExecutor branchExecutor, Object arg, KeyValue properties);
+    SendResult send(Message message, LocalTransactionBranchExecutor branchExecutor, KeyValue properties);
 
     /**
      * Sends a message to the specified destination asynchronously, the destination should be preset to
@@ -134,36 +133,6 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @see FutureListener
      */
     Future<SendResult> sendAsync(Message message, KeyValue properties);
-
-    /**
-     * Sends a message to the specified destination in one way, the destination should be preset to
-     * {@link Message#sysHeaders()}, other header fields as well.
-     * <p>
-     * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't
-     * care about the send result and also have no context to get the result.
-     *
-     * @param message a message will be sent
-     */
-    void sendOneway(Message message);
-
-    /**
-     * Sends a message to the specified destination in one way, using the specified attributes, the destination
-     * should be preset to {@link Message#sysHeaders()}, other header fields as well.
-     * <p>
-     * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't
-     * care about the send result and also have no context to get the result.
-     *
-     * @param message a message will be sent
-     * @param properties the specified userHeaders
-     */
-    void sendOneway(Message message, KeyValue properties);
-
-    /**
-     * Creates a {@code BatchMessageSender} to send message in batch way.
-     *
-     * @return a {@code BatchMessageSender} instance
-     */
-    BatchMessageSender createBatchMessageSender();
 
     /**
      * Adds a {@code ProducerInterceptor} to intercept send operations of producer.

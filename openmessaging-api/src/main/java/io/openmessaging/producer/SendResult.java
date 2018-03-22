@@ -17,8 +17,6 @@
 
 package io.openmessaging.producer;
 
-import io.openmessaging.KeyValue;
-
 /**
  * The result of sending a OMS message to server
  * with the message id and some attributes.
@@ -33,11 +31,4 @@ public interface SendResult {
      * @return the message id
      */
     String messageId();
-
-    /**
-     * Returns the attributes of this {@code SendResult} instance.
-     *
-     * @return the attributes
-     */
-    KeyValue properties();
 }

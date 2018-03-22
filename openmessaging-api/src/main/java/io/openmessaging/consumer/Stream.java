@@ -50,31 +50,31 @@ public interface Stream extends ServiceLifecycle {
     KeyValue properties();
 
     /**
-     * Creates a {@code MessageIterator} from the begin position of current stream.
+     * Creates a {@code StreamIterator} from the begin position of current stream.
      *
      * @return a message iterator at the begin position.
      */
-    MessageIterator begin();
+    StreamIterator begin();
 
     /**
-     * Creates a {@code MessageIterator} from the end position of current stream.
+     * Creates a {@code StreamIterator} from the end position of current stream.
      *
      * @return a message iterator at the begin position.
      */
-    MessageIterator end();
+    StreamIterator end();
 
     /**
-     * Creates a {@code MessageIterator} from the fixed position represented
+     * Creates a {@code StreamIterator} from the fixed position represented
      * by the specified timestamp of current stream.
      * <p>
-     * Creates a {@code MessageIterator} from the begin position if the given timestamp
+     * Creates a {@code StreamIterator} from the begin position if the given timestamp
      * is earlier than the first message's store timestamp in this stream.
      * <p>
-     * Creates a {@code MessageIterator} from the end position, if the given timestamp
+     * Creates a {@code StreamIterator} from the end position, if the given timestamp
      * is later than the last message's store timestamp in this stream.
      *
      * @param timestamp the specified timestamp
      * @return a message iterator at the specified timestamp
      */
-    MessageIterator seekByTime(long timestamp);
+    StreamIterator seek(long position);
 }

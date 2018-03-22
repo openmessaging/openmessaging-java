@@ -4,7 +4,7 @@ import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.ResourceManager;
-import io.openmessaging.consumer.MessageIterator;
+import io.openmessaging.consumer.StreamIterator;
 import io.openmessaging.consumer.Stream;
 import io.openmessaging.consumer.StreamingConsumer;
 
@@ -23,23 +23,23 @@ public class StreamingConsumerApp {
 
         Stream stream = streamingConsumer.stream(streamingConsumer.streams().get(0));
 
-        MessageIterator messageIterator = stream.begin();
+        StreamIterator streamIterator = stream.begin();
 
-        while (messageIterator.hasNext()) {
-            Message message = messageIterator.next();
+        while (streamIterator.hasNext()) {
+            Message message = streamIterator.next();
             System.out.println("Received one message: " + message);
         }
 
         //All the messages in the queue has been consumed.
 
         //Now consume the messages in reverse order
-        while (messageIterator.hasPrevious()) {
-            Message message = messageIterator.previous();
+        while (streamIterator.hasPrevious()) {
+            Message message = streamIterator.previous();
             System.out.println("Received one message again: " + message);
         }
 
         //Persist the consume offset.
-        messageIterator.commit();
+        streamIterator.commit();
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override

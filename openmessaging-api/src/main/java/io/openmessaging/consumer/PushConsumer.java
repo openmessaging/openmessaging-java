@@ -70,6 +70,8 @@ public interface PushConsumer extends ServiceLifecycle {
      */
     void suspend();
 
+    void suspend(long timeout);
+
     /**
      * This method is used to find out whether the {@code PushConsumer} is suspended.
      *
@@ -113,7 +115,7 @@ public interface PushConsumer extends ServiceLifecycle {
      * @param queueName a specified queue
      * @return this {@code PushConsumer} instance
      */
-    PushConsumer detachQueue(String queueName);
+    void detachQueue(String queueName);
 
     /**
      * Adds a {@code PushConsumerInterceptor} to this consumer.

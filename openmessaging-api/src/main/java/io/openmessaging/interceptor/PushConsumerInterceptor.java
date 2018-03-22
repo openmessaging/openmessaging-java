@@ -12,14 +12,14 @@ public interface PushConsumerInterceptor {
      *
      * @param context a context
      */
-    void onMessageBefore(OnMessageBeforeContext context);
+    void onReceivedBefore(OnMessageBeforeContext context);
 
     /**
      * Called after a message is consumed
      *
      * @param context a context
      */
-    void onMessageAfter(OnMessageAfterContext context);
+    void onReceivedAfter(OnMessageAfterContext context);
 
     interface OnMessageBeforeContext {
     }

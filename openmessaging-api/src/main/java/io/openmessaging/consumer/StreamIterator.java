@@ -20,20 +20,19 @@ package io.openmessaging.consumer;
 import io.openmessaging.KeyValue;
 import io.openmessaging.Message;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
- * A {@code MessageIterator} is provided by {@code Stream} and is used to
+ * A {@code StreamIterator} is provided by {@code Stream} and is used to
  * retrieve messages a specified stream like a read-only iterator.
  *
  * @version OMS 1.0
  * @see StreamingConsumer#stream(String)
  * @since OMS 1.0
  */
-public interface MessageIterator extends ServiceLifecycle {
+public interface StreamIterator {
     /**
-     * Returns the attributes of this {@code MessageIterator} instance.
+     * Returns the attributes of this {@code StreamIterator} instance.
      * <p>
      * There are some standard attributes defined by OMS for {@code Stream}:
      * <ul>
@@ -47,7 +46,7 @@ public interface MessageIterator extends ServiceLifecycle {
 
     /**
      * Persists this iterator to local or remote server, that depends on specified
-     * implementation of {@link MessageIterator}.
+     * implementation of {@link StreamIterator}.
      */
     void commit();
 

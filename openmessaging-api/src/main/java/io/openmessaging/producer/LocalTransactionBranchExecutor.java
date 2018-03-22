@@ -24,9 +24,8 @@ public interface LocalTransactionBranchExecutor {
      *
      * @param message the associated message
      * @param context the execution context
-     * @param arg a parameter passed from {@code Producer}
      */
-    void doLocalTransactionBranch(Message message, DoLocalTransactionBranchContext context, Object arg);
+    void doLocalTransactionBranch(Message message, DoLocalTransactionBranchContext context);
 
     /**
      * Checks the status of the local transaction branch.

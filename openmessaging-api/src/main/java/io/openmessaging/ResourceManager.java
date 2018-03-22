@@ -178,11 +178,13 @@ public interface ResourceManager extends ServiceLifecycle {
      */
     List<Routing> listRoutings(String nsName);
 
+    List<String> listStreams(String queueName);
+
     /**
      * Updates some system headers of a message.
      *
      * @param messageId the id of message
      * @param headers the new headers
      */
-    void updateMessage(String messageId, KeyValue headers);
+    void updateMessage(String nsName, String messageId, KeyValue headers);
 }

@@ -20,11 +20,10 @@ package io.openmessaging.consumer;
 import io.openmessaging.KeyValue;
 import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.ServiceLifecycle;
-import java.util.List;
 
 /**
  * A {@code StreamingConsumer} provides low level APIs to open multiple streams
- * from a specified queue and then retrieve messages from them through @{code MessageIterator}.
+ * from a specified queue and then retrieve messages from them through @{code StreamIterator}.
  *
  * A {@code Queue} is consists of multiple streams, the {@code Stream} is an abstract concept and
  * can be associated with partition in most messaging systems.
@@ -50,26 +49,12 @@ public interface StreamingConsumer extends ServiceLifecycle {
     KeyValue properties();
 
     /**
-     * Returns all the streams of the related queue.
-     *
-     * @return the name list of streams
-     */
-    List<String> streams();
-
-    /**
-     * Returns all the attached consumers of the related queue.
-     *
-     * @return the id list of consumers
-     */
-    List<String> consumers();
-
-    /**
      * Creates a {@code Stream} instance from a specified stream name.
      *
      * @param streamName a specified stream name
      * @return a {@code Stream} instance
      */
-    Stream stream(String streamName);
+    Stream attachStream(String streamName);
 
     /**
      * Creates a {@code Stream} instance from a specified stream name with some preset attributes.
@@ -78,5 +63,8 @@ public interface StreamingConsumer extends ServiceLifecycle {
      * @return a {@code Stream} instance
      * @see Stream#properties()
      */
-    Stream stream(String streamName, KeyValue properties);
+    Stream attachStream(String streamName, KeyValue properties);
+
+    //detach...
+    void dettachStream(String streamName);
 }

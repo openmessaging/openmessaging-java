@@ -60,6 +60,9 @@ public interface PullConsumer extends ServiceLifecycle {
      */
     Message pull();
 
+    PullConsumer attach(String queue);
+    PullConsumer dettach();
+
     /**
      * Pulls the next message produced for this {@code PullConsumer}, using the specified attributes.
      * <p>

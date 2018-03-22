@@ -71,6 +71,7 @@ public class MessagingAccessPointAdapter {
         return "io.openmessaging." + driverType + ".MessagingAccessPointImpl";
     }
 
+    // fixme: version match
     private static void checkSpecVersion(final String specVersion, final String implVersion) {
         String majorVerOfImpl;
         String majorVerOfSpec = specVersion.substring(0, specVersion.indexOf('.', specVersion.indexOf('.') + 1));

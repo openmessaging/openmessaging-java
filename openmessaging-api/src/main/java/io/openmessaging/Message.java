@@ -131,15 +131,8 @@ public interface Message {
          */
         String MessageId = "MessageId";
 
-        /**
-         * The {@code Queue} header field is the destination which the message is being sent.
-         * <p>
-         * When a message is sent this value is should be set properly.
-         * <p>
-         * When a message is received, its {@code Queue} value must be equivalent to the
-         * value assigned when it was sent.
-         */
-        String Queue = "Queue";
+        String Destination = "Destination";
+
 
         /**
          * The {@code BornTimestamp} header field contains the time a message was handed
@@ -264,16 +257,14 @@ public interface Message {
         String TraceId = "TraceId";
 
         /**
-         * The {@code RetryNumber} header field contains a number, which represents the number of message delivery.
+         * The {@code RedeliveredNumber} header field contains a number, which represents the number of message delivery.
          */
-        String RetryNumber = "RetryNumber";
+        String RedeliveredNumber = "RedeliveredNumber";
 
         /**
          * The {@code RetryReason} header field contains the text description of the reason that causes
          * the last message delivery retry.
          */
-        String RetryReason = "RetryReason";
-
-        String StreamName = "StreamName";
+        String RedeliveredReason = "RedeliveredReason";
     }
 }

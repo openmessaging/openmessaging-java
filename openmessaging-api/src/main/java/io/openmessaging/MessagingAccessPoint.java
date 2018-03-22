@@ -70,7 +70,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    Producer createProducer();
+    Producer createProducer(String queueName);
 
     /**
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}
@@ -81,7 +81,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    Producer createProducer(KeyValue properties);
+    Producer createProducer(String queueName, KeyValue properties);
 
     /**
      * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}.
@@ -112,7 +112,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    PullConsumer createPullConsumer(String queueName);
+    PullConsumer createPullConsumer();
 
     /**
      * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
@@ -123,7 +123,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    PullConsumer createPullConsumer(String queueName, KeyValue properties);
+    PullConsumer createPullConsumer(KeyValue properties);
 
     /**
      * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint}.
@@ -133,7 +133,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    StreamingConsumer createStreamingConsumer(String queueName);
+    StreamingConsumer createStreamingConsumer();
 
     /**
      * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint} with some preset
@@ -145,7 +145,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    StreamingConsumer createStreamingConsumer(String queueName, KeyValue properties);
+    StreamingConsumer createStreamingConsumer(KeyValue properties);
 
     /**
      * Gets a lightweight {@code ResourceManager} instance from the specified {@code MessagingAccessPoint}.
