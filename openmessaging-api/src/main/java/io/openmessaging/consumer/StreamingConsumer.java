@@ -48,23 +48,16 @@ public interface StreamingConsumer extends ServiceLifecycle {
      */
     KeyValue properties();
 
-    /**
-     * Creates a {@code Stream} instance from a specified stream name.
-     *
-     * @param streamName a specified stream name
-     * @return a {@code Stream} instance
-     */
-    Stream attachStream(String streamName);
+    StreamIterator attachStream(String streamName, Position position);
+    StreamIterator attachStream(String streamName, Position position, KeyValue properties);
 
-    /**
-     * Creates a {@code Stream} instance from a specified stream name with some preset attributes.
-     *
-     * @param streamName a specified streamName
-     * @return a {@code Stream} instance
-     * @see Stream#properties()
-     */
-    Stream attachStream(String streamName, KeyValue properties);
+    Position earliest(String streamName);
+    Position latest(String streamName);
 
-    //detach...
-    void dettachStream(String streamName);
+    interface Position {
+        String postionID();
+        Position next();
+        Position previous();
+    }
+
 }

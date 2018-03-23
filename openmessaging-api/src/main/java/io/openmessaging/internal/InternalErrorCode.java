@@ -29,7 +29,7 @@ public enum InternalErrorCode {
     SPEC_IMPL_VERSION_MISMATCH("#spec_impl_version_mismatch", "The implementation version [%s] isn't compatible with the specification version [%s].")
     ;
 
-    String refBase = "http://openmessaging.cloud/internal/error-code.html";
+    String refBase = "http://openmessaging.cloud/internal/error-code";
     String message;
 
     InternalErrorCode(String refLoc, String message) {

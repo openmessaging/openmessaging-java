@@ -45,12 +45,6 @@ public interface StreamIterator {
     KeyValue properties();
 
     /**
-     * Persists this iterator to local or remote server, that depends on specified
-     * implementation of {@link StreamIterator}.
-     */
-    void commit();
-
-    /**
      * Returns {@code true} if this iterator has more messages when
      * traversing the iterator in the forward direction.
      *

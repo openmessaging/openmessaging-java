@@ -33,7 +33,7 @@ import java.util.List;
  * allows the user to fetch producer and consumer list in a specified queue,
  * and update their resource attributes dynamically.
  * <p>
- * {@link MessagingAccessPoint#getResourceManager()} is the unique method to obtain a {@code ResourceManager}
+ * {@link MessagingAccessPoint#resourceManager()} ()} is the unique method to obtain a {@code ResourceManager}
  * instance, any changes made by this instance will reflect to the message-oriented middleware (MOM) or
  * other product behind the {@code MessagingAccessPoint}.
  *
@@ -42,9 +42,9 @@ import java.util.List;
  */
 public interface ResourceManager extends ServiceLifecycle {
     /**
-     * Creates a {@code Namespace} resource for the specified {@code MessagingAccessPoint} with some preset properties.
+     * Creates a {@code ResourceManager} resource for the specified {@code MessagingAccessPoint} with some preset properties.
      * <p>
-     * Note that this method will simply create the physical Namespace in the specified {@code MessagingAccessPoint}.
+     * Note that this method will simply create the physical ResourceManager in the specified {@code MessagingAccessPoint}.
      *
      * @param nsName the namespace name
      * @param attributes the preset properties

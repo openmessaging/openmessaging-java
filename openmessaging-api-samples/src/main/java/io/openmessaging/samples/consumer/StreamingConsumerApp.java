@@ -2,15 +2,15 @@ package io.openmessaging.samples.consumer;
 
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.OMS;
 import io.openmessaging.ResourceManager;
+import io.openmessaging.OMS;
 import io.openmessaging.consumer.StreamIterator;
 import io.openmessaging.consumer.Stream;
 import io.openmessaging.consumer.StreamingConsumer;
 
 public class StreamingConsumerApp {
     public static void main(String[] args) {
-        final MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:namespace");
+        final MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:resourceManager");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
         ResourceManager resourceManager = messagingAccessPoint.getResourceManager();

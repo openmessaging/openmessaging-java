@@ -27,7 +27,7 @@ import io.openmessaging.exception.OMSResourceNotExistException;
 
 public class PushConsumerApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
-        final MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:namespace");
+        final MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:resourceManager");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
         ResourceManager resourceManager = messagingAccessPoint.getResourceManager();

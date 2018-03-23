@@ -30,7 +30,7 @@ import java.util.Properties;
  * <p>
  * The complete OMS driver URL syntax is:
  * <p>
- * {@literal openmessaging:<driver_type>://<access_point>[,<access_point>,...]/<namespace>}
+ * {@literal oms:<driver_type>://<access_point>[,<access_point>,...]/<namespace>}
  * <p>
  * The first part of the URL specifies which OMS implementation is to be used, rocketmq is a
  * optional driver type.

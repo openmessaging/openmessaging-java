@@ -72,14 +72,6 @@ public class ProducerApp {
             });
         }
 
-        //Oneway
-        {
-            producer.sendOneway(producer.createQueueBytesMessage(
-                "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
-
-            System.out.println("Send oneway message OK");
-        }
-
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {

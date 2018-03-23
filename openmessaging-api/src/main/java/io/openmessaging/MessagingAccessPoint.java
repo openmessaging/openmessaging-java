@@ -70,7 +70,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    Producer createProducer(String queueName);
+    Producer createProducer();
 
     /**
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}
@@ -81,7 +81,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    Producer createProducer(String queueName, KeyValue properties);
+    Producer createProducer(KeyValue properties);
 
     /**
      * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}.
@@ -154,33 +154,5 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    ResourceManager getResourceManager();
-
-    /**
-     * Returns the {@code Producer} list created by the specified {@code MessagingAccessPoint}
-     *
-     * @return the producer list
-     */
-    List<Producer> producers();
-
-    /**
-     * Returns the {@code PushConsumer} list created by the specified {@code MessagingAccessPoint}
-     *
-     * @return the push consumer list
-     */
-    List<PushConsumer> pushConsumers();
-
-    /**
-     * Returns the {@code StreamingConsumer} list created by the specified {@code MessagingAccessPoint}
-     *
-     * @return the streaming consumer list
-     */
-    List<StreamingConsumer> streamingConsumers();
-
-    /**
-     * Returns the {@code PullConsumer} list created by the specified {@code MessagingAccessPoint}
-     *
-     * @return the pull consumer list
-     */
-    List<PullConsumer> pullConsumers();
+    ResourceManager resourceManager();
 }

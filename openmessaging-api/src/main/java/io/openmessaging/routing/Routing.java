@@ -58,12 +58,12 @@ public interface Routing {
      *
      * @return the routing expression
      */
-    String expression();
+    String rule();
 
     /**
      * Returns the unique routing name of current namespace
      *
      * @return the routing name
      */
-    String routingName();
+    String name();
 }

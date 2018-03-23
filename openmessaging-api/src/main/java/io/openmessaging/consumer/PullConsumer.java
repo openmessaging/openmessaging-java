@@ -29,7 +29,7 @@ import io.openmessaging.exception.OMSRuntimeException;
  * and supports submit the consume result by acknowledgement.
  *
  * @version OMS 1.0
- * @see MessagingAccessPoint#createPullConsumer(String)
+ * @see MessagingAccessPoint#createPullConsumer()
  * @since OMS 1.0
  */
 public interface PullConsumer extends ServiceLifecycle {
@@ -48,6 +48,37 @@ public interface PullConsumer extends ServiceLifecycle {
     KeyValue properties();
 
     /**
+     * Attaches the {@code PullConsumer} to a specified queue.
+     *
+     * @param queueName a specified queue
+     * @return this {@code PullConsumer} instance
+     * @throws OMSRuntimeException if this {@code PullConsumer} fails to attach the specified queue due to some internal
+     * error.
+     */
+    PullConsumer attachQueue(String queueName);
+
+    /**
+     * Attaches the {@code PullConsumer} to a specified queue.
+     *
+     * @param queueName a specified queue
+     * @param properties some specified attributes
+     * @return this {@code PullConsumer} instance
+     * @throws OMSRuntimeException if this {@code PullConsumer} fails to attach the specified queue due to some internal
+     * error.
+     */
+    PushConsumer attachQueue(String queueName, KeyValue properties);
+
+    /**
+     * Detaches the {@code PullConsumer} from a specified queue.
+     * After the success call, this consumer won't receive new message
+     * from the specified queue any more.
+     *
+     * @param queueName a specified queue
+     * @return this {@code PushConsumer} instance
+     */
+    void detachQueue(String queueName);
+
+    /**
      * Pulls the next message produced for this {@code PullConsumer}.
      * <p>
      * This call blocks indefinitely until a message is arrives, the timeout expires,
@@ -58,10 +89,7 @@ public interface PullConsumer extends ServiceLifecycle {
      * @throws OMSRuntimeException if this {@code PullConsumer} fails to pull the next message due to some internal
      * error.
      */
-    Message pull();
-
-    PullConsumer attach(String queue);
-    PullConsumer dettach();
+    Message receive();
 
     /**
      * Pulls the next message produced for this {@code PullConsumer}, using the specified attributes.
@@ -75,7 +103,7 @@ public interface PullConsumer extends ServiceLifecycle {
      * @throws OMSRuntimeException if this {@code PullConsumer} fails to pull the next message due to some internal
      * error.
      */
-    Message pull(KeyValue properties);
+    Message receive(KeyValue properties);
 
     /**
      * Acknowledges the specified and consumed message with unique message id.
