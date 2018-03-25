@@ -39,24 +39,24 @@ public class MessagingAccessPointAdapter {
      * with some preset userHeaders.
      *
      * @param url the driver URL
-     * @param properties the preset userHeaders
+     * @param attributes the preset userHeaders
      * @return a {@code MessagingAccessPoint} instance
      * @throws OMSRuntimeException if the adapter fails to create a {@code MessagingAccessPoint} instance from the URL
      */
-    public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {
+    public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue attributes) {
         AccessPointURI accessPointURI = new AccessPointURI(url);
-        String driverImpl = parseDriverImpl(accessPointURI.getDriverType(), properties);
+        String driverImpl = parseDriverImpl(accessPointURI.getDriverType(), attributes);
 
-        properties.put(OMSBuiltinKeys.NAMESPACE, accessPointURI.getNamespace());
-        properties.put(OMSBuiltinKeys.ACCESS_POINTS, accessPointURI.getHosts());
-        properties.put(OMSBuiltinKeys.DRIVER_IMPL, driverImpl);
-        properties.put(OMSBuiltinKeys.REGION, accessPointURI.getRegion());
-        properties.put(OMSBuiltinKeys.ACCOUNT_ID, accessPointURI.getAccountId());
+        attributes.put(OMSBuiltinKeys.NAMESPACE, accessPointURI.getNamespace());
+        attributes.put(OMSBuiltinKeys.ACCESS_POINTS, accessPointURI.getHosts());
+        attributes.put(OMSBuiltinKeys.DRIVER_IMPL, driverImpl);
+        attributes.put(OMSBuiltinKeys.REGION, accessPointURI.getRegion());
+        attributes.put(OMSBuiltinKeys.ACCOUNT_ID, accessPointURI.getAccountId());
 
         try {
             Class<?> driverImplClass = Class.forName(driverImpl);
             Constructor constructor = driverImplClass.getConstructor(KeyValue.class);
-            MessagingAccessPoint vendorImpl = (MessagingAccessPoint) constructor.newInstance(properties);
+            MessagingAccessPoint vendorImpl = (MessagingAccessPoint) constructor.newInstance(attributes);
             checkSpecVersion(OMS.specVersion, vendorImpl.implVersion());
             return vendorImpl;
         } catch (Throwable e) {
@@ -64,9 +64,9 @@ public class MessagingAccessPointAdapter {
         }
     }
 
-    private static String parseDriverImpl(String driverType, KeyValue properties) {
-        if (properties.containsKey(OMSBuiltinKeys.DRIVER_IMPL)) {
-            return properties.getString(OMSBuiltinKeys.DRIVER_IMPL);
+    private static String parseDriverImpl(String driverType, KeyValue attributes) {
+        if (attributes.containsKey(OMSBuiltinKeys.DRIVER_IMPL)) {
+            return attributes.getString(OMSBuiltinKeys.DRIVER_IMPL);
         }
         return "io.openmessaging." + driverType + ".MessagingAccessPointImpl";
     }

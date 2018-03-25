@@ -60,19 +60,19 @@ public class OMS {
 
     /**
      * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url
-     * with some preset properties, which will be passed to MessagingAccessPoint's implementation
+     * with some preset attributes, which will be passed to MessagingAccessPoint's implementation
      * class as a unique constructor parameter.
      *
-     * There are some standard properties defined by OMS for this method,
-     * the same as {@link MessagingAccessPoint#properties()}
+     * There are some standard attributes defined by OMS for this method,
+     * the same as {@link MessagingAccessPoint#attributes()}
      *
      * @param url the specified OMS driver url
      * @return a {@code MessagingAccessPoint} instance
      * @throws OMSRuntimeException if the factory fails to create a {@code MessagingAccessPoint} due to some driver url
      * some syntax error or internal error.
      */
-    public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue properties) {
-        return MessagingAccessPointAdapter.getMessagingAccessPoint(url, properties);
+    public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue attributes) {
+        return MessagingAccessPointAdapter.getMessagingAccessPoint(url, attributes);
     }
 
     /**

@@ -41,7 +41,7 @@ public interface StreamingIterator {
      *
      * @return the attributes
      */
-    KeyValue properties();
+    KeyValue attributes();
 
     /**
      * Returns {@code true} if this iterator has more messages when

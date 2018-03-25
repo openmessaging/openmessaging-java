@@ -46,7 +46,7 @@ public interface PushConsumer extends ServiceLifecycle {
      *
      * @return the attributes
      */
-    KeyValue properties();
+    KeyValue attributes();
 
     /**
      * Resumes the {@code PushConsumer} after a suspend.
@@ -100,12 +100,12 @@ public interface PushConsumer extends ServiceLifecycle {
      *
      * @param queueName a specified queue
      * @param listener a specified listener to receive new message
-     * @param properties some specified attributes
+     * @param attributes some specified attributes
      * @return this {@code PushConsumer} instance
      * @throws OMSRuntimeException if this {@code PushConsumer} fails to attach the specified queue due to some internal
      * error.
      */
-    PushConsumer attachQueue(String queueName, MessageListener listener, KeyValue properties);
+    PushConsumer attachQueue(String queueName, MessageListener listener, KeyValue attributes);
 
     /**
      * Detaches the {@code PushConsumer} from a specified queue.

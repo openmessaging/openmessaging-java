@@ -45,7 +45,7 @@ public interface StreamingConsumer extends ServiceLifecycle {
      *
      * @return the attributes
      */
-    KeyValue properties();
+    KeyValue attributes();
 
     /**
      * Creates a {@code StreamingIterator} from the end position of the specified stream.

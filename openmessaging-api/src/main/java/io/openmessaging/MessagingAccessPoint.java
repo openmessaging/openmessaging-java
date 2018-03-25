@@ -48,9 +48,9 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     String implVersion();
 
     /**
-     * Returns the properties of this {@code MessagingAccessPoint} instance.
+     * Returns the attributes of this {@code MessagingAccessPoint} instance.
      * <p>
-     * There are some standard properties defined by OMS for {@code MessagingAccessPoint}:
+     * There are some standard attributes defined by OMS for {@code MessagingAccessPoint}:
      * <ul>
      * <li> {@link OMSBuiltinKeys#ACCESS_POINTS}, the specified access points.
      * <li> {@link OMSBuiltinKeys#DRIVER_IMPL}, the fully qualified class name of the specified MessagingAccessPoint's
@@ -60,9 +60,9 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * <li> {@link OMSBuiltinKeys#ACCOUNT_ID}, the ID of the specific account system that owns the resource.
      * </ul>
      *
-     * @return the properties
+     * @return the attributes
      */
-    KeyValue properties();
+    KeyValue attributes();
 
     /**
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}.
@@ -75,14 +75,14 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
 
     /**
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}
-     * with some preset properties.
+     * with some preset attributes.
      *
-     * @param properties the preset properties
+     * @param attributes the preset attributes
      * @return the created {@code Producer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
      * due to some internal error
      */
-    Producer createProducer(KeyValue properties);
+    Producer createProducer(KeyValue attributes);
 
     /**
      * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}.
@@ -96,14 +96,14 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     PushConsumer createPushConsumer();
 
     /**
-     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
+     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint} with some preset attributes.
      *
-     * @param properties the preset properties
+     * @param attributes the preset attributes
      * @return the created {@code PushConsumer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
      * due to some internal error
      */
-    PushConsumer createPushConsumer(KeyValue properties);
+    PushConsumer createPushConsumer(KeyValue attributes);
 
     /**
      * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint}.
@@ -115,14 +115,14 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
     PullConsumer createPullConsumer();
 
     /**
-     * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint} with some preset properties.
+     * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint} with some preset attributes.
      *
-     * @param properties the preset properties
+     * @param attributes the preset attributes
      * @return the created {@code PullConsumer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
      * due to some internal error
      */
-    PullConsumer createPullConsumer(KeyValue properties);
+    PullConsumer createPullConsumer(KeyValue attributes);
 
     /**
      * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint}.
@@ -135,14 +135,14 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
 
     /**
      * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint} with some preset
-     * properties.
+     * attributes.
      *
-     * @param properties the preset properties
+     * @param attributes the preset attributes
      * @return the created consumer
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
      * due to some internal error
      */
-    StreamingConsumer createStreamingConsumer(KeyValue properties);
+    StreamingConsumer createStreamingConsumer(KeyValue attributes);
 
     /**
      * Gets a lightweight {@code ResourceManager} instance from the specified {@code MessagingAccessPoint}.

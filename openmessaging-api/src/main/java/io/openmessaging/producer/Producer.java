@@ -59,9 +59,9 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * <li> {@link OMSBuiltinKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code Producer}.
      * </ul>
      *
-     * @return the properties
+     * @return the attributes
      */
-    KeyValue properties();
+    KeyValue attributes();
 
     /**
      * Sends a message to the specified destination synchronously, the destination should be preset to
@@ -80,13 +80,13 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * should be preset to {@link Message#sysHeaders()}, other header fields as well.
      *
      * @param message a message will be sent
-     * @param properties the specified attributes
+     * @param attributes the specified attributes
      * @return the successful {@code SendResult}
      * @throws OMSMessageFormatException if an invalid message is specified.
      * @throws OMSTimeOutException if the given timeout elapses before the send operation completes
      * @throws OMSRuntimeException if the {@code Producer} fails to send the message due to some internal error.
      */
-    SendResult send(Message message, KeyValue properties);
+    SendResult send(Message message, KeyValue attributes);
 
     /**
      * Sends a transactional message to the specified destination synchronously, using the specified attributes,
@@ -97,10 +97,10 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      *
      * @param message a transactional message will be sent
      * @param branchExecutor local transaction executor associated with the message
-     * @param properties the specified attributes
+     * @param attributes the specified attributes
      * @return the successful {@code SendResult}
      */
-    SendResult send(Message message, LocalTransactionBranchExecutor branchExecutor, KeyValue properties);
+    SendResult send(Message message, LocalTransactionBranchExecutor branchExecutor, KeyValue attributes);
 
     /**
      * Sends a message to the specified destination asynchronously, the destination should be preset to
@@ -124,12 +124,12 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * {@code FutureListener} will be notified, either because the operation was successful or because of an error.
      *
      * @param message a message will be sent
-     * @param properties the specified attributes
+     * @param attributes the specified attributes
      * @return the {@code Promise} of an asynchronous message send operation.
      * @see Future
      * @see FutureListener
      */
-    Future<SendResult> sendAsync(Message message, KeyValue properties);
+    Future<SendResult> sendAsync(Message message, KeyValue attributes);
 
     /**
      * Adds a {@code ProducerInterceptor} to intercept send operations of producer.

@@ -45,7 +45,7 @@ public interface PullConsumer extends ServiceLifecycle {
      *
      * @return the attributes
      */
-    KeyValue properties();
+    KeyValue attributes();
 
     /**
      * Attaches the {@code PullConsumer} to a specified queue.
@@ -61,12 +61,12 @@ public interface PullConsumer extends ServiceLifecycle {
      * Attaches the {@code PullConsumer} to a specified queue.
      *
      * @param queueName a specified queue
-     * @param properties some specified attributes
+     * @param attributes some specified attributes
      * @return this {@code PullConsumer} instance
      * @throws OMSRuntimeException if this {@code PullConsumer} fails to attach the specified queue due to some internal
      * error.
      */
-    PushConsumer attachQueue(String queueName, KeyValue properties);
+    PushConsumer attachQueue(String queueName, KeyValue attributes);
 
     /**
      * Detaches the {@code PullConsumer} from a specified queue.
@@ -97,13 +97,13 @@ public interface PullConsumer extends ServiceLifecycle {
      * This call blocks indefinitely until a message is arrives, the timeout expires,
      * or until this {@code PullConsumer} is shut down.
      *
-     * @param properties the specified attributes
+     * @param attributes the specified attributes
      * @return the next message produced for this {@code PullConsumer}, or null if this {@code PullConsumer} is
      * concurrently shut down
      * @throws OMSRuntimeException if this {@code PullConsumer} fails to pull the next message due to some internal
      * error.
      */
-    Message receive(KeyValue properties);
+    Message receive(KeyValue attributes);
 
     /**
      * Acknowledges the specified and consumed message with unique message id.
@@ -121,5 +121,5 @@ public interface PullConsumer extends ServiceLifecycle {
      *
      * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
      */
-    void ack(String messageId, KeyValue properties);
+    void ack(String messageId, KeyValue attributes);
 }
