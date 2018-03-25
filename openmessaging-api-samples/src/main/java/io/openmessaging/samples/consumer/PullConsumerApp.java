@@ -9,7 +9,9 @@ import io.openmessaging.exception.OMSResourceNotExistException;
 
 public class PullConsumerApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
-        final MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
+        final MessagingAccessPoint messagingAccessPoint =
+            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
+
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
