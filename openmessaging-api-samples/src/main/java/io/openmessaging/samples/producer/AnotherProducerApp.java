@@ -37,10 +37,10 @@ public class AnotherProducerApp {
 
         BatchMessageSender batchMessageSender = producer.createBatchMessageSender();
 
-        batchMessageSender.send(producer.createQueueBytesMessage(
+        batchMessageSender.send(producer.createBytesMessage(
             "HELLO_QUEUE1", "HELLO_BODY1".getBytes(Charset.forName("UTF-8"))));
 
-        batchMessageSender.send(producer.createQueueBytesMessage(
+        batchMessageSender.send(producer.createBytesMessage(
             "HELLO_QUEUE2", "HELLO_BODY2".getBytes(Charset.forName("UTF-8")))
             .putUserHeaders("KEY1", 100)
             .putUserHeaders("KEY2", 200L)
@@ -48,7 +48,7 @@ public class AnotherProducerApp {
             .putUserHeaders("KEY4", "value4")
         );
 
-        batchMessageSender.send(producer.createQueueBytesMessage(
+        batchMessageSender.send(producer.createBytesMessage(
             "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
         batchMessageSender.commit();

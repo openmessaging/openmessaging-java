@@ -53,11 +53,11 @@ public interface StreamingConsumer extends ServiceLifecycle {
 
     Position earliest(String streamName);
     Position latest(String streamName);
+    Position seek(String streamName, String position);
 
     interface Position {
-        String postionID();
+        String encode();
         Position next();
         Position previous();
     }
-
 }

@@ -35,5 +35,5 @@ public interface MessageFactory {
      * @return the created {@code BytesMessage} object
      * @throws OMSRuntimeException if the OMS provider fails to create this message due to some internal error.
      */
-    BytesMessage createQueueBytesMessage(String queue, byte[] body);
+    BytesMessage createBytesMessage(String queue, byte[] body);
 }

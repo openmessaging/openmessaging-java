@@ -34,19 +34,16 @@ import io.openmessaging.interceptor.ProducerInterceptor;
  * A {@code Producer} is a simple object used to send messages on behalf
  * of a {@code MessagingAccessPoint}. An instance of {@code Producer} is
  * created by calling the {@link MessagingAccessPoint#createProducer()} method.
- * It provides various {@code send} methods to send a message to a specified destination.
- * A destination should be a {@link Message.BuiltinKeys#Queue}.
  * <p>
- * {@link Producer#send(Message)} means send a message to destination synchronously,
+ * It provides various {@code send} methods to send a message to a specified destination,
+ * which is a {@code Queue} in OMS.
+ * <p>
+ * {@link Producer#send(Message)} means send a message to the destination synchronously,
  * the calling thread will block until the send request complete.
  * <p>
- * {@link Producer#sendAsync(Message)} means send a message to destination asynchronously,
+ * {@link Producer#sendAsync(Message)} means send a message to the destination asynchronously,
  * the calling thread won't block and will return immediately. Since the send call is asynchronous
  * it returns a {@link Future} for the send result.
- * <p>
- * {@link Producer#sendOneway(Message)} means send a message to destination in one way,
- * the calling thread won't block and will return immediately. The caller won't care about
- * the send result, while the server has no responsibility for returning the result.
  *
  * @version OMS 1.0
  * @since OMS 1.0

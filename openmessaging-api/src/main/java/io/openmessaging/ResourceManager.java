@@ -90,10 +90,10 @@ public interface ResourceManager extends ServiceLifecycle {
     void switchNamespace(String nsName) throws OMSResourceNotExistException;
 
     /**
-     * Creates a {@code Queue} resource in the configured namespace with some preset properties.
+     * Creates a {@code Queue} resource in the configured namespace with some preset attributes.
      *
      * @param queueName the name of the new queue
-     * @param attributes the preset properties
+     * @param attributes the preset attributes
      * @throws OMSResourceNotExistException if the configured namespace is not exists
      */
     void createQueue(String queueName, KeyValue attributes) throws OMSResourceNotExistException;
@@ -134,10 +134,10 @@ public interface ResourceManager extends ServiceLifecycle {
     List<String> listQueues() throws OMSResourceNotExistException;
 
     /**
-     * Creates a {@code Routing} resource in the configured namespace with some preset properties.
+     * Creates a {@code Routing} resource in the configured namespace with some preset attributes.
      *
      * @param routingName the name of the new routing
-     * @param attributes the preset properties
+     * @param attributes the preset attributes
      * @throws OMSResourceNotExistException if the configured namespace is not exists
      */
     void createRouting(String routingName, KeyValue attributes) throws OMSResourceNotExistException;

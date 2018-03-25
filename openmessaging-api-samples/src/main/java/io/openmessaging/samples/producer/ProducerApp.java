@@ -39,7 +39,7 @@ public class ProducerApp {
 
         //Sync
         {
-            SendResult sendResult = producer.send(producer.createQueueBytesMessage(
+            SendResult sendResult = producer.send(producer.createBytesMessage(
                 "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             System.out.println("Send sync message OK, message id is: " + sendResult.messageId());
@@ -47,7 +47,7 @@ public class ProducerApp {
 
         //Async with Promise
         {
-            final Future<SendResult> result = producer.sendAsync(producer.createQueueBytesMessage(
+            final Future<SendResult> result = producer.sendAsync(producer.createBytesMessage(
                 "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             final SendResult sendResult = result.get(3000L);
@@ -56,7 +56,7 @@ public class ProducerApp {
 
         //Async with FutureListener
         {
-            final Future<SendResult> result = producer.sendAsync(producer.createQueueBytesMessage(
+            final Future<SendResult> result = producer.sendAsync(producer.createBytesMessage(
                 "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             result.addListener(new FutureListener<SendResult>() {
