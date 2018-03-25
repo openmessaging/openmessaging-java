@@ -39,7 +39,8 @@ public class AccessPointURI {
      * {@literal oms:<driver_type>://[account_id@]host1[:port1][,host2[:port2],...[,hostN[:portN]]]/<region>:<namespace>}
      * <p>
      *
-     * More details please @see <a href="https://github.com/openmessaging/specification/blob/master/oms_access_point_schema.md">Access Point Schema</a>
+     * More details please refer to:
+     * <a href="https://github.com/openmessaging/specification/blob/master/oms_access_point_schema.md">Access Point Schema</a>
      */
     private static final String PATTERN = "^oms:.+://.+/.+:.+$";
 

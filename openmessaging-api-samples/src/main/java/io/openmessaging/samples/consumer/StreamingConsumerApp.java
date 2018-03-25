@@ -4,7 +4,7 @@ import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.ResourceManager;
-import io.openmessaging.consumer.StreamIterator;
+import io.openmessaging.consumer.StreamingIterator;
 import io.openmessaging.consumer.StreamingConsumer;
 import io.openmessaging.exception.OMSResourceNotExistException;
 import java.util.List;
@@ -25,20 +25,18 @@ public class StreamingConsumerApp {
 
         streamingConsumer.startup();
 
-        String targetStream = streams.get(0);
+        StreamingIterator streamingIterator = streamingConsumer.seekToBeginning(streams.get(0));
 
-        StreamIterator streamIterator = streamingConsumer.attachStream(targetStream, streamingConsumer.earliest(targetStream));
-
-        while (streamIterator.hasNext()) {
-            Message message = streamIterator.next();
+        while (streamingIterator.hasNext()) {
+            Message message = streamingIterator.next();
             System.out.println("Received one message: " + message);
         }
 
         //All the messages in the stream has been consumed.
 
         //Now consume the messages in reverse order
-        while (streamIterator.hasPrevious()) {
-            Message message = streamIterator.previous();
+        while (streamingIterator.hasPrevious()) {
+            Message message = streamingIterator.previous();
             System.out.println("Received one message again: " + message);
         }
 

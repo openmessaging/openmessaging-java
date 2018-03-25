@@ -23,16 +23,15 @@ import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
- * A {@code StreamIterator} is provided by {@code Stream} and is used to
+ * A {@code StreamingIterator} is provided by {@code Stream} and is used to
  * retrieve messages a specified stream like a read-only iterator.
  *
  * @version OMS 1.0.0
- * @see StreamingConsumer#stream(String)
  * @since OMS 1.0.0
  */
-public interface StreamIterator {
+public interface StreamingIterator {
     /**
-     * Returns the attributes of this {@code StreamIterator} instance.
+     * Returns the attributes of this {@code StreamingIterator} instance.
      * <p>
      * There are some standard attributes defined by OMS for {@code Stream}:
      * <ul>
@@ -67,8 +66,8 @@ public interface StreamIterator {
      * Returns {@code true} if this partition iterator has more messages when
      * traversing the iterator in the reverse direction.
      *
-     * @return {@code true} if the partition iterator has more messages when traversing the iterator in the reverse
-     * direction
+     * @return {@code true} if the partition iterator has more messages when
+     * traversing the iterator in the reverse direction
      */
     boolean hasPrevious();
 
@@ -83,4 +82,22 @@ public interface StreamIterator {
      * @throws OMSRuntimeException if the iteration has no previous message
      */
     Message previous();
+
+    /**
+     * Returns the position of the message that would be returned by a
+     * subsequent call to {@link #next}.
+     *
+     * @return the position of the next message
+     * @throws OMSRuntimeException if the iteration has no next message
+     */
+    String nextPosition();
+
+    /**
+     * Returns the position of the message that would be returned by a
+     * subsequent call to {@link #previous}.
+     *
+     * @return the position of the previous message
+     * @throws OMSRuntimeException if the iteration has no previous message
+     */
+    String previousPosition();
 }
