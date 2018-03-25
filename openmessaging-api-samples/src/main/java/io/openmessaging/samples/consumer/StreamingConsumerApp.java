@@ -2,44 +2,45 @@ package io.openmessaging.samples.consumer;
 
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.ResourceManager;
 import io.openmessaging.OMS;
+import io.openmessaging.ResourceManager;
 import io.openmessaging.consumer.StreamIterator;
-import io.openmessaging.consumer.Stream;
 import io.openmessaging.consumer.StreamingConsumer;
+import io.openmessaging.exception.OMSResourceNotExistException;
+import java.util.List;
 
 public class StreamingConsumerApp {
-    public static void main(String[] args) {
-        final MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:resourceManager");
+    public static void main(String[] args) throws OMSResourceNotExistException {
+        final MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
-        ResourceManager resourceManager = messagingAccessPoint.getResourceManager();
+        ResourceManager resourceManager = messagingAccessPoint.resourceManager();
 
-        resourceManager.createQueue("NS1", "HELLO_QUEUE", OMS.newKeyValue());
+        String targetQueue = "HELLO_QUEUE";
+        resourceManager.createQueue(targetQueue, OMS.newKeyValue());
 
-        final StreamingConsumer streamingConsumer = messagingAccessPoint.createStreamingConsumer("HELLO_QUEUE");
+        List<String> streams = resourceManager.listStreams(targetQueue);
+
+        final StreamingConsumer streamingConsumer = messagingAccessPoint.createStreamingConsumer();
 
         streamingConsumer.startup();
 
-        Stream stream = streamingConsumer.stream(streamingConsumer.streams().get(0));
+        String targetStream = streams.get(0);
 
-        StreamIterator streamIterator = stream.begin();
+        StreamIterator streamIterator = streamingConsumer.attachStream(targetStream, streamingConsumer.earliest(targetStream));
 
         while (streamIterator.hasNext()) {
             Message message = streamIterator.next();
             System.out.println("Received one message: " + message);
         }
 
-        //All the messages in the queue has been consumed.
+        //All the messages in the stream has been consumed.
 
         //Now consume the messages in reverse order
         while (streamIterator.hasPrevious()) {
             Message message = streamIterator.previous();
             System.out.println("Received one message again: " + message);
         }
-
-        //Persist the consume offset.
-        streamIterator.commit();
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override

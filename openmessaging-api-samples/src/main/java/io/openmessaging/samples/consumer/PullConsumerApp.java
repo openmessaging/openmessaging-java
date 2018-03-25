@@ -5,22 +5,23 @@ import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.ResourceManager;
 import io.openmessaging.OMS;
 import io.openmessaging.consumer.PullConsumer;
+import io.openmessaging.exception.OMSResourceNotExistException;
 
 public class PullConsumerApp {
-    public static void main(String[] args) {
-        final MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:resourceManager");
+    public static void main(String[] args) throws OMSResourceNotExistException {
+        final MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
-        ResourceManager resourceManager = messagingAccessPoint.getResourceManager();
+        ResourceManager resourceManager = messagingAccessPoint.resourceManager();
 
-        resourceManager.createQueue("NS1", "HELLO_QUEUE", OMS.newKeyValue());
+        resourceManager.createQueue( "HELLO_QUEUE", OMS.newKeyValue());
         //PullConsumer only can pull messages from one queue.
-        final PullConsumer pullConsumer = messagingAccessPoint.createPullConsumer("HELLO_QUEUE");
-
+        final PullConsumer pullConsumer = messagingAccessPoint.createPullConsumer();
+        pullConsumer.attachQueue("HELLO_QUEUE");
         pullConsumer.startup();
 
         //Pull one message from queue.
-        Message message = pullConsumer.pull();
+        Message message = pullConsumer.receive();
 
         //Acknowledges the consumed message
         pullConsumer.ack(message.sysHeaders().getString(Message.BuiltinKeys.MessageId));

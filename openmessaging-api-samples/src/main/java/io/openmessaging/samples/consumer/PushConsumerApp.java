@@ -27,16 +27,16 @@ import io.openmessaging.exception.OMSResourceNotExistException;
 
 public class PushConsumerApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
-        final MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:resourceManager");
+        final MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:namespace");
         messagingAccessPoint.startup();
         System.out.println("MessagingAccessPoint startup OK");
-        ResourceManager resourceManager = messagingAccessPoint.getResourceManager();
+        ResourceManager resourceManager = messagingAccessPoint.resourceManager();
 
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
         // Consume messages from a simple queue.
         {
             String simpleQueue = "HELLO_QUEUE";
-            resourceManager.createQueue("NS1", simpleQueue, OMS.newKeyValue());
+            resourceManager.createQueue( simpleQueue, OMS.newKeyValue());
 
             //This queue doesn't has a source queue, so only the message delivered to the queue directly can
             //be consumed by this consumer.
@@ -60,9 +60,9 @@ public class PushConsumerApp {
             String sourceQueue = "SOURCE_QUEUE";
 
             //Create the complex queue.
-            resourceManager.createQueue("NS_01", complexQueue, OMS.newKeyValue());
+            resourceManager.createQueue(complexQueue, OMS.newKeyValue());
             //Create the source queue.
-            resourceManager.createQueue("NS_01", sourceQueue, OMS.newKeyValue());
+            resourceManager.createQueue( sourceQueue, OMS.newKeyValue());
 
             anotherConsumer.attachQueue(complexQueue, new MessageListener() {
                 @Override
