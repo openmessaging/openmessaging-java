@@ -37,8 +37,8 @@ package io.openmessaging;
  *
  * The body part is placed in the implementation classes of {@code Message}.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface Message {
     /**

@@ -20,8 +20,8 @@ package io.openmessaging;
 /**
  * This is the centralized source for keys that are used by {@link KeyValue}.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface OMSBuiltinKeys {
     String DRIVER_IMPL = "oms.driver.impl";

@@ -30,13 +30,13 @@ import io.openmessaging.producer.Producer;
  * <p>
  * For example:
  * <pre>
- * MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("openmessaging:rocketmq://localhost:10911/namespace");
+ * MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
  * Producer producer = messagingAccessPoint.createProducer();
  * producer.send(producer.createBytesMessage("HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
  * </pre>
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface MessagingAccessPoint extends ServiceLifecycle {
     /**

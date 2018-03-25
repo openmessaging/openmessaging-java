@@ -25,8 +25,8 @@ import io.openmessaging.exception.OMSRuntimeException;
  * The message listener interface. A message listener must implement this {@code MessageListener} interface and register
  * itself to a consumer instance to asynchronously receive messages.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface MessageListener {
     /**

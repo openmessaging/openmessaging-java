@@ -20,8 +20,8 @@ package io.openmessaging.exception;
 /**
  * The {@code OMSResourceNotExistException} occurs if requested resource is not exist.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public class OMSResourceNotExistException extends OMSException {
     /**

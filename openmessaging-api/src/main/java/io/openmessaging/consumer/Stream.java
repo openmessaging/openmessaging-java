@@ -25,9 +25,9 @@ import io.openmessaging.ServiceLifecycle;
  * A {@code Queue} is consists of many streams. A {@code Stream} supports consume
  * messages from a specified stream through an iterator.
  *
- * @version OMS 1.0
+ * @version OMS 1.0.0
  * @see StreamingConsumer#stream(String)
- * @since OMS 1.0
+ * @since OMS 1.0.0
  */
 public interface Stream extends ServiceLifecycle {
     /**

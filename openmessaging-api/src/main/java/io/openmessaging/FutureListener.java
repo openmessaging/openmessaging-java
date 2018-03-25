@@ -22,8 +22,8 @@ package io.openmessaging;
  * {@code FutureListener} instances are attached to {@link Future} by passing
  * them in to {@link Future#addListener(FutureListener)}.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface FutureListener<V> {
     /**

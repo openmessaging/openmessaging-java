@@ -45,8 +45,8 @@ import io.openmessaging.interceptor.ProducerInterceptor;
  * the calling thread won't block and will return immediately. Since the send call is asynchronous
  * it returns a {@link Future} for the send result.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface Producer extends MessageFactory, ServiceLifecycle {
     /**

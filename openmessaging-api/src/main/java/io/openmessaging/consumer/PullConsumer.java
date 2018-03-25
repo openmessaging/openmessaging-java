@@ -28,9 +28,9 @@ import io.openmessaging.exception.OMSRuntimeException;
  * A {@code PullConsumer} pulls messages from the specified queue,
  * and supports submit the consume result by acknowledgement.
  *
- * @version OMS 1.0
+ * @version OMS 1.0.0
  * @see MessagingAccessPoint#createPullConsumer()
- * @since OMS 1.0
+ * @since OMS 1.0.0
  */
 public interface PullConsumer extends ServiceLifecycle {
     /**

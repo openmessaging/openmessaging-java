@@ -14,8 +14,8 @@ import io.openmessaging.Message;
  * If the executor don't submit the transaction status for a long time, the server may lookup it forwardly through
  * {@link LocalTransactionBranchExecutor#checkLocalTransactionBranch(Message, CheckLocalTransactionBranchContext)}
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface LocalTransactionBranchExecutor {
     /**

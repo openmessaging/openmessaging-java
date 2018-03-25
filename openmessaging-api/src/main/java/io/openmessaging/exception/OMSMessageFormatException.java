@@ -18,8 +18,8 @@
 package io.openmessaging.exception;
 
 /**
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public class OMSMessageFormatException extends OMSRuntimeException {
     /**

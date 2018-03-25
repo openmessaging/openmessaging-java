@@ -6,8 +6,8 @@ import io.openmessaging.producer.SendResult;
 /**
  * A {@code ProducerInterceptor} is used to intercept send operations of producer.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface ProducerInterceptor {
 

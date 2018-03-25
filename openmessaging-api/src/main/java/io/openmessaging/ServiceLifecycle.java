@@ -29,8 +29,8 @@ import io.openmessaging.producer.Producer;
  * <p>
  * Any service endpoint should support repeated restart if it implements the {@code ServiceLifecycle} interface.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface ServiceLifecycle {
     /**

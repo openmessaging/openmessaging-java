@@ -36,8 +36,8 @@ import java.util.List;
  * the default namespace is derived from the OMS driver url of {@code MessagingAccessPoint} and can be changed
  * by {@link ResourceManager#switchNamespace(String)} whenever necessary.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface ResourceManager extends ServiceLifecycle {
     /**

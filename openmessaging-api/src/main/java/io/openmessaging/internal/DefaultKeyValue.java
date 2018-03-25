@@ -25,8 +25,8 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * The default implementation of the interface {@link KeyValue}, used by OMS internally.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public class DefaultKeyValue implements KeyValue {
     private Map<String, String> properties;

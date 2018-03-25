@@ -30,8 +30,8 @@ import static io.openmessaging.internal.InternalErrorCode.generateInternalExcept
  * The {@code MessagingAccessPointAdapter} provides a common implementation to
  * create a specified {@code MessagingAccessPoint} instance, used by OMS internally.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public class MessagingAccessPointAdapter {
     /**

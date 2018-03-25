@@ -3,8 +3,8 @@ package io.openmessaging.interceptor;
 /**
  * A {@code PushConsumerInterceptor} is used to intercept consume operations of push consumer.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface PushConsumerInterceptor {
     /**

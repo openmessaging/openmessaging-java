@@ -30,20 +30,20 @@ import java.util.Properties;
  * <p>
  * The complete OMS driver URL syntax is:
  * <p>
- * {@literal oms:<driver_type>://<access_point>[,<access_point>,...]/<namespace>}
+ * {@literal oms:<driver_type>://[account_id@]host1[:port1][,host2[:port2],...[,hostN[:portN]]]/<region>:<namespace>}
  * <p>
  * The first part of the URL specifies which OMS implementation is to be used, rocketmq is a
  * optional driver type.
  * <p>
- * The brackets indicate that the extra access points are optional, but a correct OMS driver url
+ * The brackets indicate that the extra access points are optional, and a correct OMS driver url
  * needs at least one access point, which consists of hostname and port, like localhost:8081.
  * <p>
  * A namespace wraps the OMS resources in an abstraction that makes it appear to the users
  * within the namespace that they have their own isolated instance of the global OMS resources.
  *
- * @version OMS 1.0
+ * @version OMS 1.0.0
  * @see ResourceManager
- * @since OMS 1.0
+ * @since OMS 1.0.0
  */
 public class OMS {
     /**

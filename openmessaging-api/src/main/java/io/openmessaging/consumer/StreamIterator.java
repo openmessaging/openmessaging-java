@@ -26,9 +26,9 @@ import io.openmessaging.exception.OMSRuntimeException;
  * A {@code StreamIterator} is provided by {@code Stream} and is used to
  * retrieve messages a specified stream like a read-only iterator.
  *
- * @version OMS 1.0
+ * @version OMS 1.0.0
  * @see StreamingConsumer#stream(String)
- * @since OMS 1.0
+ * @since OMS 1.0.0
  */
 public interface StreamIterator {
     /**

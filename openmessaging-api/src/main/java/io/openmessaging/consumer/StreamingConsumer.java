@@ -28,9 +28,9 @@ import io.openmessaging.ServiceLifecycle;
  * A {@code Queue} is consists of multiple streams, the {@code Stream} is an abstract concept and
  * can be associated with partition in most messaging systems.
  *
- * @version OMS 1.0
+ * @version OMS 1.0.0
  * @see Stream
- * @since OMS 1.0
+ * @since OMS 1.0.0
  */
 public interface StreamingConsumer extends ServiceLifecycle {
     /**

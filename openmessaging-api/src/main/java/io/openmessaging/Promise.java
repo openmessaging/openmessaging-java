@@ -25,8 +25,8 @@ package io.openmessaging;
  * for the sake of cancellability but not provide a usable result, you can declare type+s of the form
  * {@code Promise<?>} and return {@code null} as a result of the underlying task.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface Promise<V> extends Future<V> {
 
