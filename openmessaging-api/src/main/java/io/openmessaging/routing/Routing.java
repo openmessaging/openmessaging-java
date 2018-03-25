@@ -17,9 +17,6 @@
 
 package io.openmessaging.routing;
 
-import io.openmessaging.KeyValue;
-import io.openmessaging.ResourceManager;
-
 /**
  * A {@code Routing} object is responsible for routing the messages from a queue to another queue, with
  * an expression to filter or compute the source messages.
@@ -27,43 +24,67 @@ import io.openmessaging.ResourceManager;
  * @version OMS 1.0
  * @since OMS 1.0
  */
-public interface Routing {
-    /**
-     * Returns the attributes of this {@code Routing} instance.
-     * Changes to the return {@code KeyValue} are not reflected in physical {@code Routing},
-     * and use {@link ResourceManager#updateRouting(String, Routing)} to modify.
-     *
-     * @return the attributes
-     */
-    KeyValue properties();
-
+public final class Routing {
     /**
      * The routing source, naming scheme is {@literal QUEUE::<QUEUE_NAME>}.
+     * <p>
      * Messages sent to the source queue will be routing to the destination Queue.
+     */
+    private String source;
+
+    /**
+     * The routing destination, naming scheme is {@literal QUEUE::<QUEUE_NAME>}.
+     * <p>
+     * Messages sent to the source queue will be routing to this Queue.
+     */
+    private String destination;
+
+    /**
+     * The routing rule, expression scheme is {@literal SQL::<SQL92_STRING>}.
+     * <p>
+     * Messages sent to the source queue will be handled by the rule expression,
+     * and then routing to destination queue.
+     */
+    private String rule;
+
+    /**
+     * Constructs a routing instance contains the source, destination, and rule expression,
+     * and used by {@code ResourceManager}.
+     *
+     * @param source the source queue
+     * @param destination the destination queue
+     * @param rule the rule expression
+     */
+    public Routing(final String source, final String destination, final String rule) {
+        this.source = source;
+        this.destination = destination;
+        this.rule = rule;
+    }
+
+    /**
+     * Returns the routing source queue.
      *
      * @return the source queue
      */
-    String source();
+    String source() {
+        return source;
+    }
 
     /**
-     * The routing destination, naming scheme is {@literal QUEUE::<QUEUE_NAME>}
-     * Messages sent to the source queue will be routing to this Queue.
+     * Returns the routing destination queue.
      *
      * @return the destination queue
      */
-    String destination();
+    String destination() {
+        return destination;
+    }
 
     /**
-     * The routing rule, expression scheme is {@literal SQL::<SQL92_STRING>}
+     * Returns the rule expression
      *
      * @return the routing expression
      */
-    String rule();
-
-    /**
-     * Returns the unique routing name of current namespace
-     *
-     * @return the routing name
-     */
-    String name();
+    String rule() {
+        return rule;
+    }
 }
