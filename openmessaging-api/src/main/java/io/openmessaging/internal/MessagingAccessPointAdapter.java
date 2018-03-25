@@ -60,7 +60,7 @@ public class MessagingAccessPointAdapter {
             checkSpecVersion(OMS.specVersion, vendorImpl.implVersion());
             return vendorImpl;
         } catch (Throwable e) {
-            throw generateInternalException(InternalErrorCode.OMS_DRIVER_URL_UNAVAILABLE, url);
+            throw generateInternalException(InternalErrorCode.OMS_DRIVER_UNAVAILABLE, url);
         }
     }
 
@@ -71,7 +71,6 @@ public class MessagingAccessPointAdapter {
         return "io.openmessaging." + driverType + ".MessagingAccessPointImpl";
     }
 
-    // fixme: version match
     private static void checkSpecVersion(final String specVersion, final String implVersion) {
         String majorVerOfImpl;
         String majorVerOfSpec = specVersion.substring(0, specVersion.indexOf('.', specVersion.indexOf('.') + 1));

@@ -8,16 +8,16 @@ package io.openmessaging.interceptor;
  */
 public interface PushConsumerInterceptor {
     /**
-     * Called before a message is consumed
+     * Called before a message is consumed.
      *
-     * @param context a context
+     * @param context the context delivered to the intercept thread
      */
     void onReceivedBefore(OnMessageBeforeContext context);
 
     /**
-     * Called after a message is consumed
+     * Called after a message is consumed.
      *
-     * @param context a context
+     * @param context the context delivered to the intercept thread
      */
     void onReceivedAfter(OnMessageAfterContext context);
 

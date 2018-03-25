@@ -52,8 +52,7 @@ public interface PullConsumer extends ServiceLifecycle {
      *
      * @param queueName a specified queue
      * @return this {@code PullConsumer} instance
-     * @throws OMSRuntimeException if this {@code PullConsumer} fails to attach the specified queue due to some internal
-     * error.
+     * @throws OMSRuntimeException if the consumer fails to attach the specified queue due to some internal error.
      */
     PullConsumer attachQueue(String queueName);
 
@@ -63,10 +62,9 @@ public interface PullConsumer extends ServiceLifecycle {
      * @param queueName a specified queue
      * @param attributes some specified attributes
      * @return this {@code PullConsumer} instance
-     * @throws OMSRuntimeException if this {@code PullConsumer} fails to attach the specified queue due to some internal
-     * error.
+     * @throws OMSRuntimeException if the consumer fails to attach the specified queue due to some internal error.
      */
-    PushConsumer attachQueue(String queueName, KeyValue attributes);
+    PullConsumer attachQueue(String queueName, KeyValue attributes);
 
     /**
      * Detaches the {@code PullConsumer} from a specified queue.
@@ -74,34 +72,32 @@ public interface PullConsumer extends ServiceLifecycle {
      * from the specified queue any more.
      *
      * @param queueName a specified queue
-     * @return this {@code PushConsumer} instance
+     * @return this {@code PullConsumer} instance
      */
-    void detachQueue(String queueName);
+    PullConsumer detachQueue(String queueName);
 
     /**
-     * Pulls the next message produced for this {@code PullConsumer}.
+     * Receives the next message produced for this {@code PullConsumer}.
      * <p>
      * This call blocks indefinitely until a message is arrives, the timeout expires,
      * or until this {@code PullConsumer} is shut down.
      *
      * @return the next message produced for this {@code PullConsumer}, or null if this {@code PullConsumer} is
-     * concurrently shut down
-     * @throws OMSRuntimeException if this {@code PullConsumer} fails to pull the next message due to some internal
-     * error.
+     * concurrently shut down or the timeout expires
+     * @throws OMSRuntimeException if the consumer fails to pull the next message due to some internal error.
      */
     Message receive();
 
     /**
-     * Pulls the next message produced for this {@code PullConsumer}, using the specified attributes.
+     * Receives the next message produced for this {@code PullConsumer}, using the specified attributes.
      * <p>
      * This call blocks indefinitely until a message is arrives, the timeout expires,
      * or until this {@code PullConsumer} is shut down.
      *
      * @param attributes the specified attributes
      * @return the next message produced for this {@code PullConsumer}, or null if this {@code PullConsumer} is
-     * concurrently shut down
-     * @throws OMSRuntimeException if this {@code PullConsumer} fails to pull the next message due to some internal
-     * error.
+     * concurrently shut down or the timeout expires
+     * @throws OMSRuntimeException if the consumer fails to pull the next message due to some internal error.
      */
     Message receive(KeyValue attributes);
 

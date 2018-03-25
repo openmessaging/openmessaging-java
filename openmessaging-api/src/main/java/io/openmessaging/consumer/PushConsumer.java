@@ -87,8 +87,7 @@ public interface PushConsumer extends ServiceLifecycle {
      * @param queueName a specified queue
      * @param listener a specified listener to receive new message
      * @return this {@code PushConsumer} instance
-     * @throws OMSRuntimeException if this {@code PushConsumer} fails to attach the specified queue due to some internal
-     * error.
+     * @throws OMSRuntimeException if the consumer fails to attach the specified queue due to some internal error.
      */
     PushConsumer attachQueue(String queueName, MessageListener listener);
 
@@ -102,8 +101,7 @@ public interface PushConsumer extends ServiceLifecycle {
      * @param listener a specified listener to receive new message
      * @param attributes some specified attributes
      * @return this {@code PushConsumer} instance
-     * @throws OMSRuntimeException if this {@code PushConsumer} fails to attach the specified queue due to some internal
-     * error.
+     * @throws OMSRuntimeException if the consumer fails to attach the specified queue due to some internal error.
      */
     PushConsumer attachQueue(String queueName, MessageListener listener, KeyValue attributes);
 
@@ -115,7 +113,7 @@ public interface PushConsumer extends ServiceLifecycle {
      * @param queueName a specified queue
      * @return this {@code PushConsumer} instance
      */
-    void detachQueue(String queueName);
+    PushConsumer detachQueue(String queueName);
 
     /**
      * Adds a {@code PushConsumerInterceptor} to this consumer.

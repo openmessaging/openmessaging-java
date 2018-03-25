@@ -1,8 +1,5 @@
 package io.openmessaging.interceptor;
 
-import io.openmessaging.Message;
-import io.openmessaging.producer.SendResult;
-
 /**
  * A {@code ProducerInterceptor} is used to intercept send operations of producer.
  *
@@ -12,24 +9,22 @@ import io.openmessaging.producer.SendResult;
 public interface ProducerInterceptor {
 
     /**
-     * Called before a message is sent
+     * Called before a message is sent.
      *
-     * @param context a context
+     * @param context the context delivered to the intercept thread
      */
     void sendBefore(SendBeforeContext context);
 
     /**
-     * Called after a message is sent
+     * Called after a message is sent.
      *
-     * @param context a context
+     * @param context the context delivered to the intercept thread
      */
     void sendAfter(SendAfterContext context);
 
     interface SendBeforeContext {
-        Message message(Message message);
     }
 
     interface SendAfterContext {
-        SendResult result();
     }
 }
