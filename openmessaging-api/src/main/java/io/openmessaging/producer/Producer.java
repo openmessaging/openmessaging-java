@@ -99,6 +99,9 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @param branchExecutor local transaction executor associated with the message
      * @param attributes the specified attributes
      * @return the successful {@code SendResult}
+     * @throws OMSMessageFormatException if an invalid message is specified.
+     * @throws OMSTimeOutException if the given timeout elapses before the send operation completes
+     * @throws OMSRuntimeException if the {@code Producer} fails to send the message due to some internal error.
      */
     SendResult send(Message message, LocalTransactionBranchExecutor branchExecutor, KeyValue attributes);
 

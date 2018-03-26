@@ -62,14 +62,30 @@ public interface PushConsumer extends ServiceLifecycle {
     /**
      * Suspends the {@code PushConsumer} for later resumption.
      * <p>
-     * This method suspends the {@code PushConsumer} instance until it is resumed.
-     * The instance will not receive new messages between the suspend and resume calls.
+     * This method suspends the consumer until it is resumed.
+     * The consumer will not receive new messages between the suspend and resume calls.
+     * <p>
+     * This method behaves exactly as if it simply performs the call {@code suspend(0)}.
      *
      * @throws OMSRuntimeException if the instance is not currently running.
      * @see PushConsumer#resume()
      */
     void suspend();
 
+    /**
+     * Suspends the {@code PushConsumer} for later resumption.
+     * <p>
+     * This method suspends the consumer until it is resumed or a
+     * specified amount of time has elapsed.
+     * The consumer will not receive new messages during the suspended state.
+     * <p>
+     * This method is similar to the {@link #suspend()} method, but it allows finer control
+     * over the amount of time to suspend, and the consumer will be suspended until it is resumed
+     * if the timeout is zero.
+     *
+     * @param timeout the maximum time to suspend in milliseconds.
+     * @throws OMSRuntimeException if the instance is not currently running.
+     */
     void suspend(long timeout);
 
     /**
@@ -81,19 +97,20 @@ public interface PushConsumer extends ServiceLifecycle {
 
     /**
      * Attaches the {@code PushConsumer} to a specified queue, with a {@code MessageListener}.
+     * <p>
      * {@link MessageListener#onReceived(Message, MessageListener.Context)} will be called when new
      * delivered message is coming.
      *
      * @param queueName a specified queue
      * @param listener a specified listener to receive new message
      * @return this {@code PushConsumer} instance
-     * @throws OMSRuntimeException if the consumer fails to attach the specified queue due to some internal error.
      */
     PushConsumer attachQueue(String queueName, MessageListener listener);
 
     /**
      * Attaches the {@code PushConsumer} to a specified queue, with a {@code MessageListener} and some
      * specified attributes.
+     * <p>
      * {@link MessageListener#onReceived(Message, MessageListener.Context)}  will be called when new
      * delivered message is coming.
      *
@@ -101,12 +118,12 @@ public interface PushConsumer extends ServiceLifecycle {
      * @param listener a specified listener to receive new message
      * @param attributes some specified attributes
      * @return this {@code PushConsumer} instance
-     * @throws OMSRuntimeException if the consumer fails to attach the specified queue due to some internal error.
      */
     PushConsumer attachQueue(String queueName, MessageListener listener, KeyValue attributes);
 
     /**
      * Detaches the {@code PushConsumer} from a specified queue.
+     * <p>
      * After the success call, this consumer won't receive new message
      * from the specified queue any more.
      *
@@ -116,7 +133,7 @@ public interface PushConsumer extends ServiceLifecycle {
     PushConsumer detachQueue(String queueName);
 
     /**
-     * Adds a {@code PushConsumerInterceptor} to this consumer.
+     * Adds a {@code PushConsumerInterceptor} instance to this consumer.
      *
      * @param interceptor an interceptor instance
      */

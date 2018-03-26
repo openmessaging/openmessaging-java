@@ -21,7 +21,7 @@ package io.openmessaging;
  * The {@code BytesMessage} contains a stream of uninterpreted bytes. It inherits from the {@code Message} interface and
  * adds a bytes message body.
  * <p>
- * The {@code BytesMessage} doesn't know the format or encoding Rules of the body, the provider and consumer decide the
+ * The {@code BytesMessage} doesn't know the format or encoding rules of the body, the provider and consumer decide the
  * interpretation of the bytes body.
  *
  * @version OMS 1.0.0

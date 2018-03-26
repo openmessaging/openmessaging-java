@@ -58,7 +58,8 @@ public interface StreamingIterator {
      * or intermixed with calls to {@link #previous} to go back and forth.
      *
      * @return the next message in the list
-     * @throws OMSRuntimeException if the iteration has no more message
+     * @throws OMSRuntimeException if the iteration has no more message, or
+     * the the consumer fails to receive the next message
      */
     Message next();
 
@@ -79,7 +80,8 @@ public interface StreamingIterator {
      * or intermixed with calls to {@link #next} to go back and forth.
      *
      * @return the previous message in the list
-     * @throws OMSRuntimeException if the iteration has no previous message
+     * @throws OMSRuntimeException if the iteration has no previous message, or
+     * the the consumer fails to receive the previous message
      */
     Message previous();
 

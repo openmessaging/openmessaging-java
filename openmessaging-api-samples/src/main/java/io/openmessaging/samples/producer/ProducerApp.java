@@ -31,12 +31,8 @@ public class ProducerApp {
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
 
         final Producer producer = messagingAccessPoint.createProducer();
-
         messagingAccessPoint.startup();
-        System.out.println("MessagingAccessPoint startup OK");
-
         producer.startup();
-        System.out.println("Producer startup OK");
 
         //Sync
         {
