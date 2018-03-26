@@ -35,7 +35,7 @@ public class PushConsumerApp {
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
 
-        // Consume messages from a simple queue.
+        //Consume messages from a simple queue.
         String simpleQueue = "HELLO_QUEUE";
         resourceManager.createQueue( simpleQueue, OMS.newKeyValue());
 

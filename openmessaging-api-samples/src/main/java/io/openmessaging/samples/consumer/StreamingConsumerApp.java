@@ -16,7 +16,7 @@ public class StreamingConsumerApp {
 
         messagingAccessPoint.startup();
 
-        // Create a Queue resource
+        //Create a Queue resource
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
         String targetQueue = "HELLO_QUEUE";
         resourceManager.createQueue(targetQueue, OMS.newKeyValue());

@@ -32,4 +32,8 @@ public interface OMSBuiltinKeys {
     String PRODUCER_ID = "oms.producer.id";
     String CONSUMER_ID = "oms.consumer.id";
     String OPERATION_TIMEOUT = "oms.operation.timeout";
+
+    String ROUTING_SOURCE = "oms.routing.source";
+    String ROUTING_DESTINATION = "oms.routing.destination";
+    String ROUTING_RULE = "oms.routing.rule";
 }
