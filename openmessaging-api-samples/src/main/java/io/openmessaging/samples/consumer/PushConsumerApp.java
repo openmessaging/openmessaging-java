@@ -31,57 +31,32 @@ public class PushConsumerApp {
             OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:namespace");
 
         messagingAccessPoint.startup();
-        System.out.println("MessagingAccessPoint startup OK");
+
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
-
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
+
         // Consume messages from a simple queue.
-        {
-            String simpleQueue = "HELLO_QUEUE";
-            resourceManager.createQueue( simpleQueue, OMS.newKeyValue());
+        String simpleQueue = "HELLO_QUEUE";
+        resourceManager.createQueue( simpleQueue, OMS.newKeyValue());
 
-            //This queue doesn't has a source queue, so only the message delivered to the queue directly can
-            //be consumed by this consumer.
-            consumer.attachQueue(simpleQueue, new MessageListener() {
-                @Override
-                public void onReceived(Message message, Context context) {
-                    System.out.println("Received one message: " + message);
-                    context.ack();
-                }
+        //This queue doesn't has a source queue, so only the message delivered to the queue directly can
+        //be consumed by this consumer.
+        consumer.attachQueue(simpleQueue, new MessageListener() {
+            @Override
+            public void onReceived(Message message, Context context) {
+                System.out.println("Received one message: " + message);
+                context.ack();
+            }
 
-            });
+        });
 
-            consumer.startup();
-            System.out.println("Consumer startup OK");
-        }
-
-        //Consume messages from a complex queue.
-        final PushConsumer anotherConsumer = messagingAccessPoint.createPushConsumer();
-        {
-            String complexQueue = "QUEUE_WITH_SOURCE_QUEUE";
-            String sourceQueue = "SOURCE_QUEUE";
-
-            //Create the complex queue.
-            resourceManager.createQueue(complexQueue, OMS.newKeyValue());
-            //Create the source queue.
-            resourceManager.createQueue( sourceQueue, OMS.newKeyValue());
-
-            anotherConsumer.attachQueue(complexQueue, new MessageListener() {
-                @Override
-                public void onReceived(Message message, Context context) {
-                    //The message sent to the sourceQueue will be delivered to anotherConsumer
-                    System.out.println("Received one message: " + message);
-                    context.ack();
-                }
-
-            });
-        }
+        consumer.startup();
+        System.out.println("Consumer startup OK");
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
                 consumer.shutdown();
-                anotherConsumer.shutdown();
                 messagingAccessPoint.shutdown();
             }
         }));

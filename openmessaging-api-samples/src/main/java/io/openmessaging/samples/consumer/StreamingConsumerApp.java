@@ -15,16 +15,14 @@ public class StreamingConsumerApp {
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
 
         messagingAccessPoint.startup();
-        System.out.println("MessagingAccessPoint startup OK");
-        ResourceManager resourceManager = messagingAccessPoint.resourceManager();
 
+        // Create a Queue resource
+        ResourceManager resourceManager = messagingAccessPoint.resourceManager();
         String targetQueue = "HELLO_QUEUE";
         resourceManager.createQueue(targetQueue, OMS.newKeyValue());
 
         List<String> streams = resourceManager.listStreams(targetQueue);
-
         final StreamingConsumer streamingConsumer = messagingAccessPoint.createStreamingConsumer();
-
         streamingConsumer.startup();
 
         StreamingIterator streamingIterator = streamingConsumer.seekToBeginning(streams.get(0));

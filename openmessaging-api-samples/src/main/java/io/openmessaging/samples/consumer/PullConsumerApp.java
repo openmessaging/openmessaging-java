@@ -13,10 +13,10 @@ public class PullConsumerApp {
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
 
         messagingAccessPoint.startup();
-        System.out.println("MessagingAccessPoint startup OK");
-        ResourceManager resourceManager = messagingAccessPoint.resourceManager();
 
+        ResourceManager resourceManager = messagingAccessPoint.resourceManager();
         resourceManager.createQueue( "HELLO_QUEUE", OMS.newKeyValue());
+
         //PullConsumer only can pull messages from one queue.
         final PullConsumer pullConsumer = messagingAccessPoint.createPullConsumer();
         pullConsumer.attachQueue("HELLO_QUEUE");
