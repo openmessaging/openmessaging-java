@@ -190,11 +190,11 @@ public interface ResourceManager extends ServiceLifecycle {
      * <p>
      * Below system headers are allowed to be changed dynamically:
      * <ul>
-     * <li>{@link Message.BuiltinKeys#StartTime}</li>
-     * <li>{@link Message.BuiltinKeys#StopTime}</li>
-     * <li>{@link Message.BuiltinKeys#Timeout}</li>
-     * <li>{@link Message.BuiltinKeys#Priority}</li>
-     * <li>{@link Message.BuiltinKeys#ScheduleExpression}</li>
+     * <li>{@link Message.BuiltinKeys#START_TIME}</li>
+     * <li>{@link Message.BuiltinKeys#STOP_TIME}</li>
+     * <li>{@link Message.BuiltinKeys#TIMEOUT}</li>
+     * <li>{@link Message.BuiltinKeys#PRIORITY}</li>
+     * <li>{@link Message.BuiltinKeys#SCHEDULE_EXPRESSION}</li>
      * </ul>
      *
      * @param messageId the id of message

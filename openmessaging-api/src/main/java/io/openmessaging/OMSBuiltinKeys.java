@@ -24,16 +24,16 @@ package io.openmessaging;
  * @since OMS 1.0.0
  */
 public interface OMSBuiltinKeys {
-    String DRIVER_IMPL = "oms.driver.impl";
-    String ACCESS_POINTS = "oms.access.points";
-    String NAMESPACE = "oms.namespace";
-    String ACCOUNT_ID = "oms.account.id";
-    String REGION = "oms.region";
-    String PRODUCER_ID = "oms.producer.id";
-    String CONSUMER_ID = "oms.consumer.id";
-    String OPERATION_TIMEOUT = "oms.operation.timeout";
+    String DRIVER_IMPL = "DRIVER_IMPL";
+    String ACCESS_POINTS = "ACCESS_POINTS";
+    String NAMESPACE = "NAMESPACE";
+    String ACCOUNT_ID = "ACCOUNT_ID";
+    String REGION = "REGION";
+    String PRODUCER_ID = "PRODUCER_ID";
+    String CONSUMER_ID = "CONSUMER_ID";
+    String OPERATION_TIMEOUT = "OPERATION_TIMEOUT";
 
-    String ROUTING_SOURCE = "oms.routing.source";
-    String ROUTING_DESTINATION = "oms.routing.destination";
-    String ROUTING_RULE = "oms.routing.rule";
+    String ROUTING_SOURCE = "ROUTING_SOURCE";
+    String ROUTING_DESTINATION = "ROUTING_DESTINATION";
+    String ROUTING_RULE = "ROUTING_RULE";
 }
