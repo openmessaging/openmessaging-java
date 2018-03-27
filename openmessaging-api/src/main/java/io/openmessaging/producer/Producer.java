@@ -135,6 +135,13 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
     Future<SendResult> sendAsync(Message message, KeyValue attributes);
 
     /**
+     * Creates a {@code BatchMessageSender} to send message in batch way.
+     *
+     * @return a {@code BatchMessageSender} instance
+     */
+    BatchMessageSender createBatchMessageSender();
+
+    /**
      * Adds a {@code ProducerInterceptor} to intercept send operations of producer.
      *
      * @param interceptor a producer interceptor
@@ -147,5 +154,4 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @param interceptor a producer interceptor will be removed
      */
     void removeInterceptor(ProducerInterceptor interceptor);
-
 }
