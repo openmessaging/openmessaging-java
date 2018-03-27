@@ -292,6 +292,12 @@ public interface Message {
         String TraceId = "TraceId";
 
         /**
+         * The {@code StreamKey} header field contains the stream key of a message.
+         * The messages with same stream key should be dispatched to the same stream of the destination.
+         */
+        String StreamKey = "StreamKey";
+
+        /**
          * The {@code RedeliveredNumber} header field contains a number, which represents the number of message delivery.
          */
         String RedeliveredNumber = "RedeliveredNumber";
