@@ -48,7 +48,7 @@ public class RoutingApp {
         KeyValue routingAttr = OMS.newKeyValue();
         routingAttr.put(OMSBuiltinKeys.ROUTING_SOURCE, sourceQueue)
             .put(OMSBuiltinKeys.ROUTING_DESTINATION, destinationQueue)
-            .put(OMSBuiltinKeys.ROUTING_RULE, "color = 'red'");
+            .put(OMSBuiltinKeys.ROUTING_EXPRESSION, "color = 'red'");
 
         resourceManager.createRouting("HELLO_ROUTING", routingAttr);
 
