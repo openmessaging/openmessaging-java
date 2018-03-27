@@ -18,6 +18,11 @@
 package io.openmessaging.exception;
 
 /**
+ * The {@code OMSTimeOutException} must be thrown when a blocking operation times out.
+ * <p>
+ * Blocking operations for which a timeout is specified need a means to
+ * indicate that the timeout has occurred.
+ *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */

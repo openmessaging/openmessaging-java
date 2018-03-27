@@ -18,6 +18,14 @@
 package io.openmessaging.exception;
 
 /**
+ * This is the root class of all checked exceptions in the OMS API.
+ * <p>
+ * A OMSException consists of the following parts:
+ * <ul>
+ * <li>A provider-specific string describing the error.</li>
+ * <li>A provider-specific string error code to identify the specific exception type.</li>
+ * </ul>
+ *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */

@@ -18,6 +18,9 @@
 package io.openmessaging.exception;
 
 /**
+ * The {@code OMSNotSupportedException} must be thrown when the OMS vendor
+ * can't provide some feature defined by the standard.
+ *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
