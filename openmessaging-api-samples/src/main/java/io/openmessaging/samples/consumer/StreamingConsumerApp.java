@@ -11,17 +11,20 @@ import java.util.List;
 
 public class StreamingConsumerApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
+        //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
-
         messagingAccessPoint.startup();
 
-        //Create a Queue resource
+        //Fetch a ResourceManager to create Queue resource.
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
         String targetQueue = "HELLO_QUEUE";
         resourceManager.createQueue(targetQueue, OMS.newKeyValue());
 
+        //Fetch the streams of the target queue.
         List<String> streams = resourceManager.listStreams(targetQueue);
+
+        //Start a StreamingConsumer to iterate messages from the specific stream.
         final StreamingConsumer streamingConsumer = messagingAccessPoint.createStreamingConsumer();
         streamingConsumer.startup();
 
@@ -33,13 +36,13 @@ public class StreamingConsumerApp {
         }
 
         //All the messages in the stream has been consumed.
-
         //Now consume the messages in reverse order
         while (streamingIterator.hasPrevious()) {
             Message message = streamingIterator.previous();
             System.out.println("Received one message again: " + message);
         }
 
+        //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {

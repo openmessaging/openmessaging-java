@@ -7,8 +7,8 @@ import io.openmessaging.Message;
  * A message sender created through {@link Producer#createBatchMessageSender()}, to send
  * messages in batch way, and commit or roll back at the appropriate time.
  *
- * @version OMS 1.0
- * @since OMS 1.0
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface BatchMessageSender {
     /**

@@ -27,13 +27,15 @@ import io.openmessaging.exception.OMSResourceNotExistException;
 
 public class PushConsumerApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
+        //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
             OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:namespace");
-
         messagingAccessPoint.startup();
 
+        //Fetch a ResourceManager to create Queue resource.
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
+        consumer.startup();
 
         //Consume messages from a simple queue.
         String simpleQueue = "HELLO_QUEUE";
@@ -50,9 +52,7 @@ public class PushConsumerApp {
 
         });
 
-        consumer.startup();
-        System.out.println("Consumer startup OK");
-
+        //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {

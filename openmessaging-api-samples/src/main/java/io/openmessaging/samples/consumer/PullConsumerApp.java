@@ -9,25 +9,27 @@ import io.openmessaging.exception.OMSResourceNotExistException;
 
 public class PullConsumerApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
+        //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
-
         messagingAccessPoint.startup();
 
+        //Fetch a ResourceManager to create Queue resource.
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
         resourceManager.createQueue( "HELLO_QUEUE", OMS.newKeyValue());
 
-        //PullConsumer only can pull messages from one queue.
+        //Start a PullConsumer to receive messages from the specific queue.
         final PullConsumer pullConsumer = messagingAccessPoint.createPullConsumer();
         pullConsumer.attachQueue("HELLO_QUEUE");
         pullConsumer.startup();
 
-        //Pull one message from queue.
+        //Receive one message from queue.
         Message message = pullConsumer.receive();
 
-        //Acknowledges the consumed message
+        //Acknowledge the consumed message
         pullConsumer.ack(message.sysHeaders().getString(Message.BuiltinKeys.MESSAGE_ID));
 
+        //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {

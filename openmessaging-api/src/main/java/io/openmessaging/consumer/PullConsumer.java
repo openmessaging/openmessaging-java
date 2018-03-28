@@ -105,6 +105,7 @@ public interface PullConsumer extends ServiceLifecycle {
      * <p>
      * Messages that have been received but not acknowledged may be redelivered.
      *
+     * @param messageId the consumed message id
      * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
      */
     void ack(String messageId);
@@ -114,6 +115,7 @@ public interface PullConsumer extends ServiceLifecycle {
      * <p>
      * Messages that have been received but not acknowledged may be redelivered.
      *
+     * @param messageId the consumed message id
      * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
      */
     void ack(String messageId, KeyValue attributes);

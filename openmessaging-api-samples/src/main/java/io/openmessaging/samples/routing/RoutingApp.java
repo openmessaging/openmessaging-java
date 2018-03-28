@@ -30,14 +30,14 @@ import io.openmessaging.producer.Producer;
 
 public class RoutingApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
+        //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
-
         messagingAccessPoint.startup();
 
         String destinationQueue = "DESTINATION_QUEUE";
         String sourceQueue = "SOURCE_QUEUE";
-
+        //Fetch a ResourceManager to create source Queue, destination Queue, and the Routing instance.
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
 
         //Create the destination queue.
@@ -54,6 +54,7 @@ public class RoutingApp {
 
         //Send messages to the source queue ahead of the routing
         final Producer producer = messagingAccessPoint.createProducer();
+        producer.startup();
 
         producer.send(producer.createBytesMessage(sourceQueue, "RED_COLOR".getBytes())
             .putUserHeaders("color", "red"));
@@ -63,6 +64,7 @@ public class RoutingApp {
 
         //Consume messages from the queue behind the routing.
         final PushConsumer pushConsumer = messagingAccessPoint.createPushConsumer();
+        pushConsumer.startup();
 
         pushConsumer.attachQueue(destinationQueue, new MessageListener() {
             @Override
@@ -74,5 +76,15 @@ public class RoutingApp {
             }
 
         });
+
+        //Register a shutdown hook to close the opened endpoints.
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                producer.shutdown();
+                pushConsumer.shutdown();
+                messagingAccessPoint.shutdown();
+            }
+        }));
     }
 }

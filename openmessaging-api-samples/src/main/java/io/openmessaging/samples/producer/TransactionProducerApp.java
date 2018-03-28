@@ -37,6 +37,7 @@ public class TransactionProducerApp {
         Message message = producer.createBytesMessage(
             "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
 
+        //Sends a transaction message to the specified destination synchronously.
         SendResult sendResult = producer.send(message, new LocalTransactionBranchExecutor() {
             @Override
             public void doLocalTransactionBranch(final Message message,
@@ -55,5 +56,13 @@ public class TransactionProducerApp {
         }, OMS.newKeyValue());
 
         System.out.println("Send transaction message OK, message id is: " + sendResult.messageId());
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                producer.shutdown();
+                messagingAccessPoint.shutdown();
+            }
+        }));
     }
 }

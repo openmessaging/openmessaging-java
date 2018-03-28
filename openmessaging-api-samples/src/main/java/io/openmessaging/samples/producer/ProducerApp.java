@@ -34,7 +34,7 @@ public class ProducerApp {
         messagingAccessPoint.startup();
         producer.startup();
 
-        //Sync
+        //Sends a message to the specified destination synchronously.
         {
             SendResult sendResult = producer.send(producer.createBytesMessage(
                 "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
@@ -42,7 +42,8 @@ public class ProducerApp {
             System.out.println("Send sync message OK, message id is: " + sendResult.messageId());
         }
 
-        //Async with Promise
+        //Sends a message to the specified destination asynchronously.
+        //And get the result through Future
         {
             final Future<SendResult> result = producer.sendAsync(producer.createBytesMessage(
                 "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
@@ -51,7 +52,8 @@ public class ProducerApp {
             System.out.println("Send async message OK, message id is: " + sendResult.messageId());
         }
 
-        //Async with FutureListener
+        //Sends a message to the specified destination asynchronously.
+        //And retrieve the result through FutureListener
         {
             final Future<SendResult> result = producer.sendAsync(producer.createBytesMessage(
                 "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
@@ -69,6 +71,7 @@ public class ProducerApp {
             });
         }
 
+        //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
