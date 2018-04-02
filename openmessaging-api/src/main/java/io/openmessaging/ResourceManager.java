@@ -21,19 +21,19 @@ import io.openmessaging.exception.OMSResourceNotExistException;
 import java.util.List;
 
 /**
- * The {@code ResourceManager} is responsible for providing a unified interface of resource management,
- * allows the user to manage the namespace, queue and routing resources.
+ * The {@code ResourceManager} is to provide a unified interface of resource management,
+ * allowing developers to manage the namespace, queue and routing resources.
  * <p>
- * Create, set, get and delete are the four basic functions of {@code ResourceManager}.
+ * Create, set, get and delete are the four basic operations of {@code ResourceManager}.
  * <p>
- * And the {@code ResourceManager} also supports fetch and update resource attributes dynamically.
+ * {@code ResourceManager} also supports dynamic fetch and update of resource attributes.
  * <p>
  * {@link MessagingAccessPoint#resourceManager()} ()} is the unique method to obtain a {@code ResourceManager}
- * instance, any changes made by this instance will reflect to the message-oriented middleware (MOM) or
- * other product behind the {@code MessagingAccessPoint}.
+ * instance. Changes made through this instance will immediately apply to the message-oriented middleware (MOM) behind
+ * {@code MessagingAccessPoint}.
  * <p>
- * Almost all the operations made by this instance are limited in the configured namespace,
- * the default namespace is derived from the OMS driver url of {@code MessagingAccessPoint} and can be changed
+ * All operations conducted via this instance are confined to the configured namespace,
+ * with default namespace derived from the OMS driver url of {@code MessagingAccessPoint}.Change namespace
  * by {@link ResourceManager#switchNamespace(String)} whenever necessary.
  *
  * @version OMS 1.0.0
@@ -53,7 +53,7 @@ public interface ResourceManager {
      * by the provided attributes, only the provided key will be updated.
      *
      * @param attributes the new attributes
-     * @throws OMSResourceNotExistException if the configured namespace is not exists
+     * @throws OMSResourceNotExistException if the configured namespace does not exist
      */
     void setNamespaceAttributes(KeyValue attributes) throws OMSResourceNotExistException;
 
@@ -61,7 +61,7 @@ public interface ResourceManager {
      * Gets the attributes of the configured namespace.
      *
      * @return the attributes of namespace
-     * @throws OMSResourceNotExistException if the configured namespace is not exists
+     * @throws OMSResourceNotExistException if the configured namespace does not exist
      */
     KeyValue getNamespaceAttributes() throws OMSResourceNotExistException;
 
@@ -69,7 +69,7 @@ public interface ResourceManager {
      * Deletes an existing namespace resource.
      *
      * @param nsName the namespace needs to be deleted
-     * @throws OMSResourceNotExistException if the specified namespace is not exists
+     * @throws OMSResourceNotExistException if the specified namespace does not exist
      */
     void deleteNamespace(String nsName) throws OMSResourceNotExistException;
 
@@ -85,7 +85,7 @@ public interface ResourceManager {
      * the new namespace after the method returns successfully.
      *
      * @param nsName the target namespace to switch
-     * @throws OMSResourceNotExistException if the new namespace is not exists
+     * @throws OMSResourceNotExistException if the new namespace does not exist
      */
     void switchNamespace(String nsName) throws OMSResourceNotExistException;
 
@@ -94,7 +94,8 @@ public interface ResourceManager {
      *
      * @param queueName the name of the new queue
      * @param attributes the preset attributes
-     * @throws OMSResourceNotExistException if the configured namespace is not exists
+     * @throws OMSResourceNotExistException if the configured namespace does not exist or specified queue name is
+     * not available
      */
     void createQueue(String queueName, KeyValue attributes) throws OMSResourceNotExistException;
 
@@ -104,7 +105,7 @@ public interface ResourceManager {
      *
      * @param queueName the queue name
      * @param attributes the new attributes
-     * @throws OMSResourceNotExistException if the specified queue or namespace is not exists
+     * @throws OMSResourceNotExistException if the specified queue or namespace does not exist
      */
     void setQueueAttributes(String queueName, KeyValue attributes) throws OMSResourceNotExistException;
 
@@ -113,7 +114,7 @@ public interface ResourceManager {
      *
      * @param queueName the queue name
      * @return the attributes of namespace
-     * @throws OMSResourceNotExistException if the specified queue or namespace is not exists
+     * @throws OMSResourceNotExistException if the specified queue or namespace does not exist
      */
     KeyValue getQueueAttributes(String queueName) throws OMSResourceNotExistException;
 
@@ -121,7 +122,7 @@ public interface ResourceManager {
      * Deletes an existing queue resource.
      *
      * @param queueName the queue needs to be deleted
-     * @throws OMSResourceNotExistException if the specified queue or namespace is not exists
+     * @throws OMSResourceNotExistException if the specified queue or namespace does not exist
      */
     void deleteQueue(String queueName) throws OMSResourceNotExistException;
 
@@ -129,7 +130,7 @@ public interface ResourceManager {
      * Gets the queue list in the configured namespace.
      *
      * @return the list of all queues
-     * @throws OMSResourceNotExistException if the configured namespace is not exists
+     * @throws OMSResourceNotExistException if the configured namespace does not exist
      */
     List<String> listQueues() throws OMSResourceNotExistException;
 
@@ -138,7 +139,8 @@ public interface ResourceManager {
      *
      * @param routingName the name of the new routing
      * @param attributes the preset attributes
-     * @throws OMSResourceNotExistException if the configured namespace is not exists
+     * @throws OMSResourceNotExistException if the configured namespace does not exist or specified routing name is not
+     * available
      */
     void createRouting(String routingName, KeyValue attributes) throws OMSResourceNotExistException;
 
@@ -148,7 +150,7 @@ public interface ResourceManager {
      *
      * @param routingName the routing name
      * @param attributes the new attributes
-     * @throws OMSResourceNotExistException if the specified routing or namespace is not exists
+     * @throws OMSResourceNotExistException if the specified routing or namespace does not exist
      */
     void setRoutingAttributes(String routingName, KeyValue attributes) throws OMSResourceNotExistException;
 
@@ -157,7 +159,7 @@ public interface ResourceManager {
      *
      * @param routingName the routing name
      * @return the attributes of routing
-     * @throws OMSResourceNotExistException if the specified routing or namespace is not exists
+     * @throws OMSResourceNotExistException if the specified routing or namespace does not exist
      */
     KeyValue getRoutingAttributes(String routingName) throws OMSResourceNotExistException;
 
@@ -165,7 +167,7 @@ public interface ResourceManager {
      * Deletes an existing routing resource.
      *
      * @param routingName the routing needs to be deleted
-     * @throws OMSResourceNotExistException if the specified routing or namespace is not exists
+     * @throws OMSResourceNotExistException if the specified routing or namespace does not exist
      */
     void deleteRouting(String routingName) throws OMSResourceNotExistException;
 
@@ -173,7 +175,7 @@ public interface ResourceManager {
      * Gets the routing list in the configured namespace.
      *
      * @return the list of all routings
-     * @throws OMSResourceNotExistException if the configured namespace is not exists
+     * @throws OMSResourceNotExistException if the configured namespace does not exist
      */
     List<String> listRoutings() throws OMSResourceNotExistException;
 
