@@ -45,7 +45,7 @@ import java.util.Properties;
  * @see ResourceManager
  * @since OMS 1.0.0
  */
-public class OMS {
+public final class OMS {
     /**
      * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url.
      *
@@ -105,5 +105,8 @@ public class OMS {
             }
         } catch (IOException ignore) {
         }
+    }
+
+    private OMS() {
     }
 }
