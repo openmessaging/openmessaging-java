@@ -152,6 +152,14 @@ public interface Message {
          */
         String DESTINATION = "DESTINATION";
 
+        /**
+         * The {@code RECEIPT_HANDLE} header field contains an identifier associated with the act of receiving a message.
+         * <p></p>
+         * A new receipt handle will be set properly every time a message being received, and the consumer could use
+         * it to acknowledge the consumed message.
+         */
+        String RECEIPT_HANDLE = "RECEIPT_HANDLE";
+
 
         /**
          * The {@code BORN_TIMESTAMP} header field contains the time a message was handed
@@ -211,10 +219,10 @@ public interface Message {
          * The {@code STOP_TIME} header field contains the stop timestamp that a message
          * should be discarded after this timestamp, and no consumer can consume this message.
          * <p>
-         * {@code (START_TIME ~ STOP_TIME)} represents a absolute valid interval that a message
+         * {@code (START_TIME ~ STOP_TIME)} represents an absolute valid interval that a message
          * can be delivered in it.
          * <p>
-         * If a earlier timestamp is set than START_TIME, that means the message does not expire.
+         * If an earlier timestamp is set than START_TIME, that means the message does not expire.
          * <p>
          * This filed is a {@code long} value, measured in milliseconds.
          * <p>

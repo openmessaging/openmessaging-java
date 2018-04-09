@@ -101,22 +101,23 @@ public interface PullConsumer extends ServiceLifecycle {
     Message receive(KeyValue attributes);
 
     /**
-     * Acknowledges the specified and consumed message with unique message id.
+     * Acknowledges the specified and consumed message with the unique message receipt handle.
      * <p>
      * Messages that have been received but not acknowledged may be redelivered.
      *
-     * @param messageId the consumed message id
+     * @param receiptHandle the receipt handle associated with the consumed message
      * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
      */
-    void ack(String messageId);
+    void ack(String receiptHandle);
 
     /**
      * Acknowledges the specified and consumed message with the specified attributes.
      * <p>
      * Messages that have been received but not acknowledged may be redelivered.
      *
-     * @param messageId the consumed message id
+     * @param receiptHandle the receipt handle associated with the consumed message
+     * @param attributes the specified attributes
      * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
      */
-    void ack(String messageId, KeyValue attributes);
+    void ack(String receiptHandle, KeyValue attributes);
 }
