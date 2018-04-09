@@ -199,8 +199,9 @@ public interface ResourceManager {
      * <li>{@link Message.BuiltinKeys#SCHEDULE_EXPRESSION}</li>
      * </ul>
      *
+     * @param queueName the specific queue the message resides in
      * @param messageId the id of message
      * @param headers the new headers
      */
-    void updateMessage(String messageId, KeyValue headers);
+    void updateMessage(String queueName, String messageId, KeyValue headers);
 }
