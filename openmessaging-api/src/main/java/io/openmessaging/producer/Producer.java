@@ -103,7 +103,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @throws OMSTimeOutException if the given timeout elapses before the send operation completes
      * @throws OMSRuntimeException if the {@code Producer} fails to send the message due to some internal error.
      */
-    SendResult send(Message message, LocalTransactionBranchExecutor branchExecutor, KeyValue attributes);
+    SendResult send(Message message, LocalTransactionExecutor branchExecutor, KeyValue attributes);
 
     /**
      * Sends a message to the specified destination asynchronously, the destination should be preset to
@@ -158,7 +158,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
     void sendOneway(Message message, KeyValue properties);
 
     /**
-     * Creates a {@code BatchMessageSender} to send message in batch way.
+     * Creates a {@code BatchMessageSender} to send message in batch manner.
      *
      * @return a {@code BatchMessageSender} instance
      */

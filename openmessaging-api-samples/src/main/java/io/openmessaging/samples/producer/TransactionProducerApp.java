@@ -20,7 +20,7 @@ package io.openmessaging.samples.producer;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
-import io.openmessaging.producer.LocalTransactionBranchExecutor;
+import io.openmessaging.producer.LocalTransactionExecutor;
 import io.openmessaging.producer.Producer;
 import io.openmessaging.producer.SendResult;
 import java.nio.charset.Charset;
@@ -38,18 +38,16 @@ public class TransactionProducerApp {
             "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
 
         //Sends a transaction message to the specified destination synchronously.
-        SendResult sendResult = producer.send(message, new LocalTransactionBranchExecutor() {
+        SendResult sendResult = producer.send(message, new LocalTransactionExecutor() {
             @Override
-            public void doLocalTransactionBranch(final Message message,
-                final DoLocalTransactionBranchContext context) {
+            public void execute(final Message message, final ExecutionContext context) {
                 //Do some local transaction
                 //Then commit this transaction and the message will be delivered.
                 context.commit();
             }
 
             @Override
-            public void checkLocalTransactionBranch(final Message message,
-                final CheckLocalTransactionBranchContext context) {
+            public void check(final Message message, final CheckContext context) {
                 //The server may lookup the transaction status forwardly associated the specified message
                 context.commit();
             }

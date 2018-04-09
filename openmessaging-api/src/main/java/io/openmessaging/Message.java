@@ -160,7 +160,6 @@ public interface Message {
          */
         String RECEIPT_HANDLE = "RECEIPT_HANDLE";
 
-
         /**
          * The {@code BORN_TIMESTAMP} header field contains the time a message was handed
          * off to a {@code Producer} to be sent.

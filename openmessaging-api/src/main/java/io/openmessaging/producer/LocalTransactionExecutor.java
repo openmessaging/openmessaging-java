@@ -11,13 +11,13 @@ import io.openmessaging.Message;
  * discarded if local transaction has been rolled back.
  *
  * <p>
- * If the executor don't submit the transaction status for a long time, the server may lookup it forwardly through
- * {@link LocalTransactionBranchExecutor#checkLocalTransactionBranch(Message, CheckLocalTransactionBranchContext)}
+ * If the executor doesn't submit the transaction status for a long time, the server may lookup it forwardly through
+ * {@link LocalTransactionExecutor#check(Message, CheckContext)}
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
-public interface LocalTransactionBranchExecutor {
+public interface LocalTransactionExecutor {
     /**
      * Executes the local transaction branch after the message is sent successfully, and submits the
      * status whether the transaction was successfully committed or rolled back.
@@ -25,7 +25,7 @@ public interface LocalTransactionBranchExecutor {
      * @param message the associated message
      * @param context the execution context
      */
-    void doLocalTransactionBranch(Message message, DoLocalTransactionBranchContext context);
+    void execute(Message message, ExecutionContext context);
 
     /**
      * Checks the status of the local transaction branch.
@@ -33,9 +33,9 @@ public interface LocalTransactionBranchExecutor {
      * @param message the associated message
      * @param context the check context
      */
-    void checkLocalTransactionBranch(Message message, CheckLocalTransactionBranchContext context);
+    void check(Message message, CheckContext context);
 
-    interface DoLocalTransactionBranchContext {
+    interface ExecutionContext {
         /**
          * Commits a transaction.
          */
@@ -47,7 +47,7 @@ public interface LocalTransactionBranchExecutor {
         void rollback();
     }
 
-    interface CheckLocalTransactionBranchContext {
+    interface CheckContext {
         /**
          * Commits a transaction.
          */

@@ -1,11 +1,11 @@
 package io.openmessaging.producer;
 
-import io.openmessaging.KeyValue;
 import io.openmessaging.Message;
+import io.openmessaging.exception.OMSRuntimeException;
 
 /**
  * A message sender created through {@link Producer#createBatchMessageSender()}, to send
- * messages in batch way, and commit or roll back at the appropriate time.
+ * messages in batch manner, and commit or roll back at the appropriate time.
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
@@ -15,19 +15,14 @@ public interface BatchMessageSender {
      * Submits a message to this sender
      *
      * @param message a message to be sent
+     * @return this batch sender
      */
-    void send(Message message);
-
-    /**
-     * Submits a message to this sender, using the specified attributes.
-     *
-     * @param message a message to be sent
-     * @param properties the specified attributes
-     */
-    void send(Message message, KeyValue properties);
+    BatchMessageSender send(Message message);
 
     /**
      * Commits all the uncommitted messages in this sender.
+     *
+     * @throws OMSRuntimeException if the sender fails to commit the messages due to some internal error.
      */
     void commit();
 
