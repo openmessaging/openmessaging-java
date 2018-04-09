@@ -135,6 +135,29 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
     Future<SendResult> sendAsync(Message message, KeyValue attributes);
 
     /**
+     * Sends a message to the specified destination in one way, the destination should be preset to
+     * {@link Message.BuiltinKeys}, other header fields as well.
+     * <p>
+     * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't
+     * care about the send result and also have no context to get the result.
+     *
+     * @param message a message will be sent
+     */
+    void sendOneway(Message message);
+
+    /**
+     * Sends a message to the specified destination in one way, using the specified attributes, the destination
+     * should be preset to {@link Message.BuiltinKeys}, other header fields as well.
+     * <p>
+     * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't
+     * care about the send result and also have no context to get the result.
+     *
+     * @param message a message will be sent
+     * @param properties the specified userHeaders
+     */
+    void sendOneway(Message message, KeyValue properties);
+
+    /**
      * Creates a {@code BatchMessageSender} to send message in batch way.
      *
      * @return a {@code BatchMessageSender} instance
