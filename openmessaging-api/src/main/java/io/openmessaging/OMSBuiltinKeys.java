@@ -37,11 +37,6 @@ public interface OMSBuiltinKeys {
     String ACCESS_POINTS = "ACCESS_POINTS";
 
     /**
-     * The {@code NAMESPACE} key defines the isolated space of resources and related operations.
-     */
-    String NAMESPACE = "NAMESPACE";
-
-    /**
      * The {@code ACCOUNT_ID} key shows the specified account info in OMS driver schema.
      */
     String ACCOUNT_ID = "ACCOUNT_ID";

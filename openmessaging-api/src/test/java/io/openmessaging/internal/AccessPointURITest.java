@@ -24,11 +24,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Fail.failBecauseExceptionWasNotThrown;
 
 public class AccessPointURITest {
-    private String fullSchemaURI = "oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space";
+    private String fullSchemaURI = "oms:rocketmq://alice@rocketmq.apache.org/us-east";
 
     @Test
     public void testParse_DriverIsIllegal() throws Exception {
-        String missDriverType = "oms://alice@rocketmq.apache.org/us-east:default_space";
+        String missDriverType = "oms://alice@rocketmq.apache.org/us-east";
         AccessPointURI accessPointURI = null;
         try {
             accessPointURI = new AccessPointURI(missDriverType);
@@ -37,15 +37,8 @@ public class AccessPointURITest {
             assertThat(e).hasMessageContaining(String.format("The OMS driver URL [%s] is illegal.", missDriverType));
         }
 
-        String missNamespace = "oms:rocketmq://alice@rocketmq.apache.org/us-east";
-        try {
-            accessPointURI = new AccessPointURI(missNamespace);
-            failBecauseExceptionWasNotThrown(OMSRuntimeException.class);
-        } catch (Exception e) {
-            assertThat(e).hasMessageContaining(String.format("The OMS driver URL [%s] is illegal.", missNamespace));
-        }
 
-        String missRegion = "oms:rocketmq://alice@rocketmq.apache.org/:default_space";
+        String missRegion = "oms:rocketmq://alice@rocketmq.apache.org/";
         try {
             accessPointURI = new AccessPointURI(missRegion);
             failBecauseExceptionWasNotThrown(OMSRuntimeException.class);
@@ -87,11 +80,4 @@ public class AccessPointURITest {
         AccessPointURI accessPointURI = new AccessPointURI(fullSchemaURI);
         assertThat(accessPointURI.getRegion()).isEqualTo("us-east");
     }
-
-    @Test
-    public void testGetNamespace() throws Exception {
-        AccessPointURI accessPointURI = new AccessPointURI(fullSchemaURI);
-        assertThat(accessPointURI.getNamespace()).isEqualTo("default_space");
-    }
-
 }

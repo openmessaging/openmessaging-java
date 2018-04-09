@@ -31,10 +31,6 @@ import java.util.List;
  * {@link MessagingAccessPoint#resourceManager()} ()} is the unique method to obtain a {@code ResourceManager}
  * instance. Changes made through this instance will immediately apply to the message-oriented middleware (MOM) behind
  * {@code MessagingAccessPoint}.
- * <p>
- * All operations conducted via this instance are confined to the configured namespace,
- * with default namespace derived from the OMS driver url of {@code MessagingAccessPoint}.Change namespace
- * by {@link ResourceManager#switchNamespace(String)} whenever necessary.
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
@@ -42,6 +38,9 @@ import java.util.List;
 public interface ResourceManager {
     /**
      * Creates a {@code Namespace} resource with some preset attributes.
+     * <p>
+     * A namespace wraps the OMS resources in an abstract concept that makes it appear to the users
+     * within the namespace that they have their own isolated instance of the global OMS resources.
      *
      * @param nsName the name of the new namespace
      * @param attributes the preset attributes
@@ -49,21 +48,23 @@ public interface ResourceManager {
     void createNamespace(String nsName, KeyValue attributes);
 
     /**
-     * Sets the attributes of the configured namespace, the old attributes will be replaced
+     * Sets the attributes of the specific namespace, the old attributes will be replaced
      * by the provided attributes, only the provided key will be updated.
      *
+     * @param nsName the specific namespace
      * @param attributes the new attributes
-     * @throws OMSResourceNotExistException if the configured namespace does not exist
+     * @throws OMSResourceNotExistException if the specific namespace does not exist
      */
-    void setNamespaceAttributes(KeyValue attributes) throws OMSResourceNotExistException;
+    void setNamespaceAttributes(String nsName, KeyValue attributes) throws OMSResourceNotExistException;
 
     /**
-     * Gets the attributes of the configured namespace.
+     * Gets the attributes of the specific namespace.
      *
+     * @param nsName the specific namespace
      * @return the attributes of namespace
-     * @throws OMSResourceNotExistException if the configured namespace does not exist
+     * @throws OMSResourceNotExistException if the specific namespace does not exist
      */
-    KeyValue getNamespaceAttributes() throws OMSResourceNotExistException;
+    KeyValue getNamespaceAttributes(String nsName) throws OMSResourceNotExistException;
 
     /**
      * Deletes an existing namespace resource.
@@ -81,16 +82,11 @@ public interface ResourceManager {
     List<String> listNamespaces();
 
     /**
-     * Switches the default namespace to the new one, and all the operations will reflect to
-     * the new namespace after the method returns successfully.
-     *
-     * @param nsName the target namespace to switch
-     * @throws OMSResourceNotExistException if the new namespace does not exist
-     */
-    void switchNamespace(String nsName) throws OMSResourceNotExistException;
-
-    /**
      * Creates a {@code Queue} resource in the configured namespace with some preset attributes.
+     * <p>
+     * The standard OMS {@code Queue} schema must start with the {@code Namespace} prefix:
+     * <p>
+     * {@literal <namespace_name>://<queue_name>}
      *
      * @param queueName the name of the new queue
      * @param attributes the preset attributes
@@ -127,15 +123,20 @@ public interface ResourceManager {
     void deleteQueue(String queueName) throws OMSResourceNotExistException;
 
     /**
-     * Gets the queue list in the configured namespace.
+     * Gets the queue list in the specific namespace.
      *
+     * @param nsName the specific namespace
      * @return the list of all queues
-     * @throws OMSResourceNotExistException if the configured namespace does not exist
+     * @throws OMSResourceNotExistException if the specific namespace does not exist
      */
-    List<String> listQueues() throws OMSResourceNotExistException;
+    List<String> listQueues(String nsName) throws OMSResourceNotExistException;
 
     /**
      * Creates a {@code Routing} resource in the configured namespace with some preset attributes.
+     * <p>
+     * The standard OMS {@code Routing} schema must start with the {@code Namespace} prefix:
+     * <p>
+     * {@literal <namespace_name>://<routing_name>}
      *
      * @param routingName the name of the new routing
      * @param attributes the preset attributes
@@ -172,20 +173,22 @@ public interface ResourceManager {
     void deleteRouting(String routingName) throws OMSResourceNotExistException;
 
     /**
-     * Gets the routing list in the configured namespace.
+     * Gets the routing list in the specific namespace.
      *
+     * @param nsName the specific namespace
      * @return the list of all routings
-     * @throws OMSResourceNotExistException if the configured namespace does not exist
+     * @throws OMSResourceNotExistException if the specific namespace does not exist
      */
-    List<String> listRoutings() throws OMSResourceNotExistException;
+    List<String> listRoutings(String nsName) throws OMSResourceNotExistException;
 
     /**
      * Gets the stream list behind the specified queue.
      *
      * @param queueName the queue name
      * @return the list of all streams
+     * @throws OMSResourceNotExistException if the specified queue or namespace does not exist
      */
-    List<String> listStreams(String queueName);
+    List<String> listStreams(String queueName) throws OMSResourceNotExistException;
 
     /**
      * Updates some system headers of a message in the configured namespace.
@@ -202,6 +205,7 @@ public interface ResourceManager {
      * @param queueName the specific queue the message resides in
      * @param messageId the id of message
      * @param headers the new headers
+     * @throws OMSResourceNotExistException if the specified queue, namespace or message does not exist
      */
-    void updateMessage(String queueName, String messageId, KeyValue headers);
+    void updateMessage(String queueName, String messageId, KeyValue headers) throws OMSResourceNotExistException;
 }

@@ -13,12 +13,12 @@ public class StreamingConsumerApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
         //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
-            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
+            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
         messagingAccessPoint.startup();
 
         //Fetch a ResourceManager to create Queue resource.
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
-        String targetQueue = "HELLO_QUEUE";
+        String targetQueue = "NS://HELLO_QUEUE";
         resourceManager.createQueue(targetQueue, OMS.newKeyValue());
 
         //Fetch the streams of the target queue.

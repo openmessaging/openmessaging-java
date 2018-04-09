@@ -32,11 +32,11 @@ public class RoutingApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
         //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
-            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
+            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
         messagingAccessPoint.startup();
 
-        String destinationQueue = "DESTINATION_QUEUE";
-        String sourceQueue = "SOURCE_QUEUE";
+        String destinationQueue = "NS://DESTINATION_QUEUE";
+        String sourceQueue = "NS://SOURCE_QUEUE";
         //Fetch a ResourceManager to create source Queue, destination Queue, and the Routing instance.
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
 
@@ -50,7 +50,7 @@ public class RoutingApp {
             .put(OMSBuiltinKeys.ROUTING_DESTINATION, destinationQueue)
             .put(OMSBuiltinKeys.ROUTING_EXPRESSION, "color = 'red'");
 
-        resourceManager.createRouting("HELLO_ROUTING", routingAttr);
+        resourceManager.createRouting("NS://HELLO_ROUTING", routingAttr);
 
         //Send messages to the source queue ahead of the routing
         final Producer producer = messagingAccessPoint.createProducer();

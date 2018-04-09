@@ -47,7 +47,6 @@ public class MessagingAccessPointAdapter {
         AccessPointURI accessPointURI = new AccessPointURI(url);
         String driverImpl = parseDriverImpl(accessPointURI.getDriverType(), attributes);
 
-        attributes.put(OMSBuiltinKeys.NAMESPACE, accessPointURI.getNamespace());
         attributes.put(OMSBuiltinKeys.ACCESS_POINTS, accessPointURI.getHosts());
         attributes.put(OMSBuiltinKeys.DRIVER_IMPL, driverImpl);
         attributes.put(OMSBuiltinKeys.REGION, accessPointURI.getRegion());

@@ -29,7 +29,7 @@ public class PushConsumerApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
         //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
-            OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east:namespace");
+            OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east");
         messagingAccessPoint.startup();
 
         //Fetch a ResourceManager to create Queue resource.
@@ -38,7 +38,7 @@ public class PushConsumerApp {
         consumer.startup();
 
         //Consume messages from a simple queue.
-        String simpleQueue = "HELLO_QUEUE";
+        String simpleQueue = "NS://HELLO_QUEUE";
         resourceManager.createQueue( simpleQueue, OMS.newKeyValue());
 
         //This queue doesn't has a source queue, so only the message delivered to the queue directly can

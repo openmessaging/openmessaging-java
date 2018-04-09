@@ -31,18 +31,17 @@ public class AccessPointURI {
     private final String accountId;
     private final String hosts;
     private final String region;
-    private final String namespace;
 
     /**
      * The standard OMS access point schema is:
      * <p>
-     * {@literal oms:<driver_type>://[account_id@]host1[:port1][,host2[:port2],...[,hostN[:portN]]]/<region>:<namespace>}
+     * {@literal oms:<driver_type>://[account_id@]host1[:port1][,host2[:port2],...[,hostN[:portN]]]/<region>}
      * <p>
      *
      * More details please refer to:
      * <a href="https://github.com/openmessaging/specification/blob/master/oms_access_point_schema.md">Access Point Schema</a>
      */
-    private static final String PATTERN = "^oms:.+://.+/.+:.+$";
+    private static final String PATTERN = "^oms:.+://.+/.+$";
 
     AccessPointURI(String accessPointString) {
         validateAccessPointString(accessPointString);
@@ -58,8 +57,8 @@ public class AccessPointURI {
 
         idx = unprocessedString.lastIndexOf('/');
 
+        this.region = unprocessedString.substring(idx + 1);
         String userAndHostInformation = unprocessedString.substring(0, idx);
-        String [] resourceInfo = unprocessedString.substring(idx + 1).split(":");
 
         idx = userAndHostInformation.indexOf('@');
 
@@ -70,9 +69,6 @@ public class AccessPointURI {
             hosts = userAndHostInformation;
             accountId = null;
         }
-
-        this.region = resourceInfo[0];
-        this.namespace = resourceInfo[1];
     }
 
     public String getAccessPointString() {
@@ -93,10 +89,6 @@ public class AccessPointURI {
 
     public String getRegion() {
         return region;
-    }
-
-    public String getNamespace() {
-        return namespace;
     }
 
     private void validateAccessPointString(String accessPointString) {

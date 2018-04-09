@@ -28,7 +28,7 @@ import java.nio.charset.Charset;
 public class ProducerApp {
     public static void main(String[] args) {
         final MessagingAccessPoint messagingAccessPoint =
-            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
+            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
 
         final Producer producer = messagingAccessPoint.createProducer();
         messagingAccessPoint.startup();
@@ -37,7 +37,7 @@ public class ProducerApp {
         //Sends a message to the specified destination synchronously.
         {
             SendResult sendResult = producer.send(producer.createBytesMessage(
-                "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+                "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             System.out.println("Send sync message OK, message id is: " + sendResult.messageId());
         }
@@ -46,7 +46,7 @@ public class ProducerApp {
         //And get the result through Future
         {
             final Future<SendResult> result = producer.sendAsync(producer.createBytesMessage(
-                "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+                "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             final SendResult sendResult = result.get(3000L);
             System.out.println("Send async message OK, message id is: " + sendResult.messageId());
@@ -56,7 +56,7 @@ public class ProducerApp {
         //And retrieve the result through FutureListener
         {
             final Future<SendResult> result = producer.sendAsync(producer.createBytesMessage(
-                "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+                "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
 
             result.addListener(new FutureListener<SendResult>() {
                 @Override

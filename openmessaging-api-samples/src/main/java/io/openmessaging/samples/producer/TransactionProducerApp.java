@@ -28,14 +28,14 @@ import java.nio.charset.Charset;
 public class TransactionProducerApp {
     public static void main(String[] args) {
         final MessagingAccessPoint messagingAccessPoint =
-            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
+            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
 
         final Producer producer = messagingAccessPoint.createProducer();
         messagingAccessPoint.startup();
         producer.startup();
 
         Message message = producer.createBytesMessage(
-            "HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
+            "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
 
         //Sends a transaction message to the specified destination synchronously.
         SendResult sendResult = producer.send(message, new LocalTransactionExecutor() {

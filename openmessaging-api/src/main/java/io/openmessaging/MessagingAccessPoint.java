@@ -55,8 +55,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * <li> {@link OMSBuiltinKeys#ACCESS_POINTS}, the specified access points.
      * <li> {@link OMSBuiltinKeys#DRIVER_IMPL}, the fully qualified class name of the specified MessagingAccessPoint's
      * implementation, the default value is {@literal io.openmessaging.<driver_type>.MessagingAccessPointImpl}.
-     * <li> {@link OMSBuiltinKeys#NAMESPACE}, the namespace the OMS resource resides in.
-     * <li> {@link OMSBuiltinKeys#REGION}, the region the namespace resides in.
+     * <li> {@link OMSBuiltinKeys#REGION}, the region the resources reside in.
      * <li> {@link OMSBuiltinKeys#ACCOUNT_ID}, the ID of the specific account system that owns the resource.
      * </ul>
      *

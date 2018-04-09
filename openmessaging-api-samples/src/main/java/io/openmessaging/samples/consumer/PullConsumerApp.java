@@ -11,16 +11,16 @@ public class PullConsumerApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
         //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
-            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
+            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
         messagingAccessPoint.startup();
 
         //Fetch a ResourceManager to create Queue resource.
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
-        resourceManager.createQueue( "HELLO_QUEUE", OMS.newKeyValue());
+        resourceManager.createQueue( "NS://HELLO_QUEUE", OMS.newKeyValue());
 
         //Start a PullConsumer to receive messages from the specific queue.
         final PullConsumer pullConsumer = messagingAccessPoint.createPullConsumer();
-        pullConsumer.attachQueue("HELLO_QUEUE");
+        pullConsumer.attachQueue("NS://HELLO_QUEUE");
         pullConsumer.startup();
 
         //Receive one message from queue.
