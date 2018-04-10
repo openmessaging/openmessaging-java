@@ -36,8 +36,8 @@ public interface ProducerInterceptor {
      * Invoked immediately after the failed send invocation.
      *
      * @param message the message is actually sent
-     * @param sendException the occurred exception in the send invocation
      * @param attributes the extensible attributes delivered to the intercept thread
+     * @param sendException the occurred exception in the send invocation
      */
-    void postSend(Message message, OMSException sendException, KeyValue attributes);
+    void postSend(Message message, KeyValue attributes, OMSException sendException);
 }
