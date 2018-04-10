@@ -71,6 +71,14 @@ public class ProducerApp {
             });
         }
 
+        //Sends a message to the specific queue in OneWay manner.
+        {
+            //There is no {@code Future} related or {@code RuntimeException} thrown. The calling thread doesn't
+            //care about the send result and also have no context to get the result.
+            producer.sendOneway(producer.createBytesMessage(
+                "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+        }
+
         //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
