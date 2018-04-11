@@ -37,6 +37,15 @@ public class PushConsumerApp {
         final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
         consumer.startup();
 
+        //Register a shutdown hook to close the opened endpoints.
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                consumer.shutdown();
+                messagingAccessPoint.shutdown();
+            }
+        }));
+
         //Consume messages from a simple queue.
         String simpleQueue = "NS://HELLO_QUEUE";
         resourceManager.createQueue( simpleQueue, OMS.newKeyValue());
@@ -51,14 +60,5 @@ public class PushConsumerApp {
             }
 
         });
-
-        //Register a shutdown hook to close the opened endpoints.
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                consumer.shutdown();
-                messagingAccessPoint.shutdown();
-            }
-        }));
     }
 }

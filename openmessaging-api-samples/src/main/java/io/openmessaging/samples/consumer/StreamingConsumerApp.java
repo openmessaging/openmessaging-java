@@ -17,8 +17,8 @@ public class StreamingConsumerApp {
         messagingAccessPoint.startup();
 
         //Fetch a ResourceManager to create Queue resource.
-        ResourceManager resourceManager = messagingAccessPoint.resourceManager();
         String targetQueue = "NS://HELLO_QUEUE";
+        ResourceManager resourceManager = messagingAccessPoint.resourceManager();
         resourceManager.createQueue(targetQueue, OMS.newKeyValue());
 
         //Fetch the streams of the target queue.
@@ -28,6 +28,16 @@ public class StreamingConsumerApp {
         final StreamingConsumer streamingConsumer = messagingAccessPoint.createStreamingConsumer();
         streamingConsumer.startup();
 
+        //Register a shutdown hook to close the opened endpoints.
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                streamingConsumer.shutdown();
+                messagingAccessPoint.shutdown();
+            }
+        }));
+
+        assert streams.size() != 0;
         StreamingIterator streamingIterator = streamingConsumer.seekToBeginning(streams.get(0));
 
         while (streamingIterator.hasNext()) {
@@ -41,15 +51,5 @@ public class StreamingConsumerApp {
             Message message = streamingIterator.previous();
             System.out.println("Received one message again: " + message);
         }
-
-        //Register a shutdown hook to close the opened endpoints.
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                streamingConsumer.shutdown();
-                messagingAccessPoint.shutdown();
-            }
-        }));
-
     }
 }

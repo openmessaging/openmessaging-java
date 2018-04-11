@@ -34,6 +34,15 @@ public class TransactionProducerApp {
         messagingAccessPoint.startup();
         producer.startup();
 
+        //Register a shutdown hook to close the opened endpoints.
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                producer.shutdown();
+                messagingAccessPoint.shutdown();
+            }
+        }));
+
         Message message = producer.createBytesMessage(
             "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
 
@@ -54,13 +63,5 @@ public class TransactionProducerApp {
         }, OMS.newKeyValue());
 
         System.out.println("Send transaction message OK, message id is: " + sendResult.messageId());
-
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                producer.shutdown();
-                messagingAccessPoint.shutdown();
-            }
-        }));
     }
 }

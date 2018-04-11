@@ -34,6 +34,15 @@ public class ProducerApp {
         messagingAccessPoint.startup();
         producer.startup();
 
+        //Register a shutdown hook to close the opened endpoints.
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                producer.shutdown();
+                messagingAccessPoint.shutdown();
+            }
+        }));
+
         //Sends a message to the specified destination synchronously.
         {
             SendResult sendResult = producer.send(producer.createBytesMessage(
@@ -78,14 +87,5 @@ public class ProducerApp {
             producer.sendOneway(producer.createBytesMessage(
                 "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
         }
-
-        //Register a shutdown hook to close the opened endpoints.
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                producer.shutdown();
-                messagingAccessPoint.shutdown();
-            }
-        }));
     }
 }

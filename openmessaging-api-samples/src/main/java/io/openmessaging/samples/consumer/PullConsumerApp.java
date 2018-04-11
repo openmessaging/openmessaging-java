@@ -23,12 +23,6 @@ public class PullConsumerApp {
         pullConsumer.attachQueue("NS://HELLO_QUEUE");
         pullConsumer.startup();
 
-        //Receive one message from queue.
-        Message message = pullConsumer.receive();
-
-        //Acknowledge the consumed message
-        pullConsumer.ack(message.sysHeaders().getString(Message.BuiltinKeys.MESSAGE_ID));
-
         //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
@@ -37,5 +31,11 @@ public class PullConsumerApp {
                 messagingAccessPoint.shutdown();
             }
         }));
+
+        //Receive one message from queue.
+        Message message = pullConsumer.receive();
+
+        //Acknowledge the consumed message
+        pullConsumer.ack(message.sysHeaders().getString(Message.BuiltinKeys.MESSAGE_ID));
     }
 }
