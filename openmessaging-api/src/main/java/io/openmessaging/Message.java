@@ -155,7 +155,7 @@ public interface Message {
         /**
          * The {@code RECEIPT_HANDLE} header field contains an identifier associated with the act of receiving a message.
          * <p></p>
-         * A new receipt handle will be set properly every time a message being received, and the consumer could use
+         * A new receipt handle will be set properly every time a message is received, and the consumer could use
          * it to acknowledge the consumed message.
          */
         String RECEIPT_HANDLE = "RECEIPT_HANDLE";

@@ -36,6 +36,6 @@ public class PullConsumerApp {
         Message message = pullConsumer.receive();
 
         //Acknowledge the consumed message
-        pullConsumer.ack(message.sysHeaders().getString(Message.BuiltinKeys.MESSAGE_ID));
+        pullConsumer.ack(message.sysHeaders().getString(Message.BuiltinKeys.RECEIPT_HANDLE));
     }
 }
