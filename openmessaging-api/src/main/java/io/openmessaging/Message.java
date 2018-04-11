@@ -247,19 +247,22 @@ public interface Message {
 
         /**
          * The {@code PRIORITY} header field contains the priority level of a message,
-         * a message with higher priority values should be delivered preferentially.
+         * a message with a higher priority value should be delivered preferentially.
          * <p>
-         * OMS defines a ten level priority value with 0 as the lowest priority and 9 as the highest.
-         * OMS does not require that a provider strictly implement priority ordering of messages;
-         * however, it should do its best to deliver expedited messages ahead of normal messages.
+         * OMS defines a ten level priority value with 1 as the lowest priority and 10 as the highest,
+         * and the default priority is 5. The priority beyond this region will be ignored.
          * <p>
-         * If PRIORITY field isn't set explicitly, use {@code 4} as the default priority.
+         * OMS does not require or provide any guarantee that the message should be delivered
+         * in priority order strictly, but the vendor should provide a best effort to
+         * deliver expedited messages ahead of normal messages.
+         * <p>
+         * If PRIORITY field isn't set explicitly, use {@code 5} as the default priority.
          */
         String PRIORITY = "PRIORITY";
 
         /**
-         * The {@code RELIABILITY} header field contains the reliability level of a message.
-         * A MOM server should guarantee the reliability level for a message.
+         * The {@code RELIABILITY} header field contains the reliability level of a message, the vendor
+         * should guarantee the reliability level for a message.
          * <p>
          * OMS defines two modes of message delivery:
          * <ul>
@@ -268,20 +271,25 @@ public interface Message {
          * ensure the message won't be lost.
          * </li>
          * <li>
-         * NON_PERSISTENT, this mode does not require that the message be logged to stable storage,
-         * the memory storage is enough to better performance and lower cost.
+         * NON_PERSISTENT, this mode does not require the message be logged to stable storage,
+         * in most cases, the memory storage is enough for better performance and lower cost.
          * </li>
          * </ul>
          */
         String RELIABILITY = "RELIABILITY";
 
         /**
-         * The {@code SEARCH_KEY} header field contains index search key of a message.
-         * Clients can query similar messages by search key, and have a quick response.
+         * The {@code SEARCH_KEYS} header field contains the multiple search keys of a message.
          * <p>
-         * This filed is a {@code String} value.
+         * The keyword indexes will be built by the search keys, users can query similar
+         * messages through these indexes and have a quick response.
+         * <p>
+         * This field is a {@code String} value, the different search keys are joined
+         * together with a comma delimiter.
+         * <p>
+         * OMS defines that a message at most has five search keys.
          */
-        String SEARCH_KEY = "SEARCH_KEY";
+        String SEARCH_KEYS = "SEARCH_KEYS";
 
         /**
          * The {@code SCHEDULE_EXPRESSION} header field contains schedule expression of a message.
@@ -293,24 +301,29 @@ public interface Message {
         String SCHEDULE_EXPRESSION = "SCHEDULE_EXPRESSION";
 
         /**
-         * The {@code TRACE_ID} header field contains the trace id of a message, which represents a global and unique
-         * identification, and can be used in distributed system to trace the whole call link.
+         * The {@code TRACE_ID} header field contains the trace ID of a message, which represents a global and unique
+         * identification, to associate key events in the whole lifecycle of a message,
+         * like sent by who, stored at where, and received by who.
+         * <p></p>
+         * And, the messaging system only plays exchange role in a distributed system in most cases,
+         * so the TraceID can be used to trace the whole call link with other parts in the whole system.
          */
         String TRACE_ID = "TRACE_ID";
 
         /**
          * The {@code STREAM_KEY} header field contains the stream key of a message.
-         * The messages with same stream key should be dispatched to the same stream of the destination.
+         * The messages with same stream key should be dispatched to the same stream of the queue.
          */
         String STREAM_KEY = "STREAM_KEY";
 
         /**
-         * The {@code REDELIVERED_NUMBER} header field contains a number, which represents the number of message delivery.
+         * The {@code REDELIVERED_NUMBER} header field contains a number, which represents
+         * the number of message delivery.
          */
         String REDELIVERED_NUMBER = "REDELIVERED_NUMBER";
 
         /**
-         * The {@code RetryReason} header field contains the text description of the reason that causes
+         * The {@code REDELIVERED_REASON} header field contains the text description of the reason that causes
          * the last message delivery retry.
          */
         String REDELIVERED_REASON = "REDELIVERED_REASON";
