@@ -20,11 +20,6 @@ public interface ConsumerInterceptor {
     void preReceive(Message message, KeyValue attributes);
 
     /**
-     * Called after a message is consumed.
-     *
-     * @param context the context delivered to the intercept thread
-     */
-    /**
      * Invoked after the invocation of {@link MessageListener#onReceived(Message, MessageListener.Context)}.
      *
      * @param message the message is actually received
