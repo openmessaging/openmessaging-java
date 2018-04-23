@@ -25,13 +25,15 @@ import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.producer.Producer;
 
 /**
- * The {@code MessagingAccessPoint} obtained from {@link OMS} is capable of creating {@code
- * Producer}, {@code Consumer}, {@code ResourceManager}, and so on.
+ * An instance of {@code MessagingAccessPoint} may be obtained from {@link OMS}, which is capable of creating {@code
+ * Producer}, {@code Consumer}, {@code ResourceManager}, and other facility entities.
  * <p>
  * For example:
  * <pre>
- * MessagingAccessPoint messagingAccessPoint = MessagingAccessPointFactory.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
+ * MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east:default_space");
+ * messagingAccessPoint.startup();
  * Producer producer = messagingAccessPoint.createProducer();
+ * producer.startup();
  * producer.send(producer.createBytesMessage("HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
  * </pre>
  *
@@ -39,6 +41,7 @@ import io.openmessaging.producer.Producer;
  * @since OMS 1.0.0
  */
 public interface MessagingAccessPoint extends ServiceLifecycle {
+
     /**
      * Returns the target OMS specification version of the specified vendor implementation.
      *
