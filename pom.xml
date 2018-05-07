@@ -59,6 +59,8 @@
         <module>openmessaging-admin</module>
         <module>openmessaging-api</module>
         <module>openmessaging-api-samples</module>
+        <module>openmessaging-pulsar</module>
+        <module>openmessaging-rocketmq</module>
     </modules>
 
     <build>

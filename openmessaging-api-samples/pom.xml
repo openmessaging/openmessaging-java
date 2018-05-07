@@ -7,6 +7,18 @@
 
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <artifactId>openmessaging-api-samples</artifactId>
     <name>openmessaging-api-samples ${project.version}</name>
 
