@@ -17,6 +17,8 @@
 
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSMessageFormatException;
+
 /**
  * The {@code Message} interface is the root interface of all OMS messages, and the most commonly used OMS message is
  * {@link BytesMessage}.
@@ -132,6 +134,16 @@ public interface Message {
      * @param value the value corresponding to <tt>key</tt>
      */
     Message putUserHeaders(String key, String value);
+
+    /**
+     * Get message body
+     *
+     * @param type Message body type
+     * @param <T> Generic type
+     * @return message body
+     * @throws OMSMessageFormatException if the message body cannot be assigned to the specified type
+     */
+    <T> T getBody(Class<T> type) throws OMSMessageFormatException;
 
     interface BuiltinKeys {
         /**

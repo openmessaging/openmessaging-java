@@ -28,12 +28,6 @@ package io.openmessaging;
  * @since OMS 1.0.0
  */
 public interface BytesMessage extends Message {
-    /**
-     * Returns the bytes message body.
-     *
-     * @return the bytes message body
-     */
-    byte[] getBody();
 
     /**
      * Sets the bytes message body.
