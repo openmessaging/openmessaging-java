@@ -7,8 +7,7 @@ import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.consumer.StreamingIterator;
 import io.openmessaging.consumer.StreamingConsumer;
 import io.openmessaging.exception.OMSResourceNotExistException;
-import io.openmessaging.manager.StreamListResult;
-import java.util.List;
+import io.openmessaging.manager.ListStreamResult;
 
 public class StreamingConsumerApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
@@ -22,7 +21,7 @@ public class StreamingConsumerApp {
         resourceManager.createQueue(targetQueue);
 
         //Fetch the streams of the target queue.
-        StreamListResult streams = resourceManager.listStreams(targetQueue);
+        ListStreamResult streams = resourceManager.listStreams(targetQueue);
 
         //Start a StreamingConsumer to iterate messages from the specific stream.
         final StreamingConsumer streamingConsumer = messagingAccessPoint.createStreamingConsumer();

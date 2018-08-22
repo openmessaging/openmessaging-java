@@ -18,7 +18,6 @@
 package io.openmessaging.manager;
 
 import io.openmessaging.KeyValue;
-import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.common.BaseResult;
 import io.openmessaging.common.ErrorCode;
@@ -150,7 +149,7 @@ public interface ResourceManager {
      * @return the list of all queues, {@link BaseResult#getErrorCode()} will return {@link
      * ErrorCode#NAMESPACE_NOT_EXIST} if the specific namespace does not exist
      */
-    QueueListResult listQueues(String nsName);
+    ListQueueResult listQueues(String nsName);
 
     /**
      * Creates a {@code Routing} resource in the configured namespace with some preset attributes.
@@ -179,7 +178,7 @@ public interface ResourceManager {
      * Deletes an existing routing resource.
      *
      * @param routingName the routing needs to be deleted
-     * @return {@link BaseResult#getErrorCode()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
+     * @return {@link BaseResult#getError()}  will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
      * namespace does not exist
      */
     BaseResult deleteRouting(String routingName);
@@ -188,18 +187,18 @@ public interface ResourceManager {
      * Gets the routing list in the specific namespace.
      *
      * @param nsName the specific namespace
-     * @return {@link BaseResult#getErrorCode()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
+     * @return {@link BaseResult#getError()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
      * namespace does not exist
      */
-    RoutingListResult listRoutings(String nsName);
+    ListRoutingResult listRoutings(String nsName);
 
     /**
      * Gets the stream list behind the specified queue.
      *
      * @param queueName the queue name
-     * @return {@link BaseResult#getErrorCode()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
+     * @return {@link BaseResult#getError()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
      * namespace does not exist
      */
-    StreamListResult listStreams(String queueName);
+    ListStreamResult listStreams(String queueName);
 
 }

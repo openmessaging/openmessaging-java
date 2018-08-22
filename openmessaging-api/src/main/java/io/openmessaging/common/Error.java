@@ -19,13 +19,24 @@ package io.openmessaging.common;
  * </p>
  */
 public enum Error {
-    ERROR_200(200, "Success"),
 
-    ERROR_401(401, "Client error"),
+    ERROR_101(101, "VERSION_NOT_SUPPORTED"),
 
-    ERROR_408(408, "Timeout"),
+    ERROR_200(200, "SUCCESS"),
 
-    ERROR_501(501, "Server error");
+    ERROR_401(401, "CLIENT_ERROR"),
+
+    ERROR_408(408, "TIMEOUT"),
+
+    ERROR_501(501, "SERVER_ERROR"),
+
+    ERROR_502(502, "STORAGE_ERROR"),
+
+    ERROR_503(503, "FLUSH_DISK_TIMEOUT"),
+
+    ERROR_504(504, "SERVICE_NOT_AVAILABLE"),
+
+    ERROR_506(506, "RESOURCE_NOT_EXIST");
 
     private int errorCode;
     private String errorMessage;

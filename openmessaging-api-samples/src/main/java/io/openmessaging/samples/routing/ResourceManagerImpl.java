@@ -3,11 +3,11 @@ package io.openmessaging.samples.routing;
 import io.openmessaging.KeyValue;
 import io.openmessaging.common.BaseResult;
 import io.openmessaging.manager.QueueConfig;
-import io.openmessaging.manager.QueueListResult;
+import io.openmessaging.manager.ListQueueResult;
 import io.openmessaging.manager.ResourceManager;
-import io.openmessaging.manager.RoutingListResult;
+import io.openmessaging.manager.ListRoutingResult;
 import io.openmessaging.manager.RoutingStrategy;
-import io.openmessaging.manager.StreamListResult;
+import io.openmessaging.manager.ListStreamResult;
 import java.util.List;
 
 public class ResourceManagerImpl implements ResourceManager {
@@ -62,7 +62,7 @@ public class ResourceManagerImpl implements ResourceManager {
     }
 
     @Override
-    public QueueListResult listQueues(String nsName) {
+    public ListQueueResult listQueues(String nsName) {
         return null;
     }
 
@@ -82,12 +82,12 @@ public class ResourceManagerImpl implements ResourceManager {
     }
 
     @Override
-    public RoutingListResult listRoutings(String nsName) {
+    public ListRoutingResult listRoutings(String nsName) {
         return null;
     }
 
     @Override
-    public StreamListResult listStreams(String queueName) {
+    public ListStreamResult listStreams(String queueName) {
         return null;
     }
 }
