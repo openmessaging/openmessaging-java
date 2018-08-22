@@ -31,7 +31,6 @@ public class TransactionProducerApp {
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
 
         final Producer producer = messagingAccessPoint.createProducer();
-        messagingAccessPoint.startup();
         producer.startup();
 
         //Register a shutdown hook to close the opened endpoints.
@@ -39,18 +38,17 @@ public class TransactionProducerApp {
             @Override
             public void run() {
                 producer.shutdown();
-                messagingAccessPoint.shutdown();
             }
         }));
 
-        Message message = producer.createBytesMessage(
+        Message message = producer.createMessage(
             "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
 
         //Sends a transaction message to the specified destination synchronously.
         SendResult sendResult = producer.send(message, new LocalTransactionExecutor() {
             @Override
             public void execute(final Message message, final ExecutionContext context) {
-                //Do some local transaction
+                //Do some local transactiontransaction
                 //Then commit this transaction and the message will be delivered.
                 context.commit();
             }

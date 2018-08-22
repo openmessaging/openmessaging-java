@@ -20,9 +20,10 @@ package io.openmessaging.samples.consumer;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
-import io.openmessaging.ResourceManager;
+import io.openmessaging.common.BaseResult;
+import io.openmessaging.manager.ResourceManager;
+import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.MessageListener;
-import io.openmessaging.consumer.PushConsumer;
 import io.openmessaging.exception.OMSResourceNotExistException;
 
 public class PushConsumerApp {
@@ -30,11 +31,10 @@ public class PushConsumerApp {
         //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
             OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east");
-        messagingAccessPoint.startup();
 
         //Fetch a ResourceManager to create Queue resource.
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
-        final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
+        final Consumer consumer = messagingAccessPoint.createConsumer();
         consumer.startup();
 
         //Register a shutdown hook to close the opened endpoints.
@@ -42,23 +42,30 @@ public class PushConsumerApp {
             @Override
             public void run() {
                 consumer.shutdown();
-                messagingAccessPoint.shutdown();
             }
         }));
 
         //Consume messages from a simple queue.
         String simpleQueue = "NS://HELLO_QUEUE";
-        resourceManager.createQueue( simpleQueue, OMS.newKeyValue());
+        BaseResult result = resourceManager.createQueue(simpleQueue);
+        if (result.isSuccess()){
+            consumer.bindQueue(simpleQueue, new MessageListener() {
+                @Override
+                public void onReceived(Message message, Context context) {
+                    System.out.println("Received one message: " + message);
+                    context.ack();
+                }
 
+            });
+        }else {
+            System.out.println("error: " + result.getError().getErrorCode() + " error message: " + result );
+        }
         //This queue doesn't has a source queue, so only the message delivered to the queue directly can
         //be consumed by this consumer.
-        consumer.attachQueue(simpleQueue, new MessageListener() {
-            @Override
-            public void onReceived(Message message, Context context) {
-                System.out.println("Received one message: " + message);
-                context.ack();
-            }
 
-        });
+
+        consumer.unbindQueue(simpleQueue);
+
+        consumer.shutdown();
     }
 }

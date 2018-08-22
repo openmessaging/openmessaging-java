@@ -31,6 +31,22 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DefaultKeyValue implements KeyValue {
     private Map<String, String> properties;
 
+    @Override
+    public int getShort(String key) {
+        return 0;
+    }
+
+    @Override
+    public int getShort(String key, short defaultValue) {
+        return 0;
+    }
+
+    @Override
+    public KeyValue put(String key, short value) {
+        properties.put(key, String.valueOf(value));
+        return this;
+    }
+
     public DefaultKeyValue() {
         properties = new ConcurrentHashMap<String, String>();
     }
@@ -61,8 +77,9 @@ public class DefaultKeyValue implements KeyValue {
 
     @Override
     public int getInt(String key) {
-        if (!properties.containsKey(key))
+        if (!properties.containsKey(key)) {
             return 0;
+        }
         return Integer.valueOf(properties.get(key));
     }
 
@@ -73,8 +90,9 @@ public class DefaultKeyValue implements KeyValue {
 
     @Override
     public long getLong(String key) {
-        if (!properties.containsKey(key))
+        if (!properties.containsKey(key)) {
             return 0;
+        }
         return Long.valueOf(properties.get(key));
     }
 
@@ -85,8 +103,9 @@ public class DefaultKeyValue implements KeyValue {
 
     @Override
     public double getDouble(String key) {
-        if (!properties.containsKey(key))
+        if (!properties.containsKey(key)) {
             return 0;
+        }
         return Double.valueOf(properties.get(key));
     }
 

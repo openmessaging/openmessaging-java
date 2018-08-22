@@ -17,12 +17,12 @@
 
 package io.openmessaging;
 
-import io.openmessaging.consumer.PushConsumer;
+import io.openmessaging.consumer.Consumer;
 import io.openmessaging.producer.Producer;
 
 /**
  * The {@code ServiceLifecycle} defines a lifecycle interface for a OMS related service endpoint, like {@link Producer},
- * {@link PushConsumer}, and so on.
+ * {@link Consumer}, and so on.
  * <p>
  * If the service endpoint class implements the {@code ServiceLifecycle} interface, most of the containers can manage
  * the lifecycle of the corresponding service endpoint objects easily.
@@ -44,4 +44,11 @@ public interface ServiceLifecycle {
      * destroyed and eligible for garbage collection.
      */
     void shutdown();
+
+    /**
+     * Used for get service current state, for execution of some operations is dependent on the current service state.
+     * @return This service current state {@link ServiceLifeState}
+     */
+    ServiceLifeState getServiceLifeState();
+
 }

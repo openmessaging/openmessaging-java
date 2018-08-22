@@ -3,10 +3,11 @@ package io.openmessaging.samples.consumer;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
-import io.openmessaging.ResourceManager;
+import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.consumer.StreamingIterator;
 import io.openmessaging.consumer.StreamingConsumer;
 import io.openmessaging.exception.OMSResourceNotExistException;
+import io.openmessaging.manager.StreamListResult;
 import java.util.List;
 
 public class StreamingConsumerApp {
@@ -14,15 +15,14 @@ public class StreamingConsumerApp {
         //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
-        messagingAccessPoint.startup();
 
         //Fetch a ResourceManager to create Queue resource.
         String targetQueue = "NS://HELLO_QUEUE";
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
-        resourceManager.createQueue(targetQueue, OMS.newKeyValue());
+        resourceManager.createQueue(targetQueue);
 
         //Fetch the streams of the target queue.
-        List<String> streams = resourceManager.listStreams(targetQueue);
+        StreamListResult streams = resourceManager.listStreams(targetQueue);
 
         //Start a StreamingConsumer to iterate messages from the specific stream.
         final StreamingConsumer streamingConsumer = messagingAccessPoint.createStreamingConsumer();
@@ -33,12 +33,11 @@ public class StreamingConsumerApp {
             @Override
             public void run() {
                 streamingConsumer.shutdown();
-                messagingAccessPoint.shutdown();
             }
         }));
 
-        assert streams.size() != 0;
-        StreamingIterator streamingIterator = streamingConsumer.seekToBeginning(streams.get(0));
+        assert streams.streams().size() != 0;
+        StreamingIterator streamingIterator = streamingConsumer.seekToBeginning(streams.streams().get(0));
 
         while (streamingIterator.hasNext()) {
             Message message = streamingIterator.next();

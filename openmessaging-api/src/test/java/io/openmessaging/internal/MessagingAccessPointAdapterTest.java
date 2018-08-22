@@ -17,13 +17,14 @@
 
 package io.openmessaging.internal;
 
+import io.openmessaging.ClientConfig;
 import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.ResourceManager;
-import io.openmessaging.consumer.PullConsumer;
-import io.openmessaging.consumer.PushConsumer;
+import io.openmessaging.common.Error;
+import io.openmessaging.manager.ResourceManager;
+import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.StreamingConsumer;
 import io.openmessaging.producer.Producer;
 import org.junit.Test;
@@ -44,12 +45,13 @@ public class MessagingAccessPointAdapterTest {
 
 class TestVendor implements MessagingAccessPoint {
 
+
     public TestVendor(KeyValue keyValue) {
     }
 
     @Override
-    public String implVersion() {
-        return OMS.specVersion;
+    public String version() {
+        return null;
     }
 
     @Override
@@ -63,27 +65,17 @@ class TestVendor implements MessagingAccessPoint {
     }
 
     @Override
-    public Producer createProducer(final KeyValue attributes) {
+    public Producer createProducer(ClientConfig clientConfig) {
         return null;
     }
 
     @Override
-    public PushConsumer createPushConsumer() {
+    public Consumer createConsumer() {
         return null;
     }
 
     @Override
-    public PushConsumer createPushConsumer(final KeyValue attributes) {
-        return null;
-    }
-
-    @Override
-    public PullConsumer createPullConsumer() {
-        return null;
-    }
-
-    @Override
-    public PullConsumer createPullConsumer(final KeyValue attributes) {
+    public Consumer createConsumer(ClientConfig config) {
         return null;
     }
 
@@ -93,7 +85,7 @@ class TestVendor implements MessagingAccessPoint {
     }
 
     @Override
-    public StreamingConsumer createStreamingConsumer(final KeyValue attributes) {
+    public StreamingConsumer createStreamingConsumer(ClientConfig clientConfig) {
         return null;
     }
 
@@ -102,13 +94,15 @@ class TestVendor implements MessagingAccessPoint {
         return null;
     }
 
-    @Override
-    public void startup() {
+    @Override public Error getError() {
+        return null;
+    }
+
+    @Override public void setError(Error error) {
 
     }
 
-    @Override
-    public void shutdown() {
-
+    @Override public boolean isSuccess() {
+        return false;
     }
 }

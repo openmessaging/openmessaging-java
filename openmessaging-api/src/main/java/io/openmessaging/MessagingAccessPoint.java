@@ -17,11 +17,12 @@
 
 package io.openmessaging;
 
+import io.openmessaging.common.BaseResult;
+import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.MessageListener;
-import io.openmessaging.consumer.PullConsumer;
-import io.openmessaging.consumer.PushConsumer;
 import io.openmessaging.consumer.StreamingConsumer;
 import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.producer.Producer;
 
 /**
@@ -40,7 +41,7 @@ import io.openmessaging.producer.Producer;
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
-public interface MessagingAccessPoint extends ServiceLifecycle {
+public interface MessagingAccessPoint extends BaseResult {
 
     /**
      * Returns the target OMS specification version of the specified vendor implementation.
@@ -48,7 +49,7 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * @return the OMS version of implementation
      * @see OMS#specVersion
      */
-    String implVersion();
+    String version();
 
     /**
      * Returns the attributes of this {@code MessagingAccessPoint} instance.
@@ -70,68 +71,49 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}.
      *
      * @return the created {@code Producer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
-     * due to some internal error
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     Producer createProducer();
 
     /**
-     * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}
-     * with some preset attributes.
+     * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint} with some preset attributes.
      *
-     * @param attributes the preset attributes
+     * @param clientConfig the preset attributes
      * @return the created {@code Producer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
-     * due to some internal error
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
-    Producer createProducer(KeyValue attributes);
+    Producer createProducer(ClientConfig clientConfig);
 
     /**
-     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}.
-     * The returned {@code PushConsumer} isn't attached to any queue,
-     * uses {@link PushConsumer#attachQueue(String, MessageListener)} to attach queues.
+     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}. The returned {@code
+     * Consumer} isn't bind to any queue, uses {@link Consumer#bindQueue(String, MessageListener)} to
+     * bind queues.
      *
      * @return the created {@code PushConsumer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
-     * due to some internal error
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
-    PushConsumer createPushConsumer();
+    Consumer createConsumer();
 
     /**
-     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint} with some preset attributes.
-     *
-     * @param attributes the preset attributes
+     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}. The returned {@code
+     * Consumer} isn't bind to any queue, uses {@link Consumer#bindQueue(String, MessageListener)} to
+     * bind queues.
+     * @param config the preset config
      * @return the created {@code PushConsumer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
-     * due to some internal error
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
-    PushConsumer createPushConsumer(KeyValue attributes);
-
-    /**
-     * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint}.
-     *
-     * @return the created {@code PullConsumer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
-     * due to some internal error
-     */
-    PullConsumer createPullConsumer();
-
-    /**
-     * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint} with some preset attributes.
-     *
-     * @param attributes the preset attributes
-     * @return the created {@code PullConsumer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
-     * due to some internal error
-     */
-    PullConsumer createPullConsumer(KeyValue attributes);
+    Consumer createConsumer(ClientConfig config);
 
     /**
      * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint}.
      *
      * @return the created {@code Stream}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
-     * due to some internal error
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     StreamingConsumer createStreamingConsumer();
 
@@ -139,19 +121,19 @@ public interface MessagingAccessPoint extends ServiceLifecycle {
      * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint} with some preset
      * attributes.
      *
-     * @param attributes the preset attributes
+     * @param clientConfig the preset client config
      * @return the created consumer
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
-     * due to some internal error
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
-    StreamingConsumer createStreamingConsumer(KeyValue attributes);
+    StreamingConsumer createStreamingConsumer(ClientConfig clientConfig);
 
     /**
      * Gets a lightweight {@code ResourceManager} instance from the specified {@code MessagingAccessPoint}.
      *
      * @return the resource manger
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
-     * due to some internal error
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
      */
     ResourceManager resourceManager();
 }

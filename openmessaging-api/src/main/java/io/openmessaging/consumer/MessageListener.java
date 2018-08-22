@@ -40,12 +40,6 @@ public interface MessageListener {
     void onReceived(Message message, Context context);
 
     interface Context {
-        /**
-         * Returns the attributes of this {@code MessageContext} instance.
-         *
-         * @return the attributes
-         */
-        KeyValue attributes();
 
         /**
          * Acknowledges the specified and consumed message, which is related to this {@code MessageContext}.

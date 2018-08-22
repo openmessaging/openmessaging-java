@@ -17,6 +17,7 @@
 
 package io.openmessaging.internal;
 
+import io.openmessaging.Message;
 import io.openmessaging.exception.OMSRuntimeException;
 import org.junit.Test;
 
@@ -78,6 +79,8 @@ public class AccessPointURITest {
     @Test
     public void testGetRegion() throws Exception {
         AccessPointURI accessPointURI = new AccessPointURI(fullSchemaURI);
+        Message message = new MessageImpl();
+
         assertThat(accessPointURI.getRegion()).isEqualTo("us-east");
     }
 }

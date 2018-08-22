@@ -45,6 +45,11 @@ public interface LocalTransactionExecutor {
          * Rolls back a transaction.
          */
         void rollback();
+
+        /**
+         * Unknown transaction status, may be this transaction still on going.
+         */
+        void unknown();
     }
 
     interface CheckContext {
@@ -57,5 +62,10 @@ public interface LocalTransactionExecutor {
          * Rolls back a transaction.
          */
         void rollback();
+
+        /**
+         * Unknown transaction status, may be this transaction still on going.
+         */
+        void unknown();
     }
 }

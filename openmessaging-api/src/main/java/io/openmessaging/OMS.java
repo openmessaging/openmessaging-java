@@ -20,6 +20,7 @@ package io.openmessaging;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.internal.DefaultKeyValue;
 import io.openmessaging.internal.MessagingAccessPointAdapter;
+import io.openmessaging.manager.ResourceManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;

@@ -22,10 +22,11 @@ import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.ResourceManager;
+import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.MessageListener;
-import io.openmessaging.consumer.PushConsumer;
 import io.openmessaging.exception.OMSResourceNotExistException;
+import io.openmessaging.manager.ResourceManager;
+import io.openmessaging.manager.RoutingStrategy;
 import io.openmessaging.producer.Producer;
 
 public class RoutingApp {
@@ -33,7 +34,6 @@ public class RoutingApp {
         //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
-        messagingAccessPoint.startup();
 
         String destinationQueue = "NS://DESTINATION_QUEUE";
         String sourceQueue = "NS://SOURCE_QUEUE";
@@ -41,32 +41,32 @@ public class RoutingApp {
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
 
         //Create the destination queue.
-        resourceManager.createQueue(destinationQueue, OMS.newKeyValue());
+        resourceManager.createQueue(destinationQueue);
         //Create the source queue.
-        resourceManager.createQueue(sourceQueue, OMS.newKeyValue());
+        resourceManager.createQueue(sourceQueue);
 
-        KeyValue routingAttr = OMS.newKeyValue();
-        routingAttr.put(OMSBuiltinKeys.ROUTING_SOURCE, sourceQueue)
-            .put(OMSBuiltinKeys.ROUTING_DESTINATION, destinationQueue)
-            .put(OMSBuiltinKeys.ROUTING_EXPRESSION, "color = 'red'");
-
-        resourceManager.createRouting("NS://HELLO_ROUTING", routingAttr);
+        RoutingStrategy strategy = new RoutingStrategy();
+        strategy.setSourceQueue("srcQueue");
+        strategy.setDestinationQueue("destQueue");
+        strategy.setRoutingRule("duplicate");
+        resourceManager.createRouting("NS://HELLO_ROUTING", strategy);
 
         //Send messages to the source queue ahead of the routing
         final Producer producer = messagingAccessPoint.createProducer();
         producer.startup();
 
-        producer.send(producer.createBytesMessage(sourceQueue, "RED_COLOR".getBytes())
-            .putUserHeaders("color", "red"));
+        Message message = producer.createMessage(sourceQueue, "RED_COLOR".getBytes());
+        message.properties().put("color","freen").put("shape","round");
 
-        producer.send(producer.createBytesMessage(sourceQueue, "GREEN_COLOR".getBytes())
-            .putUserHeaders("color", "green"));
+
+        producer.send(message);
+
 
         //Consume messages from the queue behind the routing.
-        final PushConsumer pushConsumer = messagingAccessPoint.createPushConsumer();
-        pushConsumer.startup();
+        final Consumer consumer = messagingAccessPoint.createConsumer();
+        consumer.startup();
 
-        pushConsumer.attachQueue(destinationQueue, new MessageListener() {
+        consumer.bindQueue(destinationQueue, new MessageListener() {
             @Override
             public void onReceived(Message message, Context context) {
                 //The message sent to the sourceQueue will be delivered to anotherConsumer by the routing rule
@@ -82,8 +82,7 @@ public class RoutingApp {
             @Override
             public void run() {
                 producer.shutdown();
-                pushConsumer.shutdown();
-                messagingAccessPoint.shutdown();
+                consumer.shutdown();
             }
         }));
     }
