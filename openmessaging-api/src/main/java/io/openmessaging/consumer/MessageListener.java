@@ -22,8 +22,8 @@ import io.openmessaging.Message;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
- * A message listener must implement this {@code MessageListener} interface and register
- * itself to a consumer instance to asynchronously receive messages.
+ * A message listener must implement this {@code MessageListener} interface and register itself to a consumer instance
+ * to asynchronously receive messages.
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
@@ -40,7 +40,6 @@ public interface MessageListener {
     void onReceived(Message message, Context context);
 
     interface Context {
-
         /**
          * Acknowledges the specified and consumed message, which is related to this {@code MessageContext}.
          * <p>

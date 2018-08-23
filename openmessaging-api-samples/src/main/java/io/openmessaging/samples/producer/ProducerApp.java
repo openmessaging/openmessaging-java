@@ -17,8 +17,10 @@
 
 package io.openmessaging.samples.producer;
 
+import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
+import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.producer.Producer;
 import io.openmessaging.producer.SendResult;
 import java.nio.charset.Charset;
@@ -30,6 +32,7 @@ public class ProducerApp {
 
         final Producer producer = messagingAccessPoint.createProducer();
         producer.startup();
+        final ResourceManager manager = messagingAccessPoint.resourceManager();
 
         //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
@@ -41,8 +44,11 @@ public class ProducerApp {
 
         //Sends a message to the specified destination synchronously.
         {
-            SendResult sendResult = producer.send(producer.createMessage(
-                "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
+            Message message = producer.createMessage(
+                "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
+            SendResult sendResult = producer.send(message);
+
+
             if (sendResult.isSuccess()) {
                 System.out.println("Send sync message OK, message id is: " + sendResult.messageId());
             } else {

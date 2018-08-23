@@ -17,13 +17,16 @@
 
 package io.openmessaging;
 
-import io.openmessaging.common.BaseResult;
+import io.openmessaging.common.Response;
 import io.openmessaging.consumer.Consumer;
+import io.openmessaging.consumer.ConsumerConfig;
 import io.openmessaging.consumer.MessageListener;
 import io.openmessaging.consumer.StreamingConsumer;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.producer.Producer;
+import io.openmessaging.producer.ProducerConfig;
+import java.util.jar.Attributes;
 
 /**
  * An instance of {@code MessagingAccessPoint} may be obtained from {@link OMS}, which is capable of creating {@code
@@ -41,7 +44,7 @@ import io.openmessaging.producer.Producer;
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
-public interface MessagingAccessPoint extends BaseResult {
+public interface MessagingAccessPoint extends Response {
 
     /**
      * Returns the target OMS specification version of the specified vendor implementation.
@@ -79,17 +82,16 @@ public interface MessagingAccessPoint extends BaseResult {
     /**
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint} with some preset attributes.
      *
-     * @param clientConfig the preset attributes
+     * @param producerConfig the preset producer config
      * @return the created {@code Producer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    Producer createProducer(ClientConfig clientConfig);
+    Producer createProducer(ProducerConfig producerConfig);
 
     /**
-     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}. The returned {@code
-     * Consumer} isn't bind to any queue, uses {@link Consumer#bindQueue(String, MessageListener)} to
-     * bind queues.
+     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}. The returned {@code Consumer}
+     * isn't bind to any queue, uses {@link Consumer#bindQueue(String, MessageListener)} to bind queues.
      *
      * @return the created {@code PushConsumer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
@@ -98,15 +100,15 @@ public interface MessagingAccessPoint extends BaseResult {
     Consumer createConsumer();
 
     /**
-     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}. The returned {@code
-     * Consumer} isn't bind to any queue, uses {@link Consumer#bindQueue(String, MessageListener)} to
-     * bind queues.
-     * @param config the preset config
+     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}. The returned {@code Consumer}
+     * isn't bind to any queue, uses {@link Consumer#bindQueue(String, MessageListener)} to bind queues.
+     *
+     * @param consumerConfig the preset config
      * @return the created {@code PushConsumer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    Consumer createConsumer(ClientConfig config);
+    Consumer createConsumer(ConsumerConfig consumerConfig);
 
     /**
      * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint}.
@@ -121,12 +123,12 @@ public interface MessagingAccessPoint extends BaseResult {
      * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint} with some preset
      * attributes.
      *
-     * @param clientConfig the preset client config
+     * @param consumerConfig the preset client config
      * @return the created consumer
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    StreamingConsumer createStreamingConsumer(ClientConfig clientConfig);
+    StreamingConsumer createStreamingConsumer(ConsumerConfig consumerConfig);
 
     /**
      * Gets a lightweight {@code ResourceManager} instance from the specified {@code MessagingAccessPoint}.

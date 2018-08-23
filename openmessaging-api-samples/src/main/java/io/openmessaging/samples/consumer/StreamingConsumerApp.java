@@ -3,11 +3,11 @@ package io.openmessaging.samples.consumer;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
-import io.openmessaging.manager.ResourceManager;
-import io.openmessaging.consumer.StreamingIterator;
 import io.openmessaging.consumer.StreamingConsumer;
+import io.openmessaging.consumer.StreamingIterator;
 import io.openmessaging.exception.OMSResourceNotExistException;
 import io.openmessaging.manager.ListStreamResult;
+import io.openmessaging.manager.ResourceManager;
 
 public class StreamingConsumerApp {
     public static void main(String[] args) throws OMSResourceNotExistException {

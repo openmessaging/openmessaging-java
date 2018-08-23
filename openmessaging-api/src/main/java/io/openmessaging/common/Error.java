@@ -19,27 +19,51 @@ package io.openmessaging.common;
  * </p>
  */
 public enum Error {
+    ERROR_101(101, "Unsupported version"),
 
-    ERROR_101(101, "VERSION_NOT_SUPPORTED"),
+    ERROR_200(200, "Success"),
 
-    ERROR_200(200, "SUCCESS"),
+    ERROR_401(401, "Client error"),
 
-    ERROR_401(401, "CLIENT_ERROR"),
+    ERROR_402(402, "Namespace not exist"),
 
-    ERROR_408(408, "TIMEOUT"),
+    ERROR_403(403, "Queue not exist"),
 
-    ERROR_501(501, "SERVER_ERROR"),
+    ERROR_406(406, "Length exceeds limit"),
 
-    ERROR_502(502, "STORAGE_ERROR"),
+    ERROR_407(407, "No permission"),
 
-    ERROR_503(503, "FLUSH_DISK_TIMEOUT"),
+    ERROR_408(408, "Send message timeout"),
 
-    ERROR_504(504, "SERVICE_NOT_AVAILABLE"),
+    ERROR_409(409, "Consume message timeout"),
 
-    ERROR_506(506, "RESOURCE_NOT_EXIST");
+    ERROR_410(410, "Producer status not ready"),
+
+    ERROR_411(411, "ConsumerId repeat"),
+
+    ERROR_412(412, "ProducerId repeat"),
+
+    ERROR_413(413, "Consumer status not ready"),
+
+    ERROR_414(414, "No new message"),
+
+    ERROR_415(415, "Queue is empty"),
+
+    ERROR_501(501, "Server error"),
+
+    ERROR_502(502, "Storage error"),
+
+    ERROR_503(503, "Storage busy"),
+
+    ERROR_504(504, "Service not available"),
+
+    ERROR_505(505, "Flush disk timeout");
 
     private int errorCode;
+
     private String errorMessage;
+
+    private String detailErrorMessage;
 
     private Error(int errorCode, String errorMessage) {
         this.errorCode = errorCode;

@@ -20,23 +20,20 @@ package io.openmessaging;
 import java.util.Set;
 
 /**
- * The {@code KeyValue} class represents a persistent set of attributes,
- * which supports method chaining.
+ * The {@code KeyValue} class represents a persistent set of attributes, which supports method chaining.
  * <p>
- * A {@code KeyValue} object only allows {@code String} keys and can contain four primitive type
- * as values: {@code int}, {@code long}, {@code double}, {@code String}.
+ * A {@code KeyValue} object only allows {@code String} keys and can contain four primitive type as values: {@code int},
+ * {@code long}, {@code double}, {@code String}.
  * <p>
- * The {@code KeyValue} is a replacement of {@code Properties}, with simpler
- * interfaces and reasonable entry limits.
+ * The {@code KeyValue} is a replacement of {@code Properties}, with simpler interfaces and reasonable entry limits.
  * <p>
- * A {@code KeyValue} object may be used in concurrent scenarios, so the implementation
- * of {@code KeyValue} should consider concurrent related issues.
+ * A {@code KeyValue} object may be used in concurrent scenarios, so the implementation of {@code KeyValue} should
+ * consider concurrent related issues.
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
 public interface KeyValue {
-
     /**
      * Inserts or replaces {@code short} value for the specified key.
      *
@@ -78,8 +75,8 @@ public interface KeyValue {
     KeyValue put(String key, String value);
 
     /**
-     * Searches for the {@code short} property with the specified key in this {@code KeyValue} object.
-     * If the key is not found in this property list, zero is returned.
+     * Searches for the {@code short} property with the specified key in this {@code KeyValue} object. If the key is not
+     * found in this property list, zero is returned.
      *
      * @param key the property key
      * @return the value in this {@code KeyValue} object with the specified key value
@@ -88,8 +85,8 @@ public interface KeyValue {
     int getShort(String key);
 
     /**
-     * Searches for the {@code short} property with the specified key in this {@code KeyValue} object.
-     * If the key is not found in this property list, zero is returned.
+     * Searches for the {@code short} property with the specified key in this {@code KeyValue} object. If the key is not
+     * found in this property list, zero is returned.
      *
      * @param key the property key
      * @param defaultValue a default value
@@ -99,8 +96,8 @@ public interface KeyValue {
     int getShort(String key, short defaultValue);
 
     /**
-     * Searches for the {@code int} property with the specified key in this {@code KeyValue} object.
-     * If the key is not found in this property list, zero is returned.
+     * Searches for the {@code int} property with the specified key in this {@code KeyValue} object. If the key is not
+     * found in this property list, zero is returned.
      *
      * @param key the property key
      * @return the value in this {@code KeyValue} object with the specified key value
@@ -109,8 +106,8 @@ public interface KeyValue {
     int getInt(String key);
 
     /**
-     * Searches for the {@code int} property with the specified key in this {@code KeyValue} object.
-     * If the key is not found in this property list, the default value argument is returned.
+     * Searches for the {@code int} property with the specified key in this {@code KeyValue} object. If the key is not
+     * found in this property list, the default value argument is returned.
      *
      * @param key the property key
      * @param defaultValue a default value
@@ -120,8 +117,8 @@ public interface KeyValue {
     int getInt(String key, int defaultValue);
 
     /**
-     * Searches for the {@code long} property with the specified key in this {@code KeyValue} object.
-     * If the key is not found in this property list, zero is returned.
+     * Searches for the {@code long} property with the specified key in this {@code KeyValue} object. If the key is not
+     * found in this property list, zero is returned.
      *
      * @param key the property key
      * @return the value in this {@code KeyValue} object with the specified key value
@@ -130,8 +127,8 @@ public interface KeyValue {
     long getLong(String key);
 
     /**
-     * Searches for the {@code long} property with the specified key in this {@code KeyValue} object.
-     * If the key is not found in this property list, the default value argument is returned.
+     * Searches for the {@code long} property with the specified key in this {@code KeyValue} object. If the key is not
+     * found in this property list, the default value argument is returned.
      *
      * @param key the property key
      * @param defaultValue a default value
@@ -141,8 +138,8 @@ public interface KeyValue {
     long getLong(String key, long defaultValue);
 
     /**
-     * Searches for the {@code double} property with the specified key in this {@code KeyValue} object.
-     * If the key is not found in this property list, zero is returned.
+     * Searches for the {@code double} property with the specified key in this {@code KeyValue} object. If the key is
+     * not found in this property list, zero is returned.
      *
      * @param key the property key
      * @return the value in this {@code KeyValue} object with the specified key value
@@ -151,8 +148,8 @@ public interface KeyValue {
     double getDouble(String key);
 
     /**
-     * Searches for the {@code double} property with the specified key in this {@code KeyValue} object.
-     * If the key is not found in this property list, the default value argument is returned.
+     * Searches for the {@code double} property with the specified key in this {@code KeyValue} object. If the key is
+     * not found in this property list, the default value argument is returned.
      *
      * @param key the property key
      * @param defaultValue a default value
@@ -162,8 +159,8 @@ public interface KeyValue {
     double getDouble(String key, double defaultValue);
 
     /**
-     * Searches for the {@code String} property with the specified key in this {@code KeyValue} object.
-     * If the key is not found in this property list, {@code null} is returned.
+     * Searches for the {@code String} property with the specified key in this {@code KeyValue} object. If the key is
+     * not found in this property list, {@code null} is returned.
      *
      * @param key the property key
      * @return the value in this {@code KeyValue} object with the specified key value
@@ -172,8 +169,8 @@ public interface KeyValue {
     String getString(String key);
 
     /**
-     * Searches for the {@code String} property with the specified key in this {@code KeyValue} object.
-     * If the key is not found in this property list, the default value argument is returned.
+     * Searches for the {@code String} property with the specified key in this {@code KeyValue} object. If the key is
+     * not found in this property list, the default value argument is returned.
      *
      * @param key the property key
      * @param defaultValue a default value
@@ -185,8 +182,8 @@ public interface KeyValue {
     /**
      * Returns a {@link Set} view of the keys contained in this {@code KeyValue} object.
      * <p>
-     * The set is backed by the {@code KeyValue}, so changes to the set are
-     * reflected in the @code KeyValue}, and vice-versa.
+     * The set is backed by the {@code KeyValue}, so changes to the set are reflected in the @code KeyValue}, and
+     * vice-versa.
      *
      * @return the key set view of this {@code KeyValue} object.
      */

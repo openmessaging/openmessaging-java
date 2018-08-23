@@ -17,11 +17,9 @@
 
 package io.openmessaging.manager;
 
-import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.common.BaseResult;
-import io.openmessaging.common.ErrorCode;
-import io.openmessaging.exception.OMSResourceNotExistException;
+import io.openmessaging.common.Error;
+import io.openmessaging.common.Response;
 import java.util.List;
 
 /**
@@ -48,36 +46,15 @@ public interface ResourceManager {
      *
      * @param nsName the name of the new namespace
      */
-    BaseResult createNamespace(String nsName);
-
-    /**
-     * Sets the attributes of the specific namespace, the old attributes will be replaced by the provided attributes,
-     * only the provided key will be updated.
-     *
-     * @param nsName the specific namespace
-     * @param attributes the new attributes
-     * @return {@link BaseResult#getErrorCode()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
-     * namespace does not exist
-     */
-    BaseResult setNamespaceAttributes(String nsName, KeyValue attributes);
-
-    /**
-     * Gets the attributes of the specific namespace.
-     *
-     * @param nsName the specific namespace
-     * @return the attributes of namespace
-     * @throws OMSResourceNotExistException if the specific namespace does not exist
-     */
-    KeyValue getNamespaceAttributes(String nsName);
+    Response createNamespace(String nsName);
 
     /**
      * Deletes an existing namespace resource.
      *
      * @param nsName the namespace needs to be deleted
-     * @return {@link BaseResult#getErrorCode()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
-     * namespace does not exist
+     * @return {@link Response#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
      */
-    BaseResult deleteNamespace(String nsName);
+    Response deleteNamespace(String nsName);
 
     /**
      * Gets the namespace list in the current {@code MessagingAccessPoint}.
@@ -94,10 +71,9 @@ public interface ResourceManager {
      * {@literal <namespace_name>://<queue_name>}
      *
      * @param queueName the name of the new queue
-     * @return {@link BaseResult#getErrorCode()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
-     * namespace does not exist
+     * @return {@link Response#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
      */
-    BaseResult createQueue(String queueName);
+    Response createQueue(String queueName);
 
     /**
      * Creates a {@code Queue} resource in the configured namespace with some preset attributes.
@@ -108,10 +84,9 @@ public interface ResourceManager {
      *
      * @param queueName the name of the new queue
      * @param queueConfig the preset config
-     * @return {@link BaseResult#getErrorCode()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
-     * namespace does not exist
+     * @return {@link Response#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
      */
-    BaseResult createQueue(String queueName, QueueConfig queueConfig);
+    Response createQueue(String queueName, QueueConfig queueConfig);
 
     /**
      * Sets the attributes of the specified queue, the old attributes will be replaced by the provided attributes, only
@@ -119,17 +94,15 @@ public interface ResourceManager {
      *
      * @param queueName the queue name
      * @param queueConfig the new attributes
-     * @return {@link BaseResult#getErrorCode()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
-     * namespace does not exist
+     * @return {@link Response#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
      */
-    BaseResult setQueueConfig(String queueName, QueueConfig queueConfig);
+    Response setQueueConfig(String queueName, QueueConfig queueConfig);
 
     /**
      * Gets the attributes of the specified queue.
      *
      * @param queueName the queue name
-     * @return {@link BaseResult#getErrorCode()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
-     * namespace does not exist
+     * @return {@link Response#getError()} will return {@link Error#ERROR_403} if the specific queue does not exist
      */
     QueueConfig getQueueConfig(String queueName);
 
@@ -137,67 +110,54 @@ public interface ResourceManager {
      * Deletes an existing queue resource.
      *
      * @param queueName the queue needs to be deleted
-     * @return {@link BaseResult#getErrorCode()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
-     * namespace does not exist
+     * @return {@link Response#getError()} will return {@link Error#ERROR_403} if the specific queue does not exist
      */
-    BaseResult deleteQueue(String queueName);
+    Response deleteQueue(String queueName);
 
     /**
      * Gets the queue list in the specific namespace.
      *
      * @param nsName the specific namespace
-     * @return the list of all queues, {@link BaseResult#getErrorCode()} will return {@link
-     * ErrorCode#NAMESPACE_NOT_EXIST} if the specific namespace does not exist
+     * @return the list of all queues, {@link Response#getError()}  will return {@link Error#ERROR_402} if the specific
+     * namespace does not exist
      */
     ListQueueResult listQueues(String nsName);
 
     /**
-     * Creates a {@code Routing} resource in the configured namespace with some preset attributes.
-     * <p>
-     * The standard OMS {@code Routing} schema must start with the {@code Namespace} prefix:
-     * <p>
-     * {@literal <namespace_name>://<routing_name>}
+     * Duplicate current queue to target queue, to After the current queue receives the message, it will be copied to
+     * the target queue.
      *
-     * @param routingName the name of the new routing
-     * @param routingStrategy the preset routing strategy
-     * @return {@link BaseResult#getErrorCode()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
-     * namespace does not exist
+     * @param sourceQueueName original queue, user can send message to this queue
+     * @param targetQueueName target queue, only receives message from original queue
+     * @return
      */
-    BaseResult createRouting(String routingName, RoutingStrategy routingStrategy);
+    Response duplicate(String sourceQueueName, String targetQueueName);
 
     /**
-     * Gets the attributes of the specified routing.
+     * Add filter to
      *
-     * @param routingName the routing name
-     * @return {@link BaseResult#getErrorCode()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
-     * namespace does not exist and  {@link ErrorCode#ROUTING_NOT_EXIST}
+     * @param queueName
+     * @param consumerId
+     * @param filterString
+     * @return
      */
-    RoutingStrategy getRouting(String routingName);
+    Response filter(String queueName, String consumerId, String filterString);
 
     /**
-     * Deletes an existing routing resource.
+     * Deduplicate current  queue from sourceQueue, after this operation, destinationQueue  will no longer receive
+     * messages sent to the source queue.
      *
-     * @param routingName the routing needs to be deleted
-     * @return {@link BaseResult#getError()}  will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
-     * namespace does not exist
+     * @param sourceQueue source queue, process messages received from producer and duplicate those to target queue
+     * @param targetQueue receive messages from source queue.
+     * @return
      */
-    BaseResult deleteRouting(String routingName);
-
-    /**
-     * Gets the routing list in the specific namespace.
-     *
-     * @param nsName the specific namespace
-     * @return {@link BaseResult#getError()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
-     * namespace does not exist
-     */
-    ListRoutingResult listRoutings(String nsName);
+    Response deDuplicate(String sourceQueue, String targetQueue);
 
     /**
      * Gets the stream list behind the specified queue.
      *
      * @param queueName the queue name
-     * @return {@link BaseResult#getError()} will return {@link ErrorCode#NAMESPACE_NOT_EXIST} if the specific
-     * namespace does not exist
+     * @return {@link Response#getError()} will return {@link Error#ERROR_403} if the specific namespace does not exist
      */
     ListStreamResult listStreams(String queueName);
 

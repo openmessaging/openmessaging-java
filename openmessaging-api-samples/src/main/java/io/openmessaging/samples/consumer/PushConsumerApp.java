@@ -20,11 +20,11 @@ package io.openmessaging.samples.consumer;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
-import io.openmessaging.common.BaseResult;
-import io.openmessaging.manager.ResourceManager;
+import io.openmessaging.common.Response;
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.MessageListener;
 import io.openmessaging.exception.OMSResourceNotExistException;
+import io.openmessaging.manager.ResourceManager;
 
 public class PushConsumerApp {
     public static void main(String[] args) throws OMSResourceNotExistException {
@@ -34,6 +34,7 @@ public class PushConsumerApp {
 
         //Fetch a ResourceManager to create Queue resource.
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
+        resourceManager.createNamespace("NS://XXXX");
         final Consumer consumer = messagingAccessPoint.createConsumer();
         consumer.startup();
 
@@ -47,7 +48,7 @@ public class PushConsumerApp {
 
         //Consume messages from a simple queue.
         String simpleQueue = "NS://HELLO_QUEUE";
-        BaseResult result = resourceManager.createQueue(simpleQueue);
+        Response result = resourceManager.createQueue(simpleQueue);
         if (result.isSuccess()){
             consumer.bindQueue(simpleQueue, new MessageListener() {
                 @Override

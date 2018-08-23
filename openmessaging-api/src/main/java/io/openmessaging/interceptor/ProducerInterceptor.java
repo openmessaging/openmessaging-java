@@ -22,7 +22,7 @@ public interface ProducerInterceptor {
      * @param message a message will be sent
      * @param attributes the extensible attributes delivered to the intercept thread
      */
-    void preSend(Message message, KeyValue attributes);
+    void preSend(Message message, Context attributes);
 
     /**
      * Invoked immediately after the successful send invocation.
@@ -30,14 +30,6 @@ public interface ProducerInterceptor {
      * @param message the message is actually sent
      * @param attributes the extensible attributes delivered to the intercept thread
      */
-    void postSend(Message message, KeyValue attributes);
-
-    /**
-     * Invoked immediately after the failed send invocation.
-     *
-     * @param message the message is actually sent
-     * @param attributes the extensible attributes delivered to the intercept thread
-     * @param sendException the occurred exception in the send invocation
-     */
-    void postSend(Message message, KeyValue attributes, OMSException sendException);
+    void postSend(Message message, Context attributes);
+    
 }

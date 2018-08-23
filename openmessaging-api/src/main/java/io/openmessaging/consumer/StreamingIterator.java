@@ -17,9 +17,7 @@
 
 package io.openmessaging.consumer;
 
-import io.openmessaging.KeyValue;
 import io.openmessaging.Message;
-import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
@@ -30,18 +28,6 @@ import io.openmessaging.exception.OMSRuntimeException;
  * @since OMS 1.0.0
  */
 public interface StreamingIterator {
-    /**
-     * Returns the attributes of this {@code StreamingIterator} instance.
-     * <p>
-     * There are some standard attributes defined by OMS for {@code Stream}:
-     * <ul>
-     * <li> {@link OMSBuiltinKeys#OPERATION_TIMEOUT}, the default timeout period for operations of {@code
-     * Stream}.
-     * </ul>
-     *
-     * @return the attributes
-     */
-    KeyValue attributes();
 
     /**
      * Returns {@code true} if this iterator has more messages when

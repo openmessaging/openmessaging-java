@@ -17,16 +17,15 @@
 
 package io.openmessaging.producer;
 
-import io.openmessaging.common.BaseResult;
+import io.openmessaging.common.Response;
 
 /**
- * The result of sending a OMS message to server
- * with the message id and some attributes.
+ * The result of sending a OMS message to server with the message id and some attributes.
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
-public interface SendResult extends BaseResult {
+public interface SendResult extends Response {
     /**
      * The unique message id related to the {@code SendResult} instance.
      *

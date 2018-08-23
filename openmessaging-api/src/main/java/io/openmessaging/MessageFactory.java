@@ -30,7 +30,7 @@ public interface MessageFactory {
      *
      * @param queueName the target queue to send
      * @param body the body data for a message
-     * @return the created {@code BytesMessage} object
+     * @return the created {@code Message} object
      */
     Message createMessage(String queueName, byte[] body);
 }

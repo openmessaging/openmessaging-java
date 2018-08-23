@@ -2,13 +2,12 @@ package io.openmessaging.samples.consumer;
 
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
-import io.openmessaging.common.BaseResult;
-import io.openmessaging.consumer.BindQueueResult;
-import io.openmessaging.manager.QueueConfig;
-import io.openmessaging.manager.ResourceManager;
+import io.openmessaging.common.Response;
+import io.openmessaging.consumer.BindResult;
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.ReceiveResult;
-import io.openmessaging.exception.OMSResourceNotExistException;
+import io.openmessaging.manager.QueueConfig;
+import io.openmessaging.manager.ResourceManager;
 
 public class PullConsumerApp {
     public static void main(String[] args) {
@@ -18,12 +17,8 @@ public class PullConsumerApp {
 
         //Fetch a ResourceManager to create Queue resource.
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
-        QueueConfig config = new QueueConfig();
-        config.setQueueName("NS://HELLO_QUEUE");
-        config.setQueuePermission("WR");
-        config.setReadNum(4);
-        config.setWriteNum(4);
-        BaseResult createQueueResult = resourceManager.createQueue("NS://HELLO_QUEUE", config);
+        Response createQueueResult = resourceManager.createQueue("NS://HELLO_QUEUE", new QueueConfig() {
+        });
         if (createQueueResult.isSuccess()) {
             //Start a PullConsumer to receive messages from the specific queue.
             final Consumer consumer = messagingAccessPoint.createConsumer();
@@ -37,7 +32,7 @@ public class PullConsumerApp {
                 }
             }));
 
-            BindQueueResult bindQueueResult = consumer.bindQueue("NS://HELLO_QUEUE");
+            BindResult bindQueueResult = consumer.bindQueue("NS://HELLO_QUEUE");
             if (bindQueueResult.isSuccess()) {
                 ReceiveResult receiveResult = consumer.receive(1000);
                 if (receiveResult.isSuccess()) {

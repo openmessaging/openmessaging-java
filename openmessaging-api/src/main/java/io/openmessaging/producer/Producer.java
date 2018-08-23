@@ -19,15 +19,10 @@ package io.openmessaging.producer;
 
 import io.openmessaging.Future;
 import io.openmessaging.FutureListener;
-import io.openmessaging.KeyValue;
 import io.openmessaging.Message;
 import io.openmessaging.MessageFactory;
 import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.ServiceLifecycle;
-import io.openmessaging.exception.OMSMessageFormatException;
-import io.openmessaging.exception.OMSRuntimeException;
-import io.openmessaging.exception.OMSTimeOutException;
 import io.openmessaging.interceptor.ProducerInterceptor;
 import java.util.List;
 
@@ -56,30 +51,8 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      *
      * @param message a message will be sent
      * @return the successful {@code SendResult}
-     * @throws OMSMessageFormatException if an invalid message is specified.
-     * @throws OMSTimeOutException if the given timeout elapses before the send operation completes
-     * @throws OMSRuntimeException if the {@code Producer} fails to send the message due to some internal error.
      */
     SendResult send(Message message);
-
-
-    /**
-     * Sends a transactional message to the specified destination synchronously, using the specified attributes, the
-     * destination should be preset to {@link Message#headers()}, other header fields as well.
-     * <p>
-     * A transactional message will be exposed to consumer if and only if the local transaction branch has been
-     * committed, or be discarded if local transaction has been rolled back.
-     *
-     * @param message a transactional message will be sent
-     * @param branchExecutor local transaction executor associated with the message
-     * @param attributes the specified attributes
-     * @return the successful {@code SendResult}
-     * @throws OMSMessageFormatException if an invalid message is specified.
-     * @throws OMSTimeOutException if the given timeout elapses before the send operation completes
-     * @throws OMSRuntimeException if the {@code Producer} fails to send the message due to some internal error.
-     */
-    SendResult send(Message message, LocalTransactionExecutor branchExecutor,
-        KeyValue attributes) throws OMSMessageFormatException, OMSTimeOutException, OMSRuntimeException;
 
     /**
      * Sends a message to the specified destination asynchronously, the destination should be preset to {@link
@@ -95,7 +68,6 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      */
     Future<SendResult> sendAsync(Message message);
 
-
     /**
      * <p>
      * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't care about the
@@ -104,7 +76,6 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @param message a message will be sent
      */
     void sendOneway(Message message);
-
 
     /**
      * <p>
@@ -127,4 +98,29 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @param interceptor a producer interceptor will be removed
      */
     void removeInterceptor(ProducerInterceptor interceptor);
+
+    /**
+     * <p>
+     * Register a transaction check listener,if user doesn't submit a transaction status for a long time, the server may
+     * lookup it forwardly through this <code>register</code> method
+     * </p>
+     *
+     * @param checkListener response to server check request
+     */
+    void register(CheckListener checkListener);
+
+    /**
+     * Sends a transactional message to the specified destination synchronously, the destination should be preset to
+     * {@link Message#headers()}, other header fields as well.
+     * <p>
+     * A transactional send result will be exposed to consumer if this prepare message send success, and then, you can
+     * execute your local transaction, when local transaction execute success, users can use {@link
+     * TransactionalResult#commit()} to commit prepare message,otherwise can use {@link TransactionalResult#rollback()}
+     * to roll back this prepare message.
+     * </p>
+     *
+     * @param message a prepare transactional message will be sent
+     * @return the successful {@code SendResult}
+     */
+    TransactionalResult prepare(Message message);
 }

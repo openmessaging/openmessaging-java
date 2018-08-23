@@ -26,18 +26,17 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * The oms class provides some static methods to create a {@code MessagingAccessPoint}
- * from the specified OMS driver url and some useful util methods.
+ * The oms class provides some static methods to create a {@code MessagingAccessPoint} from the specified OMS driver url
+ * and some useful util methods.
  * <p>
  * The complete OMS driver URL syntax is:
  * <p>
  * {@literal oms:<driver_type>://[account_id@]host1[:port1][,host2[:port2],...[,hostN[:portN]]]/<region>}
  * <p>
- * The first part of the URL specifies which OMS implementation is to be used, rocketmq is a
- * optional driver type.
+ * The first part of the URL specifies which OMS implementation is to be used, rocketmq is a optional driver type.
  * <p>
- * The brackets indicate that the extra access points are optional, and a correct OMS driver url
- * needs at least one access point, which consists of hostname and port, like localhost:8081.
+ * The brackets indicate that the extra access points are optional, and a correct OMS driver url needs at least one
+ * access point, which consists of hostname and port, like localhost:8081.
  *
  * @version OMS 1.0.0
  * @see ResourceManager
@@ -57,12 +56,11 @@ public final class OMS {
     }
 
     /**
-     * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url
-     * with some preset attributes, which will be passed to MessagingAccessPoint's implementation
-     * class as a unique constructor parameter.
+     * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url with some preset attributes,
+     * which will be passed to MessagingAccessPoint's implementation class as a unique constructor parameter.
      *
-     * There are some standard attributes defined by OMS for this method,
-     * the same as {@link MessagingAccessPoint#attributes()}
+     * There are some standard attributes defined by OMS for this method, the same as {@link
+     * MessagingAccessPoint#attributes()} ()}
      *
      * @param url the specified OMS driver url
      * @return a {@code MessagingAccessPoint} instance

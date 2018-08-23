@@ -17,16 +17,13 @@
 
 package io.openmessaging.samples.routing;
 
-import io.openmessaging.KeyValue;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
-import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.MessageListener;
 import io.openmessaging.exception.OMSResourceNotExistException;
 import io.openmessaging.manager.ResourceManager;
-import io.openmessaging.manager.RoutingStrategy;
 import io.openmessaging.producer.Producer;
 
 public class RoutingApp {
@@ -45,22 +42,16 @@ public class RoutingApp {
         //Create the source queue.
         resourceManager.createQueue(sourceQueue);
 
-        RoutingStrategy strategy = new RoutingStrategy();
-        strategy.setSourceQueue("srcQueue");
-        strategy.setDestinationQueue("destQueue");
-        strategy.setRoutingRule("duplicate");
-        resourceManager.createRouting("NS://HELLO_ROUTING", strategy);
+        resourceManager.deDuplicate(sourceQueue, destinationQueue);
 
         //Send messages to the source queue ahead of the routing
         final Producer producer = messagingAccessPoint.createProducer();
         producer.startup();
 
         Message message = producer.createMessage(sourceQueue, "RED_COLOR".getBytes());
-        message.properties().put("color","freen").put("shape","round");
-
+        message.properties().put("color", "freen").put("shape", "round");
 
         producer.send(message);
-
 
         //Consume messages from the queue behind the routing.
         final Consumer consumer = messagingAccessPoint.createConsumer();

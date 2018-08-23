@@ -3,10 +3,10 @@ package io.openmessaging.common;
 import jdk.nashorn.internal.ir.annotations.Immutable;
 
 @Immutable
-public interface BaseResult {
+public interface Response {
 
     /**
-     * Get error code
+     * Get execution error
      *
      * @return operate result @see {@link Error}
      */

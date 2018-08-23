@@ -21,7 +21,7 @@ import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.common.ResponseCode;
+import io.openmessaging.common.Error;
 import io.openmessaging.exception.OMSRuntimeException;
 import java.lang.reflect.Constructor;
 
@@ -58,7 +58,7 @@ public class MessagingAccessPointAdapter {
             Constructor constructor = driverImplClass.getConstructor(KeyValue.class);
             MessagingAccessPoint vendorImpl = (MessagingAccessPoint) constructor.newInstance(attributes);
             checkSpecVersion(OMS.specVersion, vendorImpl.version());
-            vendorImpl.setResponsCode(ResponseCode.SUCCESS);
+            vendorImpl.setError(Error.ERROR_200);
             return vendorImpl;
         } catch (Throwable e) {
             throw generateInternalException(InternalErrorCode.OMS_DRIVER_UNAVAILABLE, url);

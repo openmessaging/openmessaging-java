@@ -17,16 +17,17 @@
 
 package io.openmessaging.internal;
 
-import io.openmessaging.ClientConfig;
 import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.common.Error;
-import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.consumer.Consumer;
+import io.openmessaging.consumer.ConsumerConfig;
 import io.openmessaging.consumer.StreamingConsumer;
+import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.producer.Producer;
+import io.openmessaging.producer.ProducerConfig;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -65,7 +66,7 @@ class TestVendor implements MessagingAccessPoint {
     }
 
     @Override
-    public Producer createProducer(ClientConfig clientConfig) {
+    public Producer createProducer(ProducerConfig clientConfig) {
         return null;
     }
 
@@ -75,7 +76,7 @@ class TestVendor implements MessagingAccessPoint {
     }
 
     @Override
-    public Consumer createConsumer(ClientConfig config) {
+    public Consumer createConsumer(ConsumerConfig config) {
         return null;
     }
 
@@ -85,7 +86,7 @@ class TestVendor implements MessagingAccessPoint {
     }
 
     @Override
-    public StreamingConsumer createStreamingConsumer(ClientConfig clientConfig) {
+    public StreamingConsumer createStreamingConsumer(ConsumerConfig clientConfig) {
         return null;
     }
 

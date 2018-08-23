@@ -20,7 +20,8 @@ package io.openmessaging.consumer;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.ServiceLifecycle;
-import io.openmessaging.common.ErrorCode;
+import io.openmessaging.common.Error;
+import io.openmessaging.common.Response;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.interceptor.ConsumerInterceptor;
 
@@ -88,7 +89,7 @@ public interface Consumer extends ServiceLifecycle {
      * @param queueName a specified queue
      * @return this {@code Consumer} instance
      */
-    BindQueueResult bindQueue(String queueName);
+    BindResult bindQueue(String queueName);
 
     /**
      * Bind the {@code Consumer} to a specified queue, with a {@code MessageListener}.
@@ -100,7 +101,7 @@ public interface Consumer extends ServiceLifecycle {
      * @param listener a specified listener to receive new message
      * @return this {@code Consumer} instance
      */
-    BindQueueResult bindQueue(String queueName, MessageListener listener);
+    BindResult bindQueue(String queueName, MessageListener listener);
 
     /**
      * Unbind the {@code Consumer} from a specified queue.
@@ -110,7 +111,7 @@ public interface Consumer extends ServiceLifecycle {
      * @param queueName a specified queue
      * @return this {@code Consumer} instance
      */
-    BindQueueResult unbindQueue(String queueName);
+    BindResult unbindQueue(String queueName);
 
     /**
      * Adds a {@code ConsumerInterceptor} instance to this consumer.
@@ -134,7 +135,7 @@ public interface Consumer extends ServiceLifecycle {
      *
      * @param timeout receive message will blocked at most <code>timeout</code> milliseconds
      * @return the next message received from the bind queues, or null if the consumer is concurrently shut down,if this
-     * operation is expire, {@link ReceiveResult#getError()} will return {@link ErrorCode#REQUEST_TIMEOUT} error
+     * operation is expire, {@link Response#getError()} will return {@link Error#ERROR_408} error
      * code
      */
     ReceiveResult receive(long timeout);
