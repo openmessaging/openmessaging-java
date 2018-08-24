@@ -34,7 +34,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MessagingAccessPointAdapterTest {
     @Test
-    public void getMessagingAccessPoint() throws Exception {
+    public void getMessagingAccessPoint() {
         String testURI = "oms:test-vendor://alice@rocketmq.apache.org/us-east:default_space";
 
         KeyValue keyValue = OMS.newKeyValue();
@@ -46,13 +46,12 @@ public class MessagingAccessPointAdapterTest {
 
 class TestVendor implements MessagingAccessPoint {
 
-
     public TestVendor(KeyValue keyValue) {
     }
 
     @Override
     public String version() {
-        return null;
+        return OMS.specVersion;
     }
 
     @Override
