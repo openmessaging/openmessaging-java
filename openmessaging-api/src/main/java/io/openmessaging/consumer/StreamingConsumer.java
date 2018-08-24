@@ -22,19 +22,19 @@ import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.ServiceLifecycle;
 
 /**
- * A {@code StreamingConsumer} provides low level APIs to open multiple streams
- * from a specified queue and then retrieve messages from them through @{code StreamingIterator}.
+ * A {@code StreamingConsumer} provides low level APIs to open multiple streams from a specified queue and then retrieve
+ * messages from them through @{code StreamingIterator}.
  *
- * A {@code Queue} is consists of multiple streams, the {@code Stream} is an abstract concept and
- * can be associated with partition in most messaging systems.
+ * A {@code Queue} is consists of multiple streams, the {@code Stream} is an abstract concept and can be associated with
+ * partition in most messaging systems.
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
 public interface StreamingConsumer extends ServiceLifecycle {
     /**
-     * Returns the attributes of this {@code StreamingConsumer} instance.
-     * Changes to the return {@code KeyValue} are not reflected in physical {@code StreamingConsumer}.
+     * Returns the attributes of this {@code StreamingConsumer} instance. Changes to the return {@code KeyValue} are not
+     * reflected in physical {@code StreamingConsumer}.
      * <p>
      * There are some standard attributes defined by OMS for {@code StreamingConsumer}:
      * <ul>
@@ -66,14 +66,13 @@ public interface StreamingConsumer extends ServiceLifecycle {
     /**
      * Creates a {@code StreamingIterator} from the fixed position of the specified stream.
      * <p>
-     * Creates a {@code StreamingIterator} from the begin position if the given position
-     * is earlier than the first message's store position in this stream.
+     * Creates a {@code StreamingIterator} from the begin position if the given position is earlier than the first
+     * message's store position in this stream.
      * <p>
-     * Creates a {@code StreamingIterator} from the end position, if the given position
-     * is later than the last message's store position in this stream.
+     * Creates a {@code StreamingIterator} from the end position, if the given position is later than the last message's
+     * store position in this stream.
      * <p>
-     * The position is a {@code String} value, may represented by timestamp, offset, cursor,
-     * even a casual key.
+     * The position is a {@code String} value, may represented by timestamp, offset, cursor, even a casual key.
      *
      * @param streamName the specified stream
      * @param position the specified position

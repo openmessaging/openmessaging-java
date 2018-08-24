@@ -60,8 +60,8 @@ public interface Message {
         /**
          * The {@code DESTINATION} header field contains the destination to which the message is being sent.
          * <p>
-         * When a message is sent this value is set to the right {@code Queue}, then the message will be sent to
-         * the specified destination.
+         * When a message is sent this value is set to the right {@code Queue}, then the message will be sent to the
+         * specified destination.
          * <p>
          * When a message is received, its destination is equivalent to the {@code Queue} where the message resides in.
          */
@@ -172,16 +172,13 @@ public interface Message {
         Headers setDurability(short durability);
 
         /**
-         * The {@code SEARCH_KEYS} header field contains the multiple search keys of a message.
+         * The {@code messagekey} header field contains the custom key of a message.
          * <p>
-         * The keyword indexes will be built by the search keys, users can query similar messages through these indexes
-         * and have a quick response.
+         * This key is a customer identifier for a class of messages, and this key may be used for server to shard or
+         * dispatch messages, or even can use this key to implement order message.
          * <p>
-         * This field is a {@code String} value, the different search keys are joined together with a comma delimiter.
-         * <p>
-         * OMS defines that a message at most has five search keys.
          */
-        Headers setSearchKey(String searchKey);
+        Headers setMessageKey(String messageKey);
 
         /**
          * The {@code TRACE_ID} header field contains the trace ID of a message, which represents a global and unique
@@ -291,11 +288,11 @@ public interface Message {
         short getDurability();
 
         /**
-         * See {@link Headers#setSearchKey(String)}
+         * See {@link Headers#setMessageKey(String)}
          *
-         * @return searchKey
+         * @return messageKey
          */
-        String getSearchKey();
+        String getMessageKey();
 
         /**
          * See {@link Headers#setTraceId(String)}
@@ -358,6 +355,7 @@ public interface Message {
 
     /**
      * Set message body
+     *
      * @param data set message body in binary stream
      */
     void setData(byte[] data);

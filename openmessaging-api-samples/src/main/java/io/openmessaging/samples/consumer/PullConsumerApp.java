@@ -18,6 +18,13 @@ public class PullConsumerApp {
         //Fetch a ResourceManager to create Queue resource.
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
         Response createQueueResult = resourceManager.createQueue("NS://HELLO_QUEUE", new QueueConfig() {
+            @Override public void setFifo(boolean isFifo) {
+
+            }
+
+            @Override public boolean isFifo() {
+                return false;
+            }
         });
         if (createQueueResult.isSuccess()) {
             //Start a PullConsumer to receive messages from the specific queue.
