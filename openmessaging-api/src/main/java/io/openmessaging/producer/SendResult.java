@@ -17,7 +17,7 @@
 
 package io.openmessaging.producer;
 
-import io.openmessaging.common.Response;
+import io.openmessaging.common.Result;
 
 /**
  * The result of sending a OMS message to server with the message id and some attributes.
@@ -25,7 +25,7 @@ import io.openmessaging.common.Response;
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
-public interface SendResult extends Response {
+public interface SendResult extends Result {
     /**
      * The unique message id related to the {@code SendResult} instance.
      *

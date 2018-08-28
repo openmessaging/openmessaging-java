@@ -66,8 +66,11 @@ public interface ConsumerConfig {
     boolean isAutoAckMode();
 
     /**
-     * @param consumeStartPoint
-     * @param startTime
+     * When a consumer start to consume message, this method is used to specify the starting point of consumption.
+     *
+     * @param consumeStartPoint consume strategy
+     * @param startTime this parameter is used to specify a start time when {@link ConsumeStartPoint#SPECIFIED_TIME}
+     * strategy is set
      */
     void setConsumeStartPoint(ConsumeStartPoint consumeStartPoint, long startTime);
 }

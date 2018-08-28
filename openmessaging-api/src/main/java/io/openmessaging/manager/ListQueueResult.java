@@ -1,8 +1,8 @@
 package io.openmessaging.manager;
 
-import io.openmessaging.common.Response;
+import io.openmessaging.common.Result;
 import java.util.List;
 
-public interface ListQueueResult extends Response {
+public interface ListQueueResult extends Result {
     List<String> queues();
 }

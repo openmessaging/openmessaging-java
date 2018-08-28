@@ -2,7 +2,7 @@ package io.openmessaging.samples.consumer;
 
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
-import io.openmessaging.common.Response;
+import io.openmessaging.common.Result;
 import io.openmessaging.consumer.BindResult;
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.ReceiveResult;
@@ -17,7 +17,7 @@ public class PullConsumerApp {
 
         //Fetch a ResourceManager to create Queue resource.
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
-        Response createQueueResult = resourceManager.createQueue("NS://HELLO_QUEUE", new QueueConfig() {
+        Result createQueueResult = resourceManager.createQueue("NS://HELLO_QUEUE", new QueueConfig() {
             @Override public void setFifo(boolean isFifo) {
 
             }

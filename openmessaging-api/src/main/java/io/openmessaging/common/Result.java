@@ -3,7 +3,7 @@ package io.openmessaging.common;
 import jdk.nashorn.internal.ir.annotations.Immutable;
 
 @Immutable
-public interface Response {
+public interface Result {
 
     /**
      * Get execution error

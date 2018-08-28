@@ -21,7 +21,7 @@ import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.common.Error;
-import io.openmessaging.common.Response;
+import io.openmessaging.common.Result;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.interceptor.ConsumerInterceptor;
 
@@ -135,7 +135,7 @@ public interface Consumer extends ServiceLifecycle {
      *
      * @param timeout receive message will blocked at most <code>timeout</code> milliseconds
      * @return the next message received from the bind queues, or null if the consumer is concurrently shut down,if this
-     * operation is expire, {@link Response#getError()} will return {@link Error#ERROR_408} error
+     * operation is expire, {@link Result#getError()} will return {@link Error#ERROR_408} error
      * code
      */
     ReceiveResult receive(long timeout);

@@ -19,7 +19,7 @@ package io.openmessaging.manager;
 
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.common.Error;
-import io.openmessaging.common.Response;
+import io.openmessaging.common.Result;
 import java.util.List;
 
 /**
@@ -46,15 +46,15 @@ public interface ResourceManager {
      *
      * @param nsName the name of the new namespace
      */
-    Response createNamespace(String nsName);
+    Result createNamespace(String nsName);
 
     /**
      * Deletes an existing namespace resource.
      *
      * @param nsName the namespace needs to be deleted
-     * @return {@link Response#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
+     * @return {@link Result#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
      */
-    Response deleteNamespace(String nsName);
+    Result deleteNamespace(String nsName);
 
     /**
      * Gets the namespace list in the current {@code MessagingAccessPoint}.
@@ -71,9 +71,9 @@ public interface ResourceManager {
      * {@literal <namespace_name>://<queue_name>}
      *
      * @param queueName the name of the new queue
-     * @return {@link Response#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
+     * @return {@link Result#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
      */
-    Response createQueue(String queueName);
+    Result createQueue(String queueName);
 
     /**
      * Creates a {@code Queue} resource in the configured namespace with some preset attributes.
@@ -84,9 +84,9 @@ public interface ResourceManager {
      *
      * @param queueName the name of the new queue
      * @param queueConfig the preset config
-     * @return {@link Response#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
+     * @return {@link Result#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
      */
-    Response createQueue(String queueName, QueueConfig queueConfig);
+    Result createQueue(String queueName, QueueConfig queueConfig);
 
     /**
      * Sets the attributes of the specified queue, the old attributes will be replaced by the provided attributes, only
@@ -94,15 +94,15 @@ public interface ResourceManager {
      *
      * @param queueName the queue name
      * @param queueConfig the new attributes
-     * @return {@link Response#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
+     * @return {@link Result#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
      */
-    Response setQueueConfig(String queueName, QueueConfig queueConfig);
+    Result setQueueConfig(String queueName, QueueConfig queueConfig);
 
     /**
      * Gets the attributes of the specified queue.
      *
      * @param queueName the queue name
-     * @return {@link Response#getError()} will return {@link Error#ERROR_403} if the specific queue does not exist
+     * @return {@link Result#getError()} will return {@link Error#ERROR_403} if the specific queue does not exist
      */
     QueueConfig getQueueConfig(String queueName);
 
@@ -110,15 +110,15 @@ public interface ResourceManager {
      * Deletes an existing queue resource.
      *
      * @param queueName the queue needs to be deleted
-     * @return {@link Response#getError()} will return {@link Error#ERROR_403} if the specific queue does not exist
+     * @return {@link Result#getError()} will return {@link Error#ERROR_403} if the specific queue does not exist
      */
-    Response deleteQueue(String queueName);
+    Result deleteQueue(String queueName);
 
     /**
      * Gets the queue list in the specific namespace.
      *
      * @param nsName the specific namespace
-     * @return the list of all queues, {@link Response#getError()}  will return {@link Error#ERROR_402} if the specific
+     * @return the list of all queues, {@link Result#getError()}  will return {@link Error#ERROR_402} if the specific
      * namespace does not exist
      */
     ListQueueResult listQueues(String nsName);
@@ -131,33 +131,33 @@ public interface ResourceManager {
      * @param targetQueueName target queue, only receives message from original queue
      * @return
      */
-    Response duplicate(String sourceQueueName, String targetQueueName);
+    Result duplicate(String sourceQueueName, String targetQueueName);
 
     /**
-     * Add filter to
+     * In order to enable consumers to get the message in the specified mode, OpenMessaging recommend  use SQL
+     * expression to filter out messages.
      *
-     * @param queueName
-     * @param consumerId
-     * @param filterString
+     * @param queueName queue name
+     * @param filterString SQL expression to filter out messages.
      * @return
      */
-    Response filter(String queueName, String consumerId, String filterString);
+    Result filter(String queueName, String filterString);
 
     /**
-     * Deduplicate current  queue from sourceQueue, after this operation, destinationQueue  will no longer receive
-     * messages sent to the source queue.
+     * Deduplicate current  queue from sourceQueue, after this operation, <code>targetQueue</code>  will no longer
+     * receive messages sent to the source queue.
      *
      * @param sourceQueue source queue, process messages received from producer and duplicate those to target queue
      * @param targetQueue receive messages from source queue.
      * @return
      */
-    Response deDuplicate(String sourceQueue, String targetQueue);
+    Result deDuplicate(String sourceQueue, String targetQueue);
 
     /**
      * Gets the stream list behind the specified queue.
      *
      * @param queueName the queue name
-     * @return {@link Response#getError()} will return {@link Error#ERROR_403} if the specific namespace does not exist
+     * @return {@link Result#getError()} will return {@link Error#ERROR_403} if the specific namespace does not exist
      */
     ListStreamResult listStreams(String queueName);
 

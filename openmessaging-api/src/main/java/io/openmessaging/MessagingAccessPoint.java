@@ -17,7 +17,7 @@
 
 package io.openmessaging;
 
-import io.openmessaging.common.Response;
+import io.openmessaging.common.Result;
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.ConsumerConfig;
 import io.openmessaging.consumer.MessageListener;
@@ -26,7 +26,6 @@ import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.producer.Producer;
 import io.openmessaging.producer.ProducerConfig;
-import java.util.jar.Attributes;
 
 /**
  * An instance of {@code MessagingAccessPoint} may be obtained from {@link OMS}, which is capable of creating {@code
@@ -44,7 +43,7 @@ import java.util.jar.Attributes;
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
-public interface MessagingAccessPoint extends Response {
+public interface MessagingAccessPoint extends Result {
 
     /**
      * Returns the target OMS specification version of the specified vendor implementation.
