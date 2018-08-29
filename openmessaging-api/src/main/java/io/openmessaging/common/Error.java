@@ -65,7 +65,7 @@ public enum Error {
 
     private String detailErrorMessage;
 
-    private Error(int errorCode, String errorMessage) {
+    Error(int errorCode, String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }

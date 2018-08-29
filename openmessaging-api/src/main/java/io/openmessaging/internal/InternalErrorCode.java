@@ -20,23 +20,24 @@ package io.openmessaging.internal;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
- * The internal error code used by {@link MessagingAccessPointAdapter}
+ * The internal error code used by {@link MessagingAccessPointAdapter}.
  */
 public enum InternalErrorCode {
-    OMS_DRIVER_UNAVAILABLE("#oms_driver_unavailable", "Can't construct a MessagingAccessPoint instance from the given OMS driver URL [%s]."),
-    OMS_DRIVER_URL_ILLEGAL("#oms_driver_url_illegal", "The OMS driver URL [%s] is illegal."),
-    IMPL_VERSION_ILLEGAL("#impl_version_illegal", "The implementation version [%s] is illegal."),
-    SPEC_IMPL_VERSION_MISMATCH("#spec_impl_version_mismatch", "The implementation version [%s] isn't compatible with the specification version [%s].")
-    ;
+    OMS_DRIVER_UNAVAILABLE(10000, "Can't construct a MessagingAccessPoint instance from the given OMS driver URL [%s]."),
+    OMS_DRIVER_URL_ILLEGAL(10001, "The OMS driver URL [%s] is illegal."),
+    IMPL_VERSION_ILLEGAL(10002, "The implementation version [%s] is illegal."),
+    SPEC_IMPL_VERSION_MISMATCH(10003, "The implementation version [%s] isn't compatible with the specification version [%s].");
 
     String refBase = "http://openmessaging.cloud/internal/error-code";
     String message;
+    int errorCode;
 
-    InternalErrorCode(String refLoc, String message) {
-        this.message = message + "\nFor more information, please visit the URL, " + refBase + refLoc;
+    InternalErrorCode(int errorCode, String message) {
+        this.errorCode = errorCode;
+        this.message = message + "\nFor more information, please visit the URL, " + refBase + "#" + errorCode;
     }
 
     public static OMSRuntimeException generateInternalException(InternalErrorCode errorCode, String... messageArgs) {
-        return new OMSRuntimeException(errorCode.name(), String.format(errorCode.message, (Object[]) messageArgs));
+        return new OMSRuntimeException(errorCode.errorCode, String.format(errorCode.message, (Object[]) messageArgs));
     }
 }

@@ -17,13 +17,17 @@
 
 package io.openmessaging.samples.producer;
 
+import io.openmessaging.Future;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
-import io.openmessaging.manager.ResourceManager;
+import io.openmessaging.interceptor.Context;
+import io.openmessaging.interceptor.ProducerInterceptor;
 import io.openmessaging.producer.Producer;
 import io.openmessaging.producer.SendResult;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProducerApp {
     public static void main(String[] args) {
@@ -32,7 +36,16 @@ public class ProducerApp {
 
         final Producer producer = messagingAccessPoint.createProducer();
         producer.startup();
-        final ResourceManager manager = messagingAccessPoint.resourceManager();
+        ProducerInterceptor interceptor = new ProducerInterceptor() {
+            @Override
+            public void preSend(Message message, Context attributes) {
+            }
+
+            @Override
+            public void postSend(Message message, Context attributes) {
+            }
+        };
+        producer.addInterceptor(interceptor);
 
         //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
@@ -43,18 +56,33 @@ public class ProducerApp {
         }));
 
         //Sends a message to the specified destination synchronously.
-        {
-            Message message = producer.createMessage(
-                "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
-            SendResult sendResult = producer.send(message);
+        Message message = producer.createMessage(
+            "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
+        SendResult sendResult = producer.send(message);
 
-
-            if (sendResult.isSuccess()) {
-                System.out.println("Send sync message OK, message id is: " + sendResult.messageId());
-            } else {
-                System.out.println("Error: " + sendResult.getError().getErrorCode() + " error message: " + sendResult.getError().getErrorMessage());
-            }
+        if (sendResult.isSuccess()) {
+            System.out.println("Send sync message OK, message id is: " + sendResult.messageId());
+        } else {
+            System.out.println("Error: " + sendResult.getError().getErrorCode() + " error message: " + sendResult.getError().getErrorMessage());
         }
 
+        //Sends a message to the specified destination async.
+        Future<SendResult> sendResultFuture = producer.sendAsync(message);
+        sendResult = sendResultFuture.get(1000);
+        if (sendResult.isSuccess()) {
+            System.out.println("Send message async: " + sendResult);
+        }
+        //Sends a message to the specified destination in one way mode.
+        producer.sendOneway(message);
+
+        //Sends messages to the specified destination in batch mode.
+        List<Message> messages = new ArrayList<Message>(10);
+        for (int i = 0; i < 10; i++) {
+            Message msg = producer.createMessage("NS://HELLO_QUEUE", ("Hello" + i).getBytes());
+            messages.add(msg);
+        }
+        producer.send(messages);
+        producer.removeInterceptor(interceptor);
+        producer.shutdown();
     }
 }

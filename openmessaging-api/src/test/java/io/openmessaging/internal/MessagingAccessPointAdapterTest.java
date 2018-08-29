@@ -23,11 +23,8 @@ import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.common.Error;
 import io.openmessaging.consumer.Consumer;
-import io.openmessaging.consumer.ConsumerConfig;
-import io.openmessaging.consumer.StreamingConsumer;
 import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.producer.Producer;
-import io.openmessaging.producer.ProducerConfig;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,6 +46,8 @@ class TestVendor implements MessagingAccessPoint {
     public TestVendor(KeyValue keyValue) {
     }
 
+
+
     @Override
     public String version() {
         return OMS.specVersion;
@@ -65,27 +64,7 @@ class TestVendor implements MessagingAccessPoint {
     }
 
     @Override
-    public Producer createProducer(ProducerConfig clientConfig) {
-        return null;
-    }
-
-    @Override
     public Consumer createConsumer() {
-        return null;
-    }
-
-    @Override
-    public Consumer createConsumer(ConsumerConfig config) {
-        return null;
-    }
-
-    @Override
-    public StreamingConsumer createStreamingConsumer() {
-        return null;
-    }
-
-    @Override
-    public StreamingConsumer createStreamingConsumer(ConsumerConfig clientConfig) {
         return null;
     }
 

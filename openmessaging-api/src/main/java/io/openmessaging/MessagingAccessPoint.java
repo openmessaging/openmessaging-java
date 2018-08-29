@@ -19,13 +19,12 @@ package io.openmessaging;
 
 import io.openmessaging.common.Result;
 import io.openmessaging.consumer.Consumer;
-import io.openmessaging.consumer.ConsumerConfig;
 import io.openmessaging.consumer.MessageListener;
-import io.openmessaging.consumer.StreamingConsumer;
 import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.exception.OMSSecurityException;
 import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.producer.Producer;
-import io.openmessaging.producer.ProducerConfig;
+import io.openmessaging.producer.TransactionStateCheckListener;
 
 /**
  * An instance of {@code MessagingAccessPoint} may be obtained from {@link OMS}, which is capable of creating {@code
@@ -75,18 +74,21 @@ public interface MessagingAccessPoint extends Result {
      * @return the created {@code Producer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
+     * @throws OMSSecurityException if have no authority to create a producer.
      */
     Producer createProducer();
 
     /**
-     * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint} with some preset attributes.
+     * Creates a new transactional {@code Producer} for the specified {@code MessagingAccessPoint}, the producer is able
+     * to respond to requests from the server to check the status of the transaction.
      *
-     * @param producerConfig the preset producer config
+     * @param transactionStateCheckListener transactional check listener {@link TransactionStateCheckListener}
      * @return the created {@code Producer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
+     * @throws OMSSecurityException if have no authority to create a producer.
      */
-    Producer createProducer(ProducerConfig producerConfig);
+    Producer createProducer(TransactionStateCheckListener transactionStateCheckListener);
 
     /**
      * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}. The returned {@code Consumer}
@@ -95,39 +97,9 @@ public interface MessagingAccessPoint extends Result {
      * @return the created {@code PushConsumer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
+     * @throws OMSSecurityException if have no authority to create a consumer.
      */
     Consumer createConsumer();
-
-    /**
-     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}. The returned {@code Consumer}
-     * isn't bind to any queue, uses {@link Consumer#bindQueue(String, MessageListener)} to bind queues.
-     *
-     * @param consumerConfig the preset config
-     * @return the created {@code PushConsumer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
-     * error
-     */
-    Consumer createConsumer(ConsumerConfig consumerConfig);
-
-    /**
-     * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint}.
-     *
-     * @return the created {@code Stream}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
-     * error
-     */
-    StreamingConsumer createStreamingConsumer();
-
-    /**
-     * Creates a new {@code StreamingConsumer} for the specified {@code MessagingAccessPoint} with some preset
-     * attributes.
-     *
-     * @param consumerConfig the preset client config
-     * @return the created consumer
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
-     * error
-     */
-    StreamingConsumer createStreamingConsumer(ConsumerConfig consumerConfig);
 
     /**
      * Gets a lightweight {@code ResourceManager} instance from the specified {@code MessagingAccessPoint}.
@@ -135,6 +107,7 @@ public interface MessagingAccessPoint extends Result {
      * @return the resource manger
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
+     * @throws OMSSecurityException if have no authority to obtain a resource manager.
      */
     ResourceManager resourceManager();
 }

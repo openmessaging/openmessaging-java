@@ -20,31 +20,30 @@ package io.openmessaging.exception;
 /**
  * The {@code OMSTimeOutException} must be thrown when a blocking operation times out.
  * <p>
- * Blocking operations for which a timeout is specified need a means to
- * indicate that the timeout has occurred.
+ * Blocking operations for which a timeout is specified need a means to indicate that the timeout has occurred.
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
 public class OMSTimeOutException extends OMSRuntimeException {
     /**
-     * @see OMSRuntimeException#OMSRuntimeException(String, String)
+     * @see OMSRuntimeException#OMSRuntimeException(int, String)
      */
-    public OMSTimeOutException(String errorCode, String message) {
+    public OMSTimeOutException(int errorCode, String message) {
         super(errorCode, message);
     }
 
     /**
-     * @see OMSRuntimeException#OMSRuntimeException(String, Throwable)
+     * @see OMSRuntimeException#OMSRuntimeException(int, Throwable)
      */
-    public OMSTimeOutException(String errorCode, Throwable cause) {
+    public OMSTimeOutException(int errorCode, Throwable cause) {
         super(errorCode, cause);
     }
 
     /**
-     * @see OMSRuntimeException#OMSRuntimeException(String, String, Throwable)
+     * @see OMSRuntimeException#OMSRuntimeException(int, String, Throwable)
      */
-    public OMSTimeOutException(String errorCode, String message, Throwable cause) {
+    public OMSTimeOutException(int errorCode, String message, Throwable cause) {
         super(errorCode, message, cause);
     }
 }

@@ -1,8 +1,6 @@
 package io.openmessaging.interceptor;
 
-import io.openmessaging.KeyValue;
 import io.openmessaging.Message;
-import io.openmessaging.exception.OMSException;
 
 /**
  * A {@code ProducerInterceptor} is used to intercept send operations of producer.
@@ -19,16 +17,16 @@ public interface ProducerInterceptor {
      * <p>
      * This allows for modification of the message if necessary.
      *
-     * @param message a message will be sent
-     * @param attributes the extensible attributes delivered to the intercept thread
+     * @param message a message will be sent.
+     * @param attributes the extensible attributes delivered to the intercept thread.
      */
     void preSend(Message message, Context attributes);
 
     /**
      * Invoked immediately after the successful send invocation.
      *
-     * @param message the message is actually sent
-     * @param attributes the extensible attributes delivered to the intercept thread
+     * @param message the message is actually sent.
+     * @param attributes the extensible attributes delivered to the intercept thread.
      */
     void postSend(Message message, Context attributes);
     

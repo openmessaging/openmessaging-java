@@ -49,6 +49,6 @@ public interface ServiceLifecycle {
      * Used for get service current state, for execution of some operations is dependent on the current service state.
      * @return This service current state {@link ServiceLifeState}
      */
-    ServiceLifeState getServiceLifeState();
+    ServiceLifeState currentState();
 
 }

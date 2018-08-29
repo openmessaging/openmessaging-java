@@ -17,7 +17,6 @@
 
 package io.openmessaging.consumer;
 
-import io.openmessaging.KeyValue;
 import io.openmessaging.Message;
 import io.openmessaging.exception.OMSRuntimeException;
 

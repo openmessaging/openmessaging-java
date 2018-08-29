@@ -29,7 +29,7 @@ public interface SendResult extends Result {
     /**
      * The unique message id related to the {@code SendResult} instance.
      *
-     * @return the message id
+     * @return the message id.
      */
     String messageId();
 }

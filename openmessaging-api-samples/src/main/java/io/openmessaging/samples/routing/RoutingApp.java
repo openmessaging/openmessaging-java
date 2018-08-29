@@ -22,12 +22,11 @@ import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.MessageListener;
-import io.openmessaging.exception.OMSResourceNotExistException;
 import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.producer.Producer;
 
 public class RoutingApp {
-    public static void main(String[] args) throws OMSResourceNotExistException {
+    public static void main(String[] args)  {
         //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");

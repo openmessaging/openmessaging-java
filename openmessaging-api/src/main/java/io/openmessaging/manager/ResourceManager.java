@@ -44,14 +44,14 @@ public interface ResourceManager {
      * A namespace wraps the OMS resources in an abstract concept that makes it appear to the users within the namespace
      * that they have their own isolated instance of the global OMS resources.
      *
-     * @param nsName the name of the new namespace
+     * @param nsName the name of the new namespace.
      */
     Result createNamespace(String nsName);
 
     /**
      * Deletes an existing namespace resource.
      *
-     * @param nsName the namespace needs to be deleted
+     * @param nsName the namespace needs to be deleted.
      * @return {@link Result#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
      */
     Result deleteNamespace(String nsName);
@@ -59,7 +59,7 @@ public interface ResourceManager {
     /**
      * Gets the namespace list in the current {@code MessagingAccessPoint}.
      *
-     * @return the list of all namespaces
+     * @return the list of all namespaces.
      */
     List<String> listNamespaces();
 
@@ -70,56 +70,25 @@ public interface ResourceManager {
      * <p>
      * {@literal <namespace_name>://<queue_name>}
      *
-     * @param queueName the name of the new queue
-     * @return {@link Result#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
+     * @param queueName the name of the new queue.
+     * @return {@link Result#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist.
      */
     Result createQueue(String queueName);
 
     /**
-     * Creates a {@code Queue} resource in the configured namespace with some preset attributes.
-     * <p>
-     * The standard OMS {@code Queue} schema must start with the {@code Namespace} prefix:
-     * <p>
-     * {@literal <namespace_name>://<queue_name>}
-     *
-     * @param queueName the name of the new queue
-     * @param queueConfig the preset config
-     * @return {@link Result#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
-     */
-    Result createQueue(String queueName, QueueConfig queueConfig);
-
-    /**
-     * Sets the attributes of the specified queue, the old attributes will be replaced by the provided attributes, only
-     * the provided key will be updated.
-     *
-     * @param queueName the queue name
-     * @param queueConfig the new attributes
-     * @return {@link Result#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
-     */
-    Result setQueueConfig(String queueName, QueueConfig queueConfig);
-
-    /**
-     * Gets the attributes of the specified queue.
-     *
-     * @param queueName the queue name
-     * @return {@link Result#getError()} will return {@link Error#ERROR_403} if the specific queue does not exist
-     */
-    QueueConfig getQueueConfig(String queueName);
-
-    /**
      * Deletes an existing queue resource.
      *
-     * @param queueName the queue needs to be deleted
-     * @return {@link Result#getError()} will return {@link Error#ERROR_403} if the specific queue does not exist
+     * @param queueName the queue needs to be deleted.
+     * @return {@link Result#getError()} will return {@link Error#ERROR_403} if the specific queue does not exist.
      */
     Result deleteQueue(String queueName);
 
     /**
      * Gets the queue list in the specific namespace.
      *
-     * @param nsName the specific namespace
-     * @return the list of all queues, {@link Result#getError()}  will return {@link Error#ERROR_402} if the specific
-     * namespace does not exist
+     * @param nsName the specific namespace.
+     * @return the list of all queues, {@link Result#getError()}  will return {@link Error#ERROR_402} if the specific.
+     * namespace does not exist.
      */
     ListQueueResult listQueues(String nsName);
 
@@ -127,8 +96,8 @@ public interface ResourceManager {
      * Duplicate current queue to target queue, to After the current queue receives the message, it will be copied to
      * the target queue.
      *
-     * @param sourceQueueName original queue, user can send message to this queue
-     * @param targetQueueName target queue, only receives message from original queue
+     * @param sourceQueueName original queue, user can send message to this queue.
+     * @param targetQueueName target queue, only receives message from original queue.
      * @return
      */
     Result duplicate(String sourceQueueName, String targetQueueName);
@@ -137,7 +106,7 @@ public interface ResourceManager {
      * In order to enable consumers to get the message in the specified mode, OpenMessaging recommend  use SQL
      * expression to filter out messages.
      *
-     * @param queueName queue name
+     * @param queueName queue name.
      * @param filterString SQL expression to filter out messages.
      * @return
      */
@@ -147,18 +116,10 @@ public interface ResourceManager {
      * Deduplicate current  queue from sourceQueue, after this operation, <code>targetQueue</code>  will no longer
      * receive messages sent to the source queue.
      *
-     * @param sourceQueue source queue, process messages received from producer and duplicate those to target queue
+     * @param sourceQueue source queue, process messages received from producer and duplicate those to target queue.
      * @param targetQueue receive messages from source queue.
      * @return
      */
     Result deDuplicate(String sourceQueue, String targetQueue);
-
-    /**
-     * Gets the stream list behind the specified queue.
-     *
-     * @param queueName the queue name
-     * @return {@link Result#getError()} will return {@link Error#ERROR_403} if the specific namespace does not exist
-     */
-    ListStreamResult listStreams(String queueName);
 
 }

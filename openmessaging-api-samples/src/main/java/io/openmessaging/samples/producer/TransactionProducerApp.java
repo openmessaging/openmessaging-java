@@ -20,8 +20,8 @@ package io.openmessaging.samples.producer;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
-import io.openmessaging.producer.CheckListener;
 import io.openmessaging.producer.Producer;
+import io.openmessaging.producer.TransactionStateCheckListener;
 import io.openmessaging.producer.TransactionalResult;
 import java.nio.charset.Charset;
 
@@ -30,7 +30,11 @@ public class TransactionProducerApp {
         final MessagingAccessPoint messagingAccessPoint =
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
 
-        final Producer producer = messagingAccessPoint.createProducer();
+        final Producer producer = messagingAccessPoint.createProducer(new TransactionStateCheckListener() {
+            @Override public void check(Message message, TransactionalContext context) {
+
+            }
+        });
         producer.startup();
 
         //Register a shutdown hook to close the opened endpoints.
@@ -45,14 +49,10 @@ public class TransactionProducerApp {
             "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
 
         //Sends a transaction message to the specified destination synchronously.
-        producer.register(new CheckListener() {
-            @Override public void check(Message message, TransactionalContext context) {
-                context.commit();
-            }
-        });
         TransactionalResult result = producer.prepare(message);
         executeLocalTransaction(result);
         result.commit();
+        producer.shutdown();
         System.out.println("Send transaction message OK, message id is: " + result.messageId());
     }
 

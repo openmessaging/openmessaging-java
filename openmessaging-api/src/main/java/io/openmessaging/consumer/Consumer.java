@@ -20,9 +20,11 @@ package io.openmessaging.consumer;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.ServiceLifecycle;
-import io.openmessaging.common.Error;
 import io.openmessaging.common.Result;
+import io.openmessaging.exception.OMSDestinationException;
 import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.exception.OMSSecurityException;
+import io.openmessaging.exception.OMSTimeOutException;
 import io.openmessaging.interceptor.ConsumerInterceptor;
 
 /**
@@ -30,7 +32,7 @@ import io.openmessaging.interceptor.ConsumerInterceptor;
  * PushConsumer} client.
  *
  * @version OMS 1.0.0
- * @see MessagingAccessPoint#createConsumer()
+ * @see MessagingAccessPoint#createConsumer().
  * @since OMS 1.0.0
  */
 public interface Consumer extends ServiceLifecycle {
@@ -69,27 +71,31 @@ public interface Consumer extends ServiceLifecycle {
      * suspend, and the consumer will be suspended until it is resumed if the timeout is zero.
      *
      * @param timeout the maximum time to suspend in milliseconds.
+     * @throws OMSRuntimeException if the instance is not currently running.
      */
     void suspend(long timeout);
 
     /**
      * This method is used to find out whether the {@code Consumer} in push model is suspended.
      *
-     * @return true if this {@code Consumer} is suspended, false otherwise
+     * @return true if this {@code Consumer} is suspended, false otherwise.
      */
     boolean isSuspended();
 
     /**
      * Bind the {@code Consumer} to a specified queue in pull model, user can use {@link Consumer#receive(long)} to get
-     * message from bind queue
+     * message from bind queue.
      * <p>
      * {@link MessageListener#onReceived(Message, MessageListener.Context)} will be called when new delivered message is
      * coming.
      *
-     * @param queueName a specified queue
-     * @return this {@code Consumer} instance
+     * @param queueName a specified queue.
+     * @return Bind result.
+     * @throws OMSSecurityException when have no authority to bind to this queue.
+     * @throws OMSDestinationException when have no given destination in the server.
+     * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    BindResult bindQueue(String queueName);
+    Result bindQueue(String queueName);
 
     /**
      * Bind the {@code Consumer} to a specified queue, with a {@code MessageListener}.
@@ -97,33 +103,36 @@ public interface Consumer extends ServiceLifecycle {
      * {@link MessageListener#onReceived(Message, MessageListener.Context)} will be called when new delivered message is
      * coming.
      *
-     * @param queueName a specified queue
-     * @param listener a specified listener to receive new message
-     * @return this {@code Consumer} instance
+     * @param queueName a specified queue.
+     * @param listener a specified listener to receive new message.
+     * @return Bind result.
+     * @throws OMSSecurityException when have no authority to bind to this queue.
+     * @throws OMSDestinationException when have no given destination in the server.
+     * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    BindResult bindQueue(String queueName, MessageListener listener);
+    Result bindQueue(String queueName, MessageListener listener);
 
     /**
      * Unbind the {@code Consumer} from a specified queue.
      * <p>
      * After the success call, this consumer won't receive new message from the specified queue any more.
      *
-     * @param queueName a specified queue
-     * @return this {@code Consumer} instance
+     * @param queueName a specified queue.
+     * @return Bind result.
      */
-    BindResult unbindQueue(String queueName);
+    Result unbindQueue(String queueName);
 
     /**
      * Adds a {@code ConsumerInterceptor} instance to this consumer.
      *
-     * @param interceptor an interceptor instance
+     * @param interceptor an interceptor instance.
      */
     void addInterceptor(ConsumerInterceptor interceptor);
 
     /**
      * Removes an interceptor from this consumer.
      *
-     * @param interceptor an interceptor to be removed
+     * @param interceptor an interceptor to be removed.
      */
     void removeInterceptor(ConsumerInterceptor interceptor);
 
@@ -134,9 +143,10 @@ public interface Consumer extends ServiceLifecycle {
      * is shut down.
      *
      * @param timeout receive message will blocked at most <code>timeout</code> milliseconds
-     * @return the next message received from the bind queues, or null if the consumer is concurrently shut down,if this
-     * operation is expire, {@link Result#getError()} will return {@link Error#ERROR_408} error
-     * code
+     * @return the next message received from the bind queues, or null if the consumer is concurrently shut down.
+     * @throws OMSSecurityException when have no authority to receive messages from this queue.
+     * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
+     * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
     ReceiveResult receive(long timeout);
 
@@ -146,7 +156,7 @@ public interface Consumer extends ServiceLifecycle {
      * <p>
      * Messages that have been received but not acknowledged may be redelivered.
      *
-     * @param receiptHandle the receipt handle associated with the consumed message
+     * @param receiptHandle the receipt handle associated with the consumed message.
      */
     void ack(String receiptHandle);
 }

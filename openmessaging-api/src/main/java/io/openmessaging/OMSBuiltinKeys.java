@@ -47,16 +47,6 @@ public interface OMSBuiltinKeys {
     String REGION = "REGION";
 
     /**
-     * The {@code PRODUCER_ID} key represents the the unique producer id of a producer instance.
-     */
-    String PRODUCER_ID = "PRODUCER_ID";
-
-    /**
-     * The {@code CONSUMER_ID} key represents the the unique consumer id of a consumer instance.
-     */
-    String CONSUMER_ID = "CONSUMER_ID";
-
-    /**
      * The {@code OPERATION_TIMEOUT} key defines the timeout of almost all the method calls in OMS.
      */
     String OPERATION_TIMEOUT = "OPERATION_TIMEOUT";

@@ -28,21 +28,20 @@ import java.lang.reflect.Constructor;
 import static io.openmessaging.internal.InternalErrorCode.generateInternalException;
 
 /**
- * The {@code MessagingAccessPointAdapter} provides a common implementation to
- * create a specified {@code MessagingAccessPoint} instance, used by OMS internally.
+ * The {@code MessagingAccessPointAdapter} provides a common implementation to create a specified {@code
+ * MessagingAccessPoint} instance, used by OMS internally.
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
 public class MessagingAccessPointAdapter {
     /**
-     * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver URL
-     * with some preset userHeaders.
+     * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver URL with some preset userHeaders.
      *
-     * @param url the driver URL
-     * @param attributes the preset userHeaders
-     * @return a {@code MessagingAccessPoint} instance
-     * @throws OMSRuntimeException if the adapter fails to create a {@code MessagingAccessPoint} instance from the URL
+     * @param url the driver URL.
+     * @param attributes the preset userHeaders.
+     * @return a {@code MessagingAccessPoint} instance.
+     * @throws OMSRuntimeException if the adapter fails to create a {@code MessagingAccessPoint} instance from the URL.
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue attributes) {
         AccessPointURI accessPointURI = new AccessPointURI(url);

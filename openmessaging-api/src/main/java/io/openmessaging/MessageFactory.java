@@ -17,6 +17,8 @@
 
 package io.openmessaging;
 
+import io.openmessaging.exception.OMSMessageFormatException;
+
 /**
  * A factory interface for creating {@code Message} objects.
  *
@@ -31,6 +33,8 @@ public interface MessageFactory {
      * @param queueName the target queue to send
      * @param body the body data for a message
      * @return the created {@code Message} object
+     * @throws OMSMessageFormatException when body exceed the maximum length or others.
+     *
      */
     Message createMessage(String queueName, byte[] body);
 }

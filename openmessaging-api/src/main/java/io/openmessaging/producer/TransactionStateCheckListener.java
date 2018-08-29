@@ -12,18 +12,18 @@ import io.openmessaging.Message;
  *
  * <p>
  * If the executor doesn't submit the transaction status for a long time, the server may lookup it forwardly through
- * {@link CheckListener#check(Message, TransactionalContext)}
+ * {@link TransactionStateCheckListener#check(Message, TransactionalContext)}
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
-public interface CheckListener {
+public interface TransactionStateCheckListener {
 
     /**
      * Checks the status of the local transaction branch.
      *
-     * @param message the associated message
-     * @param context the check context
+     * @param message the associated message.
+     * @param context the check context.
      */
     void check(Message message, TransactionalContext context);
 

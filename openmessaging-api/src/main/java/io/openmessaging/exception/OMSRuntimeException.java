@@ -32,9 +32,10 @@ package io.openmessaging.exception;
 public class OMSRuntimeException extends RuntimeException {
 
     /**
-     * Vendor-specific error code.
+     * Vendor-specific error code
+     * @see Error
      **/
-    private final String errorCode;
+    private final int errorCode;
 
     /**
      * Constructs a {@code OMSRuntimeException} with the specified detail message
@@ -43,7 +44,7 @@ public class OMSRuntimeException extends RuntimeException {
      * @param errorCode a specified error code
      * @param message a description of the exception
      **/
-    public OMSRuntimeException(String errorCode, String message) {
+    public OMSRuntimeException(int errorCode, String message) {
         super(message);
         this.errorCode = errorCode;
     }
@@ -54,7 +55,7 @@ public class OMSRuntimeException extends RuntimeException {
      * @param errorCode a specified error code
      * @param cause the underlying cause of this exception
      */
-    public OMSRuntimeException(String errorCode, Throwable cause) {
+    public OMSRuntimeException(int errorCode, Throwable cause) {
         super(cause);
         this.errorCode = errorCode;
     }
@@ -67,7 +68,7 @@ public class OMSRuntimeException extends RuntimeException {
      * @param message a description of the exception
      * @param cause the underlying cause of this exception
      */
-    public OMSRuntimeException(String errorCode, String message, Throwable cause) {
+    public OMSRuntimeException(int errorCode, String message, Throwable cause) {
         super(message, cause);
         this.errorCode = errorCode;
     }
@@ -77,7 +78,7 @@ public class OMSRuntimeException extends RuntimeException {
      *
      * @return the error code
      */
-    public String getErrorCode() {
+    public int getErrorCode() {
         return errorCode;
     }
 }

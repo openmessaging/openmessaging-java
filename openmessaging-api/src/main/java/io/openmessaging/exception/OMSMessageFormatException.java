@@ -18,31 +18,31 @@
 package io.openmessaging.exception;
 
 /**
- * The {@code OMSMessageFormatException} must be thrown when the provided message
- * is not supported or the attributes are the wrong type.
+ * The {@code OMSMessageFormatException} must be thrown when the provided message is not supported or the attributes are
+ * the wrong type.
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
 public class OMSMessageFormatException extends OMSRuntimeException {
     /**
-     * @see OMSRuntimeException#OMSRuntimeException(String, String)
+     * @see OMSRuntimeException#OMSRuntimeException(int, String)
      */
-    public OMSMessageFormatException(String errorCode, String message) {
+    public OMSMessageFormatException(int errorCode, String message) {
         super(errorCode, message);
     }
 
     /**
-     * @see OMSRuntimeException#OMSRuntimeException(String, Throwable)
+     * @see OMSRuntimeException#OMSRuntimeException(int, Throwable)
      */
-    public OMSMessageFormatException(String errorCode, Throwable cause) {
+    public OMSMessageFormatException(int errorCode, Throwable cause) {
         super(errorCode, cause);
     }
 
     /**
-     * @see OMSRuntimeException#OMSRuntimeException(String, String, Throwable)
+     * @see OMSRuntimeException#OMSRuntimeException(int, String, Throwable)
      */
-    public OMSMessageFormatException(String errorCode, String message, Throwable cause) {
+    public OMSMessageFormatException(int errorCode, String message, Throwable cause) {
         super(errorCode, message, cause);
     }
 }
