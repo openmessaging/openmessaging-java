@@ -25,6 +25,7 @@ import io.openmessaging.common.Error;
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.producer.Producer;
+import io.openmessaging.producer.TransactionStateCheckListener;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,7 +47,9 @@ class TestVendor implements MessagingAccessPoint {
     public TestVendor(KeyValue keyValue) {
     }
 
-
+    @Override public Producer createProducer(TransactionStateCheckListener transactionStateCheckListener) {
+        return null;
+    }
 
     @Override
     public String version() {

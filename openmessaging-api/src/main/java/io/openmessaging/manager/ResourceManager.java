@@ -20,7 +20,6 @@ package io.openmessaging.manager;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.common.Error;
 import io.openmessaging.common.Result;
-import java.util.List;
 
 /**
  * The {@code ResourceManager} is to provide a unified interface of resource management, allowing developers to manage
@@ -61,7 +60,7 @@ public interface ResourceManager {
      *
      * @return the list of all namespaces.
      */
-    List<String> listNamespaces();
+    ListNamespaceResult listNamespaces();
 
     /**
      * Creates a {@code Queue} resource in the configured namespace with some preset attributes.

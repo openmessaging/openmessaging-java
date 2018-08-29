@@ -8,7 +8,7 @@ import java.util.List;
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
-public interface ListNameSpaceResult {
+public interface ListNamespaceResult {
     /**
      * @return all namespaces.
      */
