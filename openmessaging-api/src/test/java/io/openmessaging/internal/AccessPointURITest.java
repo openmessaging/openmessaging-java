@@ -17,7 +17,6 @@
 
 package io.openmessaging.internal;
 
-import io.openmessaging.Message;
 import io.openmessaging.exception.OMSRuntimeException;
 import org.junit.Test;
 
@@ -28,11 +27,10 @@ public class AccessPointURITest {
     private String fullSchemaURI = "oms:rocketmq://alice@rocketmq.apache.org/us-east";
 
     @Test
-    public void testParse_DriverIsIllegal() throws Exception {
+    public void testParse_DriverIsIllegal() {
         String missDriverType = "oms://alice@rocketmq.apache.org/us-east";
-        AccessPointURI accessPointURI = null;
         try {
-            accessPointURI = new AccessPointURI(missDriverType);
+            new AccessPointURI(missDriverType);
             failBecauseExceptionWasNotThrown(OMSRuntimeException.class);
         } catch (Exception e) {
             assertThat(e).hasMessageContaining(String.format("The OMS driver URL [%s] is illegal.", missDriverType));
@@ -41,7 +39,7 @@ public class AccessPointURITest {
 
         String missRegion = "oms:rocketmq://alice@rocketmq.apache.org/";
         try {
-            accessPointURI = new AccessPointURI(missRegion);
+            new AccessPointURI(missRegion);
             failBecauseExceptionWasNotThrown(OMSRuntimeException.class);
         } catch (Exception e) {
             assertThat(e).hasMessageContaining(String.format("The OMS driver URL [%s] is illegal.", missRegion));
@@ -49,25 +47,25 @@ public class AccessPointURITest {
     }
 
     @Test
-    public void testGetAccessPointString() throws Exception {
+    public void testGetAccessPointString() {
         AccessPointURI accessPointURI = new AccessPointURI(fullSchemaURI);
         assertThat(accessPointURI.getAccessPointString()).isEqualTo(fullSchemaURI);
     }
 
     @Test
-    public void testGetDriverType() throws Exception {
+    public void testGetDriverType() {
         AccessPointURI accessPointURI = new AccessPointURI(fullSchemaURI);
         assertThat(accessPointURI.getDriverType()).isEqualTo("rocketmq");
     }
 
     @Test
-    public void testGetAccountId() throws Exception {
+    public void testGetAccountId() {
         AccessPointURI accessPointURI = new AccessPointURI(fullSchemaURI);
         assertThat(accessPointURI.getAccountId()).isEqualTo("alice");
     }
 
     @Test
-    public void testGetHosts() throws Exception {
+    public void testGetHosts() {
         AccessPointURI accessPointURI = new AccessPointURI(fullSchemaURI);
         assertThat(accessPointURI.getHosts()).isEqualTo("rocketmq.apache.org");
 
@@ -77,7 +75,7 @@ public class AccessPointURITest {
     }
 
     @Test
-    public void testGetRegion() throws Exception {
+    public void testGetRegion() {
         AccessPointURI accessPointURI = new AccessPointURI(fullSchemaURI);
 
         assertThat(accessPointURI.getRegion()).isEqualTo("us-east");

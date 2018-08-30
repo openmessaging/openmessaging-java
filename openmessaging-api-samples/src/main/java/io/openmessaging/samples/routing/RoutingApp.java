@@ -41,14 +41,15 @@ public class RoutingApp {
         //Create the source queue.
         resourceManager.createQueue(sourceQueue);
 
-        resourceManager.deDuplicate(sourceQueue, destinationQueue);
+        resourceManager.routing(sourceQueue, destinationQueue);
+        resourceManager.filter(destinationQueue,"name = 'kaka'");
 
         //Send messages to the source queue ahead of the routing
         final Producer producer = messagingAccessPoint.createProducer();
         producer.startup();
 
         Message message = producer.createMessage(sourceQueue, "RED_COLOR".getBytes());
-        message.properties().put("color", "freen").put("shape", "round");
+        message.properties().put("color", "green").put("shape", "round");
 
         producer.send(message);
 

@@ -92,16 +92,6 @@ public interface ResourceManager {
     ListQueueResult listQueues(String nsName);
 
     /**
-     * Duplicate current queue to target queue, to After the current queue receives the message, it will be copied to
-     * the target queue.
-     *
-     * @param sourceQueueName original queue, user can send message to this queue.
-     * @param targetQueueName target queue, only receives message from original queue.
-     * @return
-     */
-    Result duplicate(String sourceQueueName, String targetQueueName);
-
-    /**
      * In order to enable consumers to get the message in the specified mode, OpenMessaging recommend  use SQL
      * expression to filter out messages.
      *
@@ -112,13 +102,12 @@ public interface ResourceManager {
     Result filter(String queueName, String filterString);
 
     /**
-     * Deduplicate current  queue from sourceQueue, after this operation, <code>targetQueue</code>  will no longer
-     * receive messages sent to the source queue.
+     * Routing from sourceQueue to targetQueue. Both queues are could be received messages after creating route action.
      *
      * @param sourceQueue source queue, process messages received from producer and duplicate those to target queue.
      * @param targetQueue receive messages from source queue.
      * @return
      */
-    Result deDuplicate(String sourceQueue, String targetQueue);
+    Result routing(String sourceQueue, String targetQueue);
 
 }
