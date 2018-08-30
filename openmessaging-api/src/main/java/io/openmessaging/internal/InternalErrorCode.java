@@ -28,7 +28,7 @@ public enum InternalErrorCode {
     IMPL_VERSION_ILLEGAL(10002, "The implementation version [%s] is illegal."),
     SPEC_IMPL_VERSION_MISMATCH(10003, "The implementation version [%s] isn't compatible with the specification version [%s].");
 
-    String refBase = "http://openmessaging.cloud/internal/error-code";
+    String refBase = "http://openmessaging.cloud/internal/code";
     String message;
     int errorCode;
 
