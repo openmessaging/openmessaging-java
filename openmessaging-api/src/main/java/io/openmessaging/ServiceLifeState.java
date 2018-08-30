@@ -9,22 +9,22 @@ package io.openmessaging;
 public enum ServiceLifeState {
 
     /**
-     * Service just created
+     * Service has been initialized.
      */
-    CREATED,
+    INITIALIZED,
 
     /**
-     * Service in starting
+     * Service in starting.
      */
     STARTING,
 
     /**
-     * Service in running
+     * Service in running.
      */
-    RUNNING,
+    STARTED,
 
     /**
-     * Service has been shutdown
+     * Service has been shutdown.
      */
-    SHUTDOWN,
+    STOPED,
 }

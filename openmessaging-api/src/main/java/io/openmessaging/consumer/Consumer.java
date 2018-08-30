@@ -142,7 +142,7 @@ public interface Consumer extends ServiceLifecycle {
      * This call blocks indefinitely until a message is arrives, the timeout expires, or until this {@code PullConsumer}
      * is shut down.
      *
-     * @param timeout receive message will blocked at most <code>timeout</code> milliseconds
+     * @param timeout receive message will blocked at most <code>timeout</code> milliseconds.
      * @return the next message received from the bind queues, or null if the consumer is concurrently shut down.
      * @throws OMSSecurityException when have no authority to receive messages from this queue.
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.

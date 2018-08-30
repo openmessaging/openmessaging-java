@@ -33,8 +33,8 @@ public interface MessageListener {
      * <p>
      * A message listener should handle different types of {@code Message}.
      *
-     * @param message the received message object
-     * @param context the context delivered to the consume thread
+     * @param message the received message object.
+     * @param context the context delivered to the consume thread.
      */
     void onReceived(Message message, Context context);
 

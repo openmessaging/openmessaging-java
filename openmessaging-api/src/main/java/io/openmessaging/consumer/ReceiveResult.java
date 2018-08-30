@@ -11,7 +11,7 @@ import io.openmessaging.common.Result;
  */
 public interface ReceiveResult extends Result {
     /**
-     * Received message from bind queue in pull model
+     * Received message from bind queue in pull model.
      *
      * @return {@link Message} received message
      */
