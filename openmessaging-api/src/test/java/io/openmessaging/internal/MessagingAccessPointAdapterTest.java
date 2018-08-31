@@ -21,7 +21,6 @@ import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.common.Error;
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.producer.Producer;
@@ -74,17 +73,5 @@ class TestVendor implements MessagingAccessPoint {
     @Override
     public ResourceManager resourceManager() {
         return null;
-    }
-
-    @Override public Error getError() {
-        return null;
-    }
-
-    @Override public void setError(Error error) {
-
-    }
-
-    @Override public boolean isSuccess() {
-        return false;
     }
 }

@@ -17,7 +17,6 @@
 
 package io.openmessaging;
 
-import io.openmessaging.common.Result;
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.MessageListener;
 import io.openmessaging.exception.OMSRuntimeException;
@@ -42,7 +41,7 @@ import io.openmessaging.producer.TransactionStateCheckListener;
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
-public interface MessagingAccessPoint extends Result {
+public interface MessagingAccessPoint {
 
     /**
      * Returns the target OMS specification version of the specified vendor implementation.

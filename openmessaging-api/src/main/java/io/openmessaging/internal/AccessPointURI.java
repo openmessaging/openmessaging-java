@@ -17,7 +17,9 @@
 
 package io.openmessaging.internal;
 
-import static io.openmessaging.internal.InternalErrorCode.generateInternalException;
+import io.openmessaging.Error;
+
+import static io.openmessaging.Error.generateException;
 
 /**
  * Represents a <a href="https://github.com/openmessaging/specification/blob/master/oms_access_point_schema.md">AccessPoint String</a>.
@@ -93,7 +95,7 @@ public class AccessPointURI {
 
     private void validateAccessPointString(String accessPointString) {
         if (!accessPointString.matches(PATTERN)) {
-            throw generateInternalException(InternalErrorCode.OMS_DRIVER_URL_ILLEGAL, accessPointString);
+            throw generateException(Error.ERROR_10001, accessPointString);
         }
     }
 }

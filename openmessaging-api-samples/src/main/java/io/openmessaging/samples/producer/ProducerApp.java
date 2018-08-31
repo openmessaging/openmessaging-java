@@ -35,7 +35,7 @@ public class ProducerApp {
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
 
         final Producer producer = messagingAccessPoint.createProducer();
-        producer.startup();
+        producer.start();
         ProducerInterceptor interceptor = new ProducerInterceptor() {
             @Override
             public void preSend(Message message, Context attributes) {
@@ -51,7 +51,7 @@ public class ProducerApp {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                producer.shutdown();
+                producer.stop();
             }
         }));
 
@@ -59,19 +59,13 @@ public class ProducerApp {
         Message message = producer.createMessage(
             "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
         SendResult sendResult = producer.send(message);
-
-        if (sendResult.isSuccess()) {
-            System.out.println("Send sync message OK, message id is: " + sendResult.messageId());
-        } else {
-            System.out.println("Error: " + sendResult.getError().getErrorCode() + " error message: " + sendResult.getError().getErrorMessage());
-        }
+        System.out.println("SendResult: " + sendResult);
 
         //Sends a message to the specified destination async.
         Future<SendResult> sendResultFuture = producer.sendAsync(message);
         sendResult = sendResultFuture.get(1000);
-        if (sendResult.isSuccess()) {
-            System.out.println("Send message async: " + sendResult);
-        }
+        System.out.println("SendResult: " + sendResult);
+
         //Sends a message to the specified destination in one way mode.
         producer.sendOneway(message);
 
@@ -83,6 +77,6 @@ public class ProducerApp {
         }
         producer.send(messages);
         producer.removeInterceptor(interceptor);
-        producer.shutdown();
+        producer.stop();
     }
 }

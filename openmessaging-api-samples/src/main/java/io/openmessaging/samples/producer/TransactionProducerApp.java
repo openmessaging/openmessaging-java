@@ -35,13 +35,13 @@ public class TransactionProducerApp {
 
             }
         });
-        producer.startup();
+        producer.start();
 
         //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                producer.shutdown();
+                producer.stop();
             }
         }));
 
@@ -52,7 +52,7 @@ public class TransactionProducerApp {
         TransactionalResult result = producer.prepare(message);
         executeLocalTransaction(result);
         result.commit();
-        producer.shutdown();
+        producer.stop();
         System.out.println("Send transaction message OK, message id is: " + result.messageId());
     }
 

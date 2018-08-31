@@ -18,8 +18,11 @@
 package io.openmessaging.manager;
 
 import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.common.Error;
-import io.openmessaging.common.Result;
+import io.openmessaging.exception.OMSDestinationException;
+import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.exception.OMSSecurityException;
+import io.openmessaging.exception.OMSTimeOutException;
+import java.util.List;
 
 /**
  * The {@code ResourceManager} is to provide a unified interface of resource management, allowing developers to manage
@@ -44,23 +47,38 @@ public interface ResourceManager {
      * that they have their own isolated instance of the global OMS resources.
      *
      * @param nsName the name of the new namespace.
+     * @return create message result
+     * @throws OMSSecurityException when have no authority to create namespace.
+     * @throws OMSTimeOutException when the given timeout elapses before the create operation completes.
+     * @throws OMSDestinationException when this given destination has been created in the server.
+     * @throws OMSRuntimeException when the {@code ResourceManager} fails to create namespace due to some internal
+     * error.
      */
-    Result createNamespace(String nsName);
+    void createNamespace(String nsName);
 
     /**
      * Deletes an existing namespace resource.
      *
      * @param nsName the namespace needs to be deleted.
-     * @return {@link Result#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist
+     * @return delete namespace result
+     * @throws OMSSecurityException when have no authority to delete this namespace.
+     * @throws OMSTimeOutException when the given timeout elapses before the delete operation completes.
+     * @throws OMSDestinationException when have no given destination in the server.
+     * @throws OMSRuntimeException when the {@code ResourceManager} fails to delete the namespace due to some internal
+     * error.
      */
-    Result deleteNamespace(String nsName);
+    void deleteNamespace(String nsName);
 
     /**
      * Gets the namespace list in the current {@code MessagingAccessPoint}.
      *
      * @return the list of all namespaces.
+     * @throws OMSSecurityException when have no authority to delete this namespace.
+     * @throws OMSTimeOutException when the given timeout elapses before the list operation completes.
+     * @throws OMSRuntimeException when the {@code ResourceManager} fails to list the namespace due to some internal
+     * error.
      */
-    ListNamespaceResult listNamespaces();
+    List<String> listNamespaces();
 
     /**
      * Creates a {@code Queue} resource in the configured namespace with some preset attributes.
@@ -70,44 +88,62 @@ public interface ResourceManager {
      * {@literal <namespace_name>://<queue_name>}
      *
      * @param queueName the name of the new queue.
-     * @return {@link Result#getError()} will return {@link Error#ERROR_402} if the specific namespace does not exist.
+     * @throws OMSSecurityException when have no authority to create this queue.
+     * @throws OMSTimeOutException when the given timeout elapses before the create operation completes.
+     * @throws OMSDestinationException when the given destination has been created in the server.
+     * @throws OMSRuntimeException when the {@code ResourceManager} fails to delete the namespace due to some internal
+     * error.
      */
-    Result createQueue(String queueName);
+    void createQueue(String queueName);
 
     /**
      * Deletes an existing queue resource.
      *
      * @param queueName the queue needs to be deleted.
-     * @return {@link Result#getError()} will return {@link Error#ERROR_403} if the specific queue does not exist.
+     * @return delete queue result.
+     * @throws OMSSecurityException when have no authority to delete this namespace.
+     * @throws OMSTimeOutException when the given timeout elapses before the delete operation completes.
+     * @throws OMSDestinationException when have no given destination in the server.
+     * @throws OMSRuntimeException when the {@code ResourceManager} fails to delete the namespace due to some internal
+     * error.
      */
-    Result deleteQueue(String queueName);
+    void deleteQueue(String queueName);
 
     /**
      * Gets the queue list in the specific namespace.
      *
      * @param nsName the specific namespace.
-     * @return the list of all queues, {@link Result#getError()}  will return {@link Error#ERROR_402} if the specific.
-     * namespace does not exist.
+     * @return all queues exists in the namespace.
+     * @throws OMSSecurityException when have no authority to delete this namespace.
+     * @throws OMSTimeOutException when the given timeout elapses before the list operation completes.
+     * @throws OMSRuntimeException when the {@code ResourceManager} fails to list the namespace due to some internal
+     * error.
      */
-    ListQueueResult listQueues(String nsName);
+    List<String> listQueues(String nsName);
 
     /**
-     * In order to enable consumers to get the message in the specified mode, OpenMessaging recommend  use SQL
-     * expression to filter out messages.
+     * In order to enable consumers to get the message in the specified mode, the filter rule follows the sql standard
+     * to filter out messages.
      *
      * @param queueName queue name.
      * @param filterString SQL expression to filter out messages.
-     * @return
+     * @throws OMSSecurityException when have no authority to add this filter.
+     * @throws OMSTimeOutException when the given timeout elapses before the add filter operation completes.
+     * @throws OMSRuntimeException when the {@code ResourceManager} fails to add a new filter due to some internal
+     * error.
      */
-    Result filter(String queueName, String filterString);
+    void filter(String queueName, String filterString);
 
     /**
      * Routing from sourceQueue to targetQueue. Both queues are could be received messages after creating route action.
      *
      * @param sourceQueue source queue, process messages received from producer and duplicate those to target queue.
      * @param targetQueue receive messages from source queue.
-     * @return
+     * @throws OMSSecurityException when have no authority to add this routing.
+     * @throws OMSTimeOutException when the given timeout elapses before the routing operation completes.
+     * @throws OMSRuntimeException when the {@code ResourceManager} fails to add a new routing due to some internal
+     * error.
      */
-    Result routing(String sourceQueue, String targetQueue);
+    void routing(String sourceQueue, String targetQueue);
 
 }

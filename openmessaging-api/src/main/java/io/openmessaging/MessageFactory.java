@@ -22,11 +22,13 @@ import io.openmessaging.exception.OMSMessageFormatException;
 /**
  * A factory interface for creating {@code Message} objects.
  *
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface MessageFactory {
     /**
-     * Creates a {@code Message} object. A {@code Message} object is used to send a message containing a
-     * stream of uninterpreted bytes.
+     * Creates a {@code Message} object. A {@code Message} object is used to send a message containing a stream of
+     * uninterpreted bytes.
      * <p>
      * The returned {@code Message} object only can be sent to the specified queue.
      *
@@ -34,7 +36,6 @@ public interface MessageFactory {
      * @param body the body data for a message
      * @return the created {@code Message} object
      * @throws OMSMessageFormatException when body exceed the maximum length or others.
-     *
      */
     Message createMessage(String queueName, byte[] body);
 }

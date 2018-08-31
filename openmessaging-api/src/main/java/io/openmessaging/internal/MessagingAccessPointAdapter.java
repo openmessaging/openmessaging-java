@@ -21,11 +21,11 @@ import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.common.Error;
+import io.openmessaging.Error;
 import io.openmessaging.exception.OMSRuntimeException;
 import java.lang.reflect.Constructor;
 
-import static io.openmessaging.internal.InternalErrorCode.generateInternalException;
+import static io.openmessaging.Error.generateException;
 
 /**
  * The {@code MessagingAccessPointAdapter} provides a common implementation to create a specified {@code
@@ -57,10 +57,9 @@ public class MessagingAccessPointAdapter {
             Constructor constructor = driverImplClass.getConstructor(KeyValue.class);
             MessagingAccessPoint vendorImpl = (MessagingAccessPoint) constructor.newInstance(attributes);
             checkSpecVersion(OMS.specVersion, vendorImpl.version());
-            vendorImpl.setError(Error.ERROR_200);
             return vendorImpl;
         } catch (Throwable e) {
-            throw generateInternalException(InternalErrorCode.OMS_DRIVER_UNAVAILABLE, url);
+            throw generateException(Error.ERROR_10000, url);
         }
     }
 
@@ -77,10 +76,10 @@ public class MessagingAccessPointAdapter {
         try {
             majorVerOfImpl = implVersion.substring(0, implVersion.indexOf('.', implVersion.indexOf('.') + 1));
         } catch (Throwable e) {
-            throw generateInternalException(InternalErrorCode.IMPL_VERSION_ILLEGAL, implVersion);
+            throw generateException(Error.ERROR_10002, implVersion);
         }
         if (!majorVerOfSpec.equals(majorVerOfImpl)) {
-            throw generateInternalException(InternalErrorCode.SPEC_IMPL_VERSION_MISMATCH, implVersion, specVersion);
+            throw generateException(Error.ERROR_10003, implVersion, specVersion);
         }
     }
 }

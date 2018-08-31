@@ -20,7 +20,6 @@ package io.openmessaging.consumer;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.ServiceLifecycle;
-import io.openmessaging.common.Result;
 import io.openmessaging.exception.OMSDestinationException;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
@@ -90,12 +89,11 @@ public interface Consumer extends ServiceLifecycle {
      * coming.
      *
      * @param queueName a specified queue.
-     * @return Bind result.
      * @throws OMSSecurityException when have no authority to bind to this queue.
      * @throws OMSDestinationException when have no given destination in the server.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    Result bindQueue(String queueName);
+    void bindQueue(String queueName);
 
     /**
      * Bind the {@code Consumer} to a specified queue, with a {@code MessageListener}.
@@ -105,12 +103,11 @@ public interface Consumer extends ServiceLifecycle {
      *
      * @param queueName a specified queue.
      * @param listener a specified listener to receive new message.
-     * @return Bind result.
      * @throws OMSSecurityException when have no authority to bind to this queue.
      * @throws OMSDestinationException when have no given destination in the server.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    Result bindQueue(String queueName, MessageListener listener);
+    void bindQueue(String queueName, MessageListener listener);
 
     /**
      * Unbind the {@code Consumer} from a specified queue.
@@ -118,9 +115,8 @@ public interface Consumer extends ServiceLifecycle {
      * After the success call, this consumer won't receive new message from the specified queue any more.
      *
      * @param queueName a specified queue.
-     * @return Bind result.
      */
-    Result unbindQueue(String queueName);
+    void unbindQueue(String queueName);
 
     /**
      * Adds a {@code ConsumerInterceptor} instance to this consumer.
@@ -148,7 +144,7 @@ public interface Consumer extends ServiceLifecycle {
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    ReceiveResult receive(long timeout);
+    Message receive(long timeout);
 
     /**
      * Acknowledges the specified and consumed message with the unique message receipt handle, in the scenario of using
