@@ -22,7 +22,7 @@ import io.openmessaging.exception.OMSDestinationException;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
 import io.openmessaging.exception.OMSTimeOutException;
-import java.util.List;
+import java.util.Set;
 
 /**
  * The {@code ResourceManager} is to provide a unified interface of resource management, allowing developers to manage
@@ -47,7 +47,6 @@ public interface ResourceManager {
      * that they have their own isolated instance of the global OMS resources.
      *
      * @param nsName the name of the new namespace.
-     * @return create message result
      * @throws OMSSecurityException when have no authority to create namespace.
      * @throws OMSTimeOutException when the given timeout elapses before the create operation completes.
      * @throws OMSDestinationException when this given destination has been created in the server.
@@ -57,10 +56,9 @@ public interface ResourceManager {
     void createNamespace(String nsName);
 
     /**
-     * Deletes an existing namespace resource.
+     * Deletes an existing namespace.
      *
      * @param nsName the namespace needs to be deleted.
-     * @return delete namespace result
      * @throws OMSSecurityException when have no authority to delete this namespace.
      * @throws OMSTimeOutException when the given timeout elapses before the delete operation completes.
      * @throws OMSDestinationException when have no given destination in the server.
@@ -70,15 +68,27 @@ public interface ResourceManager {
     void deleteNamespace(String nsName);
 
     /**
+     * Switch to an existing namespace.
+     *
+     * @param targetNamespace the namespace needs to be switched.
+     * @throws OMSSecurityException when have no authority to delete this namespace.
+     * @throws OMSTimeOutException when the given timeout elapses before the delete operation completes.
+     * @throws OMSDestinationException when have no given destination in the server.
+     * @throws OMSRuntimeException when the {@code ResourceManager} fails to delete the namespace due to some internal
+     * error.
+     */
+    void switchNamespace(String targetNamespace);
+
+    /**
      * Gets the namespace list in the current {@code MessagingAccessPoint}.
      *
-     * @return the list of all namespaces.
+     * @return the set of all namespaces.
      * @throws OMSSecurityException when have no authority to delete this namespace.
      * @throws OMSTimeOutException when the given timeout elapses before the list operation completes.
      * @throws OMSRuntimeException when the {@code ResourceManager} fails to list the namespace due to some internal
      * error.
      */
-    List<String> listNamespaces();
+    Set<String> listNamespaces();
 
     /**
      * Creates a {@code Queue} resource in the configured namespace with some preset attributes.
@@ -100,7 +110,6 @@ public interface ResourceManager {
      * Deletes an existing queue resource.
      *
      * @param queueName the queue needs to be deleted.
-     * @return delete queue result.
      * @throws OMSSecurityException when have no authority to delete this namespace.
      * @throws OMSTimeOutException when the given timeout elapses before the delete operation completes.
      * @throws OMSDestinationException when have no given destination in the server.
@@ -113,13 +122,13 @@ public interface ResourceManager {
      * Gets the queue list in the specific namespace.
      *
      * @param nsName the specific namespace.
-     * @return all queues exists in the namespace.
+     * @return the set of queues exists in current namespace.
      * @throws OMSSecurityException when have no authority to delete this namespace.
      * @throws OMSTimeOutException when the given timeout elapses before the list operation completes.
      * @throws OMSRuntimeException when the {@code ResourceManager} fails to list the namespace due to some internal
      * error.
      */
-    List<String> listQueues(String nsName);
+    Set<String> listQueues(String nsName);
 
     /**
      * In order to enable consumers to get the message in the specified mode, the filter rule follows the sql standard
