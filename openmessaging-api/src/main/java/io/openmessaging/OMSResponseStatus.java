@@ -88,7 +88,7 @@ public enum OMSResponseStatus {
 
     private String reasonPhrase;
 
-    private String reasonLocation;
+    private String more;
 
     private static final String refBase = "http://openmessaging.cloud/internal/code";
 
@@ -97,15 +97,15 @@ public enum OMSResponseStatus {
 
         this.reasonPhrase = reasonPhrase;
 
-        this.reasonLocation = generateReasonLocation(statusCode, reasonPhrase);
+        this.more = generateReasonLocation(statusCode, reasonPhrase);
     }
 
     public int getStatusCode() {
         return statusCode;
     }
 
-    public String getReasonLocation() {
-        return reasonLocation;
+    public String getMore() {
+        return more;
     }
 
     public String getReasonPhrase() {
@@ -113,11 +113,11 @@ public enum OMSResponseStatus {
     }
 
     public static OMSRuntimeException generateException(OMSResponseStatus status, String... messageArgs) {
-        return new OMSRuntimeException(status.getStatusCode(), String.format(status.getReasonLocation(), (Object[]) messageArgs));
+        return new OMSRuntimeException(status.getStatusCode(), String.format(status.getMore(), (Object[]) messageArgs));
     }
 
     public static OMSRuntimeException generateException(OMSResponseStatus status) {
-        return new OMSRuntimeException(status.getStatusCode(), status.getReasonLocation());
+        return new OMSRuntimeException(status.getStatusCode(), status.getMore());
     }
 
     public static OMSRuntimeException generateException(int statusCode, String reasonPhrase) {
