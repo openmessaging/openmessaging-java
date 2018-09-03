@@ -2,7 +2,7 @@
     <parent>
         <groupId>io.openmessaging</groupId>
         <artifactId>parent</artifactId>
-        <version>0.3.2-alpha-SNAPSHOT</version>
+        <version>1.0.0-Preview</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
