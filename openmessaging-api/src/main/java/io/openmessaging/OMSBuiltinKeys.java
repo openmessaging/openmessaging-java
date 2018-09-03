@@ -51,24 +51,5 @@ public interface OMSBuiltinKeys {
      */
     String OPERATION_TIMEOUT = "OPERATION_TIMEOUT";
 
-    /**
-     * The {@code ROUTING_SOURCE} key shows the source queue of a {@code Routing} instance.
-     * <p>
-     * The {@code Routing} consists of a triple, include source queue, destination queue and expression.
-     */
-    String ROUTING_SOURCE = "ROUTING_SOURCE";
 
-    /**
-     * The {@code ROUTING_DESTINATION} key shows the destination queue of a {@code Routing} instance.
-     * <p>
-     * The {@code Routing} consists of a triple, include source queue, destination queue and expression.
-     */
-    String ROUTING_DESTINATION = "ROUTING_DESTINATION";
-
-    /**
-     * The {@code ROUTING_EXPRESSION} key shows the expression of a {@code Routing} instance.
-     * <p>
-     * The {@code Routing} consists of a triple, include source queue, destination queue and expression.
-     */
-    String ROUTING_EXPRESSION = "ROUTING_EXPRESSION";
 }
