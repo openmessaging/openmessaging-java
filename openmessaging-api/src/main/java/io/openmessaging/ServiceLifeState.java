@@ -29,7 +29,7 @@ public enum ServiceLifeState {
     STOPING,
 
     /**
-     * Service has been shutdown.
+     * Service has been stopped.
      */
     STOPED,
 }
