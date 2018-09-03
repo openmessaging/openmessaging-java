@@ -1,0 +1,6 @@
+io.openmessaging
+io.openmessaging.consumer
+io.openmessaging.exception
+io.openmessaging.interceptor
+io.openmessaging.manager
+io.openmessaging.producer
