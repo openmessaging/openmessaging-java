@@ -45,11 +45,4 @@ public interface OMSBuiltinKeys {
      * The {@code REGION} key shows the specified region in OMS driver schema.
      */
     String REGION = "REGION";
-
-    /**
-     * The {@code OPERATION_TIMEOUT} key defines the timeout of almost all the method calls in OMS.
-     */
-    String OPERATION_TIMEOUT = "OPERATION_TIMEOUT";
-
-
 }

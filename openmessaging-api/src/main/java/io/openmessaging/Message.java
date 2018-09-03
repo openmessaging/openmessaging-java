@@ -174,7 +174,7 @@ public interface Message {
         /**
          * The {@code messagekey} header field contains the custom key of a message.
          * <p>
-         * This key is a customer identifier for a class of messages, and this key may be used for server to shard or
+         * This key is a customer identifier for a class of messages, and this key may be used for server to hash or
          * dispatch messages, or even can use this key to implement order message.
          * <p>
          */
@@ -346,7 +346,7 @@ public interface Message {
     KeyValue properties();
 
     /**
-     * Get message body
+     * Get data from message body
      *
      * @return message body
      * @throws OMSMessageFormatException if the message body cannot be assigned to the specified type
@@ -354,7 +354,7 @@ public interface Message {
     byte[] getData();
 
     /**
-     * Set message body
+     * Set data to message body
      *
      * @param data set message body in binary stream
      */
