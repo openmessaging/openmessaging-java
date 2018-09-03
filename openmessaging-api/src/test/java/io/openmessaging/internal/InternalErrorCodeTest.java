@@ -17,7 +17,7 @@
 
 package io.openmessaging.internal;
 
-import io.openmessaging.Error;
+import io.openmessaging.OMSResponseStatus;
 import io.openmessaging.exception.OMSRuntimeException;
 import org.junit.Test;
 
@@ -26,9 +26,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class InternalErrorCodeTest {
     @Test
     public void generateInternalException() {
-        OMSRuntimeException runtimeException = Error.generateException(Error.ERROR_10002, "1.1.0");
-        assertThat(runtimeException.getErrorCode()).isEqualTo(Error.ERROR_10002.getErrorCode());
+        OMSRuntimeException runtimeException = OMSResponseStatus.generateException(OMSResponseStatus.STATUS_10002, "1.1.0");
+        assertThat(runtimeException.getErrorCode()).isEqualTo(OMSResponseStatus.STATUS_10002.getStatusCode());
         assertThat(runtimeException.getMessage()).contains(String.format("The implementation version [%s] is illegal.", "1.1.0"));
     }
+
 
 }

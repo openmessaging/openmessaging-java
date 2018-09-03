@@ -21,11 +21,11 @@ import io.openmessaging.KeyValue;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.Error;
+import io.openmessaging.OMSResponseStatus;
 import io.openmessaging.exception.OMSRuntimeException;
 import java.lang.reflect.Constructor;
 
-import static io.openmessaging.Error.generateException;
+import static io.openmessaging.OMSResponseStatus.generateException;
 
 /**
  * The {@code MessagingAccessPointAdapter} provides a common implementation to create a specified {@code
@@ -59,7 +59,7 @@ public class MessagingAccessPointAdapter {
             checkSpecVersion(OMS.specVersion, vendorImpl.version());
             return vendorImpl;
         } catch (Throwable e) {
-            throw generateException(Error.ERROR_10000, url);
+            throw generateException(OMSResponseStatus.STATUS_10000, url);
         }
     }
 
@@ -76,10 +76,10 @@ public class MessagingAccessPointAdapter {
         try {
             majorVerOfImpl = implVersion.substring(0, implVersion.indexOf('.', implVersion.indexOf('.') + 1));
         } catch (Throwable e) {
-            throw generateException(Error.ERROR_10002, implVersion);
+            throw generateException(OMSResponseStatus.STATUS_10002, implVersion);
         }
         if (!majorVerOfSpec.equals(majorVerOfImpl)) {
-            throw generateException(Error.ERROR_10003, implVersion, specVersion);
+            throw generateException(OMSResponseStatus.STATUS_10003, implVersion, specVersion);
         }
     }
 }

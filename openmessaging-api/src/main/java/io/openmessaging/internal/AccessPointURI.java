@@ -17,9 +17,9 @@
 
 package io.openmessaging.internal;
 
-import io.openmessaging.Error;
+import io.openmessaging.OMSResponseStatus;
 
-import static io.openmessaging.Error.generateException;
+import static io.openmessaging.OMSResponseStatus.generateException;
 
 /**
  * Represents a <a href="https://github.com/openmessaging/specification/blob/master/oms_access_point_schema.md">AccessPoint String</a>.
@@ -95,7 +95,7 @@ public class AccessPointURI {
 
     private void validateAccessPointString(String accessPointString) {
         if (!accessPointString.matches(PATTERN)) {
-            throw generateException(Error.ERROR_10001, accessPointString);
+            throw generateException(OMSResponseStatus.STATUS_10001, accessPointString);
         }
     }
 }
