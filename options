@@ -17,10 +17,10 @@
 -docencoding
 'UTF-8'
 -doctitle
-'openmessaging 1.0.0-Preview API'
+'openmessaging 1.0.0-preview API'
 -linkoffline
 'http://docs.oracle.com/javase/6/docs/api' '/home/travis/build/openmessaging/openmessaging-java/target/javadoc-bundle-options'
 -use
 -version
 -windowtitle
-'openmessaging 1.0.0-Preview API'
+'openmessaging 1.0.0-preview API'
