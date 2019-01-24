@@ -36,7 +36,6 @@ public interface BatchMessageListener {
      * A message listener should handle different types of {@code Message}.
      *
      * @param messages the received messages List.
-     * @return the {@code ConsumeResult} list.
      */
     void onReceived(List<Message> messages, Context context);
 

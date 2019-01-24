@@ -87,7 +87,7 @@ public interface Consumer extends ServiceLifecycle {
      * Bind the {@code Consumer} to a specified queue in pull model, user can use {@link Consumer#receive(long)} to get
      * message from bind queue.
      * <p>
-     * {@link MessageListener#onReceived(Message)} will be called when new delivered message is
+     * {@link MessageListener#onReceived(Message, MessageListener.Context)} will be called when new delivered message is
      * coming.
      *
      * @param queueName a specified queue.
@@ -100,7 +100,7 @@ public interface Consumer extends ServiceLifecycle {
     /**
      * Bind the {@code Consumer} to a specified queue, with a {@code MessageListener}.
      * <p>
-     * {@link MessageListener#onReceived(Message)} will be called when new delivered message is
+     * {@link MessageListener#onReceived(Message, MessageListener.Context)} will be called when new delivered message is
      * coming.
      *
      * @param queueName a specified queue.
@@ -114,7 +114,7 @@ public interface Consumer extends ServiceLifecycle {
     /**
      * Bind the {@code Consumer} to a specified queue, with a {@code BatchMessageListener}.
      * <p>
-     * {@link MessageListener#onReceived(Message)} will be called when new delivered messages is
+     * {@link BatchMessageListener#onReceived(List<Message>, BatchMessageListener.Context)} will be called when new delivered messages is
      * coming.
      *
      * @param queueName a specified queue.
