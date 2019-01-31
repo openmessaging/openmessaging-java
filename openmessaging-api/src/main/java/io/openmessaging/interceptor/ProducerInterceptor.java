@@ -22,8 +22,7 @@ import io.openmessaging.Message;
 /**
  * A {@code ProducerInterceptor} is used to intercept send operations of producer.
  * <p>
- * The interceptor is able to view or modify the message being transmitted and collect
- * the send record.
+ * The interceptor is able to view or modify the message being transmitted and collect the send record.
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
@@ -46,5 +45,5 @@ public interface ProducerInterceptor {
      * @param attributes the extensible attributes delivered to the intercept thread.
      */
     void postSend(Message message, Context attributes);
-    
+
 }

@@ -16,17 +16,54 @@
  */
 package io.openmessaging.extension;
 
+import io.openmessaging.Message;
+
 /**
- * This header is extension header
+ * <p>
+ * The {@code ExtensionHeader} interface contains extended properties for common implementations in current messaging
+ * and streaming field, such as the queue-based partitioning implementation, but the related properties in this
+ * interface are not mandatory.
+ * </p>
+ *
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
  */
 public interface ExtensionHeader {
     /**
-     * Before send message,
+     * The {@code PARTITION}  in extension header field contains the partition of target destination which the message
+     * is being sent.
+     * <p>
      *
-     * @param partition
+     * When a {@link Message} is set with this value, this message will be delivered to specified partition, but the
+     * premise is that the implementation of the server side is dependent on the partition or a queue-like storage
+     * mechanism.
+     * <p>
+     *
+     * @param partition The specified partition will be sent to.
      */
     void setPartition(int partition);
 
+    /**
+     * This method will return the partition of this message belongs.
+     * <p>
+     *
+     * @return The {@code PARTITION} to which the message belongs
+     */
     int getPartiton();
 
+    /**
+     * This method is only called by the server. and {@Code OFFSET} represents this message offset in partition.
+     * <p>
+     *
+     * @param offset The offset in the current partition, used to quickly get this message in the queue
+     */
+    void setOffset(long offset);
+
+    /**
+     * This method will return the {@Code OFFSET}  in the partition to which the message belongs to, but the premise is
+     * that the implementation of the server side is dependent on the partition or a queue-like storage mechanism.
+     *
+     * @return The offset of the partition to which the message belongs.
+     */
+    long getOffset();
 }

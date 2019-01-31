@@ -97,7 +97,30 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
     void send(List<Message> messages);
 
     /**
-     * Add a {@code ProducerInterceptor} to intercept send operations of producer.
+     * Send messages to the specified destination asynchronously, the destination should be preset to {@link
+     * Message#headers()}, other header fields as well.
+     * <p>
+     * The returned {@code Promise} will have the result once the operation completes, and the registered {@code
+     * FutureListener} will be notified, either because the operation was successful or because of an error.
+     *
+     * @param messages a batch messages will be sent.
+     * @return the {@code Promise} of an asynchronous messages send operation.
+     * @see Future
+     * @see FutureListener
+     */
+    Future<SendResult> sendAsync(List<Message> messages);
+
+    /**
+     * <p>
+     * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't care about the
+     * send result and also have no context to get the result.
+     *
+     * @param messages a batch message will be sent.
+     */
+    void sendOneway(List<Message> messages);
+
+    /**
+     * Adds a {@code ProducerInterceptor} to intercept send operations of producer.
      *
      * @param interceptor a producer interceptor.
      */
@@ -127,7 +150,8 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
      * @throws OMSDestinationException when have no given destination in the server.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
-     * @throws OMSTransactionException when used normal producer which haven't register {@link TransactionStateCheckListener}.
+     * @throws OMSTransactionException when used normal producer which haven't register {@link
+     * TransactionStateCheckListener}.
      */
     TransactionalResult prepare(Message message);
 }

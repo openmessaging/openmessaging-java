@@ -109,4 +109,13 @@ public interface MessagingAccessPoint {
      * @throws OMSSecurityException if have no authority to obtain a resource manager.
      */
     ResourceManager resourceManager();
+
+    /**
+     * Gets a {@link MessageFactory} instance from the specified {@code MessagingAccessPoint}.
+     *
+     * @return the resource manger
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
+     */
+    MessageFactory messageFactory();
 }

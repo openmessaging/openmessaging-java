@@ -18,6 +18,7 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSMessageFormatException;
+import io.openmessaging.extension.ExtensionHeader;
 
 /**
  * The {@code Message} interface is the root interface of all OMS messages, and the most commonly used OMS message is
@@ -60,8 +61,7 @@ public interface Message {
         /**
          * The {@code DESTINATION} header field contains the destination to which the message is being sent.
          * <p>
-         * When a message is sent this value is set to the right {@code Queue}, then the message will be sent to the
-         * specified destination.
+         * When a message is set to the {@code Queue}, then the message will be sent to the specified destination.
          * <p>
          * When a message is received, its destination is equivalent to the {@code Queue} where the message resides in.
          */
@@ -330,6 +330,15 @@ public interface Message {
         short getCompression();
 
     }
+
+    /**
+     * This interface is optional, Therefore, users need to check whether the interface is implemented and the
+     * correctness of its implementation.
+     * <p>
+     *
+     * @return The implementation of {@link ExtensionHeader}
+     */
+    ExtensionHeader extentionHeader();
 
     /**
      * Returns all the system header fields of the {@code Message} object as a {@code KeyValue}.

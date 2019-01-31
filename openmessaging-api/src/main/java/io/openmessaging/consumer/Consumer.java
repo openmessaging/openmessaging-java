@@ -25,6 +25,7 @@ import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
 import io.openmessaging.exception.OMSTimeOutException;
 import io.openmessaging.interceptor.ConsumerInterceptor;
+import java.util.List;
 
 /**
  * A {@code PushConsumer} receives messages from multiple queues, these messages are pushed from MOM server to {@code
@@ -110,6 +111,20 @@ public interface Consumer extends ServiceLifecycle {
     void bindQueue(String queueName, MessageListener listener);
 
     /**
+     * Bind the {@code Consumer} to a specified queue, with a {@code BatchMessageListener}.
+     * <p>
+     * {@link BatchMessageListener#onReceived(List, BatchMessageListener.Context)} will be called when new delivered
+     * messages is coming.
+     *
+     * @param queueName a specified queue.
+     * @param listener a specified listener to receive new messages.
+     * @throws OMSSecurityException when have no authority to bind to this queue.
+     * @throws OMSDestinationException when have no given destination in the server.
+     * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
+     */
+    void bindQueue(String queueName, BatchMessageListener listener);
+
+    /**
      * Unbind the {@code Consumer} from a specified queue.
      * <p>
      * After the success call, this consumer won't receive new message from the specified queue any more.
@@ -117,6 +132,20 @@ public interface Consumer extends ServiceLifecycle {
      * @param queueName a specified queue.
      */
     void unbindQueue(String queueName);
+
+    /**
+     * This method is used to find out whether the {@code Consumer} in bind queue.
+     *
+     * @return true if this {@code Consumer} is bind, false otherwise.
+     */
+    boolean isBindQueue();
+
+    /**
+     * This method is used to find out the queue bind to {@code Consumer}.
+     *
+     * @return the queue this consumer is bind, or null if the consumer is not bind queue.
+     */
+    String getBindQueue();
 
     /**
      * Adds a {@code ConsumerInterceptor} instance to this consumer.
@@ -149,12 +178,15 @@ public interface Consumer extends ServiceLifecycle {
     /**
      * Receive message in asynchronous way. This call doesn't block user's thread, and user's message resolve logic
      * should implement in the {@link MessageListener}.
+     * <p>
      *
-     * @param messageListener {@link MessageListener#onReceived(Message, MessageListener.Context)} will be called when
-     * new delivered message is coming.
-     * @return
+     * @param timeout receive messages will blocked at most <code>timeout</code> milliseconds.
+     * @return the next batch messages received from the bind queues, or null if the consumer is concurrently shut down.
+     * @throws OMSSecurityException when have no authority to receive messages from this queue.
+     * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
+     * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    void receiveAsync(MessageListener messageListener);
+    List<Message> batchReceive(long timeout);
 
     /**
      * Acknowledges the specified and consumed message with the unique message receipt handle, in the scenario of using
