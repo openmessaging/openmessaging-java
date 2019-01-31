@@ -35,7 +35,6 @@ public class ProducerApp {
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
 
         final Producer producer = messagingAccessPoint.createProducer();
-        producer.start();
         ProducerInterceptor interceptor = new ProducerInterceptor() {
             @Override
             public void preSend(Message message, Context attributes) {
@@ -46,6 +45,7 @@ public class ProducerApp {
             }
         };
         producer.addInterceptor(interceptor);
+        producer.start();
 
         //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
@@ -55,9 +55,9 @@ public class ProducerApp {
             }
         }));
 
-        //Sends a message to the specified destination synchronously.
+        //Send a message to the specified destination synchronously.
         Message message = producer.createMessage(
-            "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
+            "NS://HELLO_QUEUE1", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
         SendResult sendResult = producer.send(message);
         System.out.println("SendResult: " + sendResult);
 

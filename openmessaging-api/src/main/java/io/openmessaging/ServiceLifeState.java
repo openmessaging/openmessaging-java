@@ -43,10 +43,10 @@ public enum ServiceLifeState {
     /**
      * Service is stopping.
      */
-    STOPING,
+    STOPPING,
 
     /**
      * Service has been stopped.
      */
-    STOPED,
+    STOPPED,
 }

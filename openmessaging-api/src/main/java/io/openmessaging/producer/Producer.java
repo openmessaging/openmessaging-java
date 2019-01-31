@@ -97,14 +97,14 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
     void send(List<Message> messages);
 
     /**
-     * Adds a {@code ProducerInterceptor} to intercept send operations of producer.
+     * Add a {@code ProducerInterceptor} to intercept send operations of producer.
      *
      * @param interceptor a producer interceptor.
      */
     void addInterceptor(ProducerInterceptor interceptor);
 
     /**
-     * Removes a {@code ProducerInterceptor}.
+     * Remove a {@code ProducerInterceptor}.
      *
      * @param interceptor a producer interceptor will be removed.
      */

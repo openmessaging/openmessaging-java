@@ -147,6 +147,16 @@ public interface Consumer extends ServiceLifecycle {
     Message receive(long timeout);
 
     /**
+     * Receive message in asynchronous way. This call doesn't block user's thread, and user's message resolve logic
+     * should implement in the {@link MessageListener}.
+     *
+     * @param messageListener {@link MessageListener#onReceived(Message, MessageListener.Context)} will be called when
+     * new delivered message is coming.
+     * @return
+     */
+    void receiveAsync(MessageListener messageListener);
+
+    /**
      * Acknowledges the specified and consumed message with the unique message receipt handle, in the scenario of using
      * manual commit.
      * <p>
