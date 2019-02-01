@@ -17,7 +17,7 @@
 
 package io.openmessaging.producer;
 
-import io.openmessaging.Message;
+import io.openmessaging.message.Message;
 
 /**
  * Each executor will be associated with a transactional message, can be used to execute local transaction branch and

@@ -17,7 +17,7 @@
 
 package io.openmessaging.consumer;
 
-import io.openmessaging.Message;
+import io.openmessaging.message.Message;
 import io.openmessaging.exception.OMSRuntimeException;
 import java.util.List;
 

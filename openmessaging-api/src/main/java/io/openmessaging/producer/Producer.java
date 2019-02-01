@@ -19,8 +19,8 @@ package io.openmessaging.producer;
 
 import io.openmessaging.Future;
 import io.openmessaging.FutureListener;
-import io.openmessaging.Message;
-import io.openmessaging.MessageFactory;
+import io.openmessaging.message.Message;
+import io.openmessaging.message.MessageFactory;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSDestinationException;

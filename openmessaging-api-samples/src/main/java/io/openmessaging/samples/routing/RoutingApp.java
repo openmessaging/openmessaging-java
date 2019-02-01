@@ -17,7 +17,7 @@
 
 package io.openmessaging.samples.routing;
 
-import io.openmessaging.Message;
+import io.openmessaging.message.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.consumer.Consumer;

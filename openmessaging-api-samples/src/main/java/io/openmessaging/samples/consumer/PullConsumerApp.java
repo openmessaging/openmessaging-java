@@ -17,17 +17,16 @@
 
 package io.openmessaging.samples.consumer;
 
-import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.consumer.Consumer;
+import io.openmessaging.message.Message;
 
 public class PullConsumerApp {
     public static void main(String[] args) {
         //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
-
 
         //Start a PullConsumer to receive messages from the specific queue.
         final Consumer consumer = messagingAccessPoint.createConsumer();
@@ -46,7 +45,7 @@ public class PullConsumerApp {
         Message message = consumer.receive(1000);
         System.out.println("Received message: " + message);
         //Acknowledge the consumed message
-        consumer.ack(message.headers().getMessageId());
+        consumer.ack(message.header().getMessageId());
         consumer.stop();
     }
 }

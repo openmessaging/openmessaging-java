@@ -17,7 +17,7 @@
 
 package io.openmessaging.consumer;
 
-import io.openmessaging.Message;
+import io.openmessaging.message.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSDestinationException;

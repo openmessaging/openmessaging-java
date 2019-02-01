@@ -18,11 +18,11 @@
 package io.openmessaging.samples.producer;
 
 import io.openmessaging.Future;
-import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.interceptor.Context;
 import io.openmessaging.interceptor.ProducerInterceptor;
+import io.openmessaging.message.Message;
 import io.openmessaging.producer.Producer;
 import io.openmessaging.producer.SendResult;
 import java.nio.charset.Charset;
@@ -38,10 +38,12 @@ public class ProducerApp {
         ProducerInterceptor interceptor = new ProducerInterceptor() {
             @Override
             public void preSend(Message message, Context attributes) {
+                System.out.println("PreSend message: " + message);
             }
 
             @Override
             public void postSend(Message message, Context attributes) {
+                System.out.println("PostSend message: " + message);
             }
         };
         producer.addInterceptor(interceptor);
@@ -58,6 +60,8 @@ public class ProducerApp {
         //Send a message to the specified destination synchronously.
         Message message = producer.createMessage(
             "NS://HELLO_QUEUE1", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
+        message.header().setBornHost("127.0.0.1").setDurability((short) 0);
+        message.extentionHeader().setPartition(1);
         SendResult sendResult = producer.send(message);
         System.out.println("SendResult: " + sendResult);
 

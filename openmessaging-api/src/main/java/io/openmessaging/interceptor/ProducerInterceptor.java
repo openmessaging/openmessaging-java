@@ -17,7 +17,7 @@
 
 package io.openmessaging.interceptor;
 
-import io.openmessaging.Message;
+import io.openmessaging.message.Message;
 
 /**
  * A {@code ProducerInterceptor} is used to intercept send operations of producer.

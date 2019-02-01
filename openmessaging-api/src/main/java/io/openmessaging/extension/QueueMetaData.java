@@ -32,7 +32,7 @@ public interface QueueMetaData {
      * In order to improve performance, in some scenarios where message persistence is required, some message middleware
      * will store messages on multiple partitions in multi servers.
      * <p>
-     * In some scenarios, it is very useful to get the relevant metadata for these partitions.
+     * In some scenarios, it is very useful to get the relevant partitions meta data for a queue.
      */
     interface Partition {
         /**
@@ -44,8 +44,9 @@ public interface QueueMetaData {
 
         /**
          * The host of the server where the partition is located
+         * <p>
          *
-         * @return
+         * @return The host of the server where the partition is located
          */
         String partitonHost();
     }
@@ -54,14 +55,14 @@ public interface QueueMetaData {
      * Queue name
      * <p>
      *
-     * @return Queue name
+     * @return Queue name.
      */
     String queueName();
 
     /**
      * Get partition list belongs to the {@code queueName}
      *
-     * @return List of {@link Partition}
+     * @return List of {@link Partition} belongs to the specified queue.
      */
     List<Partition> partitions();
 }

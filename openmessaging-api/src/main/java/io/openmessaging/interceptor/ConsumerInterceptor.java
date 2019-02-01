@@ -17,7 +17,7 @@
 
 package io.openmessaging.interceptor;
 
-import io.openmessaging.Message;
+import io.openmessaging.message.Message;
 import io.openmessaging.consumer.MessageListener;
 
 /**
