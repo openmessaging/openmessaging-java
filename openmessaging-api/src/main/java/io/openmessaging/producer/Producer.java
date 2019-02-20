@@ -29,7 +29,8 @@ import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
 import io.openmessaging.exception.OMSTimeOutException;
 import io.openmessaging.exception.OMSTransactionException;
-import io.openmessaging.interceptor.ProducerInterceptor;
+import io.openmessaging.interceptor.MessageInterceptor;
+
 import java.util.List;
 
 /**
@@ -120,18 +121,29 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
     void sendOneway(List<Message> messages);
 
     /**
-     * Adds a {@code ProducerInterceptor} to intercept send operations of producer.
+     * Adds a {@code MessageInterceptor} to intercept send operations of producer.
      *
-     * @param interceptor a producer interceptor.
+     * The interceptor will be invoked before the message is actually sent to the network.
+     * <p>
+     * This allows for modification of the message if necessary.
+     * @param interceptor a message interceptor.
      */
-    void addInterceptor(ProducerInterceptor interceptor);
+    void addPreSendInterceptor(MessageInterceptor interceptor);
 
     /**
-     * Removes a {@code ProducerInterceptor}.
+     * Adds a {@code MessageInterceptor} to intercept send operations of producer.
      *
-     * @param interceptor a producer interceptor will be removed.
+     * The interceptor will be invoked immediately after the successful send invocation.
+     * @param interceptor a message interceptor.
      */
-    void removeInterceptor(ProducerInterceptor interceptor);
+    void addPostSendInterceptor(MessageInterceptor interceptor);
+
+    /**
+     * Removes a {@code MessageInterceptor}.
+     *
+     * @param interceptor a message interceptor will be removed.
+     */
+    void removeInterceptor(MessageInterceptor interceptor);
 
     /**
      * Sends a transactional message to the specified destination synchronously, the destination should be preset to

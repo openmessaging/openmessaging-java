@@ -24,7 +24,7 @@ import io.openmessaging.exception.OMSDestinationException;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
 import io.openmessaging.exception.OMSTimeOutException;
-import io.openmessaging.interceptor.ConsumerInterceptor;
+import io.openmessaging.interceptor.MessageInterceptor;
 
 import java.util.List;
 
@@ -149,18 +149,29 @@ public interface Consumer extends ServiceLifecycle {
     String getBindQueue();
 
     /**
-     * Adds a {@code ConsumerInterceptor} instance to this consumer.
+     * Adds a {@code MessageInterceptor} instance to this consumer.
+     *
+     * The interceptor will be invoked before the invocation of {@link MessageListener#onReceived(Message, MessageListener.Context)}.
+     *
+     * @param interceptor an message interceptor instance.
+     */
+    void addPreReceiveInterceptor(MessageInterceptor interceptor);
+
+    /**
+     * Adds a {@code MessageInterceptor} instance to this consumer.
+     *
+     * The interceptor will be invoked after the invocation of {@link MessageListener#onReceived(Message, MessageListener.Context)}.
      *
      * @param interceptor an interceptor instance.
      */
-    void addInterceptor(ConsumerInterceptor interceptor);
+    void addPostReceiveInterceptor(MessageInterceptor interceptor);
 
     /**
      * Removes an interceptor from this consumer.
      *
      * @param interceptor an interceptor to be removed.
      */
-    void removeInterceptor(ConsumerInterceptor interceptor);
+    void removeInterceptor(MessageInterceptor interceptor);
 
     /**
      * Receives the next message from the bind queues of this consumer in pull model.

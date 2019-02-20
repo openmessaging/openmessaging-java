@@ -22,7 +22,7 @@ import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.interceptor.Context;
-import io.openmessaging.interceptor.ProducerInterceptor;
+import io.openmessaging.interceptor.MessageInterceptor;
 import io.openmessaging.producer.Producer;
 import io.openmessaging.producer.SendResult;
 import java.nio.charset.Charset;
@@ -36,16 +36,14 @@ public class ProducerApp {
 
         final Producer producer = messagingAccessPoint.createProducer();
         producer.start();
-        ProducerInterceptor interceptor = new ProducerInterceptor() {
-            @Override
-            public void preSend(Message message, Context attributes) {
-            }
 
+        MessageInterceptor preSendInterceptor;
+        producer.addPreSendInterceptor(preSendInterceptor = new MessageInterceptor() {
             @Override
-            public void postSend(Message message, Context attributes) {
+            public void onMessage(Message message, Context attributes) {
+                System.out.println("PreSend message: " + message);
             }
-        };
-        producer.addInterceptor(interceptor);
+        });
 
         //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
@@ -76,7 +74,7 @@ public class ProducerApp {
             messages.add(msg);
         }
         producer.send(messages);
-        producer.removeInterceptor(interceptor);
+        producer.removeInterceptor(preSendInterceptor);
         producer.stop();
     }
 }
