@@ -53,7 +53,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination synchronously, the destination should be preset to {@link
-     * Message#headers()}, other header fields as well.
+     * Message#header()}, other header fields as well.
      *
      * @param message a message will be sent.
      * @return the successful {@code SendResult}.
@@ -67,7 +67,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination asynchronously, the destination should be preset to {@link
-     * Message#headers()}, other header fields as well.
+     * Message#header()}, other header fields as well.
      * <p>
      * The returned {@code Promise} will have the result once the operation completes, and the registered {@code
      * FutureListener} will be notified, either because the operation was successful or because of an error.
@@ -98,7 +98,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Send messages to the specified destination asynchronously, the destination should be preset to {@link
-     * Message#headers()}, other header fields as well.
+     * Message#header()}, other header fields as well.
      * <p>
      * The returned {@code Promise} will have the result once the operation completes, and the registered {@code
      * FutureListener} will be notified, either because the operation was successful or because of an error.
@@ -135,7 +135,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a transactional message to the specified destination synchronously, the destination should be preset to
-     * {@link Message#headers()}, other header fields as well.
+     * {@link Message#header()}, other header fields as well.
      * <p>
      * A transactional send result will be exposed to consumer if this prepare message send success, and then, you can
      * execute your local transaction, when local transaction execute success, users can use {@link

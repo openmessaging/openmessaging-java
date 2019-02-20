@@ -70,7 +70,7 @@ public interface Message {
      *
      * @return The implementation of {@link ExtensionHeader}
      */
-    ExtensionHeader extentionHeader();
+    ExtensionHeader extensionHeader();
 
     /**
      * Returns all the customized user header fields of the {@code Message} object as a {@code KeyValue}.
