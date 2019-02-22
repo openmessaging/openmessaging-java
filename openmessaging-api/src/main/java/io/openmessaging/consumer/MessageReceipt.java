@@ -15,14 +15,13 @@
  *  limitations under the License.
  */
 
+package io.openmessaging.consumer;
 
-package io.openmessaging;
-
-import java.util.List;
-
-public interface BatchMessage {
-    /**
-     * @return all messages in this {@code BatchMessage}
-     */
-    List<Message> messages();
+/**
+ * A {@code MessageReceipt} is a {@code Message} with a {@code Receipt}.
+ *
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
+ */
+public interface MessageReceipt {
 }

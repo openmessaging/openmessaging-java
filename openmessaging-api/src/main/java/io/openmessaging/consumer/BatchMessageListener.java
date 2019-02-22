@@ -17,8 +17,7 @@
 
 package io.openmessaging.consumer;
 
-import io.openmessaging.BatchMessage;
-import io.openmessaging.Message;
+import io.openmessaging.BatchConsumeMessage;
 import io.openmessaging.exception.OMSRuntimeException;
 
 /**
@@ -36,7 +35,7 @@ public interface BatchMessageListener {
      *
      * @param batchMessage the received batchMessage.
      */
-    void onReceived(BatchMessage batchMessage, Context context);
+    void onReceived(BatchConsumeMessage batchMessage, Context context);
 
 
     interface Context {
@@ -47,7 +46,7 @@ public interface BatchMessageListener {
          *
          * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
          */
-        void success(Message... messages);
+        void success(MessageReceipt... messages);
         /**
          * Acknowledges messages, which is related to this {@code MessageContext}.
          * <p>

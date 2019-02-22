@@ -17,9 +17,7 @@
 
 package io.openmessaging.consumer;
 
-import io.openmessaging.Message;
-import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.ServiceLifecycle;
+import io.openmessaging.*;
 import io.openmessaging.exception.OMSDestinationException;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
@@ -114,7 +112,7 @@ public interface Consumer extends ServiceLifecycle {
     /**
      * Bind the {@code Consumer} to a specified queue, with a {@code BatchMessageListener}.
      * <p>
-     * {@link BatchMessageListener#onReceived(List<Message>, BatchMessageListener.Context)} will be called when new delivered messages is
+     * {@link BatchMessageListener#onReceived(BatchConsumeMessage batchMessage, BatchMessageListener.Context context)} will be called when new delivered messages is
      * coming.
      *
      * @param queueName a specified queue.
@@ -174,7 +172,7 @@ public interface Consumer extends ServiceLifecycle {
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    Message receive(long timeout);
+    ConsumeMessage receive(long timeout);
 
     /**
      * Receives the next batch messages from the bind queues of this consumer in pull model.
@@ -188,7 +186,7 @@ public interface Consumer extends ServiceLifecycle {
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    List<Message> batchReceive(long timeout);
+    List<ConsumeMessage> batchReceive(long timeout);
 
     /**
      * Acknowledges the specified and consumed message with the unique message receipt handle, in the scenario of using
@@ -196,7 +194,7 @@ public interface Consumer extends ServiceLifecycle {
      * <p>
      * Messages that have been received but not acknowledged may be redelivered.
      *
-     * @param receiptHandle the receipt handle associated with the consumed message.
+     * @param receipt the receipt handle associated with the consumed message.
      */
-    void ack(String receiptHandle);
+    void ack(MessageReceipt receipt);
 }

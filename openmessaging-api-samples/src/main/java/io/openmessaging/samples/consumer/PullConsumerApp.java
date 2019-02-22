@@ -17,6 +17,7 @@
 
 package io.openmessaging.samples.consumer;
 
+import io.openmessaging.ConsumeMessage;
 import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
@@ -45,9 +46,9 @@ public class PullConsumerApp {
             }
         }));
         consumer.bindQueue("NS://HELLO_QUEUE");
-        Message message = consumer.receive(1000);
+        ConsumeMessage message = consumer.receive(1000);
         System.out.println("Received message: " + message);
         //Acknowledge the consumed message
-        consumer.ack(message.headers().getMessageId());
+        consumer.ack(message.getMessageRecept());
     }
 }
