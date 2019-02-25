@@ -17,6 +17,10 @@
 
 package io.openmessaging;
 
+import io.openmessaging.consumer.BatchMessageListener;
+import io.openmessaging.consumer.Consumer;
+import io.openmessaging.consumer.MessageListener;
+import io.openmessaging.consumer.MessageReceipt;
 import io.openmessaging.exception.OMSMessageFormatException;
 
 /**
@@ -359,5 +363,14 @@ public interface Message {
      * @param data set message body in binary stream
      */
     void setData(byte[] data);
+
+    /**
+     *  Get the {@code MessageReceipt} of this Message, which will be used to acknowledge this message.
+     *
+     *  @see Consumer#ack(io.openmessaging.consumer.MessageReceipt)
+     *  @see MessageListener.Context#ack()
+     *  @see BatchMessageListener.Context#success(io.openmessaging.consumer.MessageReceipt...)
+     */
+    MessageReceipt getMessageReceipt();
 
 }

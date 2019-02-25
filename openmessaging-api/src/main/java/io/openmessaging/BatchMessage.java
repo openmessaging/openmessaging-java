@@ -15,27 +15,14 @@
  *  limitations under the License.
  */
 
+
 package io.openmessaging;
 
-import io.openmessaging.consumer.BatchMessageListener;
-import io.openmessaging.consumer.Consumer;
-import io.openmessaging.consumer.MessageListener;
-import io.openmessaging.consumer.MessageReceipt;
+import java.util.List;
 
-/**
- *
- * A {@code ConsumeMessage} is a {@code Message} with a {@code MessageReceipt}.
- *
- * @version OMS 1.0.0
- * @since OMS 1.0.0
- */
-public interface ConsumeMessage extends Message {
+public interface BatchMessage {
     /**
-     *  Get the {@code MessageReceipt} of this Message, which will be used to acknowledge this message.
-     *
-     *  @see Consumer#ack(io.openmessaging.consumer.MessageReceipt)
-     *  @see MessageListener.Context#ack()
-     *  @see BatchMessageListener.Context#success(io.openmessaging.consumer.MessageReceipt...)
+     * @return all messages in this {@code BatchMessage}
      */
-    MessageReceipt getMessageRecept();
+    List<Message> messages();
 }

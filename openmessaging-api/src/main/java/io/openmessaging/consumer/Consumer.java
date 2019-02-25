@@ -112,7 +112,7 @@ public interface Consumer extends ServiceLifecycle {
     /**
      * Bind the {@code Consumer} to a specified queue, with a {@code BatchMessageListener}.
      * <p>
-     * {@link BatchMessageListener#onReceived(BatchConsumeMessage batchMessage, BatchMessageListener.Context context)} will be called when new delivered messages is
+     * {@link BatchMessageListener#onReceived(BatchMessage batchMessage, BatchMessageListener.Context context)} will be called when new delivered messages is
      * coming.
      *
      * @param queueName a specified queue.
@@ -172,7 +172,7 @@ public interface Consumer extends ServiceLifecycle {
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    ConsumeMessage receive(long timeout);
+    Message receive(long timeout);
 
     /**
      * Receives the next batch messages from the bind queues of this consumer in pull model.
@@ -186,7 +186,7 @@ public interface Consumer extends ServiceLifecycle {
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    List<ConsumeMessage> batchReceive(long timeout);
+    List<Message> batchReceive(long timeout);
 
     /**
      * Acknowledges the specified and consumed message with the unique message receipt handle, in the scenario of using
