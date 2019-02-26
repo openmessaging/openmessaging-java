@@ -42,6 +42,11 @@ public interface OMSBuiltinKeys {
     String ACCOUNT_ID = "ACCOUNT_ID";
 
     /**
+     * The {@code ACCOUNT_KEY} key shows the specified account key in OMS attribute.
+     */
+    String ACCOUNT_KEY = "ACCOUNT_KEY";
+
+    /**
      * The {@code REGION} key shows the specified region in OMS driver schema.
      */
     String REGION = "REGION";
