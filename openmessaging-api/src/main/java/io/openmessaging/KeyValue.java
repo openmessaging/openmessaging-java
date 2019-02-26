@@ -82,7 +82,7 @@ public interface KeyValue {
      * @return the value in this {@code KeyValue} object with the specified key value
      * @see #put(String, short)
      */
-    int getShort(String key);
+    short getShort(String key);
 
     /**
      * Searches for the {@code short} property with the specified key in this {@code KeyValue} object. If the key is not
@@ -93,7 +93,7 @@ public interface KeyValue {
      * @return the value in this {@code KeyValue} object with the specified key value
      * @see #put(String, short)
      */
-    int getShort(String key, short defaultValue);
+    short getShort(String key, short defaultValue);
 
     /**
      * Searches for the {@code int} property with the specified key in this {@code KeyValue} object. If the key is not
