@@ -32,6 +32,25 @@ public class DefaultKeyValue implements KeyValue {
     private Map<String, String> properties;
 
     @Override
+    public KeyValue put(String key, boolean value) {
+        properties.put(key, String.valueOf(value));
+        return this;
+    }
+
+    @Override
+    public boolean getBoolean(String key) {
+        if (!properties.containsKey(key)) {
+            return false;
+        }
+        return Boolean.valueOf(properties.get(key));
+    }
+
+    @Override
+    public boolean getBoolean(String key, boolean defaultValue) {
+        return properties.containsKey(key) ? getBoolean(key) : defaultValue;
+    }
+
+    @Override
     public int getShort(String key) {
         return 0;
     }
