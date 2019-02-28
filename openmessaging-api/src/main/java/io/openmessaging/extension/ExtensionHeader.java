@@ -46,7 +46,7 @@ public interface ExtensionHeader {
     ExtensionHeader setPartition(int partition);
 
     /**
-     * This method is only called by the server. and {@Code OFFSET} represents this message offset in partition.
+     * This method is only called by the server. and {@code OFFSET} represents this message offset in partition.
      * <p>
      *
      * @param offset The offset in the current partition, used to quickly get this message in the queue
@@ -136,7 +136,7 @@ public interface ExtensionHeader {
     int getPartiton();
 
     /**
-     * This method will return the {@Code OFFSET}  in the partition to which the message belongs to, but the premise is
+     * This method will return the {@code OFFSET}  in the partition to which the message belongs to, but the premise is
      * that the implementation of the server side is dependent on the partition or a queue-like storage mechanism.
      *
      * @return The offset of the partition to which the message belongs.

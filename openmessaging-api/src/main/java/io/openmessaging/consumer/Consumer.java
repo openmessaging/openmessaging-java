@@ -33,7 +33,7 @@ import java.util.List;
  * PushConsumer} client.
  *
  * @version OMS 1.0.0
- * @see MessagingAccessPoint#createConsumer().
+ * @see MessagingAccessPoint#createConsumer()
  * @since OMS 1.0.0
  */
 public interface Consumer extends ServiceLifecycle, Client {
