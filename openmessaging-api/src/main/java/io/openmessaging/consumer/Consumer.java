@@ -17,9 +17,7 @@
 
 package io.openmessaging.consumer;
 
-import io.openmessaging.Message;
-import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.ServiceLifecycle;
+import io.openmessaging.*;
 import io.openmessaging.exception.OMSDestinationException;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
@@ -114,7 +112,7 @@ public interface Consumer extends ServiceLifecycle {
     /**
      * Bind the {@code Consumer} to a specified queue, with a {@code BatchMessageListener}.
      * <p>
-     * {@link BatchMessageListener#onReceived(List<Message>, BatchMessageListener.Context)} will be called when new delivered messages is
+     * {@link BatchMessageListener#onReceived(BatchMessage batchMessage, BatchMessageListener.Context context)} will be called when new delivered messages is
      * coming.
      *
      * @param queueName a specified queue.
@@ -196,7 +194,7 @@ public interface Consumer extends ServiceLifecycle {
      * <p>
      * Messages that have been received but not acknowledged may be redelivered.
      *
-     * @param receiptHandle the receipt handle associated with the consumed message.
+     * @param receipt the receipt handle associated with the consumed message.
      */
-    void ack(String receiptHandle);
+    void ack(MessageReceipt receipt);
 }
