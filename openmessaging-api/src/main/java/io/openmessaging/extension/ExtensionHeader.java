@@ -109,7 +109,7 @@ public interface ExtensionHeader {
     /**
      * The {@code DELAY_TIME} header field contains a number that represents the delayed times in milliseconds.
      * <p></p>
-     * The message will be delivered after delayTime milliseconds starting from {@CODE BORN_TIMESTAMP} . When this filed
+     * The message will be delivered after delayTime milliseconds starting from {@code BORN_TIMESTAMP} . When this filed
      * isn't set explicitly, this means this message should be delivered immediately.
      */
     ExtensionHeader setDelayTime(long delayTime);
