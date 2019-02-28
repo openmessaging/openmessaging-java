@@ -84,8 +84,8 @@ public interface KeyValue {
     KeyValue put(String key, String value);
 
     /**
-     * Searches for the {@code boolean} property with the specified key in this {@code KeyValue} object. If the key is not
-     * found in this property list, false is returned.
+     * Searches for the {@code boolean} property with the specified key in this {@code KeyValue} object. If the key is
+     * not found in this property list, false is returned.
      *
      * @param key the property key
      * @return the value in this {@code KeyValue} object with the specified key value
@@ -94,8 +94,8 @@ public interface KeyValue {
     boolean getBoolean(String key);
 
     /**
-     * Searches for the {@code boolean} property with the specified key in this {@code KeyValue} object. If the key is not
-     * found in this property list, false is returned.
+     * Searches for the {@code boolean} property with the specified key in this {@code KeyValue} object. If the key is
+     * not found in this property list, false is returned.
      *
      * @param key the property key
      * @param defaultValue a default value
@@ -136,17 +136,6 @@ public interface KeyValue {
     int getInt(String key);
 
     /**
-     * Searches for the {@code int} property with the specified key in this {@code KeyValue} object. If the key is not
-     * found in this property list, the default value argument is returned.
-     *
-     * @param key the property key
-     * @param defaultValue a default value
-     * @return the value in this {@code KeyValue} object with the specified key value
-     * @see #put(String, int)
-     */
-    int getInt(String key, int defaultValue);
-
-    /**
      * Searches for the {@code long} property with the specified key in this {@code KeyValue} object. If the key is not
      * found in this property list, zero is returned.
      *
@@ -178,17 +167,6 @@ public interface KeyValue {
     double getDouble(String key);
 
     /**
-     * Searches for the {@code double} property with the specified key in this {@code KeyValue} object. If the key is
-     * not found in this property list, the default value argument is returned.
-     *
-     * @param key the property key
-     * @param defaultValue a default value
-     * @return the value in this {@code KeyValue} object with the specified key value
-     * @see #put(String, double)
-     */
-    double getDouble(String key, double defaultValue);
-
-    /**
      * Searches for the {@code String} property with the specified key in this {@code KeyValue} object. If the key is
      * not found in this property list, {@code null} is returned.
      *
@@ -197,17 +175,6 @@ public interface KeyValue {
      * @see #put(String, String)
      */
     String getString(String key);
-
-    /**
-     * Searches for the {@code String} property with the specified key in this {@code KeyValue} object. If the key is
-     * not found in this property list, the default value argument is returned.
-     *
-     * @param key the property key
-     * @param defaultValue a default value
-     * @return the value in this {@code KeyValue} object with the specified key value
-     * @see #put(String, String)
-     */
-    String getString(String key, String defaultValue);
 
     /**
      * Returns a {@link Set} view of the keys contained in this {@code KeyValue} object.

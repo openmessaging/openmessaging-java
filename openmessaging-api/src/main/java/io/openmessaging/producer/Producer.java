@@ -17,10 +17,9 @@
 
 package io.openmessaging.producer;
 
+import io.openmessaging.Client;
 import io.openmessaging.Future;
 import io.openmessaging.FutureListener;
-import io.openmessaging.Message;
-import io.openmessaging.MessageFactory;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSDestinationException;
@@ -30,6 +29,8 @@ import io.openmessaging.exception.OMSSecurityException;
 import io.openmessaging.exception.OMSTimeOutException;
 import io.openmessaging.exception.OMSTransactionException;
 import io.openmessaging.interceptor.ProducerInterceptor;
+import io.openmessaging.message.Message;
+import io.openmessaging.message.MessageFactory;
 import java.util.List;
 
 /**
@@ -49,11 +50,11 @@ import java.util.List;
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
-public interface Producer extends MessageFactory, ServiceLifecycle {
+public interface Producer extends MessageFactory, ServiceLifecycle, Client {
 
     /**
      * Sends a message to the specified destination synchronously, the destination should be preset to {@link
-     * Message#headers()}, other header fields as well.
+     * Message#header()}, other header fields as well.
      *
      * @param message a message will be sent.
      * @return the successful {@code SendResult}.
@@ -67,7 +68,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a message to the specified destination asynchronously, the destination should be preset to {@link
-     * Message#headers()}, other header fields as well.
+     * Message#header()}, other header fields as well.
      * <p>
      * The returned {@code Promise} will have the result once the operation completes, and the registered {@code
      * FutureListener} will be notified, either because the operation was successful or because of an error.
@@ -98,7 +99,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Send messages to the specified destination asynchronously, the destination should be preset to {@link
-     * Message#headers()}, other header fields as well.
+     * Message#header()}, other header fields as well.
      * <p>
      * The returned {@code Promise} will have the result once the operation completes, and the registered {@code
      * FutureListener} will be notified, either because the operation was successful or because of an error.
@@ -108,14 +109,14 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @see Future
      * @see FutureListener
      */
-    Future<List<SendResult>> sendAsync(List<Message> messages);
+    Future<SendResult> sendAsync(List<Message> messages);
 
     /**
      * <p>
      * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't care about the
      * send result and also have no context to get the result.
      *
-     * @param messages a  batch message will be sent.
+     * @param messages a batch message will be sent.
      */
     void sendOneway(List<Message> messages);
 
@@ -127,7 +128,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
     void addInterceptor(ProducerInterceptor interceptor);
 
     /**
-     * Removes a {@code ProducerInterceptor}.
+     * Remove a {@code ProducerInterceptor}.
      *
      * @param interceptor a producer interceptor will be removed.
      */
@@ -135,7 +136,7 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
 
     /**
      * Sends a transactional message to the specified destination synchronously, the destination should be preset to
-     * {@link Message#headers()}, other header fields as well.
+     * {@link Message#header()}, other header fields as well.
      * <p>
      * A transactional send result will be exposed to consumer if this prepare message send success, and then, you can
      * execute your local transaction, when local transaction execute success, users can use {@link
@@ -150,7 +151,9 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
      * @throws OMSDestinationException when have no given destination in the server.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
-     * @throws OMSTransactionException when used normal producer which haven't register {@link TransactionStateCheckListener}.
+     * @throws OMSTransactionException when used normal producer which haven't register {@link
+     * TransactionStateCheckListener}.
      */
     TransactionalResult prepare(Message message);
+
 }

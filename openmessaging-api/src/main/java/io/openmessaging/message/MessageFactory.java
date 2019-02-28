@@ -15,9 +15,10 @@
  *  limitations under the License.
  */
 
-package io.openmessaging;
+package io.openmessaging.message;
 
 import io.openmessaging.exception.OMSMessageFormatException;
+import io.openmessaging.message.Message;
 
 /**
  * A factory interface for creating {@code Message} objects.

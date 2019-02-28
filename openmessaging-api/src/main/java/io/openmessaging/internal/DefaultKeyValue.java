@@ -106,11 +106,6 @@ public class DefaultKeyValue implements KeyValue {
     }
 
     @Override
-    public int getInt(final String key, final int defaultValue) {
-        return properties.containsKey(key) ? getInt(key) : defaultValue;
-    }
-
-    @Override
     public long getLong(String key) {
         if (!properties.containsKey(key)) {
             return 0;
@@ -132,18 +127,8 @@ public class DefaultKeyValue implements KeyValue {
     }
 
     @Override
-    public double getDouble(final String key, final double defaultValue) {
-        return properties.containsKey(key) ? getDouble(key) : defaultValue;
-    }
-
-    @Override
     public String getString(String key) {
         return properties.get(key);
-    }
-
-    @Override
-    public String getString(final String key, final String defaultValue) {
-        return properties.containsKey(key) ? getString(key) : defaultValue;
     }
 
     @Override

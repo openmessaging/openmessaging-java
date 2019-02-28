@@ -17,12 +17,13 @@
 
 package io.openmessaging.consumer;
 
-import io.openmessaging.BatchMessage;
 import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.message.Message;
+import java.util.List;
 
 /**
- * A message listener can implement this {@code BathMessageListener} interface and register itself to a consumer instance
- * to asynchronously receive messages.
+ * A message listener can implement this {@code BathMessageListener} interface and register itself to a consumer
+ * instance to asynchronously receive messages.
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
@@ -35,8 +36,7 @@ public interface BatchMessageListener {
      *
      * @param batchMessage the received batchMessage.
      */
-    void onReceived(BatchMessage batchMessage, Context context);
-
+    void onReceived(List<Message> batchMessage, Context context);
 
     interface Context {
         /**
@@ -47,8 +47,9 @@ public interface BatchMessageListener {
          * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
          */
         void success(MessageReceipt... messages);
+
         /**
-         * Acknowledges messages, which is related to this {@code MessageContext}.
+         * Acknowledges all messages in this batch, which is related to this {@code MessageContext}.
          * <p>
          *
          * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
