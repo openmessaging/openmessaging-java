@@ -97,7 +97,7 @@ public interface Header {
     Header setPriority(short priority);
 
     /**
-     * The {@code RELIABILITY} header field contains the reliability level of a message, the vendor should guarantee the
+     * The {@code DURABILITY} header field contains the persistent level of a message, the vendor should guarantee the
      * reliability level for a message.
      * <p>
      * OMS defines two modes of message delivery:
