@@ -75,6 +75,7 @@ public interface Message {
      *
      * @return The implementation of {@link ExtensionHeader}
      */
+    @io.openmessaging.annotation.Optional
     Optional<ExtensionHeader> extensionHeader();
 
     /**
