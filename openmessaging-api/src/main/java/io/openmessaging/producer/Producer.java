@@ -17,10 +17,9 @@
 
 package io.openmessaging.producer;
 
+import io.openmessaging.Client;
 import io.openmessaging.Future;
 import io.openmessaging.FutureListener;
-import io.openmessaging.message.Message;
-import io.openmessaging.message.MessageFactory;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSDestinationException;
@@ -30,6 +29,8 @@ import io.openmessaging.exception.OMSSecurityException;
 import io.openmessaging.exception.OMSTimeOutException;
 import io.openmessaging.exception.OMSTransactionException;
 import io.openmessaging.interceptor.ProducerInterceptor;
+import io.openmessaging.message.Message;
+import io.openmessaging.message.MessageFactory;
 import java.util.List;
 
 /**
@@ -49,7 +50,7 @@ import java.util.List;
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
-public interface Producer extends MessageFactory, ServiceLifecycle {
+public interface Producer extends MessageFactory, ServiceLifecycle, Client {
 
     /**
      * Sends a message to the specified destination synchronously, the destination should be preset to {@link
@@ -154,4 +155,5 @@ public interface Producer extends MessageFactory, ServiceLifecycle {
      * TransactionStateCheckListener}.
      */
     TransactionalResult prepare(Message message);
+
 }

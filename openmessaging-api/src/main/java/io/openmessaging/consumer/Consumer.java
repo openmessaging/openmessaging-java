@@ -17,7 +17,7 @@
 
 package io.openmessaging.consumer;
 
-import io.openmessaging.message.Message;
+import io.openmessaging.Client;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSDestinationException;
@@ -25,6 +25,7 @@ import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
 import io.openmessaging.exception.OMSTimeOutException;
 import io.openmessaging.interceptor.ConsumerInterceptor;
+import io.openmessaging.message.Message;
 import java.util.List;
 
 /**
@@ -35,7 +36,7 @@ import java.util.List;
  * @see MessagingAccessPoint#createConsumer().
  * @since OMS 1.0.0
  */
-public interface Consumer extends ServiceLifecycle {
+public interface Consumer extends ServiceLifecycle, Client {
 
     /**
      * Resumes the {@code Consumer} in push model after a suspend.
@@ -194,7 +195,8 @@ public interface Consumer extends ServiceLifecycle {
      * <p>
      * Messages that have been received but not acknowledged may be redelivered.
      *
-     * @param receiptHandle the receipt handle associated with the consumed message.
+     * @param receipt the receipt handle associated with the consumed message.
      */
-    void ack(String receiptHandle);
+    void ack(MessageReceipt receipt);
+
 }

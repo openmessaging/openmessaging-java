@@ -16,6 +16,7 @@
  */
 package io.openmessaging.extension;
 
+import io.openmessaging.annotation.Optional;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ import java.util.List;
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
+@Optional
 public interface QueueMetaData {
 
     /**

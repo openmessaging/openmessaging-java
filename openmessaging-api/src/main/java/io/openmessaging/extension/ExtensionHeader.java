@@ -16,6 +16,7 @@
  */
 package io.openmessaging.extension;
 
+import io.openmessaging.annotation.Optional;
 import io.openmessaging.message.Message;
 
 /**
@@ -28,6 +29,7 @@ import io.openmessaging.message.Message;
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
+@Optional
 public interface ExtensionHeader {
     /**
      * The {@code PARTITION}  in extension header field contains the partition of target destination which the message

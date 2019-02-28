@@ -14,25 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openmessaging.extension;
+package io.openmessaging.annotation;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 /**
- * <p>
- * This interface contains some methods are used for getting configurations related implementation. but this interface
- * are not mandatory.
- * </p>
+ * A {@code MessageReceipt} is a {@code Message} with a {@code Receipt}.
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
-public interface ExtensionClient {
-
-    /**
-     * This method used for getting the related queue's meta data.
-     * <p>
-     *
-     * @param queueName Queue name, message destination.
-     * @return {@link QueueMetaData} Queue config in the server
-     */
-    QueueMetaData getQueueMetaData(String queueName);
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.PACKAGE, ElementType.TYPE, ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.LOCAL_VARIABLE})
+public @interface Optional {
 }

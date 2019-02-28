@@ -45,7 +45,8 @@ public class PullConsumerApp {
         Message message = consumer.receive(1000);
         System.out.println("Received message: " + message);
         //Acknowledge the consumed message
-        consumer.ack(message.header().getMessageId());
+        consumer.ack(message.getMessageReceipt());
         consumer.stop();
+
     }
 }

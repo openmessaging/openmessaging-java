@@ -18,8 +18,13 @@
 package io.openmessaging.message;
 
 import io.openmessaging.KeyValue;
+import io.openmessaging.consumer.BatchMessageListener;
+import io.openmessaging.consumer.Consumer;
+import io.openmessaging.consumer.MessageListener;
+import io.openmessaging.consumer.MessageReceipt;
 import io.openmessaging.exception.OMSMessageFormatException;
 import io.openmessaging.extension.ExtensionHeader;
+import java.util.Optional;
 
 /**
  * The {@code Message} interface is the root interface of all OMS messages, and the most commonly used OMS message is
@@ -70,7 +75,7 @@ public interface Message {
      *
      * @return The implementation of {@link ExtensionHeader}
      */
-    ExtensionHeader extensionHeader();
+    Optional<ExtensionHeader> extensionHeader();
 
     /**
      * Returns all the customized user header fields of the {@code Message} object as a {@code KeyValue}.
@@ -93,5 +98,14 @@ public interface Message {
      * @param data set message body in binary stream
      */
     void setData(byte[] data);
+
+    /**
+     * Get the {@code MessageReceipt} of this Message, which will be used to acknowledge this message.
+     *
+     * @see Consumer#ack(io.openmessaging.consumer.MessageReceipt)
+     * @see MessageListener.Context#ack()
+     * @see BatchMessageListener.Context#success(io.openmessaging.consumer.MessageReceipt...)
+     */
+    MessageReceipt getMessageReceipt();
 
 }

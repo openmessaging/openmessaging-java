@@ -16,6 +16,33 @@
  */
 package io.openmessaging.message;
 
+import io.openmessaging.KeyValue;
+import io.openmessaging.extension.ExtensionHeader;
+
+/**
+ * The {@code Header} interface is the root interface of all OMS messages, and the most commonly used by OMS message
+ * {@link Message}.
+ * <p>
+ * The header contains fields used by the messaging system that describes the message's meta information, while the body
+ * contains the application data being transmitted.
+ * <p>
+ * As for the message header, OMS defines three kinds types: headers {@link Header} {@link ExtensionHeader} and
+ * properties {@link KeyValue}, with respect to flexibility in vendor implementation and user usage.
+ * <ul>
+ * <li>
+ * System Headers, OMS defines some standard attributes that represent the characteristics of the message.
+ * </li>
+ *
+ * </ul>
+ * The body contains the application data being transmitted, which is generally ignored by the messaging system and
+ * simply transmitted to its destination.
+ * <p>
+ *
+ * The header part is placed in the implementation classes of {@code Message}.
+ *
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
+ */
 public interface Header {
     /**
      * The {@code DESTINATION} header field contains the destination to which the message is being sent.

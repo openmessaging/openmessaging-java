@@ -17,8 +17,8 @@
 
 package io.openmessaging.consumer;
 
-import io.openmessaging.message.Message;
 import io.openmessaging.exception.OMSRuntimeException;
+import io.openmessaging.message.Message;
 import java.util.List;
 
 /**
@@ -46,10 +46,10 @@ public interface BatchMessageListener {
          *
          * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.
          */
-        void success(Message... messages);
+        void success(MessageReceipt... messages);
 
         /**
-         * Acknowledges messages, which is related to this {@code MessageContext}.
+         * Acknowledges all messages in this batch, which is related to this {@code MessageContext}.
          * <p>
          *
          * @throws OMSRuntimeException if the consumer fails to acknowledge the messages due to some internal error.

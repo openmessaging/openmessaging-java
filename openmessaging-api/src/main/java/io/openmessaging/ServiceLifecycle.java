@@ -18,6 +18,7 @@
 package io.openmessaging;
 
 import io.openmessaging.consumer.Consumer;
+import io.openmessaging.extension.Extension;
 import io.openmessaging.producer.Producer;
 
 /**
@@ -32,7 +33,7 @@ import io.openmessaging.producer.Producer;
  * @version OMS 1.0.0
  * @since OMS 1.0.0
  */
-public interface ServiceLifecycle {
+public interface ServiceLifecycle extends Extension {
     /**
      * Used for startup or initialization of a service endpoint. A service endpoint instance will be in a ready state
      * after this method has been completed.

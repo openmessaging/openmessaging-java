@@ -61,7 +61,7 @@ public class ProducerApp {
         Message message = producer.createMessage(
             "NS://HELLO_QUEUE1", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
         message.header().setBornHost("127.0.0.1").setDurability((short) 0);
-        message.extensionHeader().setPartition(1);
+        message.extensionHeader().get().setPartition(1);
         SendResult sendResult = producer.send(message);
         System.out.println("SendResult: " + sendResult);
 
@@ -79,6 +79,7 @@ public class ProducerApp {
             Message msg = producer.createMessage("NS://HELLO_QUEUE", ("Hello" + i).getBytes());
             messages.add(msg);
         }
+
         producer.send(messages);
         producer.removeInterceptor(interceptor);
         producer.stop();
