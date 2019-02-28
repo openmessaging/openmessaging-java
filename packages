@@ -1,9 +1,0 @@
-io.openmessaging.exception
-io.openmessaging.message
-io.openmessaging
-io.openmessaging.producer
-io.openmessaging.interceptor
-io.openmessaging.extension
-io.openmessaging.consumer
-io.openmessaging.manager
-io.openmessaging.annotation
