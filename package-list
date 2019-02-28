@@ -1,6 +1,9 @@
 io.openmessaging
+io.openmessaging.annotation
 io.openmessaging.consumer
 io.openmessaging.exception
+io.openmessaging.extension
 io.openmessaging.interceptor
 io.openmessaging.manager
+io.openmessaging.message
 io.openmessaging.producer

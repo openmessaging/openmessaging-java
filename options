@@ -19,7 +19,7 @@
 -doctitle
 'openmessaging 1.0.0-preview API'
 -linkoffline
-'http://docs.oracle.com/javase/6/docs/api' '/home/travis/build/openmessaging/openmessaging-java/target/javadoc-bundle-options'
+'http://docs.oracle.com/javase/8/docs/api' '/home/travis/build/openmessaging/openmessaging-java/target/javadoc-bundle-options'
 -use
 -version
 -windowtitle
