@@ -32,13 +32,16 @@ public class DefaultKeyValue implements KeyValue {
     private Map<String, String> properties;
 
     @Override
-    public int getShort(String key) {
-        return 0;
+    public short getShort(String key) {
+        if (!properties.containsKey(key)) {
+            return 0;
+        }
+        return Short.valueOf(properties.get(key));
     }
 
     @Override
-    public int getShort(String key, short defaultValue) {
-        return 0;
+    public short getShort(String key, short defaultValue) {
+        return properties.containsKey(key) ? getShort(key) : defaultValue;
     }
 
     @Override
