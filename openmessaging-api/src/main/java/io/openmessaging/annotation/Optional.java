@@ -21,8 +21,17 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
 /**
- * A {@code MessageReceipt} is a {@code Message} with a {@code Receipt}.
+ * <p>
+ * A {@code Optional} is an annotation to mark some certain methods ,interfaces and etc. this annotation represented
+ * these methods or interfaces are not mandatory in OpenMessaging.
+ * </p>
+ *
+ * <p>
+ * If these methods or interfaces adopted by more and more vendors and end users, they may be become the mandatory
+ * interface in the future. Of course, if they are used very little, they may be removed.
+ * </p>
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
