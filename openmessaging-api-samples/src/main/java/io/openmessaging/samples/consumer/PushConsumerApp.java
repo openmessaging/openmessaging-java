@@ -17,12 +17,12 @@
 
 package io.openmessaging.samples.consumer;
 
-import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.MessageListener;
 import io.openmessaging.manager.ResourceManager;
+import io.openmessaging.message.Message;
 
 public class PushConsumerApp {
     public static void main(String[] args) {

@@ -32,6 +32,25 @@ public class DefaultKeyValue implements KeyValue {
     private Map<String, String> properties;
 
     @Override
+    public KeyValue put(String key, boolean value) {
+        properties.put(key, String.valueOf(value));
+        return this;
+    }
+
+    @Override
+    public boolean getBoolean(String key) {
+        if (!properties.containsKey(key)) {
+            return false;
+        }
+        return Boolean.valueOf(properties.get(key));
+    }
+
+    @Override
+    public boolean getBoolean(String key, boolean defaultValue) {
+        return properties.containsKey(key) ? getBoolean(key) : defaultValue;
+    }
+
+    @Override
     public short getShort(String key) {
         if (!properties.containsKey(key)) {
             return 0;
@@ -87,11 +106,6 @@ public class DefaultKeyValue implements KeyValue {
     }
 
     @Override
-    public int getInt(final String key, final int defaultValue) {
-        return properties.containsKey(key) ? getInt(key) : defaultValue;
-    }
-
-    @Override
     public long getLong(String key) {
         if (!properties.containsKey(key)) {
             return 0;
@@ -113,18 +127,8 @@ public class DefaultKeyValue implements KeyValue {
     }
 
     @Override
-    public double getDouble(final String key, final double defaultValue) {
-        return properties.containsKey(key) ? getDouble(key) : defaultValue;
-    }
-
-    @Override
     public String getString(String key) {
         return properties.get(key);
-    }
-
-    @Override
-    public String getString(final String key, final String defaultValue) {
-        return properties.containsKey(key) ? getString(key) : defaultValue;
     }
 
     @Override

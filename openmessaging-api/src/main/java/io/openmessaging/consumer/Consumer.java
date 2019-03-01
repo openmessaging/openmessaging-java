@@ -17,7 +17,7 @@
 
 package io.openmessaging.consumer;
 
-import io.openmessaging.Message;
+import io.openmessaging.Client;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.ServiceLifecycle;
 import io.openmessaging.exception.OMSDestinationException;
@@ -25,7 +25,7 @@ import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
 import io.openmessaging.exception.OMSTimeOutException;
 import io.openmessaging.interceptor.ConsumerInterceptor;
-
+import io.openmessaging.message.Message;
 import java.util.List;
 
 /**
@@ -33,10 +33,10 @@ import java.util.List;
  * PushConsumer} client.
  *
  * @version OMS 1.0.0
- * @see MessagingAccessPoint#createConsumer().
+ * @see MessagingAccessPoint#createConsumer()
  * @since OMS 1.0.0
  */
-public interface Consumer extends ServiceLifecycle {
+public interface Consumer extends ServiceLifecycle, Client {
 
     /**
      * Resumes the {@code Consumer} in push model after a suspend.
@@ -114,8 +114,8 @@ public interface Consumer extends ServiceLifecycle {
     /**
      * Bind the {@code Consumer} to a specified queue, with a {@code BatchMessageListener}.
      * <p>
-     * {@link BatchMessageListener#onReceived(List<Message>, BatchMessageListener.Context)} will be called when new delivered messages is
-     * coming.
+     * {@link BatchMessageListener#onReceived(List, BatchMessageListener.Context)} will be called when new delivered
+     * messages is coming.
      *
      * @param queueName a specified queue.
      * @param listener a specified listener to receive new messages.
@@ -177,10 +177,9 @@ public interface Consumer extends ServiceLifecycle {
     Message receive(long timeout);
 
     /**
-     * Receives the next batch messages from the bind queues of this consumer in pull model.
+     * Receive message in asynchronous way. This call doesn't block user's thread, and user's message resolve logic
+     * should implement in the {@link MessageListener}.
      * <p>
-     * This call blocks indefinitely until the messages is arrives, the timeout expires, or until this {@code PullConsumer}
-     * is shut down.
      *
      * @param timeout receive messages will blocked at most <code>timeout</code> milliseconds.
      * @return the next batch messages received from the bind queues, or null if the consumer is concurrently shut down.
@@ -196,7 +195,8 @@ public interface Consumer extends ServiceLifecycle {
      * <p>
      * Messages that have been received but not acknowledged may be redelivered.
      *
-     * @param receiptHandle the receipt handle associated with the consumed message.
+     * @param receipt the receipt handle associated with the consumed message.
      */
-    void ack(String receiptHandle);
+    void ack(MessageReceipt receipt);
+
 }

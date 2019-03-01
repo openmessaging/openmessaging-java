@@ -23,6 +23,7 @@ import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.manager.ResourceManager;
+import io.openmessaging.message.MessageFactory;
 import io.openmessaging.producer.Producer;
 import io.openmessaging.producer.TransactionStateCheckListener;
 import org.junit.Test;
@@ -47,6 +48,10 @@ class TestVendor implements MessagingAccessPoint {
     }
 
     @Override public Producer createProducer(TransactionStateCheckListener transactionStateCheckListener) {
+        return null;
+    }
+
+    @Override public MessageFactory messageFactory() {
         return null;
     }
 

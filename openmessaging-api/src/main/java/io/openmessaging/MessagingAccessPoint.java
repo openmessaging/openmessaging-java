@@ -22,6 +22,7 @@ import io.openmessaging.consumer.MessageListener;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
 import io.openmessaging.manager.ResourceManager;
+import io.openmessaging.message.MessageFactory;
 import io.openmessaging.producer.Producer;
 import io.openmessaging.producer.TransactionStateCheckListener;
 
@@ -109,4 +110,13 @@ public interface MessagingAccessPoint {
      * @throws OMSSecurityException if have no authority to obtain a resource manager.
      */
     ResourceManager resourceManager();
+
+    /**
+     * Gets a {@link MessageFactory} instance from the specified {@code MessagingAccessPoint}.
+     *
+     * @return the resource manger
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
+     */
+    MessageFactory messageFactory();
 }

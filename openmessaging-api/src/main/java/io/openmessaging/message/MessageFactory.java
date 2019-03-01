@@ -15,14 +15,28 @@
  *  limitations under the License.
  */
 
+package io.openmessaging.message;
 
-package io.openmessaging;
+import io.openmessaging.exception.OMSMessageFormatException;
+import io.openmessaging.message.Message;
 
-import java.util.List;
-
-public interface BatchMessage {
+/**
+ * A factory interface for creating {@code Message} objects.
+ *
+ * @version OMS 1.0.0
+ * @since OMS 1.0.0
+ */
+public interface MessageFactory {
     /**
-     * @return all messages in this {@code BatchMessage}
+     * Creates a {@code Message} object. A {@code Message} object is used to send a message containing a stream of
+     * uninterpreted bytes.
+     * <p>
+     * The returned {@code Message} object only can be sent to the specified queue.
+     *
+     * @param queueName the target queue to send
+     * @param body the body data for a message
+     * @return the created {@code Message} object
+     * @throws OMSMessageFormatException when body exceed the maximum length or others.
      */
-    List<Message> messages();
+    Message createMessage(String queueName, byte[] body);
 }
