@@ -245,6 +245,18 @@ public interface Consumer extends ServiceLifecycle, Client {
     Message receive(String queueName, int partitionId, long offset, long timeout);
 
 
+    /**
+     * Receive message in asynchronous way. This call doesn't block user's thread, and user's message resolve logic
+     * should implement in the {@link MessageListener}.
+     * <p>
+     *
+     * @param timeout receive messages will blocked at most <code>timeout</code> milliseconds.
+     * @return the next batch messages received from the bind queues, or null if the consumer is concurrently shut down.
+     * @throws OMSSecurityException when have no authority to receive messages from this queue.
+     * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
+     * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
+     */
+    List<Message> batchReceive(long timeout);
 
     /**
      * Receive message in asynchronous way. This call doesn't block user's thread, and user's message resolve logic
