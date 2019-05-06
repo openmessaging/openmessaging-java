@@ -197,7 +197,7 @@ public interface Consumer extends ServiceLifecycle, Client {
      *
      * @return the queues this consumer is bind, or null if the consumer is not bind queue.
      */
-    String getBindQueues();
+    List<String> getBindQueues();
 
     /**
      * Adds a {@code ConsumerInterceptor} instance to this consumer.
@@ -234,7 +234,7 @@ public interface Consumer extends ServiceLifecycle, Client {
      * is shut down.
      *
      * @param queueName receive message from which queueName in Message Queue.
-     * @param partition receive message from which partition in Message Queue.
+     * @param partitionId receive message from which partition in Message Queue.
      * @param offset  receive message from which offset in Message Queue.
      * @param timeout receive message will blocked at most <code>timeout</code> milliseconds.
      * @return the next message received from the bind queues, or null if the consumer is concurrently shut down.
@@ -242,7 +242,7 @@ public interface Consumer extends ServiceLifecycle, Client {
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    Message receive(String queueName, String partition, long offset, long timeout);
+    Message receive(String queueName, int partitionId, long offset, long timeout);
 
 
 
