@@ -20,6 +20,7 @@ package io.openmessaging.consumer;
 import io.openmessaging.Client;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.ServiceLifecycle;
+import io.openmessaging.annotation.Optional;
 import io.openmessaging.exception.OMSDestinationException;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
@@ -228,21 +229,21 @@ public interface Consumer extends ServiceLifecycle, Client {
     Message receive(long timeout);
 
     /**
-     * Receives the next message from the which bind queue,partition and offset of this consumer in pull model.
+     * Receives the next message from the which bind queue,partition and receiptId of this consumer in pull model.
      * <p>
      * This call blocks indefinitely until a message is arrives, the timeout expires, or until this {@code PullConsumer}
      * is shut down.
      *
      * @param queueName receive message from which queueName in Message Queue.
      * @param partitionId receive message from which partition in Message Queue.
-     * @param offset  receive message from which offset in Message Queue.
+     * @param receiptId  receive message from which receipt position in Message Queue.
      * @param timeout receive message will blocked at most <code>timeout</code> milliseconds.
      * @return the next message received from the bind queues, or null if the consumer is concurrently shut down.
      * @throws OMSSecurityException when have no authority to receive messages from this queue.
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    Message receive(String queueName, int partitionId, long offset, long timeout);
+    Message receive(String queueName,@Optional int partitionId, long receiptId, long timeout);
 
 
     /**
@@ -265,14 +266,14 @@ public interface Consumer extends ServiceLifecycle, Client {
      *
      * @param queueName receive message from which queueName in Message Queue.
      * @param partitionId receive message from which partition in Message Queue.
-     * @param offset  receive message from which offset in Message Queue.
+     * @param receiptId  receive message from which receipt position in Message Queue.
      * @param timeout receive messages will blocked at most <code>timeout</code> milliseconds.
      * @return the next batch messages received from the bind queues, or null if the consumer is concurrently shut down.
      * @throws OMSSecurityException when have no authority to receive messages from this queue.
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    List<Message> batchReceive(String queueName, int partitionId, long offset, long timeout);
+    List<Message> batchReceive(String queueName,@Optional int partitionId, long receiptId, long timeout);
 
     /**
      * Acknowledges the specified and consumed message with the unique message receipt handle, in the scenario of using
