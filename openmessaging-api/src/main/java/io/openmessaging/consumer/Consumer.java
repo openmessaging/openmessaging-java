@@ -251,13 +251,16 @@ public interface Consumer extends ServiceLifecycle, Client {
      * should implement in the {@link MessageListener}.
      * <p>
      *
+     * @param queueName receive message from which queueName in Message Queue.
+     * @param partitionId receive message from which partition in Message Queue.
+     * @param offset  receive message from which offset in Message Queue.
      * @param timeout receive messages will blocked at most <code>timeout</code> milliseconds.
      * @return the next batch messages received from the bind queues, or null if the consumer is concurrently shut down.
      * @throws OMSSecurityException when have no authority to receive messages from this queue.
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    List<Message> batchReceive(long timeout);
+    List<Message> batchReceive(String queueName, int partitionId, long offset, long timeout);
 
     /**
      * Acknowledges the specified and consumed message with the unique message receipt handle, in the scenario of using
