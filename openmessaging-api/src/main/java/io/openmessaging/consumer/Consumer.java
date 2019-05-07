@@ -243,7 +243,8 @@ public interface Consumer extends ServiceLifecycle, Client {
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    Message receive(String queueName,@Optional int partitionId, long receiptId, long timeout);
+    @Optional
+    Message receive(String queueName, int partitionId, long receiptId, long timeout);
 
 
     /**
@@ -273,7 +274,8 @@ public interface Consumer extends ServiceLifecycle, Client {
      * @throws OMSTimeOutException when the given timeout elapses before the send operation completes.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    List<Message> batchReceive(String queueName,@Optional int partitionId, long receiptId, long timeout);
+    @Optional
+    List<Message> batchReceive(String queueName, int partitionId, long receiptId, long timeout);
 
     /**
      * Acknowledges the specified and consumed message with the unique message receipt handle, in the scenario of using
