@@ -21,6 +21,7 @@ import io.openmessaging.exception.OMSDestinationException;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
 import io.openmessaging.exception.OMSTimeOutException;
+import java.util.Set;
 
 /**
  * <p>
@@ -46,5 +47,5 @@ public interface Extension {
      * @throws OMSDestinationException when have no given destination in the server.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    QueueMetaData getQueueMetaData(String queueName);
+    Set<QueueMetaData> getQueueMetaData(String queueName);
 }

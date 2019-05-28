@@ -61,7 +61,7 @@ public class ProducerApp {
         Message message = producer.createMessage(
             "NS://HELLO_QUEUE1", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
         message.header().setBornHost("127.0.0.1").setDurability((short) 0);
-        message.extensionHeader().get().setPartition(1);
+        message.extensionHeader().setPartition(1);
         SendResult sendResult = producer.send(message);
         System.out.println("SendResult: " + sendResult);
 

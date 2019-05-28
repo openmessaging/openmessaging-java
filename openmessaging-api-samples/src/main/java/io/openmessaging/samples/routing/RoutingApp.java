@@ -17,6 +17,7 @@
 
 package io.openmessaging.samples.routing;
 
+import io.openmessaging.consumer.PushConsumer;
 import io.openmessaging.message.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
@@ -24,6 +25,7 @@ import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.MessageListener;
 import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.producer.Producer;
+import java.util.Arrays;
 
 public class RoutingApp {
     public static void main(String[] args) {
@@ -54,10 +56,10 @@ public class RoutingApp {
         producer.send(message);
 
         //Consume messages from the queue behind the routing.
-        final Consumer consumer = messagingAccessPoint.createConsumer();
+        final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
         consumer.start();
 
-        consumer.bindQueue(destinationQueue, new MessageListener() {
+        consumer.bindQueue(Arrays.asList(destinationQueue), new MessageListener() {
             @Override
             public void onReceived(Message message, Context context) {
                 //The message sent to the sourceQueue will be delivered to anotherConsumer by the routing rule

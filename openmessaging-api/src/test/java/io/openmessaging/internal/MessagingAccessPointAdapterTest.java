@@ -22,6 +22,8 @@ import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
 import io.openmessaging.consumer.Consumer;
+import io.openmessaging.consumer.PullConsumer;
+import io.openmessaging.consumer.PushConsumer;
 import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.message.MessageFactory;
 import io.openmessaging.producer.Producer;
@@ -47,11 +49,33 @@ class TestVendor implements MessagingAccessPoint {
     public TestVendor(KeyValue keyValue) {
     }
 
-    @Override public Producer createProducer(TransactionStateCheckListener transactionStateCheckListener) {
+    @Override
+    public Producer createProducer(TransactionStateCheckListener transactionStateCheckListener) {
         return null;
     }
 
-    @Override public MessageFactory messageFactory() {
+    @Override
+    public PushConsumer createPushConsumer() {
+        return null;
+    }
+
+    @Override
+    public PullConsumer createPullConsumer() {
+        return null;
+    }
+
+    @Override
+    public PushConsumer createPushConsumer(KeyValue attributes) {
+        return null;
+    }
+
+    @Override
+    public PullConsumer createPullConsumer(KeyValue attributes) {
+        return null;
+    }
+
+    @Override
+    public MessageFactory messageFactory() {
         return null;
     }
 
@@ -67,11 +91,6 @@ class TestVendor implements MessagingAccessPoint {
 
     @Override
     public Producer createProducer() {
-        return null;
-    }
-
-    @Override
-    public Consumer createConsumer() {
         return null;
     }
 

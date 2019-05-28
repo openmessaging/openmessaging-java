@@ -18,13 +18,13 @@
 package io.openmessaging.message;
 
 import io.openmessaging.KeyValue;
+import io.openmessaging.annotation.Optional;
 import io.openmessaging.consumer.BatchMessageListener;
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.MessageListener;
 import io.openmessaging.consumer.MessageReceipt;
 import io.openmessaging.exception.OMSMessageFormatException;
 import io.openmessaging.extension.ExtensionHeader;
-import java.util.Optional;
 
 /**
  * The {@code Message} interface is the root interface of all OMS messages, and the most commonly used OMS message is
@@ -75,8 +75,8 @@ public interface Message {
      *
      * @return The implementation of {@link ExtensionHeader}
      */
-    @io.openmessaging.annotation.Optional
-    Optional<ExtensionHeader> extensionHeader();
+    @Optional
+    ExtensionHeader extensionHeader();
 
     /**
      * Returns all the customized user header fields of the {@code Message} object as a {@code KeyValue}.

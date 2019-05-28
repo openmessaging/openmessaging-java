@@ -19,8 +19,9 @@ package io.openmessaging.samples.consumer;
 
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
-import io.openmessaging.consumer.Consumer;
+import io.openmessaging.consumer.PullConsumer;
 import io.openmessaging.message.Message;
+import java.util.Arrays;
 
 public class PullConsumerApp {
     public static void main(String[] args) {
@@ -29,7 +30,7 @@ public class PullConsumerApp {
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
 
         //Start a PullConsumer to receive messages from the specific queue.
-        final Consumer consumer = messagingAccessPoint.createConsumer();
+        final PullConsumer consumer = messagingAccessPoint.createPullConsumer();
 
         //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
@@ -39,7 +40,7 @@ public class PullConsumerApp {
             }
         }));
 
-        consumer.bindQueue("NS://HELLO_QUEUE");
+        consumer.bindQueue(Arrays.asList("NS://HELLO_QUEUE"));
         consumer.start();
 
         Message message = consumer.receive(1000);
