@@ -21,8 +21,10 @@ import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.MessageListener;
+import io.openmessaging.consumer.PushConsumer;
 import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.message.Message;
+import java.util.Arrays;
 
 public class PushConsumerApp {
     public static void main(String[] args) {
@@ -33,7 +35,7 @@ public class PushConsumerApp {
         //Fetch a ResourceManager to create Queue resource.
         ResourceManager resourceManager = messagingAccessPoint.resourceManager();
         resourceManager.createNamespace("NS://XXXX");
-        final Consumer consumer = messagingAccessPoint.createConsumer();
+        final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
         consumer.start();
 
         //Register a shutdown hook to close the opened endpoints.
@@ -49,7 +51,7 @@ public class PushConsumerApp {
         resourceManager.createQueue(simpleQueue);
         //This queue doesn't has a source queue, so only the message delivered to the queue directly can
         //be consumed by this consumer.
-        consumer.bindQueue(simpleQueue, new MessageListener() {
+        consumer.bindQueue(Arrays.asList(simpleQueue), new MessageListener() {
             @Override
             public void onReceived(Message message, Context context) {
                 System.out.println("Received one message: " + message);
@@ -58,7 +60,7 @@ public class PushConsumerApp {
 
         });
 
-        consumer.unbindQueue(simpleQueue);
+        consumer.unbindQueue(Arrays.asList(simpleQueue));
 
         consumer.stop();
     }

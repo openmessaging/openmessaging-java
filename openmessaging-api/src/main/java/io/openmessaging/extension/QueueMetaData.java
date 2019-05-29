@@ -18,11 +18,18 @@ package io.openmessaging.extension;
 
 import io.openmessaging.annotation.Optional;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This interface {@code QueueMetaData} contains methods are used for getting configurations related some certain
  * implementation. but this interface are not mandatory.
  * <p>
+ *
+ * In order to improve performance, in some scenarios where message persistence is required, some message middleware
+ * will store messages on multiple partitions in multi servers.
+ * <p>
+ *
+ * In some scenarios, it is very useful to get the relevant partitions meta data for a queue.
  *
  * @version OMS 1.0.0
  * @since OMS 1.0.0
@@ -31,27 +38,23 @@ import java.util.List;
 public interface QueueMetaData {
 
     /**
-     * In order to improve performance, in some scenarios where message persistence is required, some message middleware
-     * will store messages on multiple partitions in multi servers.
-     * <p>
-     * In some scenarios, it is very useful to get the relevant partitions meta data for a queue.
+     * Set queueName to this Message Queue.
+     * @param queueName
      */
-    interface Partition {
-        /**
-         * Partition identifier
-         *
-         * @return Partition identifier
-         */
-        int partitionId();
+    void setQueueName(String queueName);
 
-        /**
-         * The host of the server where the partition is located
-         * <p>
-         *
-         * @return The host of the server where the partition is located
-         */
-        String partitonHost();
-    }
+    /**
+     * Set the specified partition.
+     * @param partitionId
+     */
+    void setPartitionId(int partitionId);
+
+    /**
+     * Get partition identifier of target queue.
+     *
+     * @return Partition identifier
+     */
+    int partitionId();
 
     /**
      * Queue name
@@ -60,11 +63,4 @@ public interface QueueMetaData {
      * @return Queue name.
      */
     String queueName();
-
-    /**
-     * Get partition list belongs to the {@code queueName}
-     *
-     * @return List of {@link Partition} belongs to the specified queue.
-     */
-    List<Partition> partitions();
 }

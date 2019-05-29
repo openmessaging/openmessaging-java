@@ -19,12 +19,15 @@ package io.openmessaging;
 
 import io.openmessaging.consumer.Consumer;
 import io.openmessaging.consumer.MessageListener;
+import io.openmessaging.consumer.PullConsumer;
+import io.openmessaging.consumer.PushConsumer;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
 import io.openmessaging.manager.ResourceManager;
 import io.openmessaging.message.MessageFactory;
 import io.openmessaging.producer.Producer;
 import io.openmessaging.producer.TransactionStateCheckListener;
+import java.util.Collection;
 
 /**
  * An instance of {@code MessagingAccessPoint} may be obtained from {@link OMS}, which is capable of creating {@code
@@ -91,15 +94,43 @@ public interface MessagingAccessPoint {
     Producer createProducer(TransactionStateCheckListener transactionStateCheckListener);
 
     /**
-     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}. The returned {@code Consumer}
-     * isn't bind to any queue, uses {@link Consumer#bindQueue(String, MessageListener)} to bind queues.
+     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}.
+     * The returned {@code PushConsumer} isn't attached to any queue,
+     * uses {@link PushConsumer#bindQueue(Collection, MessageListener)} to attach queues.
      *
      * @return the created {@code PushConsumer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
-     * error
-     * @throws OMSSecurityException if have no authority to create a consumer.
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
+     * due to some internal error
      */
-    Consumer createConsumer();
+    PushConsumer createPushConsumer();
+
+    /**
+     * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint}.
+     *
+     * @return the created {@code PullConsumer}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
+     * due to some internal error
+     */
+    PullConsumer createPullConsumer();
+
+    /**
+     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint} with some preset attributes.
+     *
+     * @param attributes the preset attributes
+     * @return the created {@code PushConsumer}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
+     * due to some internal error
+     */
+    PushConsumer createPushConsumer(KeyValue attributes);
+
+    /**
+     * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint}.
+     *
+     * @return the created {@code PullConsumer}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
+     * due to some internal error
+     */
+    PullConsumer createPullConsumer(KeyValue attributes);
 
     /**
      * Gets a lightweight {@code ResourceManager} instance from the specified {@code MessagingAccessPoint}.
