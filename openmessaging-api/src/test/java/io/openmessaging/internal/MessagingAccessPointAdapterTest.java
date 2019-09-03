@@ -46,9 +46,12 @@ public class MessagingAccessPointAdapterTest {
 }
 
 class TestVendor implements MessagingAccessPoint {
+    public TestVendor(Properties properties) {
+
+    }
 
     @Override public String version() {
-        return null;
+        return "1.1.3";
     }
 
     @Override public Properties attributes() {
