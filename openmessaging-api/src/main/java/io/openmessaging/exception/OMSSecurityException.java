@@ -20,8 +20,8 @@ package io.openmessaging.exception;
 /**
  * The {@code OMSSecurityException} must be thrown when the client have no enough authority to operate an resource.
  *
- * @version OMS 1.0.0
- * @since OMS 1.0.0
+ * @version  OMS 1.1.0
+ * @since  OMS 1.1.0
  */
 public class OMSSecurityException extends OMSRuntimeException {
     /**

@@ -17,17 +17,18 @@
 
 package io.openmessaging.internal;
 
-import io.openmessaging.KeyValue;
+import io.openmessaging.Consumer;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
 import io.openmessaging.OMSBuiltinKeys;
-import io.openmessaging.consumer.Consumer;
-import io.openmessaging.consumer.PullConsumer;
-import io.openmessaging.consumer.PushConsumer;
-import io.openmessaging.manager.ResourceManager;
-import io.openmessaging.message.MessageFactory;
-import io.openmessaging.producer.Producer;
-import io.openmessaging.producer.TransactionStateCheckListener;
+import io.openmessaging.Producer;
+import io.openmessaging.PullConsumer;
+import io.openmessaging.batch.BatchConsumer;
+import io.openmessaging.order.OrderConsumer;
+import io.openmessaging.order.OrderProducer;
+import io.openmessaging.transaction.LocalTransactionChecker;
+import io.openmessaging.transaction.TransactionProducer;
+import java.util.Properties;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,65 +38,49 @@ public class MessagingAccessPointAdapterTest {
     public void getMessagingAccessPoint() {
         String testURI = "oms:test-vendor://alice@rocketmq.apache.org/us-east:default_space";
 
-        KeyValue keyValue = OMS.newKeyValue();
-        keyValue.put(OMSBuiltinKeys.DRIVER_IMPL, "io.openmessaging.internal.TestVendor");
-        MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint(testURI, keyValue);
+        Properties properties = new Properties();
+        properties.put(OMSBuiltinKeys.DRIVER_IMPL, "io.openmessaging.internal.TestVendor");
+        MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint(testURI, properties);
         assertThat(messagingAccessPoint).isExactlyInstanceOf(TestVendor.class);
     }
 }
 
 class TestVendor implements MessagingAccessPoint {
 
-    public TestVendor(KeyValue keyValue) {
-    }
-
-    @Override
-    public Producer createProducer(TransactionStateCheckListener transactionStateCheckListener) {
+    @Override public String version() {
         return null;
     }
 
-    @Override
-    public PushConsumer createPushConsumer() {
+    @Override public Properties attributes() {
         return null;
     }
 
-    @Override
-    public PullConsumer createPullConsumer() {
+    @Override public Producer createProducer(Properties properties) {
         return null;
     }
 
-    @Override
-    public PushConsumer createPushConsumer(KeyValue attributes) {
+    @Override public OrderProducer createOrderProducer(Properties properties) {
         return null;
     }
 
-    @Override
-    public PullConsumer createPullConsumer(KeyValue attributes) {
+    @Override public TransactionProducer createTransactionProducer(Properties properties,
+        LocalTransactionChecker checker) {
         return null;
     }
 
-    @Override
-    public MessageFactory messageFactory() {
+    @Override public Consumer createConsumer(Properties properties) {
         return null;
     }
 
-    @Override
-    public String version() {
-        return OMS.specVersion;
-    }
-
-    @Override
-    public KeyValue attributes() {
+    @Override public PullConsumer createPullConsumer(Properties properties) {
         return null;
     }
 
-    @Override
-    public Producer createProducer() {
+    @Override public BatchConsumer createBatchConsumer(Properties properties) {
         return null;
     }
 
-    @Override
-    public ResourceManager resourceManager() {
+    @Override public OrderConsumer createOrderedConsumer(Properties properties) {
         return null;
     }
 }

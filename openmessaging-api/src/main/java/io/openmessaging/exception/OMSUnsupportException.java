@@ -16,14 +16,13 @@
  */
 package io.openmessaging.exception;
 
-import io.openmessaging.annotation.Optional;
 
 /**
  * The {@code OMSUnsupportException} must be thrown when the specified methods, headers or properties have not been
- * provided by vendors, these methods or headers are usually marked by {@link Optional}.
+ * provided by vendors.
  *
- * @version OMS 1.0.0
- * @since OMS 1.0.0
+ * @version  OMS 1.1.0
+ * @since  OMS 1.1.0
  */
 public class OMSUnsupportException extends OMSRuntimeException {
     /**

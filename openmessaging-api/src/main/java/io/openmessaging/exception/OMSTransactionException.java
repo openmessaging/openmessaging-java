@@ -20,8 +20,8 @@ package io.openmessaging.exception;
 /**
  * The {@code OMSTransactionException} must be thrown when the client execute a transaction error.
  *
- * @version OMS 1.0.0
- * @since OMS 1.0.0
+ * @version  OMS 1.1.0
+ * @since  OMS 1.1.0
  */
 public class OMSTransactionException extends OMSRuntimeException {
     /**

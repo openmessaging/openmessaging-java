@@ -20,8 +20,8 @@ package io.openmessaging;
 /**
  * This is the centralized source for keys that are used for OMS standard attributes.
  *
- * @version OMS 1.0.0
- * @since OMS 1.0.0
+ * @version  OMS 1.1.0
+ * @since  OMS 1.1.0
  */
 public interface OMSBuiltinKeys {
     /**

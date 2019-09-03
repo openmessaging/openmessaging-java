@@ -28,8 +28,8 @@ package io.openmessaging;
  * The reason for adding this future is mainly to satisfy the old version of jdk, such as jdk 1.6.
  * </p>
  *
- * @version OMS 1.0.0
- * @since OMS 1.0.0
+ * @version  OMS 1.1.0
+ * @since  OMS 1.1.0
  */
 public interface Future<V> {
     /**

@@ -22,8 +22,8 @@ package io.openmessaging.exception;
  * <p>
  * Blocking operations for which a timeout is specified need a means to indicate that the timeout has occurred.
  *
- * @version OMS 1.0.0
- * @since OMS 1.0.0
+ * @version  OMS 1.1.0
+ * @since  OMS 1.1.0
  */
 public class OMSTimeOutException extends OMSRuntimeException {
     /**

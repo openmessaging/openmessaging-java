@@ -17,14 +17,14 @@
 
 package io.openmessaging.samples.consumer;
 
+import io.openmessaging.Action;
+import io.openmessaging.ConsumeContext;
+import io.openmessaging.Consumer;
+import io.openmessaging.Message;
+import io.openmessaging.MessageListener;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
-import io.openmessaging.consumer.Consumer;
-import io.openmessaging.consumer.MessageListener;
-import io.openmessaging.consumer.PushConsumer;
-import io.openmessaging.manager.ResourceManager;
-import io.openmessaging.message.Message;
-import java.util.Arrays;
+import java.util.Properties;
 
 public class PushConsumerApp {
     public static void main(String[] args) {
@@ -32,36 +32,30 @@ public class PushConsumerApp {
         final MessagingAccessPoint messagingAccessPoint =
             OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east");
 
-        //Fetch a ResourceManager to create Queue resource.
-        ResourceManager resourceManager = messagingAccessPoint.resourceManager();
-        resourceManager.createNamespace("NS://XXXX");
-        final PushConsumer consumer = messagingAccessPoint.createPushConsumer();
+        Properties properties = new Properties();
+        final Consumer consumer = messagingAccessPoint.createConsumer(properties);
         consumer.start();
 
         //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                consumer.stop();
+                consumer.shutdown();
             }
         }));
 
         //Consume messages from a simple queue.
-        String simpleQueue = "NS://HELLO_QUEUE";
-        resourceManager.createQueue(simpleQueue);
-        //This queue doesn't has a source queue, so only the message delivered to the queue directly can
-        //be consumed by this consumer.
-        consumer.bindQueue(Arrays.asList(simpleQueue), new MessageListener() {
-            @Override
-            public void onReceived(Message message, Context context) {
-                System.out.println("Received one message: " + message);
-                context.ack();
-            }
+        String topic = "NS://HELLO_TOPIC";
 
+        consumer.subscribe(topic, "*", new MessageListener(){
+            @Override
+            public Action consume(Message message, ConsumeContext context) {
+
+                return Action.CommitMessage;
+            }
         });
 
-        consumer.unbindQueue(Arrays.asList(simpleQueue));
 
-        consumer.stop();
+        consumer.shutdown();
     }
 }

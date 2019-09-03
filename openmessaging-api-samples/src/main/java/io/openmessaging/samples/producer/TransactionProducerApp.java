@@ -17,22 +17,25 @@
 
 package io.openmessaging.samples.producer;
 
-import io.openmessaging.message.Message;
+import io.openmessaging.Message;
 import io.openmessaging.MessagingAccessPoint;
 import io.openmessaging.OMS;
-import io.openmessaging.producer.Producer;
-import io.openmessaging.producer.TransactionStateCheckListener;
-import io.openmessaging.producer.TransactionalResult;
-import java.nio.charset.Charset;
+import io.openmessaging.SendResult;
+import io.openmessaging.transaction.LocalTransactionChecker;
+import io.openmessaging.transaction.LocalTransactionExecutor;
+import io.openmessaging.transaction.TransactionProducer;
+import io.openmessaging.transaction.TransactionStatus;
+import java.util.Properties;
 
 public class TransactionProducerApp {
     public static void main(String[] args) {
         final MessagingAccessPoint messagingAccessPoint =
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
 
-        final Producer producer = messagingAccessPoint.createProducer(new TransactionStateCheckListener() {
-            @Override public void check(Message message, TransactionalContext context) {
-
+        final TransactionProducer producer = messagingAccessPoint.createTransactionProducer(new Properties(), new LocalTransactionChecker() {
+            @Override
+            public TransactionStatus check(Message msg) {
+                return TransactionStatus.CommitTransaction;
             }
         });
         producer.start();
@@ -41,23 +44,19 @@ public class TransactionProducerApp {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                producer.stop();
+                producer.shutdown();
             }
         }));
 
-        Message message = producer.createMessage(
-            "NS://HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
+        Message message = new Message("NS://Topic", "TagA", "Hello MQ".getBytes());
 
         //Sends a transaction message to the specified destination synchronously.
-        TransactionalResult result = producer.prepare(message);
-        executeLocalTransaction(result);
-        result.commit();
-        producer.stop();
-        System.out.println("Send transaction message OK, message id is: " + result.messageId());
+        SendResult result = producer.send(message, new LocalTransactionExecutor() {
+            @Override public TransactionStatus execute(Message message, Object arg) {
+                return TransactionStatus.CommitTransaction;
+            }
+        }, null);
+        System.out.println("Send transaction message OK, message id is: " + result.getMessageId());
     }
 
-    private static void executeLocalTransaction(TransactionalResult result) {
-        System.out.println("transactionId: " + result.transactionId());
-        System.out.println("execute local transaction");
-    }
 }

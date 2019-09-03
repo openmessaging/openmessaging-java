@@ -21,8 +21,8 @@ package io.openmessaging.exception;
  * The {@code OMSMessageFormatException} must be thrown when the provided message is not supported or the attributes are
  * the wrong type.
  *
- * @version OMS 1.0.0
- * @since OMS 1.0.0
+ * @version  OMS 1.1.0
+ * @since  OMS 1.1.0
  */
 public class OMSMessageFormatException extends OMSRuntimeException {
     /**

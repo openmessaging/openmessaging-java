@@ -22,13 +22,13 @@ package io.openmessaging;
  * {@code FutureListener} instances are attached to {@link Future} by passing
  * them in to {@link Future#addListener(FutureListener)}.
  *
- * @version OMS 1.0.0
- * @since OMS 1.0.0
+ * @version  OMS 1.1.0
+ * @since  OMS 1.1.0
  */
 public interface FutureListener<V> {
 
     /**
-     * Invoked when the operation completes, be the associated {@link Promise} successful or not.
+     * Invoked when the operation completes, successful or not.
      * @param future The associated promise facade
      */
     void operationComplete(Future<V> future);

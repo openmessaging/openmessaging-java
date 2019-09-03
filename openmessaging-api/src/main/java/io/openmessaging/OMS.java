@@ -18,9 +18,7 @@
 package io.openmessaging;
 
 import io.openmessaging.exception.OMSRuntimeException;
-import io.openmessaging.internal.DefaultKeyValue;
 import io.openmessaging.internal.MessagingAccessPointAdapter;
-import io.openmessaging.manager.ResourceManager;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -38,9 +36,8 @@ import java.util.Properties;
  * The brackets indicate that the extra access points are optional, and a correct OMS driver url needs at least one
  * access point, which consists of hostname and port, like localhost:8081.
  *
- * @version OMS 1.0.0
- * @see ResourceManager
- * @since OMS 1.0.0
+ * @version  OMS 1.1.0
+ * @since  OMS 1.1.0
  */
 public final class OMS {
     /**
@@ -52,7 +49,7 @@ public final class OMS {
      * some syntax error or internal error.
      */
     public static MessagingAccessPoint getMessagingAccessPoint(String url) {
-        return getMessagingAccessPoint(url, OMS.newKeyValue());
+        return getMessagingAccessPoint(url, new Properties());
     }
 
     /**
@@ -67,18 +64,10 @@ public final class OMS {
      * @throws OMSRuntimeException if the factory fails to create a {@code MessagingAccessPoint} due to some driver url
      * some syntax error or internal error.
      */
-    public static MessagingAccessPoint getMessagingAccessPoint(String url, KeyValue attributes) {
+    public static MessagingAccessPoint getMessagingAccessPoint(String url, Properties attributes) {
         return MessagingAccessPointAdapter.getMessagingAccessPoint(url, attributes);
     }
 
-    /**
-     * Returns a default and internal {@code KeyValue} implementation instance.
-     *
-     * @return a {@code KeyValue} instance
-     */
-    public static KeyValue newKeyValue() {
-        return new DefaultKeyValue();
-    }
 
     /**
      * The version format is X.Y.Z (Major.Minor.Patch), a pre-release version may be denoted by appending a hyphen and a

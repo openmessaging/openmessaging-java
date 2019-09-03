@@ -21,8 +21,8 @@ package io.openmessaging.exception;
  * The {@code OMSDestinationException} must be thrown when the specified destination does not exist or the destination
  * is not readable or writable
  *
- * @version OMS 1.0.0
- * @since OMS 1.0.0
+ * @version OMS 1.1.0
+ * @since OMS 1.1.0
  */
 public class OMSDestinationException extends OMSRuntimeException {
     /**

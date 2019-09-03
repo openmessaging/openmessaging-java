@@ -17,6 +17,8 @@
 
 package io.openmessaging.exception;
 
+import io.openmessaging.OMSResponseStatus;
+
 /**
  * This is the root class of all unchecked exceptions in the OMS API.
  * <p>
@@ -26,20 +28,30 @@ package io.openmessaging.exception;
  * <li>A provider-specific string error code to identify the specific exception type.</li>
  * </ul>
  *
- * @version OMS 1.0.0
- * @since OMS 1.0.0
+ * @version OMS 1.1.0
+ * @since OMS 1.1.0
  */
 public class OMSRuntimeException extends RuntimeException {
 
     /**
      * Vendor-specific error code
+     *
      * @see Error
      **/
     private final int errorCode;
 
+    public OMSRuntimeException(String message) {
+        super(message);
+        this.errorCode = OMSResponseStatus.STATUS_1400.getStatusCode();
+    }
+
+    public OMSRuntimeException(String message, Throwable cause) {
+        super(message, cause);
+        this.errorCode = OMSResponseStatus.STATUS_1400.getStatusCode();
+    }
+
     /**
-     * Constructs a {@code OMSRuntimeException} with the specified detail message
-     * and error code.
+     * Constructs a {@code OMSRuntimeException} with the specified detail message and error code.
      *
      * @param errorCode a specified error code
      * @param message a description of the exception
@@ -61,8 +73,7 @@ public class OMSRuntimeException extends RuntimeException {
     }
 
     /**
-     * Constructs a {@code OMSRuntimeException} with the specified detail message,
-     * error code and cause.
+     * Constructs a {@code OMSRuntimeException} with the specified detail message, error code and cause.
      *
      * @param errorCode a specified error code
      * @param message a description of the exception

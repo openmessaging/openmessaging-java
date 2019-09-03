@@ -17,17 +17,14 @@
 
 package io.openmessaging;
 
-import io.openmessaging.consumer.Consumer;
-import io.openmessaging.consumer.MessageListener;
-import io.openmessaging.consumer.PullConsumer;
-import io.openmessaging.consumer.PushConsumer;
+import io.openmessaging.batch.BatchConsumer;
 import io.openmessaging.exception.OMSRuntimeException;
 import io.openmessaging.exception.OMSSecurityException;
-import io.openmessaging.manager.ResourceManager;
-import io.openmessaging.message.MessageFactory;
-import io.openmessaging.producer.Producer;
-import io.openmessaging.producer.TransactionStateCheckListener;
-import java.util.Collection;
+import io.openmessaging.order.OrderConsumer;
+import io.openmessaging.order.OrderProducer;
+import io.openmessaging.transaction.LocalTransactionChecker;
+import io.openmessaging.transaction.TransactionProducer;
+import java.util.Properties;
 
 /**
  * An instance of {@code MessagingAccessPoint} may be obtained from {@link OMS}, which is capable of creating {@code
@@ -39,11 +36,10 @@ import java.util.Collection;
  * messagingAccessPoint.startup();
  * Producer producer = messagingAccessPoint.createProducer();
  * producer.startup();
- * producer.send(producer.createBytesMessage("HELLO_QUEUE", "HELLO_BODY".getBytes(Charset.forName("UTF-8"))));
  * </pre>
  *
- * @version OMS 1.0.0
- * @since OMS 1.0.0
+ * @version OMS 1.1.0
+ * @since OMS 1.1.0
  */
 public interface MessagingAccessPoint {
 
@@ -69,7 +65,7 @@ public interface MessagingAccessPoint {
      *
      * @return the attributes
      */
-    KeyValue attributes();
+    Properties attributes();
 
     /**
      * Creates a new {@code Producer} for the specified {@code MessagingAccessPoint}.
@@ -79,75 +75,66 @@ public interface MessagingAccessPoint {
      * error
      * @throws OMSSecurityException if have no authority to create a producer.
      */
-    Producer createProducer();
+    Producer createProducer(final Properties properties);
 
     /**
-     * Creates a new transactional {@code Producer} for the specified {@code MessagingAccessPoint}, the producer is able
-     * to respond to requests from the server to check the status of the transaction.
+     * Creates a new {@code OrderProducer} for the specified {@code MessagingAccessPoint}.
      *
-     * @param transactionStateCheckListener transactional check listener {@link TransactionStateCheckListener}
-     * @return the created {@code Producer}
+     * @return the created {@code OrderProducer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      * @throws OMSSecurityException if have no authority to create a producer.
      */
-    Producer createProducer(TransactionStateCheckListener transactionStateCheckListener);
+    OrderProducer createOrderProducer(final Properties properties);
 
     /**
-     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint}.
-     * The returned {@code PushConsumer} isn't attached to any queue,
-     * uses {@link PushConsumer#bindQueue(Collection, MessageListener)} to attach queues.
+     * Creates a new {@code TransactionProducer} for the specified {@code MessagingAccessPoint}.
      *
-     * @return the created {@code PushConsumer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
-     * due to some internal error
-     */
-    PushConsumer createPushConsumer();
-
-    /**
-     * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint}.
-     *
-     * @return the created {@code PullConsumer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
-     * due to some internal error
-     */
-    PullConsumer createPullConsumer();
-
-    /**
-     * Creates a new {@code PushConsumer} for the specified {@code MessagingAccessPoint} with some preset attributes.
-     *
-     * @param attributes the preset attributes
-     * @return the created {@code PushConsumer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
-     * due to some internal error
-     */
-    PushConsumer createPushConsumer(KeyValue attributes);
-
-    /**
-     * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint}.
-     *
-     * @return the created {@code PullConsumer}
-     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request
-     * due to some internal error
-     */
-    PullConsumer createPullConsumer(KeyValue attributes);
-
-    /**
-     * Gets a lightweight {@code ResourceManager} instance from the specified {@code MessagingAccessPoint}.
-     *
-     * @return the resource manger
+     * @return the created {@code TransactionProducer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
-     * @throws OMSSecurityException if have no authority to obtain a resource manager.
+     * @throws OMSSecurityException if have no authority to create a producer.
      */
-    ResourceManager resourceManager();
+    TransactionProducer createTransactionProducer(final Properties properties, final LocalTransactionChecker checker);
 
     /**
-     * Gets a {@link MessageFactory} instance from the specified {@code MessagingAccessPoint}.
+     * Creates a new {@code Consumer} for the specified {@code MessagingAccessPoint}. The returned {@code Consumer}
+     * isn't subscribe any topic, and default Consumer will running with push model.
      *
-     * @return the resource manger
+     * @return the created {@code Consumer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
      * error
      */
-    MessageFactory messageFactory();
+    Consumer createConsumer(final Properties properties);
+
+    /**
+     * Creates a new {@code PullConsumer} for the specified {@code MessagingAccessPoint}. The returned {@code Consumer}
+     * isn't subscribe any topic.
+     *
+     * @return the created {@code PullConsumer}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
+     */
+    PullConsumer createPullConsumer(final Properties properties);
+
+
+    /**
+     * Creates a new {@code BatchConsumer} for the specified {@code MessagingAccessPoint}. The returned {@code Consumer}
+     * isn't subscribe any topic.
+     *
+     * @return the created {@code BatchConsumer}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
+     */
+    BatchConsumer createBatchConsumer(final Properties properties);
+
+    /**
+     * Creates a new {@code OrderConsumer} for the specified {@code MessagingAccessPoint}. The returned {@code Consumer}
+     * isn't subscribe any topic.
+     *
+     * @return the created {@code OrderConsumer}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
+     */
+    OrderConsumer createOrderedConsumer(final Properties properties);
 }
