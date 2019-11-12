@@ -17,20 +17,20 @@
 
 package io.openmessaging.samples.consumer;
 
-import io.openmessaging.Action;
-import io.openmessaging.ConsumeContext;
-import io.openmessaging.Consumer;
-import io.openmessaging.Message;
-import io.openmessaging.MessageListener;
-import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.OMS;
+import io.openmessaging.api.Action;
+import io.openmessaging.api.ConsumeContext;
+import io.openmessaging.api.Consumer;
+import io.openmessaging.api.Message;
+import io.openmessaging.api.MessageListener;
+import io.openmessaging.api.MessagingAccessPoint;
+import io.openmessaging.api.OMS;
 import java.util.Properties;
 
 public class PushConsumerApp {
     public static void main(String[] args) {
         //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
-            OMS.getMessagingAccessPoint("oms:rocketmq://localhost:10911/us-east");
+            OMS.getMessagingAccessPoint("oms:rocketmq://localhost:9876");
 
         Properties properties = new Properties();
         final Consumer consumer = messagingAccessPoint.createConsumer(properties);

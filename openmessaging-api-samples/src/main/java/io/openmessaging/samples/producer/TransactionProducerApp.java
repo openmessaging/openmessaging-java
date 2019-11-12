@@ -17,14 +17,14 @@
 
 package io.openmessaging.samples.producer;
 
-import io.openmessaging.Message;
-import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.OMS;
-import io.openmessaging.SendResult;
-import io.openmessaging.transaction.LocalTransactionChecker;
-import io.openmessaging.transaction.LocalTransactionExecutor;
-import io.openmessaging.transaction.TransactionProducer;
-import io.openmessaging.transaction.TransactionStatus;
+import io.openmessaging.api.Message;
+import io.openmessaging.api.MessagingAccessPoint;
+import io.openmessaging.api.OMS;
+import io.openmessaging.api.SendResult;
+import io.openmessaging.api.transaction.LocalTransactionChecker;
+import io.openmessaging.api.transaction.LocalTransactionExecutor;
+import io.openmessaging.api.transaction.TransactionProducer;
+import io.openmessaging.api.transaction.TransactionStatus;
 import java.util.Properties;
 
 public class TransactionProducerApp {

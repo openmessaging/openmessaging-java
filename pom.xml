@@ -122,7 +122,7 @@
                 <configuration>
                     <charset>UTF-8</charset>
                     <locale>en_US</locale>
-                    <excludePackageNames>io.openmessaging.internal</excludePackageNames>
+                    <excludePackageNames>io.openmessaging.api.internal</excludePackageNames>
                 </configuration>
                 <executions>
                     <execution>

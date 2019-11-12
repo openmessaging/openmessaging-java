@@ -17,11 +17,11 @@
 
 package io.openmessaging.samples.consumer;
 
-import io.openmessaging.Message;
-import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.OMS;
-import io.openmessaging.PullConsumer;
-import io.openmessaging.TopicPartition;
+import io.openmessaging.api.Message;
+import io.openmessaging.api.MessagingAccessPoint;
+import io.openmessaging.api.OMS;
+import io.openmessaging.api.PullConsumer;
+import io.openmessaging.api.TopicPartition;
 import java.time.Duration;
 import java.util.List;
 import java.util.Properties;

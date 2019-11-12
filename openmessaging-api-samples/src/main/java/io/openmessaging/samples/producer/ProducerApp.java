@@ -17,19 +17,19 @@
 
 package io.openmessaging.samples.producer;
 
-import io.openmessaging.Message;
-import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.OMS;
-import io.openmessaging.OnExceptionContext;
-import io.openmessaging.Producer;
-import io.openmessaging.SendCallback;
-import io.openmessaging.SendResult;
+import io.openmessaging.api.Message;
+import io.openmessaging.api.MessagingAccessPoint;
+import io.openmessaging.api.OMS;
+import io.openmessaging.api.OnExceptionContext;
+import io.openmessaging.api.Producer;
+import io.openmessaging.api.SendCallback;
+import io.openmessaging.api.SendResult;
 import java.util.Properties;
 
 public class ProducerApp {
     public static void main(String[] args) {
         final MessagingAccessPoint messagingAccessPoint =
-            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
+            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org");
 
         final Producer producer = messagingAccessPoint.createProducer(new Properties());
         producer.start();
