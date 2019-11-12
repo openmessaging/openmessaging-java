@@ -24,5 +24,5 @@ public enum TransactionStatus {
 
     RollbackTransaction,
 
-    Unknown
+    Unknow
 }
