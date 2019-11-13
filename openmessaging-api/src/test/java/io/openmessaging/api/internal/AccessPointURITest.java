@@ -37,12 +37,12 @@ public class AccessPointURITest {
         }
 
 
-        String missRegion = "oms:rocketmq://alice@rocketmq.apache.org/";
+        String missHost = "oms:rocketmq://";
         try {
-            new AccessPointURI(missRegion);
+            new AccessPointURI(missHost);
             failBecauseExceptionWasNotThrown(OMSRuntimeException.class);
         } catch (Exception e) {
-            assertThat(e).hasMessageContaining(String.format("The OMS driver URL [%s] is illegal.", missRegion));
+            assertThat(e).hasMessageContaining(String.format("The OMS driver URL [%s] is illegal.", missHost));
         }
     }
 

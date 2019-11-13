@@ -22,8 +22,8 @@ import io.openmessaging.api.OMSResponseStatus;
 import static io.openmessaging.api.OMSResponseStatus.generateException;
 
 /**
- * Represents a <a href="https://github.com/openmessaging/specification/blob/master/oms_access_point_schema.md">AccessPoint String</a>.
- * The Connection String describes the details to connect a specific OMS service provider.
+ * Represents a <a href="https://github.com/openmessaging/specification/blob/master/oms_access_point_schema.md">AccessPoint
+ * String</a>. The Connection String describes the details to connect a specific OMS service provider.
  */
 public class AccessPointURI {
     private static final String PREFIX = "oms:";
@@ -41,9 +41,10 @@ public class AccessPointURI {
      * <p>
      *
      * More details please refer to:
-     * <a href="https://github.com/openmessaging/specification/blob/master/oms_access_point_schema.md">Access Point Schema</a>
+     * <a href="https://github.com/openmessaging/specification/blob/master/oms_access_point_schema.md">Access Point
+     * Schema</a>
      */
-    private static final String PATTERN = "^oms:.+://.+/.+$";
+    private static final String PATTERN = "^oms:.+://.+(/.+)?";
 
     AccessPointURI(String accessPointString) {
         validateAccessPointString(accessPointString);
@@ -58,9 +59,15 @@ public class AccessPointURI {
         unprocessedString = unprocessedString.substring(driverType.length() + 3);
 
         idx = unprocessedString.lastIndexOf('/');
+        String userAndHostInformation;
 
-        this.region = unprocessedString.substring(idx + 1);
-        String userAndHostInformation = unprocessedString.substring(0, idx);
+        if (idx != -1) {
+            this.region = unprocessedString.substring(idx + 1);
+            userAndHostInformation = unprocessedString.substring(0, idx);
+        } else {
+            this.region = null;
+            userAndHostInformation = unprocessedString;
+        }
 
         idx = userAndHostInformation.indexOf('@');
 

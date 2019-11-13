@@ -18,7 +18,6 @@
 package io.openmessaging.api.internal;
 
 import io.openmessaging.api.MessagingAccessPoint;
-import io.openmessaging.api.OMS;
 import io.openmessaging.api.OMSBuiltinKeys;
 import io.openmessaging.api.OMSResponseStatus;
 import io.openmessaging.api.exception.OMSRuntimeException;
@@ -49,14 +48,17 @@ public class MessagingAccessPointAdapter {
 
         attributes.put(OMSBuiltinKeys.ACCESS_POINTS, accessPointURI.getHosts());
         attributes.put(OMSBuiltinKeys.DRIVER_IMPL, driverImpl);
-        attributes.put(OMSBuiltinKeys.REGION, accessPointURI.getRegion());
-        attributes.put(OMSBuiltinKeys.ACCOUNT_ID, accessPointURI.getAccountId());
+        if (accessPointURI.getRegion() != null) {
+            attributes.put(OMSBuiltinKeys.REGION, accessPointURI.getRegion());
+        }
+        if (accessPointURI.getAccountId() != null) {
+            attributes.put(OMSBuiltinKeys.ACCOUNT_ID, accessPointURI.getAccountId());
+        }
 
         try {
             Class<?> driverImplClass = Class.forName(driverImpl);
             Constructor constructor = driverImplClass.getConstructor(Properties.class);
             MessagingAccessPoint vendorImpl = (MessagingAccessPoint) constructor.newInstance(attributes);
-            checkSpecVersion(OMS.specVersion, vendorImpl.version());
             return vendorImpl;
         } catch (Throwable e) {
             throw generateException(OMSResponseStatus.STATUS_10000, url);
@@ -70,16 +72,4 @@ public class MessagingAccessPointAdapter {
         return "io.openmessaging." + driverType + ".MessagingAccessPointImpl";
     }
 
-    private static void checkSpecVersion(final String specVersion, final String implVersion) {
-        String majorVerOfImpl;
-        String majorVerOfSpec = specVersion.substring(0, specVersion.indexOf('.', specVersion.indexOf('.') + 1));
-        try {
-            majorVerOfImpl = implVersion.substring(0, implVersion.indexOf('.', implVersion.indexOf('.') + 1));
-        } catch (Throwable e) {
-            throw generateException(OMSResponseStatus.STATUS_10002, implVersion);
-        }
-        if (!majorVerOfSpec.equals(majorVerOfImpl)) {
-            throw generateException(OMSResponseStatus.STATUS_10003, implVersion, specVersion);
-        }
-    }
 }
