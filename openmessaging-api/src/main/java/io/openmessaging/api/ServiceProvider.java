@@ -28,7 +28,7 @@ public class ServiceProvider {
     /**
      * JDK1.3+ <a href= "http://java.sun.com/j2se/1.3/docs/guide/jar/jar.html#Service%20Provider" > 'Service Provider' specification</a>.
      */
-    public static final String OMS_DRIVER = "META-INF/service/io.openmessaging.api.ONSFactoryAPI";
+    public static final String OMS_DRIVER = "META-INF/services/io.openmessaging.api.ONSFactoryAPI";
 
     static {
         thisClassLoader = getClassLoader(ServiceProvider.class);
