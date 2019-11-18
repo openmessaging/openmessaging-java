@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 package io.openmessaging.api;
+
 public interface LifeCycle {
     boolean isStarted();
 
