@@ -19,27 +19,56 @@ package io.openmessaging.api;
 import java.io.Serializable;
 import java.util.Properties;
 
+/**
+ * The {@code Message} interface is the root interface of all OMS messages, and the most commonly used OMS message is
+ * {@link Message}.
+ * <p>
+ * Most message-oriented middleware (MOM) products treat messages as lightweight entities that consist of header and
+ * body and is used by separate applications to exchange a piece of information, like <a
+ * href="http://rocketmq.apache.org/">Apache RocketMQ</a>.
+ * <p>
+ * The header contains fields used by the messaging system that describes the message's meta information, while the body
+ * contains the application data being transmitted.
+ * <p>
+ * As for the message header, OMS defines two kinds types: userProperties and systemProperties with respect to
+ * flexibility in vendor implementation and user usage.
+ * <ul>
+ * <li>
+ * System Properties, OMS defines some standard attributes in {@link SystemPropKey} that represent the characteristics
+ * of the message.
+ * </li>
+ * <li>
+ * User properties, some OMS vendors may require enhanced extra attributes of the message or some users may want to
+ * clarify some customized attributes to draw the body. OMS provides the improved scalability for these scenarios.
+ * </li>
+ * </ul>
+ * The body contains the application data being transmitted, which is generally ignored by the messaging system and
+ * simply transmitted to its destination.
+ * <p>
+ * In BytesMessage, the body is just a byte array, may be compressed and uncompressed in the transmitting process by the
+ * messaging system. The application is responsible for explaining the concrete content and format of the message body,
+ * OMS is never aware of that.
+ *
+ * The body part is placed in the implementation classes of {@code Message}.
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public class Message implements Serializable {
 
     private static final long serialVersionUID = -1385924226856188094L;
 
-
     protected Properties systemProperties;
-
 
     private String topic;
 
-
     private Properties userProperties;
 
-
     private byte[] body;
-
 
     public Message() {
         this(null, null, "", null);
     }
-
 
     public Message(String topic, String tag, String key, byte[] body) {
         this.topic = topic;
@@ -48,7 +77,6 @@ public class Message implements Serializable {
         this.putSystemProperties(SystemPropKey.TAG, tag);
         this.putSystemProperties(SystemPropKey.KEY, key);
     }
-
 
     public void putSystemProperties(final String key, final String value) {
         if (null == this.systemProperties) {
@@ -60,11 +88,9 @@ public class Message implements Serializable {
         }
     }
 
-
     public Message(String topic, String tags, byte[] body) {
         this(topic, tags, "", body);
     }
-
 
     public void putUserProperties(final String key, final String value) {
         if (null == this.userProperties) {
@@ -76,7 +102,6 @@ public class Message implements Serializable {
         }
     }
 
-
     public String getUserProperties(final String key) {
         if (null != this.userProperties) {
             return (String) this.userProperties.get(key);
@@ -85,21 +110,17 @@ public class Message implements Serializable {
         return null;
     }
 
-
     public String getTopic() {
         return topic;
     }
-
 
     public void setTopic(String topic) {
         this.topic = topic;
     }
 
-
     public String getTag() {
         return this.getSystemProperties(SystemPropKey.TAG);
     }
-
 
     public String getSystemProperties(final String key) {
         if (null != this.systemProperties) {
@@ -109,26 +130,21 @@ public class Message implements Serializable {
         return null;
     }
 
-
     public void setTag(String tag) {
         this.putSystemProperties(SystemPropKey.TAG, tag);
     }
-
 
     public String getKey() {
         return this.getSystemProperties(SystemPropKey.KEY);
     }
 
-
     public void setKey(String key) {
         this.putSystemProperties(SystemPropKey.KEY, key);
     }
 
-
     public String getMsgID() {
         return this.getSystemProperties(SystemPropKey.MSGID);
     }
-
 
     public void setMsgID(String msgid) {
         this.putSystemProperties(SystemPropKey.MSGID, msgid);
@@ -164,7 +180,6 @@ public class Message implements Serializable {
         this.body = body;
     }
 
-
     public int getReconsumeTimes() {
         String pro = this.getSystemProperties(SystemPropKey.RECONSUMETIMES);
         if (pro != null) {
@@ -174,11 +189,9 @@ public class Message implements Serializable {
         return 0;
     }
 
-
     public void setReconsumeTimes(final int value) {
         putSystemProperties(SystemPropKey.RECONSUMETIMES, String.valueOf(value));
     }
-
 
     public long getBornTimestamp() {
         String pro = this.getSystemProperties(SystemPropKey.BORNTIMESTAMP);
@@ -189,22 +202,18 @@ public class Message implements Serializable {
         return 0L;
     }
 
-
     public void setBornTimestamp(final long value) {
         putSystemProperties(SystemPropKey.BORNTIMESTAMP, String.valueOf(value));
     }
-
 
     public String getBornHost() {
         String pro = this.getSystemProperties(SystemPropKey.BORNHOST);
         return pro == null ? "" : pro;
     }
 
-
     public void setBornHost(final String value) {
         putSystemProperties(SystemPropKey.BORNHOST, value);
     }
-
 
     public long getStartDeliverTime() {
         String pro = this.getSystemProperties(SystemPropKey.STARTDELIVERTIME);
@@ -224,7 +233,6 @@ public class Message implements Serializable {
         putSystemProperties(SystemPropKey.SHARDINGKEY, value);
     }
 
-
     public void setStartDeliverTime(final long value) {
         putSystemProperties(SystemPropKey.STARTDELIVERTIME, String.valueOf(value));
     }
@@ -234,7 +242,6 @@ public class Message implements Serializable {
         return "Message [topic=" + topic + ", systemProperties=" + systemProperties + ", userProperties=" + userProperties + ", body="
             + (body != null ? body.length : 0) + "]";
     }
-
 
     static public class SystemPropKey {
         public static final String TAG = "__TAG";

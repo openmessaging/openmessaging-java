@@ -52,7 +52,7 @@ public class MessagingAccessPointAdapter {
             attributes.put(OMSBuiltinKeys.REGION, accessPointURI.getRegion());
         }
         if (accessPointURI.getAccountId() != null) {
-            attributes.put(OMSBuiltinKeys.ACCOUNT_ID, accessPointURI.getAccountId());
+            attributes.put(OMSBuiltinKeys.ACCESS_KEY, accessPointURI.getAccountId());
         }
 
         try {

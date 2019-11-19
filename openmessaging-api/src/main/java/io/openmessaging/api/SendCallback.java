@@ -16,9 +16,27 @@
  */
 package io.openmessaging.api;
 
+/**
+ * Call back interface used in {@link Producer#sendAsync(Message, SendCallback)}.
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public interface SendCallback {
 
+    /**
+     * When message send success, this method will be invoked.
+     *
+     * @param sendResult send message result.
+     * @see SendResult
+     */
     void onSuccess(final SendResult sendResult);
 
+    /**
+     * When message send failed, this method will be invoked.
+     *
+     * @param context send message exception context.
+     * @see OnExceptionContext
+     */
     void onException(final OnExceptionContext context);
 }

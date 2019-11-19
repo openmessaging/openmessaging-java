@@ -19,7 +19,22 @@ package io.openmessaging.api.order;
 
 import io.openmessaging.api.Message;
 
+/**
+ * Order message listener, vendors should promise this listener invoked by order, it maybe means vendors should keep
+ * something thread safe and keep concurrent consume closed.
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public interface MessageOrderListener {
 
+    /**
+     * When message arrived, this method will be invoked by order.
+     *
+     * @param message received message
+     * @param context
+     * @return {@link OrderAction} if this message consumed success, {@link OrderAction#Success} should be returned,
+     * otherwise return {@link OrderAction#Suspend}
+     */
     OrderAction consume(final Message message, final ConsumeOrderContext context);
 }

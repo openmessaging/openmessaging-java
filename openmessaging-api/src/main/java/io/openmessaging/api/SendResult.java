@@ -16,17 +16,21 @@
  */
 package io.openmessaging.api;
 
+/**
+ * Send message result.
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public class SendResult {
 
     private String messageId;
 
     private String topic;
 
-
     public String getMessageId() {
         return messageId;
     }
-
 
     public void setMessageId(String messageId) {
         this.messageId = messageId;

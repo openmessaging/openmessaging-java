@@ -19,7 +19,21 @@ package io.openmessaging.api.transaction;
 
 import io.openmessaging.api.Message;
 
+/**
+ * Local transaction executor
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0 
+ */
 public interface LocalTransactionExecutor {
 
+    /**
+     * Execute local transactions, rewritten by the application.
+     *
+     * @param message
+     * @param arg Custom parameters, passed in and callback by the send method
+     * @return {@link TransactionStatus} Returns the result{@link TransactionStatus} of the transaction execution,
+     * including commit transaction, rollback transaction, unknown state
+     */
     TransactionStatus execute(final Message message, final Object arg);
 }

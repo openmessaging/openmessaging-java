@@ -17,7 +17,10 @@
 
 package io.openmessaging.api.bean;
 
-
+/**
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public class SubscriptionExt extends Subscription {
     private boolean persistence = true;
 

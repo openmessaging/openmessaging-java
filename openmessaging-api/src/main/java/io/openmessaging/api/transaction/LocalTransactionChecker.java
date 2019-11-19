@@ -18,9 +18,21 @@ package io.openmessaging.api.transaction;
 
 import io.openmessaging.api.Message;
 
+/**
+ * Check local transactions, callback debugger by Broker.
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public interface LocalTransactionChecker {
 
+    /**
+     * Check the local transaction, the Broker callback Producer, send the unfinished transaction to the Producer, and
+     * the Producer will decide again whether the transaction is committed or rolled back.   
+     *
+     * @param msg message      
+     * @return {@link TransactionStatus} Transaction status, including commit transaction, rollback transaction, unknown
+     * state      
+     */
     TransactionStatus check(final Message msg);
-
-
 }

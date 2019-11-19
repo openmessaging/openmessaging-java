@@ -16,8 +16,28 @@
  */
 package io.openmessaging.api;
 
-
+/**
+ * Message consume listener, registed for consume messages by consumer.
+ * <p>
+ * <strong>
+ * Thread safe requirements: this interface will be invoked by multi threads, so users should keep thread safe during
+ * the consume process.
+ * </strong>
+ * </p>
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public interface MessageListener {
 
+    /**
+     * Consumer message interface, implemented by the application, unstable situations such as network jitter may lead
+     * to message duplication, and services sensitive to repeated messages need to guarantee idempotent.
+     *
+     * @param message
+     * @param context
+     * @return if current message consumed success, {@link Action#CommitMessage} should be returned, otherwise, {@link
+     * Action#ReconsumeLater} should be returned, and this message will be delivered again.
+     */
     Action consume(final Message message, final ConsumeContext context);
 }

@@ -18,13 +18,22 @@ package io.openmessaging.api;
 
 import io.openmessaging.api.exception.OMSRuntimeException;
 
+/**
+ * Exception context when a message send failed.
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public class OnExceptionContext {
 
     private String messageId;
 
     private String topic;
 
-    private OMSRuntimeException exception;
+    /**
+     * Detailed exception stack information.
+     */
+    private OMSRuntimeException omsRuntimeException;
 
     public String getMessageId() {
         return messageId;
@@ -42,11 +51,11 @@ public class OnExceptionContext {
         this.topic = topic;
     }
 
-    public OMSRuntimeException getException() {
-        return exception;
+    public OMSRuntimeException getOmsRuntimeException() {
+        return omsRuntimeException;
     }
 
-    public void setException(OMSRuntimeException exception) {
-        this.exception = exception;
+    public void setOmsRuntimeException(OMSRuntimeException omsRuntimeException) {
+        this.omsRuntimeException = omsRuntimeException;
     }
 }

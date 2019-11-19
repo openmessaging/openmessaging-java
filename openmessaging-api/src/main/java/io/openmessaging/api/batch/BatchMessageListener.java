@@ -22,8 +22,21 @@ import io.openmessaging.api.ConsumeContext;
 import io.openmessaging.api.Message;
 import java.util.List;
 
-
+/**
+ * Batch message listener.
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public interface BatchMessageListener {
 
+    /**
+     * When message arrived, this method will be invoked by order.
+     *
+     * @param messages received message
+     * @param context
+     * @return {@link Action} if this message consumed success, {@link Action#CommitMessage} should be returned,
+     * otherwise return {@link Action#ReconsumeLater}
+     */
     Action consume(final List<Message> messages, final ConsumeContext context);
 }

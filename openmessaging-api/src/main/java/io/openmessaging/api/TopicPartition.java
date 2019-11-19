@@ -16,6 +16,11 @@
  */
 package io.openmessaging.api;
 
+/**
+ * Used for describe a topic and
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public class TopicPartition {
     private String topic;
 

@@ -19,6 +19,10 @@ package io.openmessaging.api.bean;
 
 import io.openmessaging.api.ExpressionType;
 
+/**
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public class Subscription {
     private String topic;
     private String expression;

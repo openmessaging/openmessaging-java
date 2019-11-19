@@ -20,9 +20,29 @@ package io.openmessaging.api.batch;
 import io.openmessaging.api.Credentials;
 import io.openmessaging.api.LifeCycle;
 
+/**
+ * Batch message consumer, used to subscribe to messages in batch.
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public interface BatchConsumer extends LifeCycle, Credentials {
 
+    /**
+     * Subscribe message
+     *
+     * @param topic
+     * @param subExpression Subscribe to the filter expression string, which the broker filters based on this
+     * expression. <br> eg: "tag1 || tag2 || tag3"<br>, if subExpression is equal to null or *, it means subscribe all
+     * messages.
+     * @param listener consume message callback listener.
+     */
     void subscribe(final String topic, final String subExpression, final BatchMessageListener listener);
 
+    /**
+     * Unsubscribe topic
+     *
+     * @param topic
+     */
     void unsubscribe(final String topic);
 }

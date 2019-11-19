@@ -17,7 +17,12 @@
 
 package io.openmessaging.api.transaction;
 
-
+/**
+ * Transaction status.
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public enum TransactionStatus {
 
     CommitTransaction,

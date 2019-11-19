@@ -15,8 +15,20 @@
  * limitations under the License.
  */
 package io.openmessaging.api;
+
 import java.util.Properties;
 
+/**
+ *
+ * Used for update credentials.
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public interface Credentials {
+    /**
+     * Update credentials for instance, properties can be found in {@link OMSBuiltinKeys}
+     * @param credentialProperties
+     */
     void updateCredential(Properties credentialProperties);
 }

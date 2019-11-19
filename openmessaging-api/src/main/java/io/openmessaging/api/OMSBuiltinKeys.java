@@ -38,17 +38,23 @@ public interface OMSBuiltinKeys {
     String ACCESS_POINTS = "ACCESS_POINTS";
 
     /**
-     * The {@code ACCOUNT_ID} key shows the specified account info in OMS driver schema.
+     * The {@code ACCESS_KEY} key shows the specified access key in OMS driver schema.
      */
-    String ACCOUNT_ID = "ACCOUNT_ID";
+    String ACCESS_KEY = "AccessKey";
 
     /**
-     * The {@code ACCOUNT_KEY} key shows the specified account key in OMS attribute.
+     * The {@code SECRET_KEY} key shows the specified secret key in OMS attribute.
      */
-    String ACCOUNT_KEY = "ACCOUNT_KEY";
+    String SECRET_KEY = "SecretKey";
+
+    /**
+     * The {@code SECURITY_TOKEN} key shows the specified security token in OMS attribute.
+     */
+    String SECURITY_TOKEN = "SecurityToken";
 
     /**
      * The {@code REGION} key shows the specified region in OMS driver schema.
      */
     String REGION = "REGION";
+
 }

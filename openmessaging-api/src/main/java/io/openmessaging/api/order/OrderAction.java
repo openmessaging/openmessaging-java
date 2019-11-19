@@ -17,10 +17,21 @@
 
 package io.openmessaging.api.order;
 
-
+/**
+ * Order message consumption result.
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public enum OrderAction {
 
+    /**
+     * Consumption is successful, continue to consume the next message.
+     */
     Success,
 
+    /**
+     * Consumption failed, suspending the current queue.
+     */
     Suspend,
 }

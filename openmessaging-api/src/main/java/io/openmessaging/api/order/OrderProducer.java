@@ -22,7 +22,21 @@ import io.openmessaging.api.LifeCycle;
 import io.openmessaging.api.Message;
 import io.openmessaging.api.SendResult;
 
+/**
+ * Sequential message producer interface  
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public interface OrderProducer extends LifeCycle, Credentials {
 
+    /**
+     * Send message in order
+     *
+     * @param message
+     * @param shardingKey Order message selection factor, the sending method selects a specific message queue based on
+     * shardingKey
+     * @return {@link SendResult} Message delivery result, including message Id.
+     */
     SendResult send(final Message message, final String shardingKey);
 }

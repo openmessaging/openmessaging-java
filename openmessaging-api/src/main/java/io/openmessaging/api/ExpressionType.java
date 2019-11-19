@@ -16,6 +16,12 @@
  */
 package io.openmessaging.api;
 
+/**
+ * Message filter expression type.
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public enum ExpressionType {
 
     SQL92,

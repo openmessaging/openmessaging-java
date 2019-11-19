@@ -18,22 +18,50 @@ package io.openmessaging.api;
 
 import java.util.Properties;
 
+/**
+ * Used for set or get the relevant properties of a message.
+ *
+ * @version OMS 1.2.0
+ * @since OMS 1.2.0
+ */
 public class MessageAccessor {
+    /**
+     * Used for get all system properties.
+     *
+     * @param msg
+     * @return system properties
+     */
     public static Properties getSystemProperties(final Message msg) {
         return msg.systemProperties;
     }
 
-
+    /**
+     * Used for set system properties, will used new systemProperties to override current systemProperties.
+     *
+     * @param msg
+     * @return system properties
+     */
     public static void setSystemProperties(final Message msg, Properties systemProperties) {
         msg.systemProperties = systemProperties;
     }
 
-
+    /**
+     * Used for set system property for a specified key, will used new value to replace origin system property of a
+     * specified key.
+     *
+     * @param msg
+     * @return
+     */
     public static void putSystemProperties(final Message msg, final String key, final String value) {
         msg.putSystemProperties(key, value);
     }
 
-
+    /**
+     * Used for get a system property value for a specified key.
+     *
+     * @param msg
+     * @return system property value of specified key
+     */
     public static String getSystemProperties(final Message msg, final String key) {
         return msg.getSystemProperties(key);
     }
