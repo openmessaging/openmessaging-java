@@ -20,12 +20,12 @@ package io.openmessaging.api.transaction;
 import io.openmessaging.api.Message;
 
 /**
- * Local transaction executor
+ * Local transaction executor.
  *
  * @version OMS 1.2.0
  * @since OMS 1.2.0 
  */
-public interface LocalTransactionExecutor {
+public interface LocalTransactionExecuter {
 
     /**
      * Execute local transactions, rewritten by the application.

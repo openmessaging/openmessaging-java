@@ -19,7 +19,7 @@ package io.openmessaging.api.transaction;
 import io.openmessaging.api.Message;
 
 /**
- * Check local transactions, callback debugger by Broker.
+ * Check local transactions, callback by broker.
  *
  * @version OMS 1.2.0
  * @since OMS 1.2.0

@@ -45,6 +45,6 @@ public interface TransactionProducer extends LifeCycle, Credentials {
      * @return Send result
      */
     SendResult send(final Message message,
-        final LocalTransactionExecutor localTransactionExecutor,
+        final LocalTransactionExecuter localTransactionExecutor,
         final Object arg);
 }
