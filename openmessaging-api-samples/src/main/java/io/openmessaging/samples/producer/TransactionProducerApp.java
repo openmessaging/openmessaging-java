@@ -22,7 +22,7 @@ import io.openmessaging.api.MessagingAccessPoint;
 import io.openmessaging.api.OMS;
 import io.openmessaging.api.SendResult;
 import io.openmessaging.api.transaction.LocalTransactionChecker;
-import io.openmessaging.api.transaction.LocalTransactionExecutor;
+import io.openmessaging.api.transaction.LocalTransactionExecuter;
 import io.openmessaging.api.transaction.TransactionProducer;
 import io.openmessaging.api.transaction.TransactionStatus;
 import java.util.Properties;
@@ -51,7 +51,7 @@ public class TransactionProducerApp {
         Message message = new Message("NS://Topic", "TagA", "Hello MQ".getBytes());
 
         //Sends a transaction message to the specified destination synchronously.
-        SendResult result = producer.send(message, new LocalTransactionExecutor() {
+        SendResult result = producer.send(message, new LocalTransactionExecuter() {
             @Override public TransactionStatus execute(Message message, Object arg) {
                 return TransactionStatus.CommitTransaction;
             }

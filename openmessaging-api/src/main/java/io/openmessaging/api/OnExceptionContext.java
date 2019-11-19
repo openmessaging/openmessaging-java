@@ -33,7 +33,7 @@ public class OnExceptionContext {
     /**
      * Detailed exception stack information.
      */
-    private OMSRuntimeException omsRuntimeException;
+    private OMSRuntimeException exception;
 
     public String getMessageId() {
         return messageId;
@@ -51,11 +51,12 @@ public class OnExceptionContext {
         this.topic = topic;
     }
 
-    public OMSRuntimeException getOmsRuntimeException() {
-        return omsRuntimeException;
+
+    public OMSRuntimeException getException() {
+        return exception;
     }
 
-    public void setOmsRuntimeException(OMSRuntimeException omsRuntimeException) {
-        this.omsRuntimeException = omsRuntimeException;
+    public void setException(OMSRuntimeException exception) {
+        this.exception = exception;
     }
 }

@@ -38,10 +38,18 @@ public class OMSRuntimeException extends RuntimeException {
      *
      * @see Error
      **/
-    private final int errorCode;
+    private int errorCode;
+
+    public OMSRuntimeException() {
+    }
 
     public OMSRuntimeException(String message) {
         super(message);
+        this.errorCode = OMSResponseStatus.STATUS_1400.getStatusCode();
+    }
+
+    public OMSRuntimeException(Throwable cause) {
+        super(cause);
         this.errorCode = OMSResponseStatus.STATUS_1400.getStatusCode();
     }
 
