@@ -17,71 +17,52 @@
 
 package io.openmessaging.samples.producer;
 
-import io.openmessaging.Future;
-import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.OMS;
-import io.openmessaging.interceptor.Context;
-import io.openmessaging.interceptor.ProducerInterceptor;
-import io.openmessaging.message.Message;
-import io.openmessaging.producer.Producer;
-import io.openmessaging.producer.SendResult;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
+import io.openmessaging.api.Message;
+import io.openmessaging.api.MessagingAccessPoint;
+import io.openmessaging.api.OMS;
+import io.openmessaging.api.OnExceptionContext;
+import io.openmessaging.api.Producer;
+import io.openmessaging.api.SendCallback;
+import io.openmessaging.api.SendResult;
+import java.util.Properties;
 
 public class ProducerApp {
     public static void main(String[] args) {
         final MessagingAccessPoint messagingAccessPoint =
-            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
+            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org");
 
-        final Producer producer = messagingAccessPoint.createProducer();
-        ProducerInterceptor interceptor = new ProducerInterceptor() {
-            @Override
-            public void preSend(Message message, Context attributes) {
-                System.out.println("PreSend message: " + message);
-            }
-
-            @Override
-            public void postSend(Message message, Context attributes) {
-                System.out.println("PostSend message: " + message);
-            }
-        };
-        producer.addInterceptor(interceptor);
+        final Producer producer = messagingAccessPoint.createProducer(new Properties());
         producer.start();
 
         //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                producer.stop();
+                producer.shutdown();
             }
         }));
 
-        //Send a message to the specified destination synchronously.
-        Message message = producer.createMessage(
-            "NS://HELLO_QUEUE1", "HELLO_BODY".getBytes(Charset.forName("UTF-8")));
-        message.header().setBornHost("127.0.0.1").setDurability((short) 0);
-        message.extensionHeader().setPartition(1);
+        Message message = new Message("NS://Topic", "TagA", "Hello MQ".getBytes());
+
         SendResult sendResult = producer.send(message);
         System.out.println("SendResult: " + sendResult);
 
         //Sends a message to the specified destination async.
-        Future<SendResult> sendResultFuture = producer.sendAsync(message);
-        sendResult = sendResultFuture.get(1000);
-        System.out.println("SendResult: " + sendResult);
+        producer.sendAsync(message, new SendCallback() {
+            @Override
+            public void onSuccess(SendResult sendResult) {
+                System.out.println("SendResult: " + sendResult);
+            }
+
+            @Override
+            public void onException(OnExceptionContext context) {
+
+            }
+        });
 
         //Sends a message to the specified destination in one way mode.
         producer.sendOneway(message);
 
-        //Sends messages to the specified destination in batch mode.
-        List<Message> messages = new ArrayList<Message>(10);
-        for (int i = 0; i < 10; i++) {
-            Message msg = producer.createMessage("NS://HELLO_QUEUE", ("Hello" + i).getBytes());
-            messages.add(msg);
-        }
-
-        producer.send(messages);
-        producer.removeInterceptor(interceptor);
-        producer.stop();
+        producer.shutdown();
     }
 }

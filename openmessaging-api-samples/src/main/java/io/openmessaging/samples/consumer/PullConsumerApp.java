@@ -17,37 +17,42 @@
 
 package io.openmessaging.samples.consumer;
 
-import io.openmessaging.MessagingAccessPoint;
-import io.openmessaging.OMS;
-import io.openmessaging.consumer.PullConsumer;
-import io.openmessaging.message.Message;
-import java.util.Arrays;
+import io.openmessaging.api.Message;
+import io.openmessaging.api.MessagingAccessPoint;
+import io.openmessaging.api.OMS;
+import io.openmessaging.api.PullConsumer;
+import io.openmessaging.api.TopicPartition;
+import java.time.Duration;
+import java.util.List;
+import java.util.Properties;
+import java.util.Set;
 
 public class PullConsumerApp {
     public static void main(String[] args) {
         //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
             OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
-
+        Properties properties = new Properties();
         //Start a PullConsumer to receive messages from the specific queue.
-        final PullConsumer consumer = messagingAccessPoint.createPullConsumer();
+        final PullConsumer consumer = messagingAccessPoint.createPullConsumer(properties);
 
         //Register a shutdown hook to close the opened endpoints.
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                consumer.stop();
+                consumer.shutdown();
             }
         }));
 
-        consumer.bindQueue(Arrays.asList("NS://HELLO_QUEUE"));
+        Set<TopicPartition> topicPartitions = consumer.topicPartitions("NS://TOPIC");
+        consumer.assign(topicPartitions);
         consumer.start();
 
-        Message message = consumer.receive(1000);
+        List<Message> message = consumer.poll(Duration.ofMillis(1000));
         System.out.println("Received message: " + message);
         //Acknowledge the consumed message
-        consumer.ack(message.getMessageReceipt());
-        consumer.stop();
+        consumer.commitSync();
+        consumer.shutdown();
 
     }
 }
