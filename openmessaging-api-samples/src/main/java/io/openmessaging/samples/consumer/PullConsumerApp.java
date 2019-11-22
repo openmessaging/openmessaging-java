@@ -22,7 +22,6 @@ import io.openmessaging.api.MessagingAccessPoint;
 import io.openmessaging.api.OMS;
 import io.openmessaging.api.PullConsumer;
 import io.openmessaging.api.TopicPartition;
-import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
@@ -48,7 +47,7 @@ public class PullConsumerApp {
         consumer.assign(topicPartitions);
         consumer.start();
 
-        List<Message> message = consumer.poll(Duration.ofMillis(1000));
+        List<Message> message = consumer.poll(1000);
         System.out.println("Received message: " + message);
         //Acknowledge the consumed message
         consumer.commitSync();

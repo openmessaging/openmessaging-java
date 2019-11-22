@@ -16,7 +16,6 @@
  */
 package io.openmessaging.api;
 
-import java.time.Duration;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -65,13 +64,13 @@ public interface PullConsumer extends LifeCycle, Credentials {
      * Fetch data for the topics or partitions specified using assign API. It is an error to not have subscribed to any
      * topics or partitions before polling for data.
      *
-     * @param timeout
+     * @param timeout in millisecond
      * @return
      */
-    List<Message> poll(Duration timeout);
+    List<Message> poll(long timeout);
 
     /**
-     * Overrides the fetch offsets that the consumer will use on the next {@link #poll(Duration)} }. If this API is invoked
+     * Overrides the fetch offsets that the consumer will use on the next {@link #poll(long)} }. If this API is invoked
      * for the same message queue more than once, the latest offset will be used on the next poll(). Note that you may
      * lose data if this API is arbitrarily used in the middle of consumption.
      *
@@ -82,7 +81,7 @@ public interface PullConsumer extends LifeCycle, Credentials {
 
     /**
      * Overrides the fetch offsets with the beginning offset in server that the consumer will use on the next {@link
-     * #poll(Duration)} }.
+     * #poll(long)} }.
      *
      * @param topicPartition
      */
@@ -90,14 +89,14 @@ public interface PullConsumer extends LifeCycle, Credentials {
 
     /**
      * Overrides the fetch offsets with the end offset in server that the consumer will use on the next {@link
-     * #poll(Duration)} }.
+     * #poll(long)} }.
      *
      * @param topicPartition
      */
     void seekToEnd(TopicPartition topicPartition);
 
     /**
-     * Suspend fetching from the requested message queues. Future calls to {@link #poll(Duration)} will not return any
+     * Suspend fetching from the requested message queues. Future calls to {@link #poll(long)} will not return any
      * records from these message queues until they have been resumed using {@link #resume(Collection)}.
      *
      * Note that this method does not affect message queue subscription. In particular, it does not cause a group
@@ -109,7 +108,7 @@ public interface PullConsumer extends LifeCycle, Credentials {
 
     /**
      * Resume specified message queues which have been paused with {@link #pause(Collection)}. New calls to {@link
-     * #poll(Duration)} will return records from these partitions if there are any to be fetched. If the message queues were
+     * #poll(long)} will return records from these partitions if there are any to be fetched. If the message queues were
      * not previously paused, this method is a no-op.
      *
      * @param topicPartitions
