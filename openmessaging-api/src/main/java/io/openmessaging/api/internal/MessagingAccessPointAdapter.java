@@ -37,23 +37,14 @@ public class MessagingAccessPointAdapter {
     /**
      * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver URL with some preset userHeaders.
      *
-     * @param url the driver URL.
      * @param attributes the preset userHeaders.
      * @return a {@code MessagingAccessPoint} instance.
      * @throws OMSRuntimeException if the adapter fails to create a {@code MessagingAccessPoint} instance from the URL.
      */
-    public static MessagingAccessPoint getMessagingAccessPoint(String url, Properties attributes) {
-        AccessPointURI accessPointURI = new AccessPointURI(url);
-        String driverImpl = parseDriverImpl(accessPointURI.getDriverType(), attributes);
+    public static MessagingAccessPoint getMessagingAccessPoint(Properties attributes) {
+        String driverImpl = parseDriverImpl(attributes.getProperty(OMSBuiltinKeys.DRIVER), attributes);
 
-        attributes.put(OMSBuiltinKeys.ACCESS_POINTS, accessPointURI.getHosts());
         attributes.put(OMSBuiltinKeys.DRIVER_IMPL, driverImpl);
-        if (accessPointURI.getRegion() != null) {
-            attributes.put(OMSBuiltinKeys.REGION, accessPointURI.getRegion());
-        }
-        if (accessPointURI.getAccountId() != null) {
-            attributes.put(OMSBuiltinKeys.ACCESS_KEY, accessPointURI.getAccountId());
-        }
 
         try {
             Class<?> driverImplClass = Class.forName(driverImpl);
@@ -61,7 +52,7 @@ public class MessagingAccessPointAdapter {
             MessagingAccessPoint vendorImpl = (MessagingAccessPoint) constructor.newInstance(attributes);
             return vendorImpl;
         } catch (Throwable e) {
-            throw generateException(OMSResponseStatus.STATUS_10000, url);
+            throw generateException(OMSResponseStatus.STATUS_10000);
         }
     }
 

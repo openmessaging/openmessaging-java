@@ -17,57 +17,133 @@
 
 package io.openmessaging.api;
 
-import io.openmessaging.api.exception.OMSRuntimeException;
 import io.openmessaging.api.internal.MessagingAccessPointAdapter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 /**
+ * <p>
  * The oms class provides some static methods to create a {@code MessagingAccessPoint} from the specified OMS driver url
  * and some useful util methods.
- * <p>
- * The complete OMS driver URL syntax is:
- * <p>
- * {@literal oms:<driver_type>://[account_id@]host1[:port1][,host2[:port2],...[,hostN[:portN]]]/<region>}
- * <p>
- * The first part of the URL specifies which OMS implementation is to be used, rocketmq is an optional driver type.
+ * </p>
+ *
  * <p>
  * The brackets indicate that the extra access points are optional, and a correct OMS driver url needs at least one
  * access point, which consists of hostname and port, like localhost:8081.
+ * </p>
  *
- * @version  OMS 1.1.0
- * @since  OMS 1.1.0
+ * @version OMS 1.2.0
+ * @since OMS 1.1.0
  */
 public final class OMS {
-    /**
-     * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url.
-     *
-     * @param url the specified OMS driver url
-     * @return a {@code MessagingAccessPoint} instance
-     * @throws OMSRuntimeException if the factory fails to create a {@code MessagingAccessPoint} due to some driver url
-     * some syntax error or internal error.
-     */
-    public static MessagingAccessPoint getMessagingAccessPoint(String url) {
-        return getMessagingAccessPoint(url, new Properties());
+
+    private final Properties properties = new Properties();
+
+    public static OMS builder() {
+        return new OMS();
     }
 
     /**
-     * Returns a {@code MessagingAccessPoint} instance from the specified OMS driver url with some preset attributes,
-     * which will be passed to MessagingAccessPoint's implementation class as a unique constructor parameter.
+     * Set the endpoint provided by messaging vendor.
      *
-     * There are some standard attributes defined by OMS for this method, the same as {@link
-     * MessagingAccessPoint#attributes()} ()}
-     *
-     * @param url the specified OMS driver url
-     * @return a {@code MessagingAccessPoint} instance
-     * @throws OMSRuntimeException if the factory fails to create a {@code MessagingAccessPoint} due to some driver url
-     * some syntax error or internal error.
+     * @param endpoint
+     * @return
      */
-    public static MessagingAccessPoint getMessagingAccessPoint(String url, Properties attributes) {
-        return MessagingAccessPointAdapter.getMessagingAccessPoint(url, attributes);
+    public OMS endpoint(String endpoint) {
+        this.properties.put(OMSBuiltinKeys.ENDPOINT, endpoint);
+        return this;
     }
 
+    /**
+     * Set the region provided by messaging vendor.
+     *
+     * @param region
+     * @return
+     */
+    public OMS region(String region) {
+        this.properties.put(OMSBuiltinKeys.REGION, region);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set the the driver type of the specified MessagingAccessPoint's * implementation, the default value is {@literal
+     * io.openmessaging.<driver_type>.MessagingAccessPointImpl}.
+     * </p>
+     *
+     * <p>
+     * But if the {@link OMS#driverImpl(String)} attribute was set, this attribute will be ignored.
+     * </p>
+     *
+     * @param driver
+     * @return
+     */
+    public OMS driver(String driver) {
+        this.properties.put(OMSBuiltinKeys.DRIVER, driver);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set the the fully qualified class name of the specified MessagingAccessPoint's * implementation, the default
+     * value is {@literal io.openmessaging.<driver_type>.MessagingAccessPointImpl}.
+     * </p>
+     *
+     * <p>
+     * If this attribute was set, {@link OMS#driver(String)} will be ignored.
+     * </p>
+     *
+     * @param driverImpl
+     * @return
+     */
+    public OMS driverImpl(String driverImpl) {
+        this.properties.put(OMSBuiltinKeys.DRIVER_IMPL, driverImpl);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set credentials used by the client.
+     * </p>
+     *
+     * @param credentials provided by vendors.
+     * @return
+     */
+    public OMS withCredentials(Properties credentials) {
+        if (credentials.getProperty(OMSBuiltinKeys.ACCESS_KEY) != null) {
+            this.properties.put(OMSBuiltinKeys.ACCESS_KEY, credentials.getProperty(OMSBuiltinKeys.ACCESS_KEY));
+        }
+        if (credentials.getProperty(OMSBuiltinKeys.SECRET_KEY) != null) {
+            this.properties.put(OMSBuiltinKeys.SECRET_KEY, credentials.getProperty(OMSBuiltinKeys.SECRET_KEY));
+        }
+        if (credentials.getProperty(OMSBuiltinKeys.SECURITY_TOKEN) != null) {
+            this.properties.put(OMSBuiltinKeys.SECURITY_TOKEN, credentials.getProperty(OMSBuiltinKeys.SECURITY_TOKEN));
+        }
+        return this;
+    }
+
+    public MessagingAccessPoint build() {
+        return MessagingAccessPointAdapter.getMessagingAccessPoint(this.properties);
+    }
+
+    /**
+     * Set extra custom configs.
+     *
+     * @param config extra configs
+     * @return
+     */
+    public MessagingAccessPoint build(Properties config) {
+        Set<Map.Entry<Object, Object>> entrySet = config.entrySet();
+        for (Map.Entry<Object, Object> entry : entrySet) {
+            if (!this.properties.containsKey(entry.getKey())) {
+                this.properties.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return this.build(properties);
+    }
 
     /**
      * The version format is X.Y.Z (Major.Minor.Patch), a pre-release version may be denoted by appending a hyphen and a
