@@ -20,7 +20,6 @@ package io.openmessaging.api.internal;
 import io.openmessaging.api.Consumer;
 import io.openmessaging.api.MessagingAccessPoint;
 import io.openmessaging.api.OMS;
-import io.openmessaging.api.OMSBuiltinKeys;
 import io.openmessaging.api.Producer;
 import io.openmessaging.api.PullConsumer;
 import io.openmessaging.api.batch.BatchConsumer;
@@ -36,11 +35,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MessagingAccessPointAdapterTest {
     @Test
     public void getMessagingAccessPoint() {
-        String testURI = "oms:test-vendor://alice@rocketmq.apache.org/us-east:default_space";
 
-        Properties properties = new Properties();
-        properties.put(OMSBuiltinKeys.DRIVER_IMPL, "io.openmessaging.api.internal.TestVendor");
-        MessagingAccessPoint messagingAccessPoint = OMS.getMessagingAccessPoint(testURI, properties);
+        final MessagingAccessPoint messagingAccessPoint =
+            OMS.builder()
+                .region("Shenzhen")
+                .endpoint("127.0.0.1:9876")
+                .driverImpl("io.openmessaging.api.internal.TestVendor")
+                .withCredentials(new Properties())
+                .build();
+
         assertThat(messagingAccessPoint).isExactlyInstanceOf(TestVendor.class);
     }
 }

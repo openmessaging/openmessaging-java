@@ -30,7 +30,12 @@ public class PullConsumerApp {
     public static void main(String[] args) {
         //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
-            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
+            OMS.builder()
+                .endpoint("http://mq-instance-xxx-1234567890-test:8080")
+                .region("Shenzhen")
+                .driver("rocketmq")
+                .build();
+
         Properties properties = new Properties();
         //Start a PullConsumer to receive messages from the specific queue.
         final PullConsumer consumer = messagingAccessPoint.createPullConsumer(properties);

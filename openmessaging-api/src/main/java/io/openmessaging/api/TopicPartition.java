@@ -17,7 +17,7 @@
 package io.openmessaging.api;
 
 /**
- * Used for describe a topic and
+ * Used for describe a topic
  * @version OMS 1.2.0
  * @since OMS 1.2.0
  */
@@ -79,5 +79,12 @@ public class TopicPartition {
             return false;
         }
         return true;
+    }
+
+    @Override public String toString() {
+        return "TopicPartition{" +
+            "topic='" + topic + '\'' +
+            ", partition='" + partition + '\'' +
+            '}';
     }
 }

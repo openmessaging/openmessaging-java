@@ -29,7 +29,12 @@ import java.util.Properties;
 public class ProducerApp {
     public static void main(String[] args) {
         final MessagingAccessPoint messagingAccessPoint =
-            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org");
+            OMS.builder()
+                .region("shanghai,shenzhen")
+                .endpoint("127.0.0.1:9876")
+                .driver("rocketmq")
+                .withCredentials(new Properties())
+                .build();
 
         final Producer producer = messagingAccessPoint.createProducer(new Properties());
         producer.start();

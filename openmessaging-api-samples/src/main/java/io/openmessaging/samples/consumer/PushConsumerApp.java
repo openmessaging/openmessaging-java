@@ -30,7 +30,12 @@ public class PushConsumerApp {
     public static void main(String[] args) {
         //Load and start the vendor implementation from a specific OMS driver URL.
         final MessagingAccessPoint messagingAccessPoint =
-            OMS.getMessagingAccessPoint("oms:rocketmq://localhost:9876");
+            OMS.builder()
+                .region("Shenzhen")
+                .endpoint("127.0.0.1:9876")
+                .driver("rocketmq")
+                .withCredentials(new Properties())
+                .build();
 
         Properties properties = new Properties();
         final Consumer consumer = messagingAccessPoint.createConsumer(properties);

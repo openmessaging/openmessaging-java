@@ -27,34 +27,37 @@ public interface OMSBuiltinKeys {
     /**
      * The {@code DRIVER_IMPL} key represents the vendor implementation entry of {@link MessagingAccessPoint}.
      */
-    String DRIVER_IMPL = "DRIVER_IMPL";
-
-    /**
-     * The {@code ACCESS_POINTS} key shows the specified access points in OMS driver schema.
-     *
-     * @see <a href="https://github.com/openmessaging/specification/blob/master/oms_access_point_schema.md">Access Point
-     * Schema</a>
-     */
-    String ACCESS_POINTS = "ACCESS_POINTS";
+    String DRIVER_IMPL = "driverImpl";
 
     /**
      * The {@code ACCESS_KEY} key shows the specified access key in OMS driver schema.
      */
-    String ACCESS_KEY = "AccessKey";
+    String ACCESS_KEY = "accessKey";
 
     /**
      * The {@code SECRET_KEY} key shows the specified secret key in OMS attribute.
      */
-    String SECRET_KEY = "SecretKey";
+    String SECRET_KEY = "secretKey";
 
     /**
      * The {@code SECURITY_TOKEN} key shows the specified security token in OMS attribute.
      */
-    String SECURITY_TOKEN = "SecurityToken";
+    String SECURITY_TOKEN = "securityToken";
 
     /**
      * The {@code REGION} key shows the specified region in OMS driver schema.
      */
-    String REGION = "REGION";
+    String REGION = "region";
+
+    /**
+     * The {@code ENDPOINT} key shows the specified host in OMS attribute.
+     */
+    String ENDPOINT = "endpoint";
+
+    /**
+     * The {@code DRIVER} key represents the vendor type of {@link MessagingAccessPoint}, but if {@code DRIVER_IMPL} is
+     * not empty, this {@code DRIVER} value will be ignored.
+     */
+    String DRIVER = "driver";
 
 }

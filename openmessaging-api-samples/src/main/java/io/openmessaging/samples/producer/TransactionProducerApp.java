@@ -30,7 +30,12 @@ import java.util.Properties;
 public class TransactionProducerApp {
     public static void main(String[] args) {
         final MessagingAccessPoint messagingAccessPoint =
-            OMS.getMessagingAccessPoint("oms:rocketmq://alice@rocketmq.apache.org/us-east");
+            OMS.builder()
+                .region("Shenzhen")
+                .endpoint("127.0.0.1:9876")
+                .driver("rocketmq")
+                .withCredentials(new Properties())
+                .build();
 
         final TransactionProducer producer = messagingAccessPoint.createTransactionProducer(new Properties(), new LocalTransactionChecker() {
             @Override
