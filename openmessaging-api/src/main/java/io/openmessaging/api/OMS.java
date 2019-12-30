@@ -142,7 +142,7 @@ public final class OMS {
                 this.properties.put(entry.getKey(), entry.getValue());
             }
         }
-        return this.build(properties);
+        return MessagingAccessPointAdapter.getMessagingAccessPoint(this.properties);
     }
 
     /**
