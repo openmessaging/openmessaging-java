@@ -17,8 +17,7 @@
 
 package io.openmessaging.api.order;
 
-import io.openmessaging.api.Credentials;
-import io.openmessaging.api.LifeCycle;
+import io.openmessaging.api.Admin;
 import io.openmessaging.api.Message;
 import io.openmessaging.api.SendResult;
 
@@ -28,7 +27,7 @@ import io.openmessaging.api.SendResult;
  * @version OMS 1.2.0
  * @since OMS 1.2.0
  */
-public interface OrderProducer extends LifeCycle, Credentials {
+public interface OrderProducer extends Admin {
 
     /**
      * Send message in order

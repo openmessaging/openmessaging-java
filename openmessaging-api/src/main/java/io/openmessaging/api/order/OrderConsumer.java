@@ -17,9 +17,8 @@
 
 package io.openmessaging.api.order;
 
-import io.openmessaging.api.Credentials;
+import io.openmessaging.api.Admin;
 import io.openmessaging.api.ExpressionType;
-import io.openmessaging.api.LifeCycle;
 import io.openmessaging.api.MessageSelector;
 
 /**
@@ -28,7 +27,7 @@ import io.openmessaging.api.MessageSelector;
  * @version OMS 1.2.0
  * @since OMS 1.2.0
  */
-public interface OrderConsumer extends LifeCycle, Credentials {
+public interface OrderConsumer extends Admin {
 
     /**
      * Subscribe message in order.

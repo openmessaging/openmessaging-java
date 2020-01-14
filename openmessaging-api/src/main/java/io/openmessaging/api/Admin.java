@@ -14,34 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package io.openmessaging.api.batch;
-
-import io.openmessaging.api.Admin;
+package io.openmessaging.api;
 
 /**
- * Batch message consumer, used to subscribe to messages in batch.
+ * <p>
+ * Client basic management interface, used for as a unified interface to manage basic operations such as start, stop,
+ * and authorization information management.
+ *
+ * </p>
  *
  * @version OMS 1.2.0
  * @since OMS 1.2.0
  */
-public interface BatchConsumer extends Admin {
-
-    /**
-     * Subscribe message
-     *
-     * @param topic
-     * @param subExpression Subscribe to the filter expression string, which the broker filters based on this
-     * expression. <br> eg: "tag1 || tag2 || tag3"<br>, if subExpression is equal to null or *, it means subscribe all
-     * messages.
-     * @param listener consume message callback listener.
-     */
-    void subscribe(final String topic, final String subExpression, final BatchMessageListener listener);
-
-    /**
-     * Unsubscribe topic
-     *
-     * @param topic
-     */
-    void unsubscribe(final String topic);
+public interface Admin extends LifeCycle, Credentials {
 }

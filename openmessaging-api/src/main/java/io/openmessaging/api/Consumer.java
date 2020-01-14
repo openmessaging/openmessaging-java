@@ -22,7 +22,7 @@ package io.openmessaging.api;
  * @version OMS 1.2.0
  * @since OMS 1.2.0
  */
-public interface Consumer extends LifeCycle, Credentials {
+public interface Consumer extends Admin {
 
     /**
      * Subscribe message in order.
@@ -50,6 +50,7 @@ public interface Consumer extends LifeCycle, Credentials {
 
     /**
      * Unsubscribe message
+     *
      * @param topic
      */
     void unsubscribe(final String topic);
