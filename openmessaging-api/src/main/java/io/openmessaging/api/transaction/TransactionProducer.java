@@ -17,8 +17,7 @@
 
 package io.openmessaging.api.transaction;
 
-import io.openmessaging.api.Credentials;
-import io.openmessaging.api.LifeCycle;
+import io.openmessaging.api.Admin;
 import io.openmessaging.api.Message;
 import io.openmessaging.api.SendResult;
 
@@ -28,7 +27,7 @@ import io.openmessaging.api.SendResult;
  * @version OMS 1.2.0
  * @since OMS 1.2.0
  */
-public interface TransactionProducer extends LifeCycle, Credentials {
+public interface TransactionProducer extends Admin {
 
     /**
      * This method is used to send a transactional message. A transactional message is sent in three steps:
