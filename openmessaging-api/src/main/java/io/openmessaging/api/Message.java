@@ -237,6 +237,28 @@ public class Message implements Serializable {
         putSystemProperties(SystemPropKey.STARTDELIVERTIME, String.valueOf(value));
     }
 
+    /**
+     * Get the offset of this message assigned by the broker.
+     *
+     * @return Message offset in relative partition
+     */
+    public long getOffset() {
+        String v = getSystemProperties(SystemPropKey.CONSUMEOFFSET);
+        if (v != null) {
+            return Long.parseLong(v);
+        }
+        return 0;
+    }
+
+    /**
+     * Get the partition to which the message belongs.
+     *
+     * @return Message offset in relative partition
+     */
+    public TopicPartition getTopicPartition() {
+        return new TopicPartition(topic, getSystemProperties(SystemPropKey.PARTITION));
+    }
+
     @Override
     public String toString() {
         return "Message [topic=" + topic + ", systemProperties=" + systemProperties + ", userProperties=" + userProperties + ", body="
@@ -253,5 +275,9 @@ public class Message implements Serializable {
         public static final String BORNHOST = "__BORNHOST";
 
         public static final String STARTDELIVERTIME = "__STARTDELIVERTIME";
+
+        public static final String CONSUMEOFFSET = "__CONSUMEOFFSET";
+
+        public static final String PARTITION = "__PARTITION";
     }
 }
