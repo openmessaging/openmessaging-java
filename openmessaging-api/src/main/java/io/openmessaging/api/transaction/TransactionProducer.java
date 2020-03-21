@@ -20,6 +20,7 @@ package io.openmessaging.api.transaction;
 import io.openmessaging.api.Admin;
 import io.openmessaging.api.Message;
 import io.openmessaging.api.SendResult;
+import io.openmessaging.api.TransactionalResult;
 
 /**
  * Send transactional message.
@@ -46,4 +47,18 @@ public interface TransactionProducer extends Admin {
     SendResult send(final Message message,
         final LocalTransactionExecuter localTransactionExecutor,
         final Object arg);
+
+    /**
+     * Sends a transactional message
+     * <p>
+     * A transactional send result will be exposed to consumer if this prepare message send success, and then, you can
+     * execute your local transaction, when local transaction execute success, users can use {@link
+     * TransactionalResult#commit()} to commit prepare message,otherwise can use {@link TransactionalResult#rollback()}
+     * to roll back this prepare message.
+     * </p>
+     *
+     * @param message a prepare transactional message will be sent.
+     * @return the successful {@code TransactionalResult}.
+     */
+    TransactionalResult prepare(Message message);
 }
