@@ -14,16 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openmessaging.api;
+package io.openmessaging.samples;
 
-import java.util.List;
+public class User {
+    private String name;
 
-public interface OMSConsumer<T> {
+    public String getName() {
+        return name;
+    }
 
-    void subscribe(final String topic, final String subExpression, final GenericMessageListener listener);
-
-    List<T> poll();
-
-    void subscribe(final String topic, final String subExpression);
-
+    public void setName(String name) {
+        this.name = name;
+    }
 }
