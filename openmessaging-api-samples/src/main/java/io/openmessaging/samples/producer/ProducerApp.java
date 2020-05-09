@@ -37,6 +37,7 @@ public class ProducerApp {
                 .build();
 
         final Producer producer = messagingAccessPoint.createProducer(new Properties());
+
         producer.start();
 
         //Register a shutdown hook to close the opened endpoints.

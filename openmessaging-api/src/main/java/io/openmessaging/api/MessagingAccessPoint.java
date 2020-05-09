@@ -134,4 +134,10 @@ public interface MessagingAccessPoint {
      * error
      */
     OrderConsumer createOrderedConsumer(final Properties properties);
+
+
+    OMSProducer createOMSProducer(final Properties properties);
+
+
+    OMSConsumer createOMSConsumer(final Properties properties);
 }
