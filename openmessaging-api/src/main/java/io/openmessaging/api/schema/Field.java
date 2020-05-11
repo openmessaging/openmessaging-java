@@ -22,8 +22,8 @@ import java.util.Objects;
 /**
  * Filed of the schema.
  *
- * @version OMS 0.1.0
- * @since OMS 0.1.0
+ * @version OMS 2.0.0
+ * @since OMS 2.0.0
  */
 public class Field {
 
@@ -38,14 +38,14 @@ public class Field {
     private String name;
 
     /**
-     * The type of the file.
+     * The type of the filed.
      */
-    private FieldType type;
+    private FieldType fieldType;
 
-    public Field(int index, String name, FieldType type) {
+    public Field(int index, String name, FieldType fieldType) {
         this.index = index;
         this.name = name;
-        this.type = type;
+        this.fieldType = fieldType;
     }
 
     public int getIndex() {
@@ -64,19 +64,19 @@ public class Field {
         this.name = name;
     }
 
-    public FieldType getType() {
-        return type;
+    public FieldType getFieldType() {
+        return fieldType;
     }
 
-    public void setType(FieldType type) {
-        this.type = type;
+    public void setFieldType(FieldType fieldType) {
+        this.fieldType = fieldType;
     }
 
     @Override public String toString() {
         return "Field{" +
             "index=" + index +
             ", name='" + name + '\'' +
-            ", type=" + type +
+            ", fieldType=" + fieldType +
             '}';
     }
 
@@ -88,10 +88,10 @@ public class Field {
         Field field = (Field) o;
         return index == field.index &&
             Objects.equals(name, field.name) &&
-            type == field.type;
+            fieldType == field.fieldType;
     }
 
     @Override public int hashCode() {
-        return Objects.hash(index, name, type);
+        return Objects.hash(index, name, fieldType);
     }
 }

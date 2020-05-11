@@ -34,5 +34,5 @@ public interface GenericRecord {
 
     Object getField(Field field);
 
-    Object getField(String var1);
+    Object getField(String field);
 }

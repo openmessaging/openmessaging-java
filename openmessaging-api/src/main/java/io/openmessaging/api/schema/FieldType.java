@@ -25,22 +25,19 @@ package io.openmessaging.api.schema;
  */
 public enum FieldType {
 
-    /** Short */
+    /**  16-bit signed integer */
     INT16,
 
-    /** Integer */
+    /**  32-bit signed integer */
     INT32,
 
-    /** Long */
+    /** 64-bit signed integer */
     INT64,
 
-    /** BigInteger */
-    BIG_INTEGER,
-
-    /** Float */
+    /**  32-bit IEEE 754 floating point number */
     FLOAT32,
 
-    /** Double */
+    /** 64-bit IEEE 754 floating point number */
     FLOAT64,
 
     /** Boolean */
@@ -59,5 +56,8 @@ public enum FieldType {
     MAP,
 
     /** Date */
-    DATETIME;
+    DATETIME,
+
+    /** Struct */
+    STRUCT;
 }
