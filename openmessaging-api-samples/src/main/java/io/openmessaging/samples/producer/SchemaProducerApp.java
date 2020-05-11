@@ -40,7 +40,7 @@ public class SchemaProducerApp {
         Properties properties = new Properties();
         properties.setProperty(OMSBuiltinKeys.SERIALIZER, "io.openmessaging.openmeta.impl.Serializer");
         properties.setProperty(OMSBuiltinKeys.OPEN_META_URL, "http://localhost:1234");
-        final OMSProducer<User> producer = messagingAccessPoint.createOMSProducer(new Properties());
+        final OMSProducer<User> producer = messagingAccessPoint.createOMSProducer(properties);
 
         producer.start();
 
