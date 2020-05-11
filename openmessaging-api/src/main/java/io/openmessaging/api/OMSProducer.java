@@ -68,7 +68,8 @@ public interface OMSProducer<T> extends Admin{
      * Sends a message to the specified destination synchronously, the destination should be preset to {@link
      * Message#setTopic(String)}, other header fields as well.
      *
-     * @param message a message will be sent.
+     * @param topic destination of this message
+     * @param t a message will be sent.
      * @return the successful {@code SendResult}.
      * @throws OMSSecurityException when have no authority to send messages to a given destination.
      * @throws OMSMessageFormatException when an invalid message is specified.
@@ -76,16 +77,17 @@ public interface OMSProducer<T> extends Admin{
      * @throws OMSDestinationException when have no given destination in the server.
      * @throws OMSRuntimeException when the {@code Producer} fails to send the message due to some internal error.
      */
-    SendResult send(final T t);
+    SendResult send(final String topic, final T t);
 
     /**
      * <p>
      * There is no {@code Promise} related or {@code RuntimeException} thrown. The calling thread doesn't care about the
      * send result and also have no context to get the result.
      *
+     * @param topic destination of this message
      * @param t a message will be sent.
      */
-    void sendOneway(final T t);
+    void sendOneway(final String topic, final T t);
 
     /**
      * Sends a message to the specified destination asynchronously, the destination should be preset to {@link
@@ -94,8 +96,9 @@ public interface OMSProducer<T> extends Admin{
      * The returned {@code Promise} will have the result once the operation completes, and the registered {@link
      * SendCallback} will be invoked, either because the operation was successful or because of an error.
      *
+     * @param topic destination of this message
      * @param t a message will be sent.
      * @param sendCallback {@link SendCallback}
      */
-    void sendAsync(final T t, final SendCallback sendCallback);
+    void sendAsync(final String topic, final T t, final SendCallback sendCallback);
 }

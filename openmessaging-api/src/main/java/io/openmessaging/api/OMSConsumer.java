@@ -16,14 +16,10 @@
  */
 package io.openmessaging.api;
 
-import java.util.List;
-
-public interface OMSConsumer<T> {
-
+public interface OMSConsumer {
     void subscribe(final String topic, final String subExpression, final GenericMessageListener listener);
 
-    List<T> poll();
+    void subscribe(final String topic, final String subExpression, final OrderGenericMessageListener listener);
 
-    void subscribe(final String topic, final String subExpression);
-
+    void unsubscribe(final String topic);
 }

@@ -16,7 +16,8 @@
  */
 package io.openmessaging.api.schema;
 
-import java.util.Collection;
+import java.util.List;
+
 /**
  * Consumer interface.
  *
@@ -30,7 +31,7 @@ public interface GenericRecord {
      */
     int getSchemaVersion();
 
-    Collection<Field> getFields();
+    List<Field> getFields();
 
     Object getField(Field field);
 
