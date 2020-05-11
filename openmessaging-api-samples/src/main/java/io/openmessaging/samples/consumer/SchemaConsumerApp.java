@@ -24,7 +24,6 @@ import io.openmessaging.api.OMS;
 import io.openmessaging.api.OMSBuiltinKeys;
 import io.openmessaging.api.OMSConsumer;
 import io.openmessaging.samples.User;
-import java.util.List;
 import java.util.Properties;
 
 public class SchemaConsumerApp {
@@ -40,13 +39,8 @@ public class SchemaConsumerApp {
                 .build();
 
         Properties properties = new Properties();
-        properties.setProperty(OMSBuiltinKeys.SERIALLIZER, "io.openmessaging.openmeta.Serilizer");
-        properties.setProperty(OMSBuiltinKeys.OPEN_META_URL, "localhost:1234");
-
-        OMSConsumer<User> pullConsumer = messagingAccessPoint.createOMSConsumer(properties);
-        pullConsumer.subscribe("topic", "*");
-        List<User> users = pullConsumer.poll();
-        System.out.println(users);
+        properties.setProperty(OMSBuiltinKeys.DESERIALIZER, "io.openmessaging.openmeta.impl.Deserializer");
+        properties.setProperty(OMSBuiltinKeys.OPEN_META_URL, "http://localhost:1234");
 
         OMSConsumer pushConsumer = messagingAccessPoint.createOMSConsumer(properties);
 

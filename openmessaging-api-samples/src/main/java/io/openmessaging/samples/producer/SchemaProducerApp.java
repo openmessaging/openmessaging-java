@@ -17,17 +17,17 @@
 
 package io.openmessaging.samples.producer;
 
-import io.openmessaging.api.Message;
 import io.openmessaging.api.MessagingAccessPoint;
 import io.openmessaging.api.OMS;
 import io.openmessaging.api.OMSBuiltinKeys;
+import io.openmessaging.api.OMSProducer;
 import io.openmessaging.api.OnExceptionContext;
-import io.openmessaging.api.Producer;
 import io.openmessaging.api.SendCallback;
 import io.openmessaging.api.SendResult;
+import io.openmessaging.samples.User;
 import java.util.Properties;
 
-public class ProducerApp {
+public class SchemaProducerApp {
     public static void main(String[] args) {
         final MessagingAccessPoint messagingAccessPoint =
             OMS.builder()
@@ -37,8 +37,10 @@ public class ProducerApp {
                 .withCredentials(new Properties())
                 .build();
 
-
-        final Producer producer = messagingAccessPoint.createProducer(new Properties());
+        Properties properties = new Properties();
+        properties.setProperty(OMSBuiltinKeys.SERIALIZER, "io.openmessaging.openmeta.impl.Serializer");
+        properties.setProperty(OMSBuiltinKeys.OPEN_META_URL, "http://localhost:1234");
+        final OMSProducer<User> producer = messagingAccessPoint.createOMSProducer(new Properties());
 
         producer.start();
 
@@ -50,13 +52,13 @@ public class ProducerApp {
             }
         }));
 
-        Message message = new Message("NS://Topic", "TagA", "Hello MQ".getBytes());
+        User user = new User();
 
-        SendResult sendResult = producer.send(message);
+        SendResult sendResult = producer.send("testTopic", user);
         System.out.println("SendResult: " + sendResult);
 
         //Sends a message to the specified destination async.
-        producer.sendAsync(message, new SendCallback() {
+        producer.sendAsync("testTopic", user, new SendCallback() {
             @Override
             public void onSuccess(SendResult sendResult) {
                 System.out.println("SendResult: " + sendResult);
@@ -69,7 +71,7 @@ public class ProducerApp {
         });
 
         //Sends a message to the specified destination in one way mode.
-        producer.sendOneway(message);
+        producer.sendOneway("testTopic", user);
 
         producer.shutdown();
     }
