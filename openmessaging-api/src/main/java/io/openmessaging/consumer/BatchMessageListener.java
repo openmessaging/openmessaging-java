@@ -22,7 +22,7 @@ import io.openmessaging.message.Message;
 import java.util.List;
 
 /**
- * A message listener can implement this {@code BathMessageListener} interface and register itself to a consumer
+ * A message listener can implement this {@code BatchMessageListener} interface and register itself to a consumer
  * instance to asynchronously receive messages.
  *
  * @version OMS 1.0.0
