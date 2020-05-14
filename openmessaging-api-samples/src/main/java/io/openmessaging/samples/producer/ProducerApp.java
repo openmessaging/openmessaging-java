@@ -18,15 +18,19 @@
 package io.openmessaging.samples.producer;
 
 import io.openmessaging.api.Message;
+import io.openmessaging.api.MessageBuilder;
 import io.openmessaging.api.MessagingAccessPoint;
 import io.openmessaging.api.OMS;
+import io.openmessaging.api.OMSBuiltinKeys;
 import io.openmessaging.api.OnExceptionContext;
 import io.openmessaging.api.Producer;
 import io.openmessaging.api.SendCallback;
 import io.openmessaging.api.SendResult;
+import io.openmessaging.samples.MessageSample;
 import java.util.Properties;
 
 public class ProducerApp {
+
     public static void main(String[] args) {
         final MessagingAccessPoint messagingAccessPoint =
             OMS.builder()
@@ -36,7 +40,11 @@ public class ProducerApp {
                 .withCredentials(new Properties())
                 .build();
 
-        final Producer producer = messagingAccessPoint.createProducer(new Properties());
+        Properties properties = new Properties();
+        properties.setProperty(OMSBuiltinKeys.SERIALIZER, "io.openmessaging.openmeta.impl.Serializer");
+        properties.setProperty(OMSBuiltinKeys.OPEN_META_URL, "http://localhost:1234");
+
+        final Producer producer = messagingAccessPoint.createProducer(properties);
         producer.start();
 
         //Register a shutdown hook to close the opened endpoints.
@@ -47,9 +55,12 @@ public class ProducerApp {
             }
         }));
 
-        Message message = new Message("NS://Topic", "TagA", "Hello MQ".getBytes());
+        final MessageBuilder<MessageSample> builder = messagingAccessPoint.createMessageBuilder("NS://Topic", properties);
+        MessageSample messageSample = new MessageSample("Bob");
+        Message message = builder.withBody(messageSample).withKey("messageKey").withTags("TagA").build();
 
         SendResult sendResult = producer.send(message);
+
         System.out.println("SendResult: " + sendResult);
 
         //Sends a message to the specified destination async.
@@ -61,7 +72,7 @@ public class ProducerApp {
 
             @Override
             public void onException(OnExceptionContext context) {
-
+                context.getException().printStackTrace();
             }
         });
 

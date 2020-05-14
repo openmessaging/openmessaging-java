@@ -16,6 +16,17 @@
  */
 package io.openmessaging.api;
 
-public class ConsumeContext implements MessageConsumeContext{
+/**
+ * An abstract class used for get the object instead of bytes.
+ *
+ * @param <T> Object deserialized from the message body.
+ * @version OMS 2.0.0
+ * @since OMS 2.0.0
+ */
+public abstract class GenericMessage<T> extends Message {
 
+    /**
+     * @return Object deserialized from the message body.
+     */
+   public abstract T getValue();
 }

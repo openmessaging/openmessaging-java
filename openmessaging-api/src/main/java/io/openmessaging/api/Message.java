@@ -259,6 +259,7 @@ public class Message implements Serializable {
         return new TopicPartition(topic, getSystemProperties(SystemPropKey.PARTITION));
     }
 
+
     @Override
     public String toString() {
         return "Message [topic=" + topic + ", systemProperties=" + systemProperties + ", userProperties=" + userProperties + ", body="
@@ -280,4 +281,5 @@ public class Message implements Serializable {
 
         public static final String PARTITION = "__PARTITION";
     }
+
 }

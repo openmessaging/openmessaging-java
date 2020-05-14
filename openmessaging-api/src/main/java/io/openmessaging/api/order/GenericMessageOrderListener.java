@@ -16,8 +16,25 @@
  */
 package io.openmessaging.api.order;
 
+import io.openmessaging.api.GenericMessage;
 import io.openmessaging.api.MessageConsumeContext;
 
-public class ConsumeOrderContext implements MessageConsumeContext {
+/**
+ * Generic order message listener, vendors should promise this listener invoked by order, it maybe means vendors should
+ * keep something thread safe and keep concurrent consume closed.
+ *
+ * @version OMS 2.0.0
+ * @since OMS 2.0.0
+ */
+public interface GenericMessageOrderListener<T> {
 
+    /**
+     * When message arrived, this method will be invoked by order.
+     *
+     * @param message received message
+     * @param context
+     * @return {@link OrderAction} if this message consumed success, {@link OrderAction#Success} should be returned,
+     * otherwise return {@link OrderAction#Suspend}
+     */
+    OrderAction consume(final GenericMessage<T> message, final MessageConsumeContext context);
 }

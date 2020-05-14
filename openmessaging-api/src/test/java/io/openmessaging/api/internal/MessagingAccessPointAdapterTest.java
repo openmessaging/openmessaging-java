@@ -18,6 +18,7 @@
 package io.openmessaging.api.internal;
 
 import io.openmessaging.api.Consumer;
+import io.openmessaging.api.MessageBuilder;
 import io.openmessaging.api.MessagingAccessPoint;
 import io.openmessaging.api.OMS;
 import io.openmessaging.api.Producer;
@@ -89,6 +90,10 @@ class TestVendor implements MessagingAccessPoint {
     }
 
     @Override public OrderConsumer createOrderedConsumer(Properties properties) {
+        return null;
+    }
+
+    @Override public <T> MessageBuilder<T> createMessageBuilder(String topic, Properties properties) {
         return null;
     }
 }

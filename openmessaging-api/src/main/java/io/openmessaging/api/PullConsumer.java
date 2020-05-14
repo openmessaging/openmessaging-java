@@ -70,6 +70,15 @@ public interface PullConsumer extends Admin {
     List<Message> poll(long timeout);
 
     /**
+     * Fetch Objects for the topics or partitions specified using assign API. It is an error to not have subscribed to
+     * any topics or partitions before polling for data.
+     *
+     * @param timeout in millisecond
+     * @return
+     */
+    <T> List<GenericMessage<T>> batchPoll(long timeout);
+
+    /**
      * Overrides the fetch offsets that the consumer will use on the next {@link #poll(long)} }. If this API is invoked
      * for the same message queue more than once, the latest offset will be used on the next poll(). Note that you may
      * lose data if this API is arbitrarily used in the middle of consumption.
