@@ -26,7 +26,7 @@ import java.util.List;
  */
 public interface GenericRecord {
 
-    int getSchemaVersion();
+    String getSchemaId();
 
     List<Field> getFields();
 

@@ -18,7 +18,6 @@
 package io.openmessaging.samples.producer;
 
 import io.openmessaging.api.Message;
-import io.openmessaging.api.MessageBuilder;
 import io.openmessaging.api.MessagingAccessPoint;
 import io.openmessaging.api.OMS;
 import io.openmessaging.api.OMSBuiltinKeys;
@@ -55,9 +54,10 @@ public class ProducerApp {
             }
         }));
 
-        final MessageBuilder<MessageSample> builder = messagingAccessPoint.createMessageBuilder("NS://Topic", properties);
         MessageSample messageSample = new MessageSample("Bob");
-        Message message = builder.withBody(messageSample).withKey("messageKey").withTags("TagA").build();
+
+        Message message = producer.messageBuilder().withTopic("NS://topicA")
+            .withValue(messageSample).withKey("messageKey").withTags("TagA").build();
 
         SendResult sendResult = producer.send(message);
 

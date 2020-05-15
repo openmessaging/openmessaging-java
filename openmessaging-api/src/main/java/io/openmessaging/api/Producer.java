@@ -34,9 +34,9 @@ import java.util.concurrent.ExecutorService;
  * {@link Producer#send(Message)} means send a message to the destination synchronously, the calling thread will block
  * until the send request complete.
  * <p>
- * {@link Producer#sendAsync(Message, SendCallback)} means send a message to the destination asynchronously, the calling thread won't
- * block and will return immediately. Since the send call is asynchronous it returns a {@link Future} for the send
- * result.
+ * {@link Producer#sendAsync(Message, SendCallback)} means send a message to the destination asynchronously, the calling
+ * thread won't block and will return immediately. Since the send call is asynchronous it returns a {@link Future} for
+ * the send result.
  *
  * @version OMS 1.2.0
  * @since OMS 1.2.0
@@ -79,8 +79,17 @@ public interface Producer extends Admin {
     void sendAsync(final Message message, final SendCallback sendCallback);
 
     /**
-     * Set call back excutor
+     * Set call back executor
+     *
      * @param callbackExecutor
      */
     void setCallbackExecutor(final ExecutorService callbackExecutor);
+
+    /**
+     * Create message builder, used for build message in a fluent way.
+     *
+     * @param <T>
+     * @return
+     */
+    <T> MessageBuilder<T> messageBuilder();
 }

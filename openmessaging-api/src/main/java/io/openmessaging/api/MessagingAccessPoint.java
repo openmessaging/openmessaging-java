@@ -134,12 +134,4 @@ public interface MessagingAccessPoint {
      */
     OrderConsumer createOrderedConsumer(final Properties properties);
 
-    /**
-     *
-     * @param topic
-     * @param properties
-     * @param <T>
-     * @return
-     */
-    <T> MessageBuilder<T> createMessageBuilder(String topic, final Properties properties);
 }

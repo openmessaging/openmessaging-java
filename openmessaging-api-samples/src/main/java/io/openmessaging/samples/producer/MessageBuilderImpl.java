@@ -35,7 +35,7 @@ public class MessageBuilderImpl<T> implements MessageBuilder<T> {
 
     private String shardingKey;
 
-    private final String topic;
+    private String topic;
 
     private final Map<String, String> userProperties = new HashMap<>();
 
@@ -43,12 +43,21 @@ public class MessageBuilderImpl<T> implements MessageBuilder<T> {
 
     private Serializer<T> serializer;
 
-    public MessageBuilderImpl(String topic, Properties properties) throws Exception {
-        this.topic = topic;
+    public MessageBuilderImpl(Properties properties) throws Exception {
         this.properties = properties;
         Class<?> clazz = Class.forName(properties.getProperty(OMSBuiltinKeys.ENDPOINT));
         Constructor<T> constructor = (Constructor<T>) clazz.getDeclaredConstructor();
         this.serializer = (Serializer<T>) constructor.newInstance();
+    }
+
+    @Override public MessageBuilder withTopic(String topic) {
+        this.topic = topic;
+        return this;
+    }
+
+    @Override public MessageBuilder withValue(T t) {
+        this.body = t;
+        return this;
     }
 
     @Override public MessageBuilder withKey(String keys) {
@@ -63,11 +72,6 @@ public class MessageBuilderImpl<T> implements MessageBuilder<T> {
 
     @Override public MessageBuilder withProperty(String key, String value) {
         this.properties.put(key, value);
-        return this;
-    }
-
-    @Override public MessageBuilder withBody(T t) {
-        this.body = t;
         return this;
     }
 

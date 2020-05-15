@@ -26,6 +26,13 @@ package io.openmessaging.api;
 public interface MessageBuilder<T> {
 
     /**
+     * Used for set topic.
+     * @param topic message topic
+     * @return
+     */
+    MessageBuilder withTopic(String topic);
+
+    /**
      * Used for message key.
      *
      * @param key message key
@@ -64,7 +71,7 @@ public interface MessageBuilder<T> {
      * @param t object need to be serialized.
      * @return
      */
-    MessageBuilder withBody(T t);
+    MessageBuilder withValue(T t);
 
     /**
      * Get the topic which this {@code MessageBuilder} belongs to.
