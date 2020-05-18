@@ -76,7 +76,7 @@ public interface PullConsumer extends Admin {
      * @param timeout in millisecond
      * @return
      */
-    <T> List<GenericMessage<T>> batchPoll(long timeout);
+    <T> List<GenericMessage<T>> pollGenericMessages(long timeout);
 
     /**
      * Overrides the fetch offsets that the consumer will use on the next {@link #poll(long)} }. If this API is invoked
