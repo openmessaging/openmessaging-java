@@ -14,8 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openmessaging.api;
+package io.openmessaging.api.schema;
 
-public class ConsumeContext implements MessageConsumeContext{
+import java.util.List;
 
+/**
+ * Used for traverse the data in the message body When do not know the specific Schema.
+ *
+ * @version OMS 2.0.0
+ * @since OMS 2.0.0
+ */
+public interface GenericRecord {
+
+    String getSchemaId();
+
+    List<Field> getFields();
+
+    Object getField(Field field);
+
+    Object getField(String field);
 }

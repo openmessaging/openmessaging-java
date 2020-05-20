@@ -60,4 +60,19 @@ public interface OMSBuiltinKeys {
      */
     String DRIVER = "driver";
 
+    /**
+     * The {@code SERIALIZER} represents the fully qualified class name of the message body serializer.
+     */
+    String SERIALIZER = "serializer";
+
+    /**
+     * The {@code DESERIALIZER} represents the fully qualified class name of the message body deserializer.
+     */
+    String DESERIALIZER = "deserializer";
+
+    /**
+     * The {@code OPEN_META_URL} represents the OpenMeta(schema registry) server url.
+     */
+    String OPEN_META_URL = "openMetaUrl";
+
 }

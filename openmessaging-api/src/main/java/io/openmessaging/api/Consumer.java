@@ -49,6 +49,30 @@ public interface Consumer extends Admin {
     void subscribe(final String topic, final MessageSelector selector, final MessageListener listener);
 
     /**
+     * Subscribe message in order.
+     *
+     * @param topic message topic.
+     * @param subExpression Subscribe to the filter expression string, which the broker filters based on this
+     * expression. <br> eg: "tag1 || tag2 || tag3"<br>, if subExpression is equal to null or *, it means subscribe all
+     * messages.
+     * @param listener The message callback listener, the consumer receives the message and then passes it to the
+     * message callback listener for consumption.
+     */
+    void subscribe(final String topic, final String subExpression, final GenericMessageListener listener);
+
+    /**
+     * Subscribe to messages, which can be filtered using SQL expressions.
+     *
+     * @param topic
+     * @param selector Subscribe to the message selector (can be empty, indicating no filtering), the ONS server filters
+     * according to the expression in this selector. Currently supports two expression syntax: {@link
+     * ExpressionType#TAG}, {@link ExpressionType#SQL92} Among them, the effect of TAG filtering is consistent with the
+     * above interface.
+     * @param listener Message callback listener
+     */
+    void subscribe(final String topic, final MessageSelector selector, final GenericMessageListener listener);
+
+    /**
      * Unsubscribe message
      *
      * @param topic

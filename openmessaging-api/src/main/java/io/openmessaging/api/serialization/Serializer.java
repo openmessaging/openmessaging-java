@@ -14,8 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openmessaging.api;
+package io.openmessaging.api.serialization;
 
-public class ConsumeContext implements MessageConsumeContext{
+import java.io.Closeable;
 
+/**
+ * An interface for converting objects to bytes.
+ *
+ * @param <T> Type to be serialized from.
+ * @version OMS 2.0.0
+ * @since OMS 2.0.0
+ *
+ * A class that implements this interface is expected to have a constructor with no parameter.
+ * <p>
+ */
+public interface Serializer<T> extends Closeable {
+
+    /**
+     * Serialize the message body, can also do schema verification before this.
+     *
+     * @param topic
+     * @param t
+     * @return
+     */
+    byte[] serialize(String topic, T t);
 }

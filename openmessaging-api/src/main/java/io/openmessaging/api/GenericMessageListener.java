@@ -25,10 +25,10 @@ package io.openmessaging.api;
  * </strong>
  * </p>
  *
- * @version OMS 1.2.0
- * @since OMS 1.2.0
+ * @version OMS 2.0.0
+ * @since OMS 2.0.0
  */
-public interface MessageListener {
+public interface GenericMessageListener<T> {
 
     /**
      * Consumer message interface, implemented by the application, unstable situations such as network jitter may lead
@@ -39,5 +39,5 @@ public interface MessageListener {
      * @return if current message consumed success, {@link Action#CommitMessage} should be returned, otherwise, {@link
      * Action#ReconsumeLater} should be returned, and this message will be delivered again.
      */
-    Action consume(final Message message, final ConsumeContext context);
+    Action consume(final GenericMessage<T> message, final MessageConsumeContext context);
 }

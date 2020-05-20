@@ -39,6 +39,17 @@ public interface BatchConsumer extends Admin {
     void subscribe(final String topic, final String subExpression, final BatchMessageListener listener);
 
     /**
+     * Subscribe message
+     *
+     * @param topic
+     * @param subExpression Subscribe to the filter expression string, which the broker filters based on this
+     * expression. <br> eg: "tag1 || tag2 || tag3"<br>, if subExpression is equal to null or *, it means subscribe all
+     * messages.
+     * @param listener consume message callback listener.
+     */
+    void subscribe(final String topic, final String subExpression, final GenericBatchMessageListener listener);
+
+    /**
      * Unsubscribe topic
      *
      * @param topic

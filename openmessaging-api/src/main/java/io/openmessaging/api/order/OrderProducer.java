@@ -19,6 +19,7 @@ package io.openmessaging.api.order;
 
 import io.openmessaging.api.Admin;
 import io.openmessaging.api.Message;
+import io.openmessaging.api.MessageBuilder;
 import io.openmessaging.api.SendResult;
 
 /**
@@ -38,4 +39,13 @@ public interface OrderProducer extends Admin {
      * @return {@link SendResult} Message delivery result, including message Id.
      */
     SendResult send(final Message message, final String shardingKey);
+
+
+    /**
+     * Create message builder, used for build message in a fluent way.
+     *
+     * @param <T>
+     * @return
+     */
+    <T> MessageBuilder<T> messageBuilder();
 }

@@ -114,7 +114,6 @@ public interface MessagingAccessPoint {
      */
     PullConsumer createPullConsumer(final Properties properties);
 
-
     /**
      * Creates a new {@code BatchConsumer} for the specified {@code MessagingAccessPoint}. The returned {@code Consumer}
      * isn't subscribe any topic.
@@ -134,4 +133,5 @@ public interface MessagingAccessPoint {
      * error
      */
     OrderConsumer createOrderedConsumer(final Properties properties);
+
 }

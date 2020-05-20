@@ -16,6 +16,6 @@
  */
 package io.openmessaging.api;
 
-public class ConsumeContext implements MessageConsumeContext{
+public interface MessageConsumeContext {
 
 }

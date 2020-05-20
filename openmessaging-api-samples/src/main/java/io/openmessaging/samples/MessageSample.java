@@ -14,8 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openmessaging.api;
+package io.openmessaging.samples;
+public class MessageSample {
+    private String name;
 
-public class ConsumeContext implements MessageConsumeContext{
+    public MessageSample(String name) {
+        this.name = name;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

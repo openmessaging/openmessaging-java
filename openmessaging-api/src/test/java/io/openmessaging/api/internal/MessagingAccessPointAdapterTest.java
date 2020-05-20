@@ -91,4 +91,5 @@ class TestVendor implements MessagingAccessPoint {
     @Override public OrderConsumer createOrderedConsumer(Properties properties) {
         return null;
     }
+
 }
