@@ -17,10 +17,7 @@
 
 package io.openmessaging.api.order;
 
-import io.openmessaging.api.Admin;
-import io.openmessaging.api.Message;
-import io.openmessaging.api.MessageBuilder;
-import io.openmessaging.api.SendResult;
+import io.openmessaging.api.*;
 
 /**
  * Sequential message producer interface  
@@ -28,7 +25,7 @@ import io.openmessaging.api.SendResult;
  * @version OMS 1.2.0
  * @since OMS 1.2.0
  */
-public interface OrderProducer extends Admin {
+public interface OrderProducer extends ProducerBase, Admin {
 
     /**
      * Send message in order
@@ -39,13 +36,4 @@ public interface OrderProducer extends Admin {
      * @return {@link SendResult} Message delivery result, including message Id.
      */
     SendResult send(final Message message, final String shardingKey);
-
-
-    /**
-     * Create message builder, used for build message in a fluent way.
-     *
-     * @param <T>
-     * @return
-     */
-    <T> MessageBuilder<T> messageBuilder();
 }

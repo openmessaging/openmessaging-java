@@ -17,11 +17,7 @@
 
 package io.openmessaging.api.transaction;
 
-import io.openmessaging.api.Admin;
-import io.openmessaging.api.Message;
-import io.openmessaging.api.MessageBuilder;
-import io.openmessaging.api.SendResult;
-import io.openmessaging.api.TransactionalResult;
+import io.openmessaging.api.*;
 
 /**
  * Send transactional message.
@@ -29,7 +25,7 @@ import io.openmessaging.api.TransactionalResult;
  * @version OMS 1.2.0
  * @since OMS 1.2.0
  */
-public interface TransactionProducer extends Admin {
+public interface TransactionProducer extends ProducerBase, Admin {
 
     /**
      * This method is used to send a transactional message. A transactional message is sent in three steps:
@@ -48,15 +44,6 @@ public interface TransactionProducer extends Admin {
     SendResult send(final Message message,
         final LocalTransactionExecuter localTransactionExecutor,
         final Object arg);
-
-
-    /**
-     * Create message builder, used for build message in a fluent way.
-     *
-     * @param <T>
-     * @return
-     */
-    <T> MessageBuilder<T> messageBuilder();
 
     /**
      * Sends a transactional message
