@@ -17,7 +17,10 @@
 
 package io.openmessaging.api.order;
 
-import io.openmessaging.api.*;
+import io.openmessaging.api.Admin;
+import io.openmessaging.api.Message;
+import io.openmessaging.api.ProducerBase;
+import io.openmessaging.api.SendResult;
 
 /**
  * Sequential message producer interface  

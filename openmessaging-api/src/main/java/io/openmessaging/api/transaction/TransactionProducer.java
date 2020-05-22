@@ -17,7 +17,11 @@
 
 package io.openmessaging.api.transaction;
 
-import io.openmessaging.api.*;
+import io.openmessaging.api.Admin;
+import io.openmessaging.api.Message;
+import io.openmessaging.api.ProducerBase;
+import io.openmessaging.api.SendResult;
+import io.openmessaging.api.TransactionalResult;
 
 /**
  * Send transactional message.
@@ -42,8 +46,8 @@ public interface TransactionProducer extends ProducerBase, Admin {
      * @return Send result
      */
     SendResult send(final Message message,
-        final LocalTransactionExecuter localTransactionExecutor,
-        final Object arg);
+                    final LocalTransactionExecuter localTransactionExecutor,
+                    final Object arg);
 
     /**
      * Sends a transactional message
