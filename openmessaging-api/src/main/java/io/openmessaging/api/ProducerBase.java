@@ -14,29 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package io.openmessaging.api.order;
-
-import io.openmessaging.api.Admin;
-import io.openmessaging.api.Message;
-import io.openmessaging.api.ProducerBase;
-import io.openmessaging.api.SendResult;
+package io.openmessaging.api;
 
 /**
- * Sequential message producer interface  
+ * {@code ProducerBase} is the basic of other {@code Producer} interfaces
+ * and is used to define some common methods.
  *
- * @version OMS 1.2.0
- * @since OMS 1.2.0
+ * @version OMS 2.0.3
+ * @since OMS 2.0.3
  */
-public interface OrderProducer extends ProducerBase, Admin {
+public interface ProducerBase {
 
     /**
-     * Send message in order
+     * Create message builder, used for build message in a fluent way.
      *
-     * @param message
-     * @param shardingKey Order message selection factor, the sending method selects a specific message queue based on
-     * shardingKey
-     * @return {@link SendResult} Message delivery result, including message Id.
+     * @param <T> the class of message's payload
+     * @return MessageBuilder
      */
-    SendResult send(final Message message, final String shardingKey);
+    <T> MessageBuilder<T> messageBuilder();
 }
