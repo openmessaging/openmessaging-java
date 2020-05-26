@@ -64,7 +64,7 @@ public interface OrderConsumer extends ConsumerBase, Admin {
      * @param listener The message callback listener, the consumer receives the message and then passes it to the
      * message callback listener for consumption.
      */
-    void subscribe(final String topic, final String subExpression, final GenericMessageOrderListener listener);
+    <T> void subscribe(final String topic, final String subExpression, final GenericMessageOrderListener<T> listener);
 
     /**
      * Subscribe to messages, which can be filtered using SQL expressions.
@@ -76,5 +76,5 @@ public interface OrderConsumer extends ConsumerBase, Admin {
      * above interface.
      * @param listener Message callback listener
      */
-    void subscribe(final String topic, final MessageSelector selector, final GenericMessageOrderListener listener);
+    <T> void subscribe(final String topic, final MessageSelector selector, final GenericMessageOrderListener<T> listener);
 }

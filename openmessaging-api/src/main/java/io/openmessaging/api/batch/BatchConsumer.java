@@ -48,5 +48,5 @@ public interface BatchConsumer extends ConsumerBase, Admin {
      * messages.
      * @param listener consume message callback listener.
      */
-    void subscribe(final String topic, final String subExpression, final GenericBatchMessageListener listener);
+    <T> void subscribe(final String topic, final String subExpression, final GenericBatchMessageListener<T> listener);
 }
