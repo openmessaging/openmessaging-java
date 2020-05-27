@@ -57,6 +57,12 @@ public class GenericPushConsumerApp {
         String topic = "NS://HELLO_TOPIC";
 
         consumer.subscribe(topic, "*", new GenericMessageListener<MessageSample>() {
+
+            @Override
+            public Class<MessageSample> payloadClass() {
+                return MessageSample.class;
+            }
+
             @Override
             public Action consume(GenericMessage<MessageSample> message, MessageConsumeContext context) {
                 MessageSample messageSample = message.getValue();

@@ -14,28 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openmessaging.api.batch;
-
-import io.openmessaging.api.Action;
-import io.openmessaging.api.GenericListener;
-import io.openmessaging.api.GenericMessage;
-import io.openmessaging.api.MessageConsumeContext;
-import java.util.List;
+package io.openmessaging.api;
 
 /**
- * Batch generic message listener.
+ * Base listener for other generic message listener.
  *
  * @version OMS 2.0.0
  * @since OMS 2.0.0
  */
-public interface GenericBatchMessageListener<T> extends GenericListener<T> {
+public interface GenericListener<T> {
+
     /**
-     * When message arrived, this method will be invoked by order.
+     * Returns the class of the object that the user wants to deserialize the message into.
      *
-     * @param messages received message
-     * @param context
-     * @return {@link Action} if this message consumed success, {@link Action#CommitMessage} should be returned,
-     * otherwise return {@link Action#ReconsumeLater}
+     * @return the class of message payload that user desired
      */
-    Action consume(final List<GenericMessage<T>> messages, final MessageConsumeContext context);
+    Class<T> payloadClass();
 }

@@ -16,6 +16,7 @@
  */
 package io.openmessaging.api.order;
 
+import io.openmessaging.api.GenericListener;
 import io.openmessaging.api.GenericMessage;
 import io.openmessaging.api.MessageConsumeContext;
 
@@ -26,7 +27,7 @@ import io.openmessaging.api.MessageConsumeContext;
  * @version OMS 2.0.0
  * @since OMS 2.0.0
  */
-public interface GenericMessageOrderListener<T> {
+public interface GenericMessageOrderListener<T> extends GenericListener<T> {
 
     /**
      * When message arrived, this method will be invoked by order.
