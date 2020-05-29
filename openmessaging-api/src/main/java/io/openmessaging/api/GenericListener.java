@@ -27,7 +27,7 @@ public interface GenericListener<T> {
     /**
      * Returns the class of the object that the user wants to deserialize the message into.
      *
-     * @return the class of message payload that user desired
+     * @return the class of message payload that user expects
      */
     Class<T> payloadClass();
 }

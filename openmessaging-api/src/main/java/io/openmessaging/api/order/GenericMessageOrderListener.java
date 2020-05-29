@@ -30,7 +30,7 @@ import io.openmessaging.api.MessageConsumeContext;
 public interface GenericMessageOrderListener<T> extends GenericListener<T> {
 
     /**
-     * When message arrived, this method will be invoked by order.
+     * When message arrived, this method will be invoked in order.
      *
      * @param message received message
      * @param context
