@@ -19,18 +19,39 @@ package io.openmessaging.api.schema;
 import java.util.List;
 
 /**
- * Used for traverse the data in the message body When do not know the specific Schema.
+ * Used for traverse the data in the message body when do not know the specific Schema.
  *
  * @version OMS 2.0.0
  * @since OMS 2.0.0
  */
 public interface GenericRecord {
 
+    /**
+     * return schema id
+     *
+     * @return schema id
+     */
     String getSchemaId();
 
+    /**
+     * return the list of fields associated with the record
+     *
+     * @return the list of fields associated with the record
+     */
     List<Field> getFields();
 
+    /**
+     * retrieve the value of the provided field
+     *
+     * @param field the field to retrieve the value
+     * @return the value object
+     */
     Object getField(Field field);
 
-    Object getField(String field);
+    /**
+     * retrieve the value of the provided fieldName
+     * @param fieldName the field name to retrieve the value
+     * @return the value object
+     */
+    Object getField(String fieldName);
 }
