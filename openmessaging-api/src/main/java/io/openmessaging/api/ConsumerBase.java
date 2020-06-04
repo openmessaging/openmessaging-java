@@ -14,28 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.openmessaging.api.batch;
-
-import io.openmessaging.api.Action;
-import io.openmessaging.api.GenericListener;
-import io.openmessaging.api.GenericMessage;
-import io.openmessaging.api.MessageConsumeContext;
-import java.util.List;
+package io.openmessaging.api;
 
 /**
- * Batch generic message listener.
+ * {@code ConsumerBase} is the basic of other {@code Consumer} interfaces
+ * and is used to define some common methods.
  *
- * @version OMS 2.0.0
- * @since OMS 2.0.0
+ * @version OMS 2.0.3
+ * @since OMS 2.0.3
  */
-public interface GenericBatchMessageListener<T> extends GenericListener<T> {
+public interface ConsumerBase {
     /**
-     * When message arrived, this method will be invoked by order.
+     * Unsubscribe message of the specified topic
      *
-     * @param messages received message
-     * @param context
-     * @return {@link Action} if this message consumed success, {@link Action#CommitMessage} should be returned,
-     * otherwise return {@link Action#ReconsumeLater}
+     * @param topic message topic
      */
-    Action consume(final List<GenericMessage<T>> messages, final MessageConsumeContext context);
+    void unsubscribe(final String topic);
 }

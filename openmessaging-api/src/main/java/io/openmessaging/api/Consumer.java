@@ -22,7 +22,7 @@ package io.openmessaging.api;
  * @version OMS 1.2.0
  * @since OMS 1.2.0
  */
-public interface Consumer extends Admin {
+public interface Consumer extends ConsumerBase, Admin {
 
     /**
      * Subscribe message in order.
@@ -39,7 +39,7 @@ public interface Consumer extends Admin {
     /**
      * Subscribe to messages, which can be filtered using SQL expressions.
      *
-     * @param topic
+     * @param topic message topic
      * @param selector Subscribe to the message selector (can be empty, indicating no filtering), the ONS server filters
      * according to the expression in this selector. Currently supports two expression syntax: {@link
      * ExpressionType#TAG}, {@link ExpressionType#SQL92} Among them, the effect of TAG filtering is consistent with the
@@ -58,24 +58,17 @@ public interface Consumer extends Admin {
      * @param listener The message callback listener, the consumer receives the message and then passes it to the
      * message callback listener for consumption.
      */
-    void subscribe(final String topic, final String subExpression, final GenericMessageListener listener);
+    <T> void subscribe(final String topic, final String subExpression, final GenericMessageListener<T> listener);
 
     /**
      * Subscribe to messages, which can be filtered using SQL expressions.
      *
-     * @param topic
+     * @param topic message topic
      * @param selector Subscribe to the message selector (can be empty, indicating no filtering), the ONS server filters
      * according to the expression in this selector. Currently supports two expression syntax: {@link
      * ExpressionType#TAG}, {@link ExpressionType#SQL92} Among them, the effect of TAG filtering is consistent with the
      * above interface.
      * @param listener Message callback listener
      */
-    void subscribe(final String topic, final MessageSelector selector, final GenericMessageListener listener);
-
-    /**
-     * Unsubscribe message
-     *
-     * @param topic
-     */
-    void unsubscribe(final String topic);
+    <T> void subscribe(final String topic, final MessageSelector selector, final GenericMessageListener<T> listener);
 }

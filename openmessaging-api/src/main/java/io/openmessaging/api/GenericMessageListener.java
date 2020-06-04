@@ -28,7 +28,7 @@ package io.openmessaging.api;
  * @version OMS 2.0.0
  * @since OMS 2.0.0
  */
-public interface GenericMessageListener<T> {
+public interface GenericMessageListener<T> extends GenericListener<T> {
 
     /**
      * Consumer message interface, implemented by the application, unstable situations such as network jitter may lead
