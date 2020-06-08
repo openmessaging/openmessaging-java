@@ -74,9 +74,10 @@ public interface PullConsumer extends Admin {
      * any topics or partitions before polling for data.
      *
      * @param timeout in millisecond
+     * @param tClass class of message body
      * @return
      */
-    <T> List<GenericMessage<T>> pollGenericMessages(long timeout);
+    <T> List<GenericMessage<T>> pollGenericMessages(long timeout, Class<T> tClass);
 
     /**
      * Overrides the fetch offsets that the consumer will use on the next {@link #poll(long)} }. If this API is invoked

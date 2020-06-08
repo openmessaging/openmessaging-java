@@ -57,7 +57,7 @@ public class GenericPullConsumerApp {
         consumer.assign(topicPartitions);
         consumer.start();
 
-        List<GenericMessage<MessageSample>> messages = consumer.pollGenericMessages(1000);
+        List<GenericMessage<MessageSample>> messages = consumer.pollGenericMessages(1000, MessageSample.class);
         for (GenericMessage<MessageSample> message : messages) {
             System.out.println("Received message: " + message.getValue());
         }
