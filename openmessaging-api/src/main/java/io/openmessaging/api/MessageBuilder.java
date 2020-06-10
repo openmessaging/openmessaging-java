@@ -28,55 +28,55 @@ public interface MessageBuilder<T> {
     /**
      * Used for set topic.
      * @param topic message topic
-     * @return
+     * @return {@link MessageBuilder}
      */
-    MessageBuilder withTopic(String topic);
+    MessageBuilder<T> withTopic(String topic);
 
     /**
      * Used for message key.
      *
      * @param key message key
-     * @return
+     * @return {@link MessageBuilder}
      */
-    MessageBuilder withKey(String key);
+    MessageBuilder<T> withKey(String key);
 
     /**
      * Used for set message tags.
      *
-     * @param tags
-     * @return
+     * @param tags message tags
+     * @return {@link MessageBuilder}
      */
-    MessageBuilder withTags(String tags);
+    MessageBuilder<T> withTags(String tags);
 
     /**
      * Used for set message sharding key.
      *
-     * @param shardingKey
-     * @return
+     * @param shardingKey message shardingKey
+     * @return {@link MessageBuilder}
      */
-    MessageBuilder withShardingKey(String shardingKey);
+    MessageBuilder<T> withShardingKey(String shardingKey);
 
     /**
      * Used for set user properties.
      *
-     * @param key
-     * @param value
-     * @return
+     * @param key the key of user property
+     * @param value the value of user property
+     * @return {@link MessageBuilder}
      */
-    MessageBuilder withProperty(final String key, final String value);
+    MessageBuilder<T> withProperty(final String key, final String value);
 
     /**
      * Used for set message body.
      *
      * @param t object need to be serialized.
-     * @return
+     * @return {@link MessageBuilder}
      */
-    MessageBuilder withValue(T t);
+    MessageBuilder<T> withValue(T t);
 
     /**
      * Get the topic which this {@code MessageBuilder} belongs to.
      *
-     * @return
+     * @return message topic
      */
     String getTopic();
 
