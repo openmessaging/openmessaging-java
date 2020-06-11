@@ -2,13 +2,13 @@
     <parent>
         <groupId>io.openmessaging</groupId>
         <artifactId>parent</artifactId>
-        <version>2.0.3-pubsub-SNAPSHOT</version>
+        <version>2.1.0-pubsub</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
     <artifactId>openmessaging-api-samples</artifactId>
-  <version>2.0.3-pubsub-SNAPSHOT</version>
+  <version>2.1.0-pubsub</version>
     <name>openmessaging-api-samples ${project.version}</name>
 
     <dependencies>
@@ -21,7 +21,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>openmessaging-api</artifactId>
-            <version>2.0.3-pubsub-SNAPSHOT</version>
+            <version>2.1.0-pubsub</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
