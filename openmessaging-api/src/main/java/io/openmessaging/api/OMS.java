@@ -57,6 +57,11 @@ public final class OMS {
         return this;
     }
 
+    public OMS schemaRegistryUrl(String schemaRegistryUrl) {
+        this.properties.put(OMSBuiltinKeys.SCHEMA_REGISTRY_URL, schemaRegistryUrl);
+        return this;
+    }
+
     /**
      * Set the region provided by messaging vendor.
      *

@@ -73,6 +73,6 @@ public interface OMSBuiltinKeys {
     /**
      * The {@code OPEN_META_URL} represents the OpenMeta(schema registry) server url.
      */
-    String OPEN_META_URL = "openMetaUrl";
+    String SCHEMA_REGISTRY_URL = "schemaRegistryUrl";
 
 }

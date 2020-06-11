@@ -34,13 +34,13 @@ public class GenericPushConsumerApp {
             OMS.builder()
                 .region("Shanghai")
                 .endpoint("127.0.0.1:9876")
+                .schemaRegistryUrl("http://localhost:1234")
                 .driver("rocketmq")
                 .withCredentials(new Properties())
                 .build();
 
         Properties properties = new Properties();
         properties.setProperty(OMSBuiltinKeys.DESERIALIZER, "io.openmessaging.openmeta.impl.Deserializer");
-        properties.setProperty(OMSBuiltinKeys.OPEN_META_URL, "http://localhost:1234");
 
         final Consumer consumer = messagingAccessPoint.createConsumer(properties);
         consumer.start();
