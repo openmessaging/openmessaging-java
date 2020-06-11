@@ -35,13 +35,13 @@ public class ProducerApp {
             OMS.builder()
                 .region("shanghai,shenzhen")
                 .endpoint("127.0.0.1:9876")
+                .schemaRegistryUrl("http://localhost:1234")
                 .driver("rocketmq")
                 .withCredentials(new Properties())
                 .build();
 
         Properties properties = new Properties();
         properties.setProperty(OMSBuiltinKeys.SERIALIZER, "io.openmessaging.openmeta.impl.Serializer");
-        properties.setProperty(OMSBuiltinKeys.OPEN_META_URL, "http://localhost:1234");
 
         final Producer producer = messagingAccessPoint.createProducer(properties);
         producer.start();
