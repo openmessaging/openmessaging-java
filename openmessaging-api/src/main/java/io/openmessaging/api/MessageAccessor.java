@@ -39,7 +39,6 @@ public class MessageAccessor {
      * Used for set system properties, will used new systemProperties to override current systemProperties.
      *
      * @param msg
-     * @return system properties
      */
     public static void setSystemProperties(final Message msg, Properties systemProperties) {
         msg.systemProperties = systemProperties;
@@ -50,7 +49,6 @@ public class MessageAccessor {
      * specified key.
      *
      * @param msg
-     * @return
      */
     public static void putSystemProperties(final Message msg, final String key, final String value) {
         msg.putSystemProperties(key, value);
