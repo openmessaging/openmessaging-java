@@ -27,21 +27,21 @@ import java.util.List;
 public interface GenericRecord {
 
     /**
-     * return schema id
+     * Get the schema id.
      *
      * @return schema id
      */
     String getSchemaId();
 
     /**
-     * return the list of fields associated with the record
+     * Get the list of fields associated with the record.
      *
      * @return the list of fields associated with the record
      */
     List<Field> getFields();
 
     /**
-     * retrieve the value of the provided field
+     * Retrieve the value of the provided field.
      *
      * @param field the field to retrieve the value
      * @return the value object
@@ -49,7 +49,8 @@ public interface GenericRecord {
     Object getField(Field field);
 
     /**
-     * retrieve the value of the provided fieldName
+     * Retrieve the value of the provided fieldName.
+     *
      * @param fieldName the field name to retrieve the value
      * @return the value object
      */
