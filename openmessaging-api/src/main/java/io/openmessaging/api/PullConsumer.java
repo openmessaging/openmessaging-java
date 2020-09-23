@@ -42,6 +42,27 @@ public interface PullConsumer extends Admin {
     Set<TopicPartition> topicPartitions(String topic);
 
     /**
+     * Subscribe message in order.
+     *
+     * @param topic message topic.
+     * @param subExpression Subscribe to the filter expression string, which the broker filters based on this
+     * expression. <br> eg: "tag1 || tag2 || tag3"<br>, if subExpression is equal to null or *, it means subscribe all
+     * messages.
+     */
+    void subscribe(final String topic, final String subExpression);
+
+    /**
+     * Subscribe to messages, which can be filtered using SQL expressions.
+     *
+     * @param topic message topic
+     * @param selector Subscribe to the message selector (can be empty, indicating no filtering), the ONS server filters
+     * according to the expression in this selector. Currently supports two expression syntax: {@link
+     * ExpressionType#TAG}, {@link ExpressionType#SQL92} Among them, the effect of TAG filtering is consistent with the
+     * above interface.
+     */
+    void subscribe(final String topic, final MessageSelector selector);
+
+    /**
      * Manually assign a list of partitions to this consumer. This interface does not allow for incremental assignment
      * and will replace the previous assignment (if there is one).
      *
