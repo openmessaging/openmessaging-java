@@ -32,6 +32,18 @@ public interface PullConsumer extends Admin {
         void onChanged(Set<TopicPartition> topicPartitions);
     }
 
+    interface AssignedTopicPartitionChangeListener {
+        /**
+         * This method will be invoked in the condition of partition assigned to current consumer changes.
+         * These scenarios occur when the topic is expanded or shrunk, or consumer in the same group is expanded or shrunk.
+         *
+         * @param topic message topic
+         * @param allTopicPartitions all topic partitions of the topic
+         * @param assignedTopicPartitions topic partitions assigned to current consumer
+         */
+        void onChanged(String topic, Set<TopicPartition> allTopicPartitions, Set<TopicPartition> assignedTopicPartitions);
+    }
+
     /**
      * Get metadata about the partitions for a given topic. This method will issue a remote call to the server if it
      * does not already have any metadata about the given topic.
@@ -80,6 +92,14 @@ public interface PullConsumer extends Admin {
      * @param callback
      */
     void registerTopicPartitionChangedListener(String topic, TopicPartitionChangeListener callback);
+
+    /**
+     * Register a callback for assigned topic partition changes.
+     *
+     * @param topic message
+     * @param callback assigned topic partition change callback
+     */
+    void registerAssignedTopicPartitionChangedListener(String topic, AssignedTopicPartitionChangeListener callback);
 
     /**
      * Fetch data for the topics or partitions specified using assign API. It is an error to not have subscribed to any
