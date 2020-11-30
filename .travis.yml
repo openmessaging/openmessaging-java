@@ -1,5 +1,13 @@
 dist: trusty
 
+notifications:
+  email:
+    recipients:
+      - openmessaging-members@googlegroups.com
+  on_success: change
+  on_failure: always
+  
+  
 language: java
  
 jdk:
