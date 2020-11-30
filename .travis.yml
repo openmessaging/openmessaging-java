@@ -1,9 +1,6 @@
-language: java
+dist: trusty
 
-addons:
-  apt:
-    packages:
-      - openjdk-6-jdk
+language: java
  
 install:
   - echo "Downloading Maven 3.0";
@@ -15,10 +12,8 @@ install:
   - mvn clean package install -DskipTests -Dgpg.skip 
 
 jdk:
-- oraclejdk8
-- oraclejdk9
-- openjdk7
-- openjdk6
+  - oraclejdk8
+  - oraclejdk9
 
 script: mvn install
 env:
@@ -26,4 +21,4 @@ env:
     secure: hmPdcALAi6qE3TqJDRqdVCqZftd/i2hWLCyZbIAcRzu38nO94JZYKSZjfif1FvXTJYotFW25JClXNyvOMwMjjK3OPQINfYFZIp6LLeOmXGbUcktwQ8TIoKZ7IOvvWiZK054H7zNKapz+ke3OPN/5WTmMBezV0Ct4+bSf9udKVnQSMG2sJ8YJ/SeZkh7RTlqO+zTkh+yq8Hk0BdaWEOK8RtEoWgcUFGVfkycvjgvna+TbDp3K7vjmhYBBqACsNKxXPgIumStbCGW4vwjoVkCOGIJKWnuQEVHxiqBUH3pp81bxnt+RIcMuZMR2HnDSpHyAIulTJNHVo3VFAAiy9HMdP8Wfy/OVdjBSZ8xIOoQvFijo+yGNNn8v4hILcX4IpumQeyjpG134BOWVbMLhKH7qWR3Z8TGgijSd4lYYjabCJ564E93KvqK1u2CuS9u89N8J7AKFYMbknH1DP8E5tCD+VI3Gwut9YNofywj3Jln8uCOP4I//8p61j9A9QF7ORpY59Ru4RNzxYrFn2QSTltMfaBfVZchh5AqURUamcJd+1orZfz/v+6yH9FOW+MAG8EJdzHDsqzP1NXrt+4VtF6yqOnhBxnKVNEwFwjsinW9PFi9dXyzdEd33jKGL7UO8Old5XlBoA7idWIDH4GKKSlBRZhEKWMe4ZfxpQVg3VPz2Qqo=
 
 after_success:
-- bash .utility/push-javadoc-to-gh-pages.sh
+  - bash .utility/push-javadoc-to-gh-pages.sh
