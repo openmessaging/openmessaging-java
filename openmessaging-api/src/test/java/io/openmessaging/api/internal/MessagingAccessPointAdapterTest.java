@@ -76,6 +76,10 @@ class TestVendor implements MessagingAccessPoint {
         return null;
     }
 
+    @Override public TransactionProducer createTransactionProducer(Properties properties) {
+        return null;
+    }
+
     @Override public Consumer createConsumer(Properties properties) {
         return null;
     }

@@ -85,7 +85,8 @@ public interface MessagingAccessPoint {
     OrderProducer createOrderProducer(final Properties properties);
 
     /**
-     * Creates a new {@code TransactionProducer} for the specified {@code MessagingAccessPoint}.
+     * Creates a new {@code TransactionProducer} for the specified {@code MessagingAccessPoint}. Registering local
+     * transactional checker is forbidden after initiating transactional producer with global one.
      *
      * @return the created {@code TransactionProducer}
      * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
@@ -93,6 +94,17 @@ public interface MessagingAccessPoint {
      * @throws OMSSecurityException if have no authority to create a producer.
      */
     TransactionProducer createTransactionProducer(final Properties properties, final LocalTransactionChecker checker);
+
+    /**
+     * Creates a new {@code TransactionProducer} for the specified {@code MessagingAccessPoint}. Local transactional
+     * checker is needed to be bind with topic by calling register method in {@code TransactionProducer}
+     *
+     * @return the created {@code TransactionProducer}
+     * @throws OMSRuntimeException if the {@code MessagingAccessPoint} fails to handle this request due to some internal
+     * error
+     * @throws OMSSecurityException if have no authority to create a producer.
+     */
+    TransactionProducer createTransactionProducer(final Properties properties);
 
     /**
      * Creates a new {@code Consumer} for the specified {@code MessagingAccessPoint}. The returned {@code Consumer}

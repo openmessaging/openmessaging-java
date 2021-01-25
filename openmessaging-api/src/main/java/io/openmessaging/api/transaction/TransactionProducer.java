@@ -50,6 +50,24 @@ public interface TransactionProducer extends ProducerBase, Admin {
                     final Object arg);
 
     /**
+     * This method is used to send a transactional message. A transactional message is sent in three steps:
+     * <ol>
+     * <li>The service implementation class first sends a half message to the message server;</li>
+     * <li>Execute local transactions via <code>executer</code></li>
+     * <li>According to the execution result of the previous step, it is decided to send a commit or roll back the
+     * semi-message sent by the first step</li>
+     * </ol>
+     *
+     * @param message transactional message
+     * @param localTransactionExecutor local transactional executor
+     * @param arg Apply a custom parameter that can be passed to the local transaction executor
+     * @return Send result
+     */
+    <T> SendResult send(final Message message,
+                    final GenericLocalTransactionExecuter<T> localTransactionExecutor,
+                    final Object arg);
+
+    /**
      * Sends a transactional message
      * <p>
      * A transactional send result will be exposed to consumer if this prepare message send success, and then, you can
@@ -62,4 +80,26 @@ public interface TransactionProducer extends ProducerBase, Admin {
      * @return the successful {@code TransactionalResult}.
      */
     TransactionalResult prepare(Message message);
+
+    /**
+     * Bind topic with generic local transactional checker. Transactional message in topic must to be sent with object
+     * instead of bytes. Transactional producer must be initiated without global local transactional checker.
+     *
+     * @param topic message topic
+     * @param localTransactionChecker local transaction checker
+     * @return true if register successfully
+     */
+    <T> boolean registerGenericLocalTransactionChecker(String topic,
+                                                   GenericLocalTransactionChecker<T> localTransactionChecker);
+
+    /**
+     * Bind topic with generic local transactional checker. Transactional producer must be initiated without global
+     * local transactional checker
+     *
+     * @param topic message topic
+     * @param localTransactionChecker local transaction checker
+     * @return true if register successfully
+     */
+    boolean registerLocalTransactionChecker(String topic,
+                                            LocalTransactionChecker localTransactionChecker);
 }
