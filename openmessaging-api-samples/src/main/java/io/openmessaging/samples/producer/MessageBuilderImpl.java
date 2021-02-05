@@ -18,9 +18,7 @@ package io.openmessaging.samples.producer;
 
 import io.openmessaging.api.Message;
 import io.openmessaging.api.MessageBuilder;
-import io.openmessaging.api.OMSBuiltinKeys;
 import io.openmessaging.api.serialization.Serializer;
-import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -45,9 +43,7 @@ public class MessageBuilderImpl<T> implements MessageBuilder<T> {
 
     public MessageBuilderImpl(Properties properties) throws Exception {
         this.properties = properties;
-        Class<?> clazz = Class.forName(properties.getProperty(OMSBuiltinKeys.ENDPOINT));
-        Constructor<T> constructor = (Constructor<T>) clazz.getDeclaredConstructor();
-        this.serializer = (Serializer<T>) constructor.newInstance();
+        this.serializer = new DefaultSerializer<>();
     }
 
     @Override public MessageBuilder withTopic(String topic) {
@@ -77,6 +73,13 @@ public class MessageBuilderImpl<T> implements MessageBuilder<T> {
 
     @Override public MessageBuilder withShardingKey(String shardingKey) {
         this.shardingKey = shardingKey;
+        return this;
+    }
+
+    @Override public MessageBuilder<T> withSerializationType(String serializationType) {
+        if (serializationType.equalsIgnoreCase("json")) {
+            this.serializer = new JsonSerializer<T>();
+        }
         return this;
     }
 

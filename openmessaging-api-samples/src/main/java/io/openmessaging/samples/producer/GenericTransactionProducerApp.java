@@ -83,7 +83,7 @@ public class GenericTransactionProducerApp {
         MessageSample messageSample = new MessageSample("Bob");
 
         Message genericMessage = producer.messageBuilder().withTopic("NS://topicA")
-                .withValue(messageSample).withKey("messageKey").withTags("TagA").build();
+                .withValue(messageSample).withKey("messageKey").withTags("TagA").withSerializationType("json").build();
 
         SendResult sendResult = producer.send(genericMessage, new GenericLocalTransactionExecuter<MessageSample>() {
             @Override
