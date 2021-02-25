@@ -71,4 +71,38 @@ public interface Consumer extends ConsumerBase, Admin {
      * @param listener Message callback listener
      */
     <T> void subscribe(final String topic, final MessageSelector selector, final GenericMessageListener<T> listener);
+
+    /**
+     * Subscribe to messages with async message listener.
+     * @param topic
+     * @param subExpression
+     * @param listener
+     */
+    void subscribe(final String topic, final String subExpression, final AsyncMessageListener listener);
+
+    /**
+     * Subscribe to messages with async message listener, which can be filtered using SQL expressions.
+     * @param topic
+     * @param selector
+     * @param listener
+     */
+    void subscribe(final String topic, final MessageSelector selector, final AsyncMessageListener listener);
+
+    /**
+     * Subscribe to messages with async message listener.
+     * @param topic
+     * @param subExpression
+     * @param listener
+     * @param <T>
+     */
+    <T> void subscribe(final String topic, final String subExpression, final AsyncGenericMessageListener<T> listener);
+
+    /**
+     * Subscribe to messages with async message listener, which can be filtered using SQL expressions.
+     * @param topic
+     * @param selector
+     * @param listener
+     * @param <T>
+     */
+    <T> void subscribe(final String topic, final MessageSelector selector, final AsyncGenericMessageListener<T> listener);
 }
