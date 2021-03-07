@@ -71,4 +71,54 @@ public interface Consumer extends ConsumerBase, Admin {
      * @param listener Message callback listener
      */
     <T> void subscribe(final String topic, final MessageSelector selector, final GenericMessageListener<T> listener);
+
+    /**
+     * Subscribe to messages with async message listener.
+     *
+     * @param topic message topic.
+     * @param subExpression Subscribe to the filter expression string, which the broker filters based on this
+     * expression. <br> eg: "tag1 || tag2 || tag3"<br>, if subExpression is equal to null or *, it means subscribe all
+     * messages.
+     * @param listener Message callback listener which enable async commit consumption status, the consumer receives the
+     * message and then passes it to the message callback listener for consumption.
+     */
+    void subscribe(final String topic, final String subExpression, final AsyncMessageListener listener);
+
+    /**
+     * Subscribe to messages with async message listener, which can be filtered using SQL expressions.
+     *
+     * @param topic message topic
+     * @param selector Subscribe to the message selector (can be empty, indicating no filtering), the ONS server filters
+     * according to the expression in this selector. Currently supports two expression syntax: {@link
+     * ExpressionType#TAG}, {@link ExpressionType#SQL92} Among them, the effect of TAG filtering is consistent with the
+     * above interface.
+     * @param listener Message callback listener which enable async commit consumption status, the consumer receives the
+     * message and then passes it to the message callback listener for consumption.
+     */
+    void subscribe(final String topic, final MessageSelector selector, final AsyncMessageListener listener);
+
+    /**
+     * Subscribe to messages with async message listener.
+     *
+     * @param topic message topic.
+     * @param subExpression Subscribe to the filter expression string, which the broker filters based on this
+     * expression. <br> eg: "tag1 || tag2 || tag3"<br>, if subExpression is equal to null or *, it means subscribe all
+     * messages.
+     * @param listener Message callback listener which enable async commit consumption status, the consumer receives the
+     * message and then passes it to the message callback listener for consumption.
+     */
+    <T> void subscribe(final String topic, final String subExpression, final AsyncGenericMessageListener<T> listener);
+
+    /**
+     * Subscribe to messages with async message listener, which can be filtered using SQL expressions.
+     *
+     * @param topic message topic
+     * @param selector Subscribe to the message selector (can be empty, indicating no filtering), the ONS server filters
+     * according to the expression in this selector. Currently supports two expression syntax: {@link
+     * ExpressionType#TAG}, {@link ExpressionType#SQL92} Among them, the effect of TAG filtering is consistent with the
+     * above interface.
+     * @param listener Message callback listener which enable async commit consumption status, the consumer receives the
+     * message and then passes it to the message callback listener for consumption.
+     */
+    <T> void subscribe(final String topic, final MessageSelector selector, final AsyncGenericMessageListener<T> listener);
 }
