@@ -37,7 +37,7 @@ public class MessageBuilderImpl<T> implements MessageBuilder<T> {
 
     private String topic;
 
-    private final Map<String, String> userProperties = new HashMap<>();
+    private final Map<String, String> userProperties = new HashMap<String, String>();
 
     private final Properties properties;
 
