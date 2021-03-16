@@ -10,7 +10,7 @@
 
     <groupId>io.openmessaging</groupId>
     <artifactId>parent</artifactId>
-    <version>2.2.1-pubsub-SNAPSHOT</version>
+    <version>2.2.1-pubsub</version>
     <packaging>pom</packaging>
 
     <name>openmessaging</name>
