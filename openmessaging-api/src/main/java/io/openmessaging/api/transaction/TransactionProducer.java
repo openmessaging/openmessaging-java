@@ -82,6 +82,20 @@ public interface TransactionProducer extends ProducerBase, Admin {
     TransactionalResult prepare(Message message);
 
     /**
+     * Commit a transactional message in bytes only serialized via {@link io.openmessaging.api.TransactionalResult#toBytes()}
+     *
+     * @param bytes a prepared transactional message in bytes which serialized via {@link io.openmessaging.api.TransactionalResult#toBytes()}.
+     */
+    void commit(byte[] bytes);
+
+    /**
+     * Rollback a transactional message in bytes only serialized via {@link io.openmessaging.api.TransactionalResult#toBytes()}
+     *
+     * @param bytes a prepared transactional message in bytes which serialized via {@link io.openmessaging.api.TransactionalResult#toBytes()}.
+     */
+    void rollback(byte[] bytes);
+
+    /**
      * Bind topic with generic local transactional checker. Transactional message in topic must to be sent with object
      * instead of bytes. Transactional producer must be initiated without global local transactional checker.
      *
