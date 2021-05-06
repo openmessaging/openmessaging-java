@@ -16,6 +16,8 @@
  */
 package io.openmessaging.api;
 
+import io.openmessaging.api.transaction.TransactionProducer;
+
 /**
  * The result of sending a OMS prepare message, this result can be used to commits or or rollback a prepare message.
  *
@@ -33,5 +35,13 @@ public abstract class TransactionalResult extends SendResult {
      * Rolls back a transaction.
      */
     public abstract void rollback();
+
+    /**
+     * Get transaction result byte array, and then, you can use {@link TransactionProducer#commit(byte[])} or
+     * {@link TransactionProducer#rollback(byte[])} to commit or rollback this prepare message in any machine.
+     *
+     * @return the transaction result serialized byte array.
+     */
+    public abstract byte[] toBytes();
 
 }
