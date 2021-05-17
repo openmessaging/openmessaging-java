@@ -74,6 +74,14 @@ public interface MessageBuilder<T> {
     MessageBuilder<T> withValue(T t);
 
     /**
+     * Used for serializing message
+     *
+     * @param serializationType serialization type
+     * @return {@link MessageBuilder}
+     */
+    MessageBuilder<T> withSerializationType(String serializationType);
+
+    /**
      * Get the topic which this {@code MessageBuilder} belongs to.
      *
      * @return message topic
