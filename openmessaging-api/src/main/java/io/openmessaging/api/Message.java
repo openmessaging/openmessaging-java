@@ -259,6 +259,19 @@ public class Message implements Serializable {
         return new TopicPartition(topic, getSystemProperties(SystemPropKey.PARTITION));
     }
 
+    public int getPriorityLevel() {
+        String pro = this.getSystemProperties(SystemPropKey.PRIORITY);
+        if (pro != null) {
+            return Integer.parseInt(pro);
+        }
+
+        return -1;
+    }
+
+    public void setPriorityLevel(final int value) {
+        putSystemProperties(SystemPropKey.PRIORITY, String.valueOf(value));
+    }
+
 
     @Override
     public String toString() {
@@ -280,6 +293,8 @@ public class Message implements Serializable {
         public static final String CONSUMEOFFSET = "__CONSUMEOFFSET";
 
         public static final String PARTITION = "__PARTITION";
+
+        public static final String PRIORITY = "__PRIORITY";
     }
 
 }
