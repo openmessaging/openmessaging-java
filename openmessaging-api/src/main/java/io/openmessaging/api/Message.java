@@ -265,7 +265,7 @@ public class Message implements Serializable {
             return Integer.parseInt(pro);
         }
 
-        return -1;
+        return MessageConstants.NOOP_PRIORITY_LEVEL;
     }
 
     public void setPriorityLevel(final int value) {
@@ -295,6 +295,10 @@ public class Message implements Serializable {
         public static final String PARTITION = "__PARTITION";
 
         public static final String PRIORITY = "__PRIORITY";
+    }
+
+    static public class MessageConstants {
+        public static final int NOOP_PRIORITY_LEVEL = -1;
     }
 
 }
