@@ -37,6 +37,8 @@ public class MessageBuilderImpl<T> implements MessageBuilder<T> {
 
     private String topic;
 
+    private int priorityLevel;
+
     private final Map<String, String> userProperties = new HashMap<String, String>();
 
     private final Properties properties;
@@ -77,6 +79,11 @@ public class MessageBuilderImpl<T> implements MessageBuilder<T> {
 
     @Override public MessageBuilder withShardingKey(String shardingKey) {
         this.shardingKey = shardingKey;
+        return this;
+    }
+
+    @Override public MessageBuilder withPriority(int priorityLevel) {
+        this.priorityLevel = priorityLevel;
         return this;
     }
 

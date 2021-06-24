@@ -74,6 +74,14 @@ public interface MessageBuilder<T> {
     MessageBuilder<T> withValue(T t);
 
     /**
+     * Used for message priority
+     *
+     * @param priorityLevel the priority level of message
+     * @return {@link MessageBuilder}
+     */
+    MessageBuilder<T> withPriority(int priorityLevel);
+
+    /**
      * Get the topic which this {@code MessageBuilder} belongs to.
      *
      * @return message topic
